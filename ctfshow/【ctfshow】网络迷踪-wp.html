@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lewiserii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言使用到的工具1：百度识图2：谷歌识图3：经纬度定位4：yandex识图 新手上路格式：ctfshow{桥的名字}求的是桥的名字 谷歌识图得到结果为蜈支洲岛 使用百度实景地图查看岛岛屿不是很大，转一圈就看到了ctfshow{情人桥} 初学乍练格式：ctfshow{目的地}可以得知是瑞航的飞机从wiki百科查看机场ctfshow{苏黎世} 初学又练格式：ctfshow{纬度(精确到小数点后四位,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【ctfshow】网络迷踪-wp">
+<meta property="og:url" content="https://www.lewiserii.top/ctfshow/%E3%80%90ctfshow%E3%80%91%E7%BD%91%E7%BB%9C%E8%BF%B7%E8%B8%AA-wp.html">
+<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:description" content="前言使用到的工具1：百度识图2：谷歌识图3：经纬度定位4：yandex识图 新手上路格式：ctfshow{桥的名字}求的是桥的名字 谷歌识图得到结果为蜈支洲岛 使用百度实景地图查看岛岛屿不是很大，转一圈就看到了ctfshow{情人桥} 初学乍练格式：ctfshow{目的地}可以得知是瑞航的飞机从wiki百科查看机场ctfshow{苏黎世} 初学又练格式：ctfshow{纬度(精确到小数点后四位,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%96%B0%E6%89%8B%E4%B8%8A%E8%B7%AF.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%9C%88%E6%94%AF%E6%B4%B2%E5%B2%9B.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%83%85%E4%BA%BA%E6%A1%A5.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E5%AD%A6%E4%B9%8D%E7%BB%83.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%91%9E%E5%A3%AB.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hRUmbF.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hRUIx0.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E5%AD%A6%E5%86%8D%E7%BB%83.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%8B%89%E9%9D%A2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hR61TP.png">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/11/oTGyVg.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-2.png">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/11/oTtcIe.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%9B%BD%E8%B6%B3%E5%8A%A0%E6%B2%B91.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%9B%BD%E8%B6%B3%E5%8A%A0%E6%B2%B92.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%87%B4%E6%88%91%E8%B6%85%E5%90%A7.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%8F%A0%E7%A9%86%E6%9C%97%E7%8E%9B%E5%B3%B0.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AF%86%E9%9B%86%E6%81%90%E6%83%A7-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%93%90%E5%95%B7%E5%93%90%E5%95%B71.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-1.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-2.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-3.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-4.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-5.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-6.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-7.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-8.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-9.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-10.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-11.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-12.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-13.jpg">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/12/obrhuD.png">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/12/obcPPA.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%88%86%E7%A0%B4%E4%B8%8D%E4%BA%861.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%88%86%E7%A0%B4%E4%B8%8D%E4%BA%862.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%8F%E7%BA%AC%E5%BA%A6%E8%AE%A1%E7%AE%97.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8E%86%E7%94%B0.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/h2lGQJ.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%87%A4%E5%87%B0%E5%B1%B1%E5%85%AC%E5%9B%AD.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97111.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%821.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%822.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%823.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%99%84%E5%B8%A6%E5%AF%BC%E8%88%AA1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E4%BD%A0%E6%8B%B7%E4%B8%8A1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E4%BD%A0%E6%8B%B7%E4%B8%8A2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%AB%A5%E5%B9%B4%E5%9B%9E%E5%BF%861.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/4rb3mq.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%80%B3%E7%86%9F%E8%83%BD%E8%AF%A61.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%80%B3%E7%86%9F%E8%83%BD%E8%AF%A62.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/4rXhPf.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BC%A0%E7%BB%9F%E5%B0%8F%E5%90%832.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BC%A0%E7%BB%9F%E5%B0%8F%E5%90%833.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%87%E5%AE%99%E5%A4%A7%E6%88%981.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%87%E5%AE%99%E5%A4%A7%E6%88%982.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB4.png">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/12/obLw7j.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8F%A4%E5%9F%8E%E8%B1%AA%E5%BA%AD-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8F%A4%E5%9F%8E%E8%B1%AA%E5%BA%AD-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BE%A4%E6%AC%BA%E5%87%BA%E7%8B%B1-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-3-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-hxxl.png">
+<meta property="article:published_time" content="2021-09-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-02T10:45:47.926Z">
+<meta property="article:author" content="lewiserii">
+<meta property="article:tag" content="ctfshow">
+<meta property="article:tag" content="wp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%96%B0%E6%89%8B%E4%B8%8A%E8%B7%AF.jpg">
+  
+  
+  
+  <title>【ctfshow】网络迷踪-wp - lewiserii&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lewiserii&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.lewiserii.top/team/">
+                <i class="iconfont icon-users"></i>
+                团队
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【ctfshow】网络迷踪-wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        lewiserii
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-03 12:00" pubdate>
+          2021年9月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【ctfshow】网络迷踪-wp</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用到的工具<br>1：<a target="_blank" rel="noopener" href="https://graph.baidu.com/pcpage/index?tpl_from=pc">百度识图</a><br>2：<a target="_blank" rel="noopener" href="https://images.google.com/?gws_rd=ssl">谷歌识图</a><br>3：<a target="_blank" rel="noopener" href="https://www.qvdv.com/tools/qvdv-coordinate.html">经纬度定位</a><br>4：<a target="_blank" rel="noopener" href="https://yandex.com/images/">yandex识图</a></p>
+<h1 id="新手上路"><a href="#新手上路" class="headerlink" title="新手上路"></a>新手上路</h1><p>格式：ctfshow{桥的名字}<br>求的是桥的名字<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%96%B0%E6%89%8B%E4%B8%8A%E8%B7%AF.jpg"></p>
+<p>谷歌识图得到结果为蜈支洲岛<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%9C%88%E6%94%AF%E6%B4%B2%E5%B2%9B.png"></p>
+<p>使用百度实景地图查看岛<br>岛屿不是很大，转一圈就看到了<br>ctfshow{情人桥}<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%83%85%E4%BA%BA%E6%A1%A5.png"></p>
+<h1 id="初学乍练"><a href="#初学乍练" class="headerlink" title="初学乍练"></a>初学乍练</h1><p>格式：ctfshow{目的地}<br>可以得知是瑞航的飞机<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E5%AD%A6%E4%B9%8D%E7%BB%83.jpg"><br>从wiki百科查看机场<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%91%9E%E5%A3%AB.png"><br>ctfshow{苏黎世}</p>
+<h1 id="初学又练"><a href="#初学又练" class="headerlink" title="初学又练"></a>初学又练</h1><p>格式：ctfshow{纬度(精确到小数点后四位, 不用进位),经度(精确到小数点后四位, 不用进位)}<br>可以看到右边店面的名字为：sandwichnsmoothies<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hRUmbF.png"><br>因为在国外，所以直接用谷歌地图搜，用街景看，发现一模一样<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hRUIx0.png"><br>真的不想做经纬度的题了，数字太难对了<br>ctfshow{55.6382,12.6411}</p>
+<h1 id="初学再练"><a href="#初学再练" class="headerlink" title="初学再练"></a>初学再练</h1><p>格式：ctfshow{军事基地英文}<br>谷歌识图<br>直接得到结果<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E5%AD%A6%E5%86%8D%E7%BB%83.png"><br>ctfshow{Nagurskoye}</p>
+<h1 id="现拉现吃"><a href="#现拉现吃" class="headerlink" title="现拉现吃"></a>现拉现吃</h1><p>格式：ctfshow{图中店铺全名的拼音（无分隔符和声调、字母全小写）加食物价格（阿拉伯数字）}<br>百度识图找到一个图案一样的碗<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%8B%89%E9%9D%A2.png"><br>得到结果为“云峰清真餐厅(南滨河路店)”，因为图片上有大众点评的水印<br>所以在大众点评里找，看到评论里有店面的招牌，得到名字为云峰牛肉面<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/hR61TP.png"><br>手机app扫码点单可以得知价格为10，但是提交失败<br>百度得到的价格为17<br>ctfshow{yunfengniuroumian17}</p>
+<h1 id="初窥门径"><a href="#初窥门径" class="headerlink" title="初窥门径"></a>初窥门径</h1><p>格式：拍摄者后面的建筑名称，格式ctfshow{建筑名称中文}<br>yandex识图找到类似的图片<br><img src="https://s4.ax1x.com/2021/12/11/oTGyVg.png"></p>
+<p>转到一篇游记,提到了城市吉萨<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-2.png"><br>之后也写到了拍摄地点<br>ctfshow{胡夫金字塔}</p>
+<h1 id="狗哥去哪"><a href="#狗哥去哪" class="headerlink" title="狗哥去哪"></a>狗哥去哪</h1><p>格式：flag为ctfshow{风景区名字，小写拼音}</p>
+<p>图片中有微博id，找到号主，翻看相册，没看到啥信息<br>找到博主的B站号，看到一篇vlog，提到了地点<br><img src="https://s4.ax1x.com/2021/12/11/oTtcIe.png"></p>
+<p>ctfshow{daochengyading}</p>
+<h1 id="国足加油"><a href="#国足加油" class="headerlink" title="国足加油"></a>国足加油</h1><p>格式：ctfshow{日期+体育场名字}<br>一个gif，使用百度识图搜索<br>在这一篇<a target="_blank" rel="noopener" href="https://xw.qq.com/partner/hwbrowser/20200329a041qr/20200329a041qr00?adtag=hwb&pgv_ref=hwb&appid=hwbrowser&ctype=news">新闻</a>中可以得知日期为2016年3月29日,比赛地点为西安<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%9B%BD%E8%B6%B3%E5%8A%A0%E6%B2%B91.png"><br>就差场地了，可以通过关键词来百度搜索<br>得知场地为陕西省体育场<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%9B%BD%E8%B6%B3%E5%8A%A0%E6%B2%B92.png"><br>ctfshow{2016年3月29日陕西省体育场}</p>
+<h1 id="致我超吧"><a href="#致我超吧" class="headerlink" title="致我超吧"></a>致我超吧</h1><p>格式：ctfshow{主角ID_vs_对手id}（全小写）<br>百度识图可以找到一篇知乎文章，提到了这是选手<code>innovation</code>的操作<br>另一篇文章提到对手<code>dark</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%87%B4%E6%88%91%E8%B6%85%E5%90%A7.png"><br>ctfshow{innovation_vs_dark}</p>
+<h1 id="山外有山"><a href="#山外有山" class="headerlink" title="山外有山"></a>山外有山</h1><p>格式：ctfshow{山的名字}<br>说实话这个图我一眼就看出来了是珠穆朗玛峰<br>但还是识图确认了一下<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%8F%A0%E7%A9%86%E6%9C%97%E7%8E%9B%E5%B3%B0.png"><br>ctfshow{珠穆朗玛峰}</p>
+<h1 id="密集恐惧"><a href="#密集恐惧" class="headerlink" title="密集恐惧"></a>密集恐惧</h1><p>格式：提交图片所在地的经纬坐标，就网上公开的就成<br>根据积累与特征直接看出是美国飞机坟场<br>当然百度识图也能出<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AF%86%E9%9B%86%E6%81%90%E6%83%A7-1.png"><br>ctfshow{32°09’19.17N,110°49’46.69W}</p>
+<h1 id="哐啷哐啷"><a href="#哐啷哐啷" class="headerlink" title="哐啷哐啷"></a>哐啷哐啷</h1><p>格式：ctfshow{火车站名称}<br>谷歌识图可以直接找到<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%93%90%E5%95%B7%E5%93%90%E5%95%B71.png"><br>ctfshow{和田}</p>
+<h1 id="鲶鱼之谜"><a href="#鲶鱼之谜" class="headerlink" title="鲶鱼之谜"></a>鲶鱼之谜</h1><p>格式：ctfshow{航班号_拍摄时分}，如ctfshow{ab1234_1537}（15时37分拍摄）<br>这题大概是网络迷踪中最难的一题，直接放官网wp了：</p>
+<p>part1_航班号：<br>根据照片水印可以找到微博主人，综合8月29号以及之前发的微博可以看出他一直居住在上海，往下翻就能找到这张照片出处，根据评论可以猜测出可能是回天津的航班，根据那条微博的其他照片和发布时间可以推测出航班的起飞时间为18点左右，再通过飞常准app可以查到2021.8.5的航班信息，然后根据飞机的座椅推算出乘坐的航班号为ca1524<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-1.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-2.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-3.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-4.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-5.jpg"></p>
+<p>part2_拍摄时间：<br>通过飞常准app可以找到航班实际起飞时间为18:27以及平均飞行速度为11.68km&#x2F;min，而当天（2021.8.5）山东的日落时间为19:14:39，再结合上海到济南的直线距离816km左右可以得出，飞机到济南需要70min，此时已经日落了，也就是说，此时的飞机还没飞过济南，且位置在上海和济南之间。<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-6.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-7.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-8.jpg"></p>
+<p>从日落时间19:14开始反推，根据飞机平均速度，在日落前大约能飞549km，以虹桥机场为圆心画一个半径549km的圆，再结合航线判断大概率在江苏上空，再用谷歌地球查看具体时刻的卫星图，可以推算出是在飞机起飞后十分钟之内拍摄的。<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-9.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-10.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-11.jpg"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-12.jpg"></p>
+<p>从图片可以看出飞机稍微有些倾斜，说明飞机处于爬升阶段，再根据窗外的云层可以判断出此时飞机高度大约为6000米，再用飞常准app查看航线回顾，飞行高度为6000米时飞机位于南通市附近，且处于爬升状态，与之前的推断相吻合，再看具体时刻，大致为18:37，得到flag<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%B2%B6%E9%B1%BC%E4%B9%8B%E8%B0%9C-13.jpg"></p>
+<p>ctfshow{ca1524_1837}</p>
+<h1 id="这里有轨"><a href="#这里有轨" class="headerlink" title="这里有轨"></a>这里有轨</h1><p>格式：提交车站名称和车次号，例如：ctfshow{上海T1234}<br>百度搜列车型号相关文章，对比图片得到车型号为<code>CR400BF</code><br><img src="https://s4.ax1x.com/2021/12/12/obrhuD.png"></p>
+<p>识图找到站点千岛湖</p>
+<p>根据光线等，不可能是早上和晚上，剩下的爆破一下<br><img src="https://s4.ax1x.com/2021/12/12/obcPPA.png"><br>得到：<br>ctfshow{千岛湖G7498}</p>
+<h1 id="爆破不了"><a href="#爆破不了" class="headerlink" title="爆破不了"></a>爆破不了</h1><p>格式：ctfshow{拍摄者所处建筑的联系手机号}<br>百度识图得到<code>泉州东西塔</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%88%86%E7%A0%B4%E4%B8%8D%E4%BA%861.png"><br>从照片上看，拍摄者距离景点很近<br>还有图片中房子的走向<br>可以排除镇国塔<br>仁寿塔附近能拍摄的地方不多，基本就锁定了泉州等风民俗<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%88%86%E7%A0%B4%E4%B8%8D%E4%BA%862.png"><br>ctfshow{18050999086}</p>
+<h1 id="目之所及"><a href="#目之所及" class="headerlink" title="目之所及"></a>目之所及</h1><p>格式：ctfshow{区号-电话}<br>原图的经纬度没有去掉<br>计算方式<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%8F%E7%BA%AC%E5%BA%A6%E8%AE%A1%E7%AE%97.png"><br>得到大概位置为莆田市<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8E%86%E7%94%B0.png"><br>通过百度实景地图找到附近的标志性建筑（虽然我感觉不太像，这个角是平的，图里是尖的）<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/h2lGQJ.png"><br>查看附近的景点<br>根据看标志性建筑的角度，加上定位地点，应该是凤凰山公园<br>查看电话号码<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%87%A4%E5%87%B0%E5%B1%B1%E5%85%AC%E5%9B%AD.png"><br>ctfshow{0594-2680716}</p>
+<h1 id="窗外风景"><a href="#窗外风景" class="headerlink" title="窗外风景"></a>窗外风景</h1><p>格式：ctfshow{目的城市+比赛地点+下一场比赛城市}</p>
+<h1 id="来点福利"><a href="#来点福利" class="headerlink" title="来点福利"></a>来点福利</h1><p>格式：ctfshow{照片中女孩名字_当时住的酒店电话号码}<br>百度识图得到比赛和人物名字<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-1.png"></p>
+<p>百度搜比赛地点<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-2.png"></p>
+<p>根据右上角招牌搜到电话<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9D%A5%E7%82%B9%E7%A6%8F%E5%88%A9-3.png"></p>
+<p>ctfshow{郭敏善_1833-8855}</p>
+<h1 id="你的名字"><a href="#你的名字" class="headerlink" title="你的名字"></a>你的名字</h1><p>大佬们都说能直接搜到<br>但我搜了几圈都没找到，不知道是不是姿势不对<br>这里直接借用了大佬的图片<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97111.png"><br>ctfshow{野菜山下商店}</p>
+<h1 id="严查外挂"><a href="#严查外挂" class="headerlink" title="严查外挂"></a>严查外挂</h1><p>格式：’ctfshow{‘ + flag +’|’ + link + ‘}’<br>hint1: flag在举报帖子的图片上<br>hint2: 链接地址不是缓存的网页，是直接访问的链接（404），末尾不带’&#x2F;‘<br>百度关键词可以直接搜到那个404的页面<code>https://www.taptap.com/topic/6820231</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%821.png"><br>使用谷歌快照查看文章中的图片<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%822.png"><br>得到flag<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%A5%E6%9F%A5%E5%A4%96%E6%8C%823.png"><br>将网址和flag连接起来<br>ctfshow{flag{M1ssInG_T5p1N_P0Wer}|<a target="_blank" rel="noopener" href="https://www.taptap.com/topic/6820231%7D">https://www.taptap.com/topic/6820231}</a></p>
+<h1 id="附带导航"><a href="#附带导航" class="headerlink" title="附带导航"></a>附带导航</h1><p>。。。<br>在群文件中。（群号：372619038）<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%99%84%E5%B8%A6%E5%AF%BC%E8%88%AA1.png"><br>ctfshow{勇敢炫炫，不怕困难}</p>
+<h1 id="给你拷上"><a href="#给你拷上" class="headerlink" title="给你拷上"></a>给你拷上</h1><p>格式：ctfshow{十位纯数字}<br>百度识图找到人物名称<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E4%BD%A0%E6%8B%B7%E4%B8%8A1.png"><br>微博搜索<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E4%BD%A0%E6%8B%B7%E4%B8%8A2.png"><br>ctfshow{1928665723}</p>
+<h1 id="菜瞎双眼"><a href="#菜瞎双眼" class="headerlink" title="菜瞎双眼"></a>菜瞎双眼</h1><p>格式：ctfshow{比赛开始日期_比赛名_出题者中文id_原图片文件名_flag{xxxxxx}}<br>这个好难搜<br>翻到第九页才看到<br>得到比赛名<code>红帽杯</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC1.png"><br>搜索其他wp文章<br>得到flag<code>flag&#123;d7f1417bfafbf62587e0&#125;</code>和原图片文件名<code>vegetable.png</code><br>在官网找到时间<code>2019-11-10</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC2.png"><br>wp中出现了出题人的id：b1cx<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC3.png"><br>百度搜索b1cx,第一个github页面找到中文id<code>菠萝吹雪</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8F%9C%E7%9E%8E%E5%8F%8C%E7%9C%BC4.png"><br>组合在一起<br>ctfshow{2019-11-10_红帽杯_菠萝吹雪_vegetable.png_flag{d7f1417bfafbf62587e0}}</p>
+<h1 id="童年回忆"><a href="#童年回忆" class="headerlink" title="童年回忆"></a>童年回忆</h1><p>格式：ctfshow{动画片的名称}<br>看右上角为bilibili独播<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%AB%A5%E5%B9%B4%E5%9B%9E%E5%BF%861.png"><br>看画风是国产的<br>在国产动画中搜索独家，找到一个造型一致的封面<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/4rb3mq.png"><br>ctfshow{美影大乐园}</p>
+<h1 id="我在哪呢"><a href="#我在哪呢" class="headerlink" title="我在哪呢"></a>我在哪呢</h1><p>。。图片放大，看到广州，常平，樟木头</p>
+<p>ctfshow{东莞站}</p>
+<h1 id="耳熟能详"><a href="#耳熟能详" class="headerlink" title="耳熟能详"></a>耳熟能详</h1><p>格式：ctfshow{音频出处}<br>看样子是反转过的，我们利用软件反转回来<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%80%B3%E7%86%9F%E8%83%BD%E8%AF%A61.png"><br>qq识曲<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%80%B3%E7%86%9F%E8%83%BD%E8%AF%A62.png"><br>ctfshow{玫瑰花的葬礼}</p>
+<h1 id="传统小吃"><a href="#传统小吃" class="headerlink" title="传统小吃"></a>传统小吃</h1><p>格式：ctfshow{区号-联系电话}<br>老规矩先百度识图<br>找到一张一模一样的<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/4rXhPf.png"><br>图片出自一篇游记<br>找到了地址和店名<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BC%A0%E7%BB%9F%E5%B0%8F%E5%90%832.png"><br>百度地图<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BC%A0%E7%BB%9F%E5%B0%8F%E5%90%833.png"><br>ctfshow{0595-22373358}</p>
+<h1 id="宇宙大战"><a href="#宇宙大战" class="headerlink" title="宇宙大战"></a>宇宙大战</h1><p>格式：ctfshow{星系|战斗开始时间}<br>百度识图<br>有很多一模一样的图片，随便点一张<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%87%E5%AE%99%E5%A4%A7%E6%88%981.png"><br>找到日期和地点<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%87%E5%AE%99%E5%A4%A7%E6%88%982.png"><br>ctfshow{2014-03-25|49-U6U}</p>
+<h1 id="食堂轶闻"><a href="#食堂轶闻" class="headerlink" title="食堂轶闻"></a>食堂轶闻</h1><p>格式：ctfshow{学校名称_锦旗落款日期}<br>百度关键词搜索<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB1.png"><br>得到学校名字<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB2.png"><br>再次搜索<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB3.png"><br>在贴吧中得到图片，拿到日期<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E9%A3%9F%E5%A0%82%E8%BD%B6%E9%97%BB4.png"><br>ctfshow{南方科技大学_2018_09}</p>
+<h1 id="三秦套餐"><a href="#三秦套餐" class="headerlink" title="三秦套餐"></a>三秦套餐</h1><p>格式：ctfshow{所在地广场名称},如ctfshow{天安门广场}<br>根据题目三秦和照片中的老潼关锁定陕西</p>
+<p>根据招牌百度得到广场名字<br><img src="https://s4.ax1x.com/2021/12/12/obLw7j.png"></p>
+<p>ctfshow{金辉环球广场}</p>
+<h1 id="古城豪庭"><a href="#古城豪庭" class="headerlink" title="古城豪庭"></a>古城豪庭</h1><p>格式：ctfshow{隔壁酒店电话}，ctfshow{区号-电话}</p>
+<p>缩小一点百度识图<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8F%A4%E5%9F%8E%E8%B1%AA%E5%BA%AD-1.png"></p>
+<p>百度搜西安民乐园文化街附近的酒店<br>得到西安富力希尔顿酒店<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8F%A4%E5%9F%8E%E8%B1%AA%E5%BA%AD-2.png"></p>
+<p>ctfshow{029-87388888}</p>
+<h1 id="群欺出狱"><a href="#群欺出狱" class="headerlink" title="群欺出狱"></a>群欺出狱</h1><p>格式：图后面的山的名字和海拔 例如ctfshow{珠穆朗玛峰_635}</p>
+<p>直接百度地图可以直接找到位置<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BE%A4%E6%AC%BA%E5%87%BA%E7%8B%B1-1.png"></p>
+<p>附近的几座山百度一下海拔</p>
+<p>ctfshow{九华山_741}</p>
+<h1 id="Las-Vegas历险记-1"><a href="#Las-Vegas历险记-1" class="headerlink" title="Las Vegas历险记-1"></a>Las Vegas历险记-1</h1><p>谷歌可以搜到原题</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-1.png"></p>
+<p>ctfshow{36.171,-115.139}</p>
+<h1 id="Las-Vegas历险记-2"><a href="#Las-Vegas历险记-2" class="headerlink" title="Las Vegas历险记-2"></a>Las Vegas历险记-2</h1><p>一点一点看视频比对就可以找到黄车了</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-2.png"></p>
+<p>ctfshow{TUX&amp;GOWN_36.1575,-115.1483}</p>
+<h1 id="Las-Vegas历险记-3"><a href="#Las-Vegas历险记-3" class="headerlink" title="Las Vegas历险记-3"></a>Las Vegas历险记-3</h1><p>先找到车，然后观察周围环境，找到关键建筑（luxor金字塔，mgm酒店）<br>谷歌地图很容易找到路口，但是还要注意时间节点是2017年</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-lswjs-3-1.png"></p>
+<p>ctfshow{Mandalay_Bay_Rd}</p>
+<h1 id="红西秀林"><a href="#红西秀林" class="headerlink" title="红西秀林"></a>红西秀林</h1><p>百度了半天，最后发现原剧中就有</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/juanwang-osint-hxxl.png"></p>
+<p>ctfshow{强仔咸鱼_13912345670_8233333}</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>暂时写这么多吧，之后就不更新了。个人建议还是不要在这个模块上面花费太多精力^_^</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctfshow/">#ctfshow</a>
+      
+        <a href="/tags/wp/">#wp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【ctfshow】网络迷踪-wp</div>
+      <div>https://www.lewiserii.top/ctfshow/【ctfshow】网络迷踪-wp.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lewiserii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月3日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/ctfshow/%E3%80%90ctfshow%E3%80%91%E6%9C%88%E9%A5%BC%E6%9D%AF(%E7%AC%AC%E4%BA%8C%E5%B1%8A)-wp.html" title="【ctfshow】月饼杯(第二届)-wp">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【ctfshow】月饼杯(第二届)-wp</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%85%B6%E4%BB%96/%E6%B1%89%E6%98%8E%E7%A0%81.html" title="汉明码计算">
+                        <span class="hidden-mobile">汉明码计算</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

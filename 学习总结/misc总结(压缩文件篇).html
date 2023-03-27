@@ -1,0 +1,1438 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lewiserii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ZIP文件ZIP通常使用后缀名.zip，它的MIME格式为application&#x2F;zip 文件结构分析引用官方文档中对于一个标准zip文件组成部分的描述： 123456789101112131415[local file header 1][file data 1][data descriptor 1]...[local file header n][file data n][data descr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="misc总结(压缩文件篇)">
+<meta property="og:url" content="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/misc%E6%80%BB%E7%BB%93(%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%AF%87).html">
+<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:description" content="ZIP文件ZIP通常使用后缀名.zip，它的MIME格式为application&#x2F;zip 文件结构分析引用官方文档中对于一个标准zip文件组成部分的描述： 123456789101112131415[local file header 1][file data 1][data descriptor 1]...[local file header n][file data n][data descr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-5.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-6.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-7.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-8.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-9.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-10.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-11.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-12.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-13.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-15.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-14.png">
+<meta property="article:published_time" content="2022-07-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-16T15:54:23.797Z">
+<meta property="article:author" content="lewiserii">
+<meta property="article:tag" content="misc">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="隐写">
+<meta property="article:tag" content="压缩文件">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-1.png">
+  
+  
+  
+  <title>misc总结(压缩文件篇) - lewiserii&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lewiserii&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.lewiserii.top/team/">
+                <i class="iconfont icon-users"></i>
+                团队
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="misc总结(压缩文件篇)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        lewiserii
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-02 12:00" pubdate>
+          2022年7月2日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">misc总结(压缩文件篇)</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="ZIP文件"><a href="#ZIP文件" class="headerlink" title="ZIP文件"></a>ZIP文件</h1><p><code>ZIP</code>通常使用后缀名<code>.zip</code>，它的<code>MIME</code>格式为<code>application/zip</code></p>
+<h2 id="文件结构分析"><a href="#文件结构分析" class="headerlink" title="文件结构分析"></a>文件结构分析</h2><p>引用<a target="_blank" rel="noopener" href="https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.2.0.txt">官方文档</a>中对于一个标准zip文件组成部分的描述：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs prolog">[local file header <span class="hljs-number">1</span>]<br>[file data <span class="hljs-number">1</span>]<br>[data descriptor <span class="hljs-number">1</span>]<br>.<br>.<br>.<br>[local file header n]<br>[file data n]<br>[data descriptor n]<br>[archive decryption header] (<span class="hljs-symbol">EFS</span>)<br>[archive extra data record] (<span class="hljs-symbol">EFS</span>)<br>[central directory]<br>[zip64 end of central directory record]<br>[zip64 end of central directory locator]<br>[end of central directory record]<br></code></pre></td></tr></table></figure>
+
+<p>为了演示结构，首先创建一个<code>flag.txt</code>，分别压缩成<code>flag1.zip(无密码)</code>和<code>flag2.zip(有密码)</code>（使用的是winrar默认参数压缩）</p>
+<p>推荐使用<code>010 editor</code>分析</p>
+<p>先看<code>flag1.zip</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-1.png"></p>
+<p>大致可以分为三个部分：<code>local file header + file data + data descriptor</code>和<code>central directory</code>以及一个<code>end of central directory record</code>组成（对应图中的三种颜色）</p>
+<h3 id="文件头-Local-file-header"><a href="#文件头-Local-file-header" class="headerlink" title="文件头(Local file header)"></a>文件头(Local file header)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Local file header signature</td>
+<td>4</td>
+<td>文件头标识，固定值(50 4B 03 04)</td>
+</tr>
+<tr>
+<td>Version needed to extract</td>
+<td>2</td>
+<td>解压文件所需的ZIP最低版本</td>
+</tr>
+<tr>
+<td>General purpose bit flag</td>
+<td>2</td>
+<td>通用位标志，通常只需要考虑当bit 0为1时表示文件被加密</td>
+</tr>
+<tr>
+<td>Compression method</td>
+<td>2</td>
+<td>压缩方式，当值为：0x0000时表示无压缩</td>
+</tr>
+<tr>
+<td>Last mod file time</td>
+<td>2</td>
+<td>文件最后修改时间，以standard MS-DOS格式编码</td>
+</tr>
+<tr>
+<td>Last mod file date</td>
+<td>2</td>
+<td>文件最后修改日期</td>
+</tr>
+<tr>
+<td>CRC-32</td>
+<td>4</td>
+<td>未压缩数据的CRC32</td>
+</tr>
+<tr>
+<td>Compressed size</td>
+<td>4</td>
+<td>压缩后的大小，单位为byte</td>
+</tr>
+<tr>
+<td>Uncompressed size</td>
+<td>4</td>
+<td>未压缩的大小</td>
+</tr>
+<tr>
+<td>File name length</td>
+<td>2</td>
+<td>文件名长度</td>
+</tr>
+<tr>
+<td>Extra field length</td>
+<td>2</td>
+<td>扩展区域长度</td>
+</tr>
+<tr>
+<td>File name</td>
+<td>N</td>
+<td>文件名</td>
+</tr>
+<tr>
+<td>Extra field</td>
+<td>N</td>
+<td>扩展区域</td>
+</tr>
+</tbody></table>
+<h3 id="文件数据-File-data"><a href="#文件数据-File-data" class="headerlink" title="文件数据(File data)"></a>文件数据(File data)</h3><p>应将文件的压缩或存储数据紧随在文件头(Local File Header)后。如果文件已加密，则文件的加密头(encryption header)应放置在本地文件头(Local File Header)之后和文件数据之前。</p>
+<p>对于<code>.ZIP</code>压缩文档中的每个文件，重复执行一系列的<code>[文件头][加密头][文件数据][数据描述符]</code>结构。</p>
+<h3 id="数据描述符-Data-descriptor"><a href="#数据描述符-Data-descriptor" class="headerlink" title="数据描述符(Data descriptor)"></a>数据描述符(Data descriptor)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Optional data descriptor signature</td>
+<td>4</td>
+<td>(可选的)数据描述符标识，固定值(50 4B 07 08)</td>
+</tr>
+<tr>
+<td>CRC-32</td>
+<td>4</td>
+<td>未压缩数据的CRC32</td>
+</tr>
+<tr>
+<td>Compressed size</td>
+<td>4</td>
+<td>压缩后的大小</td>
+</tr>
+<tr>
+<td>Uncompressed size</td>
+<td>4</td>
+<td>未压缩的大小</td>
+</tr>
+</tbody></table>
+<p>如果设置了通用位标志的位3，则该描述符必须存在，它按字节对齐，紧随压缩数据的最后一个字节，仅在无法在输出的.ZIP文件中查找时(例如，当输出.ZIP文件是标准输出或不可搜索的设备时)，才应使用此描述符</p>
+<p>例如<code>flag2.zip</code>中的绿色部分</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-2.png"></p>
+<h3 id="核心目录-Central-directory"><a href="#核心目录-Central-directory" class="headerlink" title="核心目录(Central directory)"></a>核心目录(Central directory)</h3><p><code>Central directory</code>包括<code>File header</code>和<code>Digital signature</code></p>
+<p>文件头：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Central directory file header signature</td>
+<td>4</td>
+<td>中心目录文件头标识，固定值(50 4B 01 02)</td>
+</tr>
+<tr>
+<td>Version made by</td>
+<td>2</td>
+<td>压缩所用的ZIP版本</td>
+</tr>
+<tr>
+<td>Version needed to extract</td>
+<td>2</td>
+<td>解压文件所需的ZIP最低版本</td>
+</tr>
+<tr>
+<td>General purpose bit flag</td>
+<td>2</td>
+<td>通用位标记</td>
+</tr>
+<tr>
+<td>Compression method</td>
+<td>2</td>
+<td>压缩方法</td>
+</tr>
+<tr>
+<td>Last mod file time</td>
+<td>2</td>
+<td>文件最后修改时间</td>
+</tr>
+<tr>
+<td>Last mod file date</td>
+<td>2</td>
+<td>文件最后修改日期</td>
+</tr>
+<tr>
+<td>CRC-32</td>
+<td>4</td>
+<td>未压缩数据的CRC32</td>
+</tr>
+<tr>
+<td>Compressed size</td>
+<td>4</td>
+<td>压缩后的大小</td>
+</tr>
+<tr>
+<td>Uncompressed size</td>
+<td>4</td>
+<td>未压缩的大小</td>
+</tr>
+<tr>
+<td>File name length</td>
+<td>2</td>
+<td>文件名长度</td>
+</tr>
+<tr>
+<td>Extra field length</td>
+<td>2</td>
+<td>扩展区域长度</td>
+</tr>
+<tr>
+<td>File comment length</td>
+<td>2</td>
+<td>文件注释长度</td>
+</tr>
+<tr>
+<td>Disk number start</td>
+<td>2</td>
+<td>文件开始位置所在的磁盘编号</td>
+</tr>
+<tr>
+<td>Internal file attributes</td>
+<td>2</td>
+<td>内部文件属性</td>
+</tr>
+<tr>
+<td>External file attributes</td>
+<td>4</td>
+<td>外部文件属性</td>
+</tr>
+<tr>
+<td>Relative offset of local header</td>
+<td>4</td>
+<td>本地文件头的相对偏移</td>
+</tr>
+<tr>
+<td>File name</td>
+<td>N</td>
+<td>文件名</td>
+</tr>
+<tr>
+<td>Extra field</td>
+<td>N</td>
+<td>扩展区域</td>
+</tr>
+<tr>
+<td>File comment</td>
+<td>N</td>
+<td>文件注释</td>
+</tr>
+</tbody></table>
+<p>数字签名：<br>此区域不是必须的</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Header signature</td>
+<td>4</td>
+<td>头标识，固定值(50 4B 05 05)</td>
+</tr>
+<tr>
+<td>Size of data</td>
+<td>2</td>
+<td>数据的大小</td>
+</tr>
+<tr>
+<td>Signature data</td>
+<td>N</td>
+<td>签名数据</td>
+</tr>
+</tbody></table>
+<h3 id="目录结束标识-End-of-central-directory-record"><a href="#目录结束标识-End-of-central-directory-record" class="headerlink" title="目录结束标识(End of central directory record)"></a>目录结束标识(End of central directory record)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>End of central directory signature</td>
+<td>4</td>
+<td>中心目录结束标识，固定值(50 4B 05 06)</td>
+</tr>
+<tr>
+<td>Number of this disk</td>
+<td>2</td>
+<td>当前磁盘编号</td>
+</tr>
+<tr>
+<td>Number of the disk with the start of the central directory</td>
+<td>2</td>
+<td>中心目录开头所在的磁盘号</td>
+</tr>
+<tr>
+<td>Total number of entries in the central directory on this disk</td>
+<td>2</td>
+<td>该磁盘上中心目录的条目总数</td>
+</tr>
+<tr>
+<td>Total number of entries in the central directory</td>
+<td>2</td>
+<td>中心目录的条目总数</td>
+</tr>
+<tr>
+<td>Size of the central directory</td>
+<td>4</td>
+<td>中心目录的大小</td>
+</tr>
+<tr>
+<td>Offset of start of central directory with respect to the starting disk number</td>
+<td>4</td>
+<td>中心目录开始位置相对于压缩文档开始位置的偏移</td>
+</tr>
+<tr>
+<td>.ZIP file comment length</td>
+<td>2</td>
+<td>.ZIP文件注释长度</td>
+</tr>
+<tr>
+<td>.ZIP file comment</td>
+<td>N</td>
+<td>.ZIP文件注释</td>
+</tr>
+</tbody></table>
+<h2 id="常见考点"><a href="#常见考点" class="headerlink" title="常见考点"></a>常见考点</h2><h3 id="伪加密"><a href="#伪加密" class="headerlink" title="伪加密"></a>伪加密</h3><p>伪加密可以说是非常常见，基础的考点了，正如名字中的<code>伪</code>，它本身并没有加密，但是通过修改<code>通用位标记</code>，可以使得解压软件认为这个文件存在加密</p>
+<p>例题：<a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#zip%E4%BC%AA%E5%8A%A0%E5%AF%86">BUU-zip伪加密</a></p>
+<p>可以看到是需要密码的</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-3.png"></p>
+<p><code>010 editor</code>查看，修改<code>通用位标记</code>为<code>0x0000</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-4.png"></p>
+<p>修改后可以直接解压了</p>
+<h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>使用工具(archpr)或者脚本(python)对压缩包进行暴力破解密码</p>
+<p>基本可以分为<code>纯暴力</code>，<code>掩码</code>，<code>字典</code></p>
+<p>纯暴力：一般是弱口令或者纯数字</p>
+<p>掩码：知道了密码的一部分，用掩码进行爆破。例如<code>??ert??</code>可以去匹配中间为<code>ert</code>的密码</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-5.png"></p>
+<p>字典：用题目中给出的或自己的弱口令字典去跑</p>
+<h3 id="CRC32碰撞"><a href="#CRC32碰撞" class="headerlink" title="CRC32碰撞"></a>CRC32碰撞</h3><p>每个文件都有唯一的<code>CRC32</code>值，即使文件中有个一个<code>bit</code>发生了变化，<code>CRC32</code>值也会不同</p>
+<p><code>CRC32</code>爆破就是知道文件中一段数据的长度和文件的<code>CRC32</code>值，通过脚本程序，利用穷举法，与其<code>CRC32</code>对照，从而达到猜解数据的目的（通常只适用于较小的文本文件，文件太大穷举难度太大）</p>
+<p>例题：<a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#zip">BUU-zip</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kmyk/zip-crc-cracker">github脚本1</a><br><a target="_blank" rel="noopener" href="https://github.com/theonlypwner/crc32">github脚本2</a></p>
+<p>下载附件，解压得到<code>68</code>个压缩包，并且每个压缩文件里都有一个<code>4</code>个字节大小的名为<code>data.txt</code>的<code>txt</code>文件，于是尝试用<code>crc32</code>碰撞还原出所有压缩包中的文件内容</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-6.png"></p>
+<p>得到一串base64编码后的字符串，解压后修复压缩包得到flag</p>
+<h3 id="明文攻击"><a href="#明文攻击" class="headerlink" title="明文攻击"></a>明文攻击</h3><p>明文攻击是一种较为高效的攻击手段，大致原理是当你不知道一个zip的密码，但是你有zip中的一个已知文件（文件大小要大于12Byte）时，因为同一个zip压缩包里的所有文件都是使用同一个加密密钥来加密的，所以可以用已知文件来找加密密钥，利用密钥来解锁其他加密文件。</p>
+<p>注意：明文对应文件的加密算法需要是<code>ZipCrypto Store</code>(linux下可以用unzip -v等命令查看)</p>
+<p><a target="_blank" rel="noopener" href="https://flandre-scarlet.moe/blog/1685/">ZIP 明文攻击原理</a></p>
+<p>例题：<a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020]%E6%98%8E%E6%96%87%E6%94%BB%E5%87%BB">BUU-[ACTF新生赛2020]明文攻击</a></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-7.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-8.png"></p>
+<h3 id="深入明文攻击-bkcrack"><a href="#深入明文攻击-bkcrack" class="headerlink" title="深入明文攻击-bkcrack"></a>深入明文攻击-bkcrack</h3><p>上个例子的明文攻击使用的是完整的文件，但是有时候没有文件，只知道加密文件的一部分字节数据(至少12个字节及偏移)，这时候如果满足加密算法(ZipCrypto Store)条件，就可以使用深入明文攻击</p>
+<p>例题：2022西湖论剑-take_the_zip_easy</p>
+<p>已知算法为<code>ZipCrypto Store</code>，且有一个zip文件，就可以得知文件头为<code>504B030414000000</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-9.png"></p>
+<p><code>echo -n &quot;dasflow.pcapng&quot; &gt; plain.out</code><br><code>./bkcrack -C zipeasy.zip -c dasflow.zip -p plain.out -o 30 -x 0 504B030414000000</code></p>
+<p>参数解释：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">-C 加密压缩包<br>-c 提取的密文部分<br>-p 提取的明文部分<br>-o offset  -p参数指定的明文在压缩包内目标文件的偏移量<br>-x 压缩包内目标文件的偏移地址  部分已知明文值<br></code></pre></td></tr></table></figure>
+
+<p><code>-o</code>为<code>30</code>是因为在zip格式中第三十位固定为压缩文件的名字</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-10.png"></p>
+<p>拿到key：<code>2b7d78f3 0ebcabad a069728c</code>，这个还不是真正的密码</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-11.png"></p>
+<p>通过<code>key</code>修改密码为<code>easy</code>，保存到<code>easy.zip</code><br><code>./bkcrack -C zipeasy.zip -k 2b7d78f3 0ebcabad a069728c -U easy.zip easy</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-12.png"></p>
+<h1 id="RAR文件"><a href="#RAR文件" class="headerlink" title="RAR文件"></a>RAR文件</h1><h2 id="文件结构分析-1"><a href="#文件结构分析-1" class="headerlink" title="文件结构分析"></a>文件结构分析</h2><p>RAR不同于ZIP，RAR是一种专利文件格式<br>2.0 版本前加密算法未公开，2.0 版本后使用AES算法加密</p>
+<p>RAR 5.0签名和RAR4.x的签名不一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs test">RAR 5.0 签名由8个字节组成:<br>0x52 0x61 0x72 0x21 0x1A 0x07 0x01 0x00<br><br>RAR 4.x 签名由7字节组成:<br>0x52 0x61 0x72 0x21 0x1A 0x07 0x00<br></code></pre></td></tr></table></figure>
+
+<p><strong>因为rar是商业格式，所以不同软件不同版本所压缩出来的可能会有细微差别，可以参考010中的rar模板</strong></p>
+<p>本文以RAR4.x为例子，可以大致分为四部分</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-13.png"></p>
+<h3 id="标记块-MARK-HEAD"><a href="#标记块-MARK-HEAD" class="headerlink" title="标记块(MARK_HEAD)"></a>标记块(MARK_HEAD)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HEAD_CRC</td>
+<td>2</td>
+<td>总是0x6152</td>
+</tr>
+<tr>
+<td>HEAD_TYPE</td>
+<td>1</td>
+<td>0x72</td>
+</tr>
+<tr>
+<td>HEAD_FLAGS</td>
+<td>2</td>
+<td>总是0x1A21</td>
+</tr>
+<tr>
+<td>HEAD_SIZE</td>
+<td>2</td>
+<td>块大小 &#x3D; 0x0007，即7个字节</td>
+</tr>
+</tbody></table>
+<p>所以这里标记块的大小固定是<code>7</code>个字节，且是一个固定的字节序列。标记块也称为Magic number。</p>
+<h3 id="压缩文件头-MAIN-HEAD"><a href="#压缩文件头-MAIN-HEAD" class="headerlink" title="压缩文件头(MAIN_HEAD)"></a>压缩文件头(MAIN_HEAD)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HEAD_CRC</td>
+<td>2</td>
+<td>HEAD_TYPE到RESERVED2的CRC</td>
+</tr>
+<tr>
+<td>HEAD_TYPE</td>
+<td>1</td>
+<td>0x73</td>
+</tr>
+<tr>
+<td>HEAD_FLAGS</td>
+<td>2</td>
+<td>位标记</td>
+</tr>
+<tr>
+<td>HEAD_SIZE</td>
+<td>2</td>
+<td>压缩文件头总大小（包括压缩文件注释）</td>
+</tr>
+<tr>
+<td>RESERVED1</td>
+<td>2</td>
+<td>保留</td>
+</tr>
+<tr>
+<td>RESERVED2</td>
+<td>4</td>
+<td>保留</td>
+</tr>
+</tbody></table>
+<p>对于压缩文件头里的位标记，如果它的第9位(从左到右)被置1(则位标记应为0x0080)，块头被加密，也就是通常所说的加密文件名，打开这样加密的RAR文件时，需要先输入密码才能看到压缩包内的文件列表</p>
+<h3 id="文件头-FILE-HEAD"><a href="#文件头-FILE-HEAD" class="headerlink" title="文件头(FILE_HEAD)"></a>文件头(FILE_HEAD)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HEAD_CRC</td>
+<td>2</td>
+<td>从HEAD_TYPE到FILE_NAME的CRC</td>
+</tr>
+<tr>
+<td>HEAD_TYPE</td>
+<td>1</td>
+<td>0x74</td>
+</tr>
+<tr>
+<td>HEAD_FLAGS</td>
+<td>2</td>
+<td>位标记</td>
+</tr>
+<tr>
+<td>HEAD_SIZE</td>
+<td>2</td>
+<td>文件头的全部大小(包含文件名和注释)</td>
+</tr>
+<tr>
+<td>PACK_SIZE</td>
+<td>4</td>
+<td>已压缩文件大小</td>
+</tr>
+<tr>
+<td>UNP_SIZE</td>
+<td>4</td>
+<td>未压缩文件大小</td>
+</tr>
+<tr>
+<td>HOST_OS</td>
+<td>1</td>
+<td>保存压缩文件使用的操作系统</td>
+</tr>
+<tr>
+<td>FILE_CRC</td>
+<td>4</td>
+<td>文件CRC</td>
+</tr>
+<tr>
+<td>FTIME</td>
+<td>4</td>
+<td>MS DOS标准格式的日期和时间</td>
+</tr>
+<tr>
+<td>UNP_VER</td>
+<td>1</td>
+<td>解压文件所需要最低RAR版本，版本编码方法：10 * 主版本 + 副版本。</td>
+</tr>
+<tr>
+<td>METHOD</td>
+<td>1</td>
+<td>压缩方式</td>
+</tr>
+<tr>
+<td>NAME_SIZE</td>
+<td>2</td>
+<td>文件名大小</td>
+</tr>
+<tr>
+<td>ATTR</td>
+<td>4</td>
+<td>文件属性</td>
+</tr>
+<tr>
+<td>HIGH_PACK_SIZE</td>
+<td>4</td>
+<td>可选值，已压缩文件大小64位值的高4字节。只HEAD_FLAGS中的0x100位被设置才存在。</td>
+</tr>
+<tr>
+<td>HIGH_UNP_SIZE</td>
+<td>4</td>
+<td>可选值，未压缩文件大小64位值的高4字节。只有HEAD_FLAGS中的0x100位被设置才存在。</td>
+</tr>
+<tr>
+<td>FILE_NAME</td>
+<td>NAME_SIZE</td>
+<td>文件名 - NAME_SIZE字节大小字符串</td>
+</tr>
+<tr>
+<td>SALT</td>
+<td>8</td>
+<td>可选值，如果(HEAD_FLAGS &amp; 0x400)!&#x3D; 0，则存在</td>
+</tr>
+<tr>
+<td>EXT_TIME</td>
+<td>可变大小</td>
+<td>可选值，扩展时间区域，如果(HEAD_FLAGS &amp; 0x1000)!&#x3D; 0，则存在</td>
+</tr>
+</tbody></table>
+<p>在这个块中，存在两个CRC值，一个是文件头块中从块类型到文件名的校验，后一个则是压缩包中所含文件的CRC校验，解压时，会计算解压后生成文件的CRC值，如果等于这里的CRC，则解压完成，如果不同，则报错中断。</p>
+<h3 id="结尾块-ENDARC-HEAD"><a href="#结尾块-ENDARC-HEAD" class="headerlink" title="结尾块(ENDARC_HEAD)"></a>结尾块(ENDARC_HEAD)</h3><table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>长度(byte)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HEAD_CRC</td>
+<td>2</td>
+<td>从HEAD_TYPE 到HEAD_SIZE 的CRC校验值</td>
+</tr>
+<tr>
+<td>HEAD_TYPE</td>
+<td>1</td>
+<td>0x7B</td>
+</tr>
+<tr>
+<td>HEAD_FLAGS</td>
+<td>2</td>
+<td>位标记</td>
+</tr>
+<tr>
+<td>HEAD_SIZE</td>
+<td>2</td>
+<td>结尾块大小</td>
+</tr>
+</tbody></table>
+<p>与标记块类似的是，结尾块也是一个固定字节串的块，依次是<code>C4 3D 7B 00 40 07 00</code></p>
+<h2 id="常见考点-1"><a href="#常见考点-1" class="headerlink" title="常见考点"></a>常见考点</h2><h3 id="暴力破解-1"><a href="#暴力破解-1" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>与zip中描述的类似</p>
+<h3 id="伪加密-1"><a href="#伪加密-1" class="headerlink" title="伪加密"></a>伪加密</h3><p>rar在伪加密状态下会显示压缩包已损坏或压缩格式未知，所以很容易判断rar是否是伪加密</p>
+<p>修改<code>FILE_HEAD</code>中的<code>HEAD_FLAGS</code>即可</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-15.png"></p>
+<p>例题：<a target="_blank" rel="noopener" href="https://buuoj.cn/match/matches/2/challenges#%E5%86%B0%E5%86%B0%E5%A5%BD%E5%83%8F%E8%97%8F%E7%9D%80%E7%A7%98%E5%AF%86">BUU-[VNCTF 2021]冰冰好像藏着秘密</a></p>
+<p>一打开就是一堆报错</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-14.png"></p>
+<p>修改第24字节为<code>80</code>即可正常打开</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="Zipbomb"><a href="#Zipbomb" class="headerlink" title="Zipbomb"></a>Zipbomb</h2><p>压缩包炸弹，利用压缩算法的特性，做到仅仅几kb和仅mb的压缩包文件，解压出来GB，甚至PB级的数据</p>
+<p>python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os.path<br><span class="hljs-keyword">import</span> zipfile<br><span class="hljs-keyword">import</span> re<br><br>dir_path=<span class="hljs-string">&#x27;C:\\Users\\19307\\Desktop\\11aa\\a&#x27;</span><br>files= os.listdir(dir_path)<br>newfiles = files[::-<span class="hljs-number">1</span>]<br><span class="hljs-built_in">print</span>(newfiles)<br><br><span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> newfiles:<br>    position = dir_path+<span class="hljs-string">&#x27;\\&#x27;</span>+ file<br>    <span class="hljs-built_in">print</span> (position)<br>    z = zipfile.ZipFile(position, <span class="hljs-string">&#x27;r&#x27;</span>)<br>    <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> z.namelist():<br>        <span class="hljs-built_in">bytes</span> = z.read(filename)<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">b&#x27;Zmxh&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">bytes</span> <span class="hljs-keyword">or</span> <span class="hljs-string">b&#x27;flag&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">bytes</span>:<br>            <span class="hljs-built_in">print</span>(filename)<br></code></pre></td></tr></table></figure>
+
+<p>例题：<a target="_blank" rel="noopener" href="https://buuoj.cn/match/matches/36/challenges#ZipBomb">BUU-DASCTF Sept X ZipBomb</a></p>
+<p>参考<br><a target="_blank" rel="noopener" href="https://sp4n9x.github.io/2020/05/08/ZIP%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90/">ZIP文件格式分析</a><br><a target="_blank" rel="noopener" href="https://pkware.cachefly.net/webdocs/APPNOTE/APPNOTE-6.3.6.TXT">ZIP官方文档 - APPNOTE-6.3.6.TXT</a><br><a target="_blank" rel="noopener" href="https://sp4n9x.github.io/2020/04/10/RAR%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90/">RAR文件格式分析</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/RAR_(file_format)">RAR-wiki</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/misc/">#misc</a>
+      
+        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+      
+        <a href="/tags/%E9%9A%90%E5%86%99/">#隐写</a>
+      
+        <a href="/tags/%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/">#压缩文件</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>misc总结(压缩文件篇)</div>
+      <div>https://www.lewiserii.top/学习总结/misc总结(压缩文件篇).html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lewiserii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/misc%E6%80%BB%E7%BB%93(%E9%9A%90%E5%86%99%E7%AF%87).html" title="misc总结(隐写篇)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">misc总结(隐写篇)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/misc%E6%80%BB%E7%BB%93(%E7%BC%96%E7%A0%81%E7%AF%87).html" title="misc总结(编码篇)">
+                        <span class="hidden-mobile">misc总结(编码篇)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

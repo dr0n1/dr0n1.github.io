@@ -1,0 +1,1016 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lewiserii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="编码&amp;密码篇 1.1. ASCII编码ASCII码大致可以分作三部分组成。 第一部分是：ASCII非打印控制字符。ASCII表上的数字0–31分配给了控制字符，用于控制像打印机等一些外围设备。 第二部分是：ASCII打印字符。数字 32–126 分配给了能在键盘上找到的字符，数字127代表 DELETE 命令。 第三部分是：扩展ASCII打印字符。扩展的ASCII字符满足了对更多字符的需求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="misc总结(编码篇)">
+<meta property="og:url" content="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/misc%E6%80%BB%E7%BB%93(%E7%BC%96%E7%A0%81%E7%AF%87).html">
+<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:description" content="编码&amp;密码篇 1.1. ASCII编码ASCII码大致可以分作三部分组成。 第一部分是：ASCII非打印控制字符。ASCII表上的数字0–31分配给了控制字符，用于控制像打印机等一些外围设备。 第二部分是：ASCII打印字符。数字 32–126 分配给了能在键盘上找到的字符，数字127代表 DELETE 命令。 第三部分是：扩展ASCII打印字符。扩展的ASCII字符满足了对更多字符的需求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/ascii.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/ascii-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/base.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/tap%20code.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-7.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-8.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-9.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/misc%E6%80%BB%E7%BB%93-%E7%9B%B2%E6%96%87-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/misc%E6%80%BB%E7%BB%93-%E7%9B%B2%E6%96%87-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%B3%A2%E5%88%A9%E6%AF%94%E5%A5%A5%E6%96%AF%E6%96%B9%E9%98%B5%E5%AF%86%E7%A0%81.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/zhujuan.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/yihezimu.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/shengtangwushi.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/aotu.jpg">
+<meta property="article:published_time" content="2022-07-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-28T06:17:03.885Z">
+<meta property="article:author" content="lewiserii">
+<meta property="article:tag" content="misc">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="编码">
+<meta property="article:tag" content="密码">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/ascii.png">
+  
+  
+  
+  <title>misc总结(编码篇) - lewiserii&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>lewiserii&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.lewiserii.top/team/">
+                <i class="iconfont icon-users"></i>
+                团队
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="misc总结(编码篇)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        lewiserii
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-01 12:00" pubdate>
+          2022年7月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          94 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">misc总结(编码篇)</h1>
+            
+            <div class="markdown-body">
+              
+              <p>编码&amp;密码篇</p>
+<h1 id="1-1-ASCII编码"><a href="#1-1-ASCII编码" class="headerlink" title="1.1. ASCII编码"></a>1.1. ASCII编码</h1><p>ASCII码大致可以分作三部分组成。</p>
+<p>第一部分是：ASCII非打印控制字符。ASCII表上的数字0–31分配给了控制字符，用于控制像打印机等一些外围设备。</p>
+<p>第二部分是：ASCII打印字符。数字 32–126 分配给了能在键盘上找到的字符，数字127代表 DELETE 命令。</p>
+<p>第三部分是：扩展ASCII打印字符。扩展的ASCII字符满足了对更多字符的需求。扩展的ASCII包含ASCII中已有的128个字符（数字0–32显示在下图中），又增加了128个字符，总共是256个。</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/ascii.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/ascii-2.png"></p>
+<h1 id="1-2-Base家族"><a href="#1-2-Base家族" class="headerlink" title="1.2. Base家族"></a>1.2. Base家族</h1><p>base64 编码是用64（2^6）个字符，对二进制数据进行编码的方式<br>base32 就是用32（2^5）个字符，对二进制数据进行编码的方式<br>base16 就是用16（2^4）个字符，对二进制数据进行编码的方式</p>
+<p>这里我们可以清楚的看到，base系列编码之间的不同，在于用于编码的字符数量的多少<br>具体参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_numeral_systems">wiki百科</a></p>
+<h2 id="1-2-1-base16码表"><a href="#1-2-1-base16码表" class="headerlink" title="1.2.1. base16码表"></a>1.2.1. base16码表</h2><p><code>0123456789ABCDEF</code> Base16使用两个ASCII字符去编码原数据中的一个字节数据，所以Base16不可能用到填充符号<code>=</code></p>
+<h2 id="1-2-2-base32码表"><a href="#1-2-2-base32码表" class="headerlink" title="1.2.2. base32码表"></a>1.2.2. base32码表</h2><p><code>ABCDEFGHIJKLMNOPQRSTUVWXYZ234567</code> 另有<code>=</code>符号作为填充</p>
+<h2 id="1-2-3-base58码表"><a href="#1-2-3-base58码表" class="headerlink" title="1.2.3. base58码表"></a>1.2.3. base58码表</h2><p><code>123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz</code> 相比 Base_64，Base_58 不使用数字 “0”，字母大写”O”，字母大写 “I”，和字母小写 “l”，以及 “+” 和 “&#x2F;“ 符号，比Base64共减少6个字符，故称着Base58</p>
+<h2 id="1-2-4-base62码表"><a href="#1-2-4-base62码表" class="headerlink" title="1.2.4. base62码表"></a>1.2.4. base62码表</h2><p><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</code> Base62使用了62个字符编码，包括0-9，a-z，A-Z。</p>
+<h2 id="1-2-5-base64码表"><a href="#1-2-5-base64码表" class="headerlink" title="1.2.5. base64码表"></a>1.2.5. base64码表</h2><p><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</code> 另有<code>=</code>符号作为填充</p>
+<h2 id="1-2-6-base91码表"><a href="#1-2-6-base91码表" class="headerlink" title="1.2.6. base91码表"></a>1.2.6. base91码表</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/base.png"></p>
+<p>Base91编码是从94个可打印ASCII字符（0x21-0x7E）中，以下三个字符被省略以构建Base91编码表：-（破折号，0x2D）\（反斜杠，0x5C）’（撇号，0x27）</p>
+<h1 id="1-3-Quoted-printable-编码"><a href="#1-3-Quoted-printable-编码" class="headerlink" title="1.3. Quoted-printable 编码"></a>1.3. Quoted-printable 编码</h1><p>Quoted-printable或QP encoding，没有规范的中文译名，可译为可打印字符引用编码或使用可打印字符的编码。Quoted-printable是使用可打印的ASCII字符（如字母、数字与“&#x3D;”）表示各种编码格式下的字符，以便能在7-bit数据通路上传输8-bit数据, 或者更一般地说在非8-bit clean媒体上正确处理数据。这被定义为MIME content transfer encoding，用于e-mail。</p>
+<p>例子：<code>=E4=BB=8A=E5=B9=B4=E5=85=83=E5=A4=9C=E6=97=B6=EF=BC=8C=E6=9C=88=E4=B8=8E=E7=81=AF=E4=BE=9D=E6=97=A7=E3=80=82</code></p>
+<p>特点：由<code>=</code>，大写字母<code>A–F</code>和数字<code>0-9</code>组成，不加密英文和数字</p>
+<p><a target="_blank" rel="noopener" href="http://www.mxcz.net/tools/QuotedPrintable.aspx">在线加解密</a></p>
+<h1 id="1-4-XXencode编码"><a href="#1-4-XXencode编码" class="headerlink" title="1.4. XXencode编码"></a>1.4. XXencode编码</h1><p>表：<code>+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</code></p>
+<p>XXencode将输入文本以每三个字节为单位进行编码。如果最后剩下的资料少于三个字节，不够的部份用零补齐。这三个字节共有24个Bit，以6bit为单位分为4个组，每个组以十进制来表示所出现的数值只会落在0到63之间。以所对应值的位置字符代替。</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs XXencode">hK3VZPaBjN4KxewfYmCjCl94yohH1jwXxiDPLpfrOneepdQuvjTXEo95UkiiV<br>hcwXbiTjLvffnmeDDkfL2pwf-nwbNoxf6zPXqpxOxqeCggfitivL2gfyrrRD1<br>hkSCmiQPfcODJsgXxiDPLpfrOiP9Ho16oiDN0OLGXfB9IBa7dRAuehOLCivTK<br>hnecoiDPLuOCgkvysxhTdohH8ffrspgP+h95hmfv9yPDqnxOplAfxpfLKivjV<br>dkiHIqX0pjHMnpeuwt84XohH9yPPIouPKhPL2nfjKkxTKhzioygnacOA+<br></code></pre></td></tr></table></figure>
+
+<p>特点：第一位通常表示这一行密文是由多少个字符加密得到的，比如<code>cat</code>加密后是<code>1Mq3o</code>，<code>1</code>在表中的索引值是3，所以可以看做原文由三位字符组成。并且每行最多只能加密<code>45</code>个字符，然后换行，可以参考上面的例子</p>
+<p><a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetxxencode">在线加解密</a></p>
+<h1 id="1-5-UUencode编码"><a href="#1-5-UUencode编码" class="headerlink" title="1.5. UUencode编码"></a>1.5. UUencode编码</h1><p>表：<code>ASCII字符集中可打印字符(32-96)</code></p>
+<p>UUencode是一种二进制到文字的编码，最早在unix 邮件系统中使用，全称：Unix-to-Unix encoding，UUencode将输入文本以每三个字节为单位进行编码，如果最后剩下的资料少于三个字节，不够的部份用零补齐。三个字节共有24个Bit，以6-bit为单位分为4个组，每个组以十进制来表示所出现的字节的数值。这个数值只会落在0到63之间。然后将每个数加上32，所产生的结果刚好落在ASCII字符集中可打印字符（32-空白…95-底线）的范围之中。</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs UUencode">M555E;F-O9&amp;7*Q]*[UM:V_KWXUL:UO&lt;[$U]:UQ+&#x27;@PNNCK-?NU.?4VG5N:7@@<br>MT\J\_L^US;/6T,JYT\.CK,BKL\:CNE5N:7@M=&amp;\M56YI&gt;&quot;!E;F-O9&amp;EN9Z.L<br>M555E;F-O9&amp;6]J\KDR.O.Q+&amp;^TM3#O\C]N/;7UKW:SJJUI&lt;Z[O?C0T+&#x27;@PNNC<br>MK,CGN?O7[KKSRJ//PK7$U\K!S\G9T]K(_;CVU]:]VJ.LLKNYN[7$LK^WW=/#<br>MP&gt;.RN&lt;;KH:/(_;CVU]:]VKFRT]`R-+CV0FETHZS2U#8M8FETSJJUI&lt;Z[M];.<br>MJC2X]M?IHZS#O[CVU^G2U,JNO?C6QL&quot;TL&gt;W*OLOYL_;/UK7$U]:]VK7$ROW6<br>MM:&amp;CU&gt;*X]LK]UK76N[OAPN34VC&quot;UO38SUJZ\Y*&amp;CR+NZ\[VKP[^X]LK]O-/)<br>MSS,RHZS+^;+ZR?JUQ+WAN?NXU;K#PN34VD%30TE)U]:W^[ROUM&quot;_R;3RTZ&#x27;7<br>CUK?[HZ@S,BV_U;#7H:TY-2VUU\_?HZFUQ+&gt;VSJ?6KM;0H:,`<br></code></pre></td></tr></table></figure>
+
+
+<p>特点：与XXencode相似，第一位表示这一行密文是由多少个字符加密得到的。</p>
+<p><a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetuuencode">在线加解密</a></p>
+<h1 id="1-6-敲击码"><a href="#1-6-敲击码" class="headerlink" title="1.6. 敲击码"></a>1.6. 敲击码</h1><p>基于5×5方格波利比奥斯方阵来实现</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/tap%20code.png"></p>
+<p>例子：<code>..... ../... ./... ./... ../</code></p>
+<p>原文：<code>wllm</code></p>
+<p>特点：不超过五个点，两个一组</p>
+<h1 id="1-7-莫尔斯电码"><a href="#1-7-莫尔斯电码" class="headerlink" title="1.7. 莫尔斯电码"></a>1.7. 莫尔斯电码</h1><p>摩尔斯电码主要由以下5种它的代码组成：<br>1：点（.）<br>2：划（-）<br>3：每个字符间短的停顿（通常用空格表示停顿）<br>4：每个词之间中等的停顿（通常用 &#x2F; 划分）<br>5：以及句子之间长的停顿</p>
+<p>表</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-comment">A</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span>    <span class="hljs-comment">N</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span>    <span class="hljs-string">.</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>  <span class="hljs-literal">+</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>    <span class="hljs-comment">1</span>  <span class="hljs-string">.</span><span class="hljs-literal">----</span><br><span class="hljs-comment">B</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span>  <span class="hljs-comment">O</span>  <span class="hljs-literal">---</span>   <span class="hljs-string">,</span>  <span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">--</span>  <span class="hljs-comment">_</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>   <span class="hljs-comment">2</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">---</span><br><span class="hljs-comment">C</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>  <span class="hljs-comment">P</span>  <span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span>  <span class="hljs-comment">:</span>  <span class="hljs-literal">---</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span>  <span class="hljs-comment">$</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>  <span class="hljs-comment">3</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">--</span><br><span class="hljs-comment">D</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span>   <span class="hljs-comment">Q</span>  <span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>  <span class="hljs-comment">&quot;</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>  <span class="hljs-comment">&amp;</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span>    <span class="hljs-comment">4</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><br><span class="hljs-comment">E</span>  <span class="hljs-string">.</span>     <span class="hljs-comment">R</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>   <span class="hljs-comment">&#x27;</span>  <span class="hljs-string">.</span><span class="hljs-literal">----</span><span class="hljs-string">.</span>  <span class="hljs-comment">/</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>    <span class="hljs-comment">5</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><br><span class="hljs-comment">F</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>  <span class="hljs-comment">S</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span>   <span class="hljs-comment">!</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">--</span>              <span class="hljs-comment">6</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><br><span class="hljs-comment">G</span>  <span class="hljs-literal">--</span><span class="hljs-string">.</span>   <span class="hljs-comment">T</span>  <span class="hljs-literal">-</span>     <span class="hljs-comment">?</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-string">.</span>              <span class="hljs-comment">7</span>  <span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><br><span class="hljs-comment">H</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span>  <span class="hljs-comment">U</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>   <span class="hljs-comment">@</span>  <span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>              <span class="hljs-comment">8</span>  <span class="hljs-literal">---</span><span class="hljs-string">.</span><span class="hljs-string">.</span><br><span class="hljs-comment">I</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span>    <span class="hljs-comment">V</span>  <span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>  <span class="hljs-literal">-</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>              <span class="hljs-comment">9</span>  <span class="hljs-literal">----</span><span class="hljs-string">.</span><br><span class="hljs-comment">J</span>  <span class="hljs-string">.</span><span class="hljs-literal">---</span>  <span class="hljs-comment">W</span>  <span class="hljs-string">.</span><span class="hljs-literal">--</span>   <span class="hljs-comment">;</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span>              <span class="hljs-comment">0</span>  <span class="hljs-literal">-----</span><br><span class="hljs-comment">K</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>   <span class="hljs-comment">X</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span>  <span class="hljs-comment">(</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span><br><span class="hljs-comment">L</span>  <span class="hljs-string">.</span><span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span>  <span class="hljs-comment">Y</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">--</span>  <span class="hljs-comment">)</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><br><span class="hljs-comment">M</span>  <span class="hljs-literal">--</span>    <span class="hljs-comment">Z</span>  <span class="hljs-literal">--</span><span class="hljs-string">.</span><span class="hljs-string">.</span>  <span class="hljs-comment">=</span>  <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-string">.</span><span class="hljs-literal">-</span><br></code></pre></td></tr></table></figure>
+
+<p>例子：<code>.../---/...</code></p>
+<p>原文：<code>SOS</code></p>
+<p><a target="_blank" rel="noopener" href="http://tool.bugku.com/mosi/">在线解密</a></p>
+<h1 id="1-8-社会主义核心价值观编码"><a href="#1-8-社会主义核心价值观编码" class="headerlink" title="1.8. 社会主义核心价值观编码"></a>1.8. 社会主义核心价值观编码</h1><p>github上的加解密js代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;babel-polyfill&quot;</span>;<br>&#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">assert</span>(<span class="hljs-params">...express</span>)&#123;<br>        <span class="hljs-keyword">const</span> l = express.<span class="hljs-property">length</span>;<br>        <span class="hljs-keyword">const</span> msg = (<span class="hljs-keyword">typeof</span> express[l-<span class="hljs-number">1</span>] === <span class="hljs-string">&#x27;string&#x27;</span>)? express[l-<span class="hljs-number">1</span>]: <span class="hljs-string">&#x27;Assert Error&#x27;</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> b <span class="hljs-keyword">of</span> express)&#123;<br>            <span class="hljs-keyword">if</span>(!b)&#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(msg);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">randBin</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() &gt;= <span class="hljs-number">0.5</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">const</span> values = <span class="hljs-string">&#x27;富强民主文明和谐自由平等公正法治爱国敬业诚信友善&#x27;</span>;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">str2utf8</span>(<span class="hljs-params">str</span>)&#123;<br>        <span class="hljs-comment">// return in hex</span><br><br>        <span class="hljs-keyword">const</span> notEncoded = <span class="hljs-regexp">/[A-Za-z0-9\-\_\.\!\~\*\&#x27;\(\)]/g</span>;<br>        <span class="hljs-keyword">const</span> str1 = str.<span class="hljs-title function_">replace</span>(notEncoded, <span class="hljs-function"><span class="hljs-params">c</span>=&gt;</span>c.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>));<br>        <span class="hljs-keyword">let</span> str2 = <span class="hljs-built_in">encodeURIComponent</span>(str1);<br>        <span class="hljs-keyword">const</span> concated = str2.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/%/g</span>, <span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-title function_">toUpperCase</span>();<br>        <span class="hljs-keyword">return</span> concated;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">utf82str</span>(<span class="hljs-params">utfs</span>)&#123;<br>        <span class="hljs-title function_">assert</span>(<span class="hljs-keyword">typeof</span> utfs === <span class="hljs-string">&#x27;string&#x27;</span>, <span class="hljs-string">&#x27;utfs Error&#x27;</span>);<br><br>        <span class="hljs-keyword">const</span> l = utfs.<span class="hljs-property">length</span>;<br><br>        <span class="hljs-title function_">assert</span>((l &amp; <span class="hljs-number">1</span>) === <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">const</span> splited = [];<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; l; i++)&#123;<br>            <span class="hljs-keyword">if</span>((i &amp; <span class="hljs-number">1</span>) === <span class="hljs-number">0</span>)&#123;<br>                splited.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;%&#x27;</span>);<br>            &#125;<br>            splited.<span class="hljs-title function_">push</span>(utfs[i]);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">decodeURIComponent</span>(splited.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>));<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">hex2duo</span>(<span class="hljs-params">hexs</span>)&#123;<br>        <span class="hljs-comment">// duodecimal in array of number</span><br><br>        <span class="hljs-comment">// &#x27;0&#x27;.. &#x27;9&#x27; -&gt; 0.. 9</span><br>        <span class="hljs-comment">// &#x27;A&#x27;.. &#x27;F&#x27; -&gt; 10, c - 10    a2fFlag = 10</span><br>        <span class="hljs-comment">//          or 11, c - 6      a2fFlag = 11</span><br>        <span class="hljs-title function_">assert</span>(<span class="hljs-keyword">typeof</span> hexs === <span class="hljs-string">&#x27;string&#x27;</span>)<br><br>        <span class="hljs-keyword">const</span> duo = [];<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> c <span class="hljs-keyword">of</span> hexs)&#123;<br>            <span class="hljs-keyword">const</span> n = <span class="hljs-title class_">Number</span>.<span class="hljs-built_in">parseInt</span>(c, <span class="hljs-number">16</span>);<br>            <span class="hljs-keyword">if</span>(n &lt; <span class="hljs-number">10</span>)&#123;<br>                duo.<span class="hljs-title function_">push</span>(n);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-title function_">randBin</span>())&#123;<br>                    duo.<span class="hljs-title function_">push</span>(<span class="hljs-number">10</span>);<br>                    duo.<span class="hljs-title function_">push</span>(n - <span class="hljs-number">10</span>);<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    duo.<span class="hljs-title function_">push</span>(<span class="hljs-number">11</span>);<br>                    duo.<span class="hljs-title function_">push</span>(n - <span class="hljs-number">6</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> duo;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">duo2hex</span>(<span class="hljs-params">duo</span>)&#123;<br>        <span class="hljs-title function_">assert</span>(duo <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>);<br><br>        <span class="hljs-keyword">const</span> hex = [];<br><br>        <span class="hljs-keyword">const</span> l = duo.<span class="hljs-property">length</span>;<br><br>        <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">while</span>(i &lt; l)&#123;<br>            <span class="hljs-keyword">if</span>(duo[i] &lt; <span class="hljs-number">10</span>)&#123;<br>                hex.<span class="hljs-title function_">push</span>(duo[i]);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">if</span>(duo[i] === <span class="hljs-number">10</span>)&#123;<br>                    i++;<br>                    hex.<span class="hljs-title function_">push</span>(duo[i] + <span class="hljs-number">10</span>);<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    i++;<br>                    hex.<span class="hljs-title function_">push</span>(duo[i] + <span class="hljs-number">6</span>);<br>                &#125;<br>            &#125;<br>            i++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> hex.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>v.<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>).<span class="hljs-title function_">toUpperCase</span>()).<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">duo2values</span>(<span class="hljs-params">duo</span>)&#123;<br>        <span class="hljs-keyword">return</span> duo.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">d</span>=&gt;</span>values[<span class="hljs-number">2</span>*d]+values[<span class="hljs-number">2</span>*d+<span class="hljs-number">1</span>]).<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">valuesDecode</span>(<span class="hljs-params">encoded</span>)&#123;<br>        <span class="hljs-keyword">const</span> duo = [];<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> c <span class="hljs-keyword">of</span> encoded)&#123;<br>            <span class="hljs-keyword">const</span> i = values.<span class="hljs-title function_">indexOf</span>(c);<br>            <span class="hljs-keyword">if</span>(i === -<span class="hljs-number">1</span>)&#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i &amp; <span class="hljs-number">1</span>)&#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-comment">// i is even</span><br>                duo.<span class="hljs-title function_">push</span>(i &gt;&gt; <span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">const</span> hexs = <span class="hljs-title function_">duo2hex</span>(duo);<br><br>        <span class="hljs-title function_">assert</span>((hexs.<span class="hljs-property">length</span> &amp; <span class="hljs-number">1</span>) === <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">let</span> str;<br>        <span class="hljs-keyword">try</span>&#123;<br>            str = <span class="hljs-title function_">utf82str</span>(hexs);<br>        &#125;<span class="hljs-keyword">catch</span>(e)&#123;<br>            <span class="hljs-keyword">throw</span> e;<br>        &#125;<br>        <span class="hljs-keyword">return</span> str;<br>    &#125;<br><br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">valuesEncode</span>(<span class="hljs-params">str</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">duo2values</span>(<span class="hljs-title function_">hex2duo</span>(<span class="hljs-title function_">str2utf8</span>(str)));<br>    &#125;<br><br>    <span class="hljs-comment">// ------------------</span><br><br>    <span class="hljs-keyword">const</span> decodedArea = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;decoded-area&#x27;</span>);<br>    <span class="hljs-keyword">const</span> encodedArea = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;encoded-area&#x27;</span>);<br>    <span class="hljs-keyword">const</span> decodeBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;decode-btn&#x27;</span>);<br>    <span class="hljs-keyword">const</span> encodeBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;encode-btn&#x27;</span>);<br><br>    encodeBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;<br>        encodedArea.<span class="hljs-property">value</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>        <span class="hljs-keyword">const</span> encoded = <span class="hljs-title function_">valuesEncode</span>(decodedArea.<span class="hljs-property">value</span>);<br>        encodedArea.<span class="hljs-property">value</span> = encoded;<br>    &#125;);<br><br>    decodeBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;<br>        decodedArea.<span class="hljs-property">value</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>        <span class="hljs-keyword">const</span> decoded = <span class="hljs-title function_">valuesDecode</span>(encodedArea.<span class="hljs-property">value</span>);<br>        decodedArea.<span class="hljs-property">value</span> = decoded;<br>    &#125;);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>分析后不难发现有以下几点结论：</p>
+<p>1：表是<code>富强 民主 文明 和谐 自由 平等 公正 法治 爱国 敬业 诚信 友善</code>，索引值<code>0-11</code></p>
+<p>2：字符串hex值中的0-9 对应 表索引值的0-9。比如十六进制的0，在表中是<code>富强</code></p>
+<p>3：字符串hex值中的A-F 对应 表索引值的关系有两种</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">A</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">0</span><br><span class="hljs-attribute">B</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">C</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">2</span><br><span class="hljs-attribute">D</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">3</span><br><span class="hljs-attribute">E</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">4</span><br><span class="hljs-attribute">F</span> -&gt; <span class="hljs-number">10</span> <span class="hljs-number">5</span><br><br><span class="hljs-attribute">A</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">4</span><br><span class="hljs-attribute">B</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">5</span><br><span class="hljs-attribute">C</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">6</span><br><span class="hljs-attribute">D</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">7</span><br><span class="hljs-attribute">E</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">8</span><br><span class="hljs-attribute">F</span> -&gt; <span class="hljs-number">11</span> <span class="hljs-number">9</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>解释一下上面的结论，以<code>我Kc !6</code>为例子<br>加密后的几种结果为<br><code>诚信自由公正爱国爱国敬业民主自由诚信民主公正和谐文明富强文明民主和谐公正</code><br><code>诚信自由公正爱国爱国敬业民主自由友善平等公正和谐文明富强文明民主和谐公正</code><br><code>友善爱国公正爱国爱国敬业民主自由诚信民主公正和谐文明富强文明民主和谐公正</code><br><code>友善爱国公正爱国爱国敬业民主自由友善平等公正和谐文明富强文明民主和谐公正</code></p>
+<p>先将<code>我Kc !6</code>以十六进制编码的形式表示<code>E6 88 91 4B 63 20 21 36</code></p>
+<p><code>E</code>在表中是<code>10 4</code>或者<code>11 8</code>，然后拿<code>10 4</code>和<code>11 8</code>在索引表中找到<code>诚信 自由</code>或者<code>友善 爱国</code>，再接着是<code>6</code>，在表中是<code>公正</code>，后面的以此类推。</p>
+<h1 id="1-9-jjencode-x2F-aaencode"><a href="#1-9-jjencode-x2F-aaencode" class="headerlink" title="1.9. jjencode&#x2F;aaencode"></a>1.9. jjencode&#x2F;aaencode</h1><p>jjencode代码，就是将正常的js代码转换成复杂的只有符号的字符串编码，进行加密 如：<code>[$._$_]+$._$+&quot;,\\&quot;+$.$__+$.___+&quot;\\&quot;+$.__$+$.__$+$</code>这样的组合</p>
+<p>aaencode代码，则是将正常的js代码转为好玩的特殊网络表情符号。如:<code>ﾟωﾟﾉ= /｀ｍ´）ﾉ ~┻━┻ //*´∇｀*/ [&#39;_&#39;]; o=(ﾟｰﾟ)</code>这样的表情文字</p>
+<p><a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=703">AAEncode加密&#x2F;解密</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.qtool.net/decode">jjencode与aaencode解密</a></p>
+<h1 id="1-10-熊曰-x2F-新佛曰-x2F-佛曰"><a href="#1-10-熊曰-x2F-新佛曰-x2F-佛曰" class="headerlink" title="1.10. 熊曰&#x2F;新佛曰&#x2F;佛曰"></a>1.10. 熊曰&#x2F;新佛曰&#x2F;佛曰</h1><p>例子：<code>熊曰：呋食食和覺嗷嚁我麼啽咬盜噔哞噤</code>，<code>新佛曰：殿諸殿隸僧降吽殿諸殿陀摩隸僧殿缽薩願殿耨殿諸囉愍殿慧願殿喼降眾殿薩隸殿婆殿亦殿如囑</code>，<code>佛曰：訶諳僧涅諳波夜殿諸寫夷遮伽缽夢怯是參老倒智哆死得冥以哆心夢呐謹侄朋俱咒遮諳夜摩吉多罰實等</code></p>
+<p>特点：这几种编码类似，都是以<code>XX曰：</code>开头，后面各种繁体字和生僻字</p>
+<p><a target="_blank" rel="noopener" href="http://hi.pcmoe.net/index.html">在线 与熊论道&#x2F;熊曰</a></p>
+<p><a target="_blank" rel="noopener" href="http://hi.pcmoe.net/buddha.html">在线 新约佛论禅</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.keyfc.net/bbs/tools/tudoucode.aspx">在线 与佛论禅</a></p>
+<h1 id="1-11-hex编码"><a href="#1-11-hex编码" class="headerlink" title="1.11. hex编码"></a>1.11. hex编码</h1><p>原理：编码时，将8位二进制码重新分组成两个4位的字节（8位&#x3D;1字节，其中一个字节的低4位是原字节的高4位，另一个字节的低4位是原字节的低4位，其他都补0，然后输出这两个字节对应十六进制数字作为编码。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">ASCII码： A (65)<br>二进制码：0100_0001<br>重新分组：0000_0100 0000_0001<br>十六进制： 4 1<br>Hex编码：41<br></code></pre></td></tr></table></figure>
+<p>结果：Hex编码后的长度是源数据的2倍</p>
+<p>特点：0-9，A-F</p>
+<h1 id="1-12-html编码"><a href="#1-12-html编码" class="headerlink" title="1.12. html编码"></a>1.12. html编码</h1><p>在HTML文件中，是HTML编写过程中使用特殊的编码字符来进行网页页面的正确显示，是网页上面的一种编码格式。</p>
+<p>例子：&amp;的html实体编码是<code>&amp;amp;</code></p>
+<p>特点：以<code>&amp;</code>开头，以<code>;</code>结尾</p>
+<p><a target="_blank" rel="noopener" href="https://www.codetable.net/asciikeycodes">html实体编码手册</a></p>
+<h1 id="1-13-中文电码"><a href="#1-13-中文电码" class="headerlink" title="1.13. 中文电码"></a>1.13. 中文电码</h1><p>中文电码表采用了四位阿拉伯数字作代号，从0001到9999按四位数顺序排列，用四位数字表示最多一万个汉字、字母和符号。汉字先按部首，后按笔划排列。字母和符号放到电码表的最尾。</p>
+<p>例子：<br><code>中：0022</code><br><code>文：2429</code><br><code>电：7193</code><br><code>码：4316</code></p>
+<p>特点：四个数字一组</p>
+<p><a target="_blank" rel="noopener" href="http://code.mcdvisa.com/">在线查询中文电码</a></p>
+<h1 id="1-14-凯撒密码"><a href="#1-14-凯撒密码" class="headerlink" title="1.14. 凯撒密码"></a>1.14. 凯撒密码</h1><p>古典密码，单表，加密可逆</p>
+<h1 id="1-15-音符"><a href="#1-15-音符" class="headerlink" title="1.15. 音符"></a>1.15. 音符</h1><p>加密后变成一串音符</p>
+<p>例子：<code>¶♯♬♪♫♭♬¶♩♫♬♪♩♩♬¶♬¶♯=</code></p>
+<p>特点：全部由音乐符号组成</p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue">在线加解密</a></p>
+<h1 id="1-16-跳舞的小人"><a href="#1-16-跳舞的小人" class="headerlink" title="1.16. 跳舞的小人"></a>1.16. 跳舞的小人</h1><p>找到了三种不同的表，将密文与表一一对应即可</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-7.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-8.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page2-9.png"></p>
+<h1 id="1-17-盲文"><a href="#1-17-盲文" class="headerlink" title="1.17. 盲文"></a>1.17. 盲文</h1><blockquote>
+<p>布莱尔创造的由6个点为基础结构的盲字，在纸面上有的凸起，有的不凸起，形成64种变化，即64种符形，在每个符号（单位称”方”）左右两列，每列各三个点，从左边自上而下叫做1、2、3点，从右边自上而下叫做4、5、6点。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://unicode-table.com/cn/tools/braille/">在线翻译1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen">在线翻译2</a></p>
+<blockquote>
+<p>英语字母盲文表如下</p>
+</blockquote>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/misc%E6%80%BB%E7%BB%93-%E7%9B%B2%E6%96%87-1.png"></p>
+<blockquote>
+<p>数字盲文表如下</p>
+</blockquote>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/misc%E6%80%BB%E7%BB%93-%E7%9B%B2%E6%96%87-2.png"></p>
+<h1 id="1-18-ook"><a href="#1-18-ook" class="headerlink" title="1.18. ook"></a>1.18. ook</h1><p>Ook! 与Brainfuck类似, 但用单词”Ook”，”Ook.” 和 “Ook?”代替。</p>
+<p><a target="_blank" rel="noopener" href="https://www.splitbrain.org/_static/ook/">在线网站1</a><br><a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/brainfuck">在线网站2</a></p>
+<h1 id="1-19-波利比奥斯方阵密码"><a href="#1-19-波利比奥斯方阵密码" class="headerlink" title="1.19. 波利比奥斯方阵密码"></a>1.19. 波利比奥斯方阵密码</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%B3%A2%E5%88%A9%E6%AF%94%E5%A5%A5%E6%96%AF%E6%96%B9%E9%98%B5%E5%AF%86%E7%A0%81.png"></p>
+<h1 id="1-20-serpent"><a href="#1-20-serpent" class="headerlink" title="1.20. serpent"></a>1.20. serpent</h1><blockquote>
+<p>对称密钥块密码</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://serpent.online-domain-tools.com/">在线加解密</a></p>
+<h1 id="1-21-piet"><a href="#1-21-piet" class="headerlink" title="1.21. piet"></a>1.21. piet</h1><blockquote>
+<p>用位图色块来编写程序</p>
+</blockquote>
+<p>本地命令：<code>npiet.exe -q a.png</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.bertnase.de/npiet/npiet-execute.php">在线解释器</a></p>
+<p>特点：颜色丰富的图片</p>
+<h1 id="1-22-猪圈密码"><a href="#1-22-猪圈密码" class="headerlink" title="1.22. 猪圈密码"></a>1.22. 猪圈密码</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/zhujuan.png"></p>
+<h1 id="1-23-当铺密码"><a href="#1-23-当铺密码" class="headerlink" title="1.23. 当铺密码"></a>1.23. 当铺密码</h1><p>当前汉字有多少笔画出头，对应的明文就是数字几</p>
+<p>例子:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">密文：王夫 井工 夫口 由中人 井中 夫夫 由中大<br>对应：67 84 70 123 82 77 125<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="1-24-brainfuck"><a href="#1-24-brainfuck" class="headerlink" title="1.24. brainfuck"></a>1.24. brainfuck</h1><blockquote>
+<p>Brainfuck是一种极小化的计算机语言，只使用8种特定的符号</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">在线转换</a></p>
+<p>例子：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-literal">+++++</span> <span class="hljs-literal">+++++</span> <span class="hljs-title">[</span><span class="hljs-literal">-</span>&gt;<span class="hljs-literal">++</span> <span class="hljs-literal">+++++</span> <span class="hljs-literal">+++</span>&lt;<span class="hljs-title">]</span> &gt;<span class="hljs-literal">++++</span> <span class="hljs-literal">++++</span><span class="hljs-string">.</span> <span class="hljs-literal">-----</span> <span class="hljs-literal">--</span><span class="hljs-string">.</span>&lt;<span class="hljs-literal">+</span> <span class="hljs-literal">+++</span><span class="hljs-title">[</span><span class="hljs-literal">-</span> &gt;<span class="hljs-literal">++++</span> &lt;<span class="hljs-title">]</span>&gt;<span class="hljs-literal">++</span><br><span class="hljs-string">.</span>&lt;<span class="hljs-literal">+++</span> <span class="hljs-title">[</span><span class="hljs-literal">-</span>&gt;<span class="hljs-literal">--</span> <span class="hljs-literal">-</span>&lt;<span class="hljs-title">]</span>&gt;<span class="hljs-literal">-</span> <span class="hljs-literal">----</span><span class="hljs-string">.</span> &lt;<span class="hljs-literal">+++</span><span class="hljs-title">[</span> <span class="hljs-literal">-</span>&gt;<span class="hljs-literal">+++</span> &lt;<span class="hljs-title">]</span>&gt;<span class="hljs-literal">+</span><span class="hljs-string">.</span> &lt;<span class="hljs-literal">+++</span><span class="hljs-title">[</span> <span class="hljs-literal">-</span>&gt;<span class="hljs-literal">---</span> &lt;<span class="hljs-title">]</span>&gt;<span class="hljs-literal">--</span> <span class="hljs-literal">---</span><span class="hljs-string">.</span>&lt; <span class="hljs-literal">+++</span><span class="hljs-title">[</span><span class="hljs-literal">-</span><br>&gt;<span class="hljs-literal">+++</span>&lt; <span class="hljs-title">]</span>&gt;<span class="hljs-literal">+++</span> <span class="hljs-literal">+</span><span class="hljs-string">.</span><span class="hljs-literal">---</span> <span class="hljs-literal">-----</span> <span class="hljs-literal">-</span><span class="hljs-string">.</span><span class="hljs-string">.</span>&lt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="1-25-银河字母"><a href="#1-25-银河字母" class="headerlink" title="1.25. 银河字母"></a>1.25. 银河字母</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/yihezimu.jpg"></p>
+<h1 id="1-26-圣堂武士密码"><a href="#1-26-圣堂武士密码" class="headerlink" title="1.26. 圣堂武士密码"></a>1.26. 圣堂武士密码</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/shengtangwushi.jpg"></p>
+<h1 id="1-27-凹凸字体"><a href="#1-27-凹凸字体" class="headerlink" title="1.27. 凹凸字体"></a>1.27. 凹凸字体</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/aotu.jpg"></p>
+<h1 id="1-28-BubbleBabble编码"><a href="#1-28-BubbleBabble编码" class="headerlink" title="1.28. BubbleBabble编码"></a>1.28. BubbleBabble编码</h1><p>特征：五位小写字母一组，以<code>-</code>分割</p>
+<p>例子：<code>xipak-herek-serid-bapok-horek-syrox</code></p>
+<p><a target="_blank" rel="noopener" href="http://www.hiencode.com/bubble.html">在线工具</a></p>
+<h1 id="1-29-阴阳怪气编码"><a href="#1-29-阴阳怪气编码" class="headerlink" title="1.29. 阴阳怪气编码"></a>1.29. 阴阳怪气编码</h1><p>特征：<code>[&#39;就 这 ¿ &#39;, &#39;不 会 吧 ？ &#39;]</code></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mmdjiji/yygq.js">GitHub项目地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://mmdjiji.gitee.io/yygq.js/">在线编码解密</a></p>
+<h1 id="1-30-emoji-or-emoji-aes"><a href="#1-30-emoji-or-emoji-aes" class="headerlink" title="1.30. emoji or emoji-aes"></a>1.30. emoji or emoji-aes</h1><p>特征：都由表情符号组成</p>
+<p>emoji-aes实际上就是aes加密文本，用一个key当作偏移，在表情字典中对应</p>
+<p><a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=937">emoji在线</a></p>
+<p><a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/">emoji-aes在线</a></p>
+<h1 id="1-31-codemoji"><a href="#1-31-codemoji" class="headerlink" title="1.31 codemoji"></a>1.31 codemoji</h1><p>特征是key和密文为表情符号</p>
+<p><a target="_blank" rel="noopener" href="https://codemoji.miaotony.xyz/#/encrypt">codemoji-encrypt</a><br><a target="_blank" rel="noopener" href="https://codemoji.miaotony.xyz/cracker/">codemoji-cracker</a></p>
+<h1 id="1-32-solfa-cipher"><a href="#1-32-solfa-cipher" class="headerlink" title="1.32 solfa-cipher"></a>1.32 solfa-cipher</h1><p>音乐密码</p>
+<p><a target="_blank" rel="noopener" href="https://wmich.edu/mus-theo/solfa-cipher/">solfa-cipher</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/misc/">#misc</a>
+      
+        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+      
+        <a href="/tags/%E7%BC%96%E7%A0%81/">#编码</a>
+      
+        <a href="/tags/%E5%AF%86%E7%A0%81/">#密码</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>misc总结(编码篇)</div>
+      <div>https://www.lewiserii.top/学习总结/misc总结(编码篇).html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lewiserii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/misc%E6%80%BB%E7%BB%93(%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E7%AF%87).html" title="misc总结(压缩文件篇)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">misc总结(压缩文件篇)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%80%BB%E7%BB%93.html" title="文件包含总结">
+                        <span class="hidden-mobile">文件包含总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

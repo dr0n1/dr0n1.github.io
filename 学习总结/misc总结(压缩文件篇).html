@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-15.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-14.png">
 <meta property="article:published_time" content="2022-07-02T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-16T15:54:23.797Z">
+<meta property="article:modified_time" content="2023-03-29T06:19:26.135Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="总结">
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.1k 字
+          6.3k 字
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          61 分钟
+          64 分钟
         
       </span>
     
@@ -883,7 +883,9 @@
 </tr>
 </tbody></table>
 <p>与标记块类似的是，结尾块也是一个固定字节串的块，依次是<code>C4 3D 7B 00 40 07 00</code></p>
-<h2 id="常见考点-1"><a href="#常见考点-1" class="headerlink" title="常见考点"></a>常见考点</h2><h3 id="暴力破解-1"><a href="#暴力破解-1" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>与zip中描述的类似</p>
+<h2 id="常见考点-1"><a href="#常见考点-1" class="headerlink" title="常见考点"></a>常见考点</h2><h3 id="暴力破解-1"><a href="#暴力破解-1" class="headerlink" title="暴力破解"></a>暴力破解</h3><p>比如：</p>
+<p>rar2john先提取hash<br><code>$rar5$16$6385fa42c4d3cb1318e1ea71c1dcbfa3$15$cc4e558d99f6c846eb0fc54073e2293c$8$03d8cf03ed478602</code></p>
+<p>hashcat爆破密码<br><code>hashcat -m 13000 -a 3 $rar5$16$6385fa42c4d3cb1318e1ea71c1dcbfa3$15$cc4e558d99f6c846eb0fc54073e2293c$8$03d8cf03ed478602 ?u?u?u?u?u?u</code></p>
 <h3 id="伪加密-1"><a href="#伪加密-1" class="headerlink" title="伪加密"></a>伪加密</h3><p>rar在伪加密状态下会显示压缩包已损坏或压缩格式未知，所以很容易判断rar是否是伪加密</p>
 <p>修改<code>FILE_HEAD</code>中的<code>HEAD_FLAGS</code>即可</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/misc-zip-15.png"></p>

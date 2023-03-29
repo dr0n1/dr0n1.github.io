@@ -45,6 +45,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E4%BA%94%E5%B9%B4Misc%EF%BC%8C%E4%B8%89%E5%B9%B4%E6%A8%A1%E6%8B%9F-4.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E4%BA%94%E5%B9%B4Misc%EF%BC%8C%E4%B8%89%E5%B9%B4%E6%A8%A1%E6%8B%9F-2.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E4%BA%94%E5%B9%B4Misc%EF%BC%8C%E4%B8%89%E5%B9%B4%E6%A8%A1%E6%8B%9F-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_bitlocker-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-2.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/HelloWorld-3.png">
@@ -69,7 +70,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/PMKF-1.jpg">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/babyrust-1.jpg">
 <meta property="article:published_time" content="2023-03-26T13:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-29T05:32:43.743Z">
+<meta property="article:modified_time" content="2023-03-29T07:40:17.949Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="nkctf">
@@ -294,7 +295,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          29k 字
+          30k 字
         
       </span>
     
@@ -305,7 +306,7 @@
         
         
         
-          292 分钟
+          304 分钟
         
       </span>
     
@@ -478,6 +479,23 @@
 <p>wav文件，一听就是sstv了，得到<code>NKCTF&#123;iLiKECTFbec@u5eDreaM!&#125;</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/%E4%BA%94%E5%B9%B4Misc%EF%BC%8C%E4%B8%89%E5%B9%B4%E6%A8%A1%E6%8B%9F-3.png"></p>
 <h2 id="baby-bitlocker"><a href="#baby-bitlocker" class="headerlink" title="baby_bitlocker"></a>baby_bitlocker</h2><p><strong>赛后复现</strong></p>
+<p>先做<code>2023.3.2</code></p>
+<p>看的出来，出题人很喜欢明文攻击</p>
+<p><a target="_blank" rel="noopener" href="https://pcapng.com/">pcapng文件格式</a></p>
+<p><code>echo &quot;4D 3C 2B 1A 01 00 00 00 FF FF FF FF FF FF FF FF&quot; | xxd -r -ps &gt; plain.txt</code><br><code>bkcrack -C crack.zip -c usb.pcapng -p plain.txt -o 8</code><br><code>bkcrack -C crack.zip -k 92ac142d 9bd136b1 ac01a95d -U out.zip easy</code></p>
+<p>解压后得到<code>tonF.docx</code>和<code>usb.pcapng</code></p>
+<p>对数据包分析，发现是usb键盘流量，使用<code>UsbMiceDataHacker</code>提取<br><code>PassWord:&lt;SPACE&gt;NKCTF2023_YYDS_YYDS!!!&lt;SPACE&gt;&lt;SPACE&gt;&lt;SPACE&gt;&lt;SPACE&gt;&lt;SPACE&gt;&lt;SPACE&gt;&lt;DEL&gt;&lt;DEL&gt;&lt;DEL&gt;&lt;DEL&gt;&lt;DEL&gt;&lt;DEL&gt;</code></p>
+<p>docx密码为<code>NKCTF2023_YYDS_YYDS!!!</code></p>
+<p>进入文档后发现字体为<code>Byxs20_font</code></p>
+<p>且文档中的内容复制后与文档内不一样了</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/baby_bitlocker-1.png"></p>
+<p>odttf转ttf</p>
+<p>打开<code>/word/fontTable.xml</code>，得到<code>font-name</code>为<code>Byxs20_font</code>，<code>fontKey</code>为<code>&#123;F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A&#125;</code></p>
+<p>将<code>\word\fonts\font2.odttf</code>重命名为<code>F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A.odttf</code></p>
+<p>python转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>odttf_name = <span class="hljs-string">&quot;./F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A.odttf&quot;</span><br>odttf_path = os.path.abspath(odttf_name)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(odttf_path, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    data = f.read()<br><br><span class="hljs-comment"># 获取文件名</span><br>file_name = os.path.splitext(odttf_path)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&quot;\\&quot;</span>)[-<span class="hljs-number">1</span>].replace(<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br><br><span class="hljs-comment"># 获取key</span><br>key = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(file_name), <span class="hljs-number">0</span>, -<span class="hljs-number">2</span>):<br>    key.append(<span class="hljs-built_in">int</span>(file_name[i-<span class="hljs-number">2</span>:i], <span class="hljs-number">16</span>))<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./font2.ttf&quot;</span>, <span class="hljs-string">&quot;wb&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>):<br>        f.write(<span class="hljs-built_in">bytes</span>([data[i] ^ key[i % <span class="hljs-built_in">len</span>(key)]]))<br>    f.write(data[<span class="hljs-number">32</span>:])<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://fontdrop.info/#/?darkmode=true">在线网站识别</a></p>
 <h1 id="Blockchain"><a href="#Blockchain" class="headerlink" title="Blockchain"></a>Blockchain</h1><h2 id="SignIn"><a href="#SignIn" class="headerlink" title="SignIn"></a>SignIn</h2><p>区块链浏览器打开地址，flag存储在变量中，在插槽中转换类型为text</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/nkctf2023/signin-1.png"></p>
 <h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>nc后先创建部署题目的合约账户<br>水龙头转账，部署合约</p>

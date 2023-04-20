@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第三届&quot;红明谷&quot;杯网络安全大赛web&amp;misc-wp</title>
-    <url>/wp/%E7%AC%AC%E4%B8%89%E5%B1%8A%E2%80%9D%E7%BA%A2%E6%98%8E%E8%B0%B7%E2%80%9C%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bweb&amp;misc-wp.html</url>
+    <title>第三届&quot;红明谷&quot;杯网络安全大赛wp</title>
+    <url>/wp/%E7%AC%AC%E4%B8%89%E5%B1%8A%E2%80%9D%E7%BA%A2%E6%98%8E%E8%B0%B7%E2%80%9C%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="阿尼亚"><a href="#阿尼亚" class="headerlink" title="阿尼亚"></a>阿尼亚</h2><p>文件尾有一串字符串<code>6333383363333963633338326333616263333865633261616332613363326261633262636333623263326235633261356332623563333834633262316333613063333832633361623061</code>，十六进制转字符串得到<code>c383c39cc382c3abc38ec2aac2a3c2bac2bcc3b2c2b5c2a5c2b5c384c2b1c3a0c382c3ab0a</code></p>
-<p>C383明显是中文编码，爆破后得到密码<code>简单的编码</code></p>
+<p>C383明显是中文编码，转十六进制后爆破得到密码<code>简单的编码</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/2023hmg-misc-1-1.png"></p>
 <p>根据图片名字<code>netpixeljihad</code>，使用<code>PixelJihad</code>解密，密码是<code>简单的编码</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/2023hmg-misc-1-2.png"></p>
@@ -57,6 +57,8 @@
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/2023hmg-web-2-2.png"></p>
 <p><code>Dreamer_revenge</code>的步骤与<code>Dreamer</code>一致，不过flag在<code>/proc/1/environ</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/2023hmg-web-2-3.png"></p>
+<h2 id="Eyou"><a href="#Eyou" class="headerlink" title="Eyou"></a>Eyou</h2><p>EyouCMS v1.6.1 反序列化漏洞</p>
+<p>参考<a href="https://n1k0la-t.github.io/2023/01/28/EyouCMS%20v1.6.1%200day%E6%8C%96%E6%8E%98/">EyouCMS v1.6.1 0day挖掘</a></p>
 ]]></content>
       <categories>
         <category>wp</category>
@@ -2286,6 +2288,8 @@
 <h2 id="0x10-数控打印"><a href="#0x10-数控打印" class="headerlink" title="0x10 数控打印"></a>0x10 数控打印</h2><p>遇到<code>*.gcode</code>文件或者<code>3D打印gcode的命令</code>可以放到下面这两个网站解析</p>
 <p><a href="https://ncviewer.com/">ncviewer</a><br><a href="https://gcode.ws/">gCodeViewer</a></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/shukong.jpg"></p>
+<h2 id="0x11-Dicom图像"><a href="#0x11-Dicom图像" class="headerlink" title="0x11 Dicom图像"></a>0x11 Dicom图像</h2><p>x光图像</p>
+<p>后缀为<code>.dcm</code>的文件可以使用<code>MicroDicom</code>打开</p>
 ]]></content>
       <categories>
         <category>总结</category>

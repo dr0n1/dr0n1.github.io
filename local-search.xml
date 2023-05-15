@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>awd工具开发</title>
+    <link href="/awd/awd%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91.html"/>
+    <url>/awd/awd%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91.html</url>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="5ae017b1f5d410795bfd9739750554905d01916611c48e80022de5e4979a6b6d">c37edc3dc388221caed397fda20028d37f56e9260e95a553f9e4a07c31a28dfbd6e28959ec8851bd44bca72f4c99fed2e3f2d59cf04f91230bf3fdfe87e3b692ed77a7893f19a317aa20db4289c8a89ebb1d608df2ea9fdd7a6449972732634f822b471416b98cf454c3ec2eda8a1dec</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>awd</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>awd</tag>
+      
+      <tag>自动化工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hw面试题</title>
     <link href="/hw/hw%E9%9D%A2%E8%AF%95%E9%A2%98.html"/>
     <url>/hw/hw%E9%9D%A2%E8%AF%95%E9%A2%98.html</url>

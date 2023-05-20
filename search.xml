@@ -52,7 +52,7 @@
 <p>注释内容：<code>password is (md5(virus_file) + lhost_ip)</code></p>
 <p>同时发现流量中有很多elf文件，使用tshark或者python提取</p>
 <p>这里使用binwalk，但是需要注意部分binwalk版本不能提取elf文件</p>
-<p>需要修改<code>/usr/lib/python3/dist-packages/binwalk/config/extract.conf</code>文件</p>
+<p>需要修改<code>/usr/lib/python3/dist-packages/binwalk/config/extract.conf</code>文件(以kali默认位置为例)</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-2.png"></p>
 <p>共提取出100个elf文件，且每个elf文件运行后都会打印一个md5值</p>
 <p>使用tcpdump监听后运行所有elf文件<br><code>tcpdump -tttt -s0 -X -vv -w t.pcap</code></p>
@@ -1520,8 +1520,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>wp</tag>
         <tag>awd</tag>
+        <tag>wp</tag>
         <tag>台州</tag>
       </tags>
   </entry>

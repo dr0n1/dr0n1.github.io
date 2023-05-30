@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-6.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-7.png">
 <meta property="article:published_time" content="2023-05-20T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-05-25T15:47:24.542Z">
+<meta property="article:modified_time" content="2023-05-25T16:03:28.603Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="宁波">
@@ -373,7 +373,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//line 32</span><br><span class="hljs-variable">$newFile</span> = <span class="hljs-variable">$res</span> . <span class="hljs-variable">$file_path</span> . <span class="hljs-string">&quot;.<span class="hljs-subst">&#123;$type&#125;</span>&quot;</span>;<br></code></pre></td></tr></table></figure>
 
 <p>如果<code>$type</code>为空，就会在文件尾加一个点，例如<code>backdoor.py.</code></p>
-<p>这里可以用<code>file_put_contents</code>的一个<code>trick</code>绕过黑名单，如图</p>
+<p>这里可以用<code>file_put_contents</code>的一个<code>trick</code>绕过，如图</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-3.png"></p>
 <p>例如<code>backdoor.py/.</code>，<code>file_put_contents</code>会自已给标准化成绝对路径</p>
 <p>exp</p>

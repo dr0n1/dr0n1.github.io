@@ -1460,6 +1460,14 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-variable">$hello</span>=<span class="hljs-string">&quot;private&quot;</span>;<br><br>	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>		<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$this</span>-&gt;hello);<br>	&#125;<br>&#125;<br><span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-string">&#x27;O:4:&quot;test&quot;:1:&#123;s:5:&quot;hello&quot;;s:6:&quot;public&quot;;&#125;&#x27;</span>);<br><span class="hljs-comment">//string(6) &quot;public&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>令<code>public</code>时得到的序列化字符串，在<code>priviate</code>或者<code>protected</code>修饰的时候反序列化，<code>hello</code>属性都能获得值</p>
+<h2 id="类名和方法名不区分大小写"><a href="#类名和方法名不区分大小写" class="headerlink" title="类名和方法名不区分大小写"></a>类名和方法名不区分大小写</h2><figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">PHP特性：<br>变量名区分大小写<br>常量名区分大小写<br>数组索引 (键名) 区分大小写<br>函数名, 方法名, 类名不区分大小写<br>魔术常量不区分大小写 (以双下划线开头和结尾的常量)<br>NULL TRUE FALSE 不区分大小写<br>强制类型转换不区分大小写 (在变量前面加上 (type))<br></code></pre></td></tr></table></figure>
+
+<p>常见用来绕过正则</p>
+<p>如ctfshow的一道题目</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># <span class="hljs-doctag">@Author</span>: h1xa</span><br><span class="hljs-comment"># <span class="hljs-doctag">@Date</span>:   2020-12-04 23:52:24</span><br><span class="hljs-comment"># <span class="hljs-doctag">@Last</span> Modified by:   h1xa</span><br><span class="hljs-comment"># <span class="hljs-doctag">@Last</span> Modified time: 2020-12-05 00:17:08</span><br><span class="hljs-comment"># <span class="hljs-doctag">@email</span>: h1xa<span class="hljs-doctag">@ctfer</span>.com</span><br><span class="hljs-comment"># <span class="hljs-doctag">@link</span>: https://ctfer.com</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;flag.php&#x27;</span>);<br><span class="hljs-variable">$cs</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&#x27;php://input&#x27;</span>);<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ctfshow</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$username</span>=<span class="hljs-string">&#x27;xxxxxx&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$password</span>=<span class="hljs-string">&#x27;xxxxxx&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$u</span>,<span class="hljs-variable">$p</span></span>)</span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;username=<span class="hljs-variable">$u</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;password=<span class="hljs-variable">$p</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">login</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;username===<span class="hljs-variable language_">$this</span>-&gt;password;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;username;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">global</span> <span class="hljs-variable">$flag</span>;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>    &#125;<br>&#125;<br><span class="hljs-variable">$ctfshowo</span>=@<span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$cs</span>);<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/ctfshow/&#x27;</span>, <span class="hljs-variable">$cs</span>))&#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&quot;Error <span class="hljs-subst">$ctfshowo</span>&quot;</span>,<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h1><h1 id="session反序列化"><a href="#session反序列化" class="headerlink" title="session反序列化"></a>session反序列化</h1><p>什么是session这里就不描述了，网上有很多文章可以参考</p>
 <p>先了解下<code>PHP session</code>不同引擎的存储机制</p>
 <p><code>PHP session</code>的存储机制是由<code>session.serialize_handler</code>来定义引擎的，默认是以文件的方式存储，且存储的文件是由<code>sess_sessionid</code>来决定文件名的</p>
@@ -2760,7 +2768,7 @@
     <content><![CDATA[<h1 id="内存取证工具"><a href="#内存取证工具" class="headerlink" title="内存取证工具"></a>内存取证工具</h1><h2 id="Volatility2"><a href="#Volatility2" class="headerlink" title="Volatility2"></a>Volatility2</h2><blockquote>
 <p>Volatility2是一款开源的，基于Python开发的内存取证工具集，可以分析内存中的各种数据。Volatility支持对32位或64位Windows、Linux、Mac、Android操作系统的RAM数据进行提取与分析。</p>
 </blockquote>
-<h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h3><figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text"># 查看imagerinfo获取操作系统类型<br>volatility -f &lt;filename&gt; imageinfo<br><br># 指定操作系统类型进行其他操作<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt;<br><br># 查看进程<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; pslist<br><br># 查看文件<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; filescan | grep -E &quot;txt|xml|png|jpg|gif|zip|rar|7z|pdf|doc|docx|php|py|flag&quot;<br><br># 桌面<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; filescan | grep -E &quot;Desktop&quot;<br><br># 导出文件<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; dumpfiles -Q &lt;virtual address&gt; -D &lt;savedir&gt;<br><br># 获取系统用户名<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; printkey -K &quot;SAM\Domains\Account\Users\Names&quot;<br><br># 查看注册表<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; hivelist<br><br># 提取用户密码<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; hashdump -y &lt;注册表 system 的 virtual 地址&gt; -s &lt;SAM 的 virtual 地址&gt;<br><br># 获取IE浏览器历史记录<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; iehistory<br><br># 查看网络连接<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; netscan<br><br># 将内存中的某个进程数据以 dmp 的格式保存出来<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; memdump -p &lt;pid&gt; -D &lt;savedir&gt;<br><br># 查看命令行历史记录<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; cmdscan<br><br># 查看进程命令行参数<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; cmdline<br></code></pre></td></tr></table></figure>
+<h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h3><figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text"># 查看imagerinfo获取操作系统类型<br>volatility -f &lt;filename&gt; imageinfo<br><br># 指定操作系统类型进行其他操作<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt;<br><br># 查看进程<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; pslist<br><br># 查看文件<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; filescan | grep -E &quot;txt|xml|png|jpg|gif|zip|rar|7z|pdf|doc|docx|php|py|flag&quot;<br><br># 桌面<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; filescan | grep -E &quot;Desktop&quot;<br><br># 导出文件<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; dumpfiles -Q &lt;virtual address&gt; -D &lt;savedir&gt;<br><br># 获取系统用户名<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; printkey -K &quot;SAM\Domains\Account\Users\Names&quot;<br><br># 查看注册表<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; hivelist<br><br># 提取用户密码<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; hashdump -y &lt;注册表 system 的 virtual 地址&gt; -s &lt;SAM 的 virtual 地址&gt;<br><br># 获取IE浏览器历史记录<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; iehistory<br><br># 查看网络连接<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; netscan<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; connscan<br><br># 将内存中的某个进程数据以 dmp 的格式保存出来<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; memdump -p &lt;pid&gt; -D &lt;savedir&gt;<br><br># 提取进程的可执行文件<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; procdump -p &lt;pid&gt; -D &lt;savedir&gt;<br><br># 查看命令行历史记录<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; cmdscan<br><br># 查看进程命令行参数<br>volatility -f &lt;filename&gt; --profile &lt;ostype&gt; cmdline<br></code></pre></td></tr></table></figure>
 
 
 
@@ -4442,8 +4450,8 @@
         <category>内网</category>
       </categories>
       <tags>
-        <tag>CVE</tag>
         <tag>内网渗透</tag>
+        <tag>CVE</tag>
       </tags>
   </entry>
   <entry>
@@ -4768,8 +4776,8 @@
         <category>提权</category>
       </categories>
       <tags>
-        <tag>linux提权</tag>
         <tag>CVE</tag>
+        <tag>linux提权</tag>
       </tags>
   </entry>
   <entry>
@@ -4836,8 +4844,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>击剑杯</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -5034,8 +5042,8 @@
       </categories>
       <tags>
         <tag>绕过</tag>
-        <tag>web</tag>
         <tag>极客2021</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -5057,8 +5065,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>solidity</tag>
         <tag>区块链</tag>
+        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>
@@ -5251,9 +5259,9 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>buu</tag>
         <tag>sql防护</tag>
         <tag>加固</tag>
+        <tag>buu</tag>
       </tags>
   </entry>
   <entry>
@@ -6493,8 +6501,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>buu</tag>
+        <tag>misc</tag>
       </tags>
   </entry>
   <entry>
@@ -6672,8 +6680,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>buu</tag>
+        <tag>misc</tag>
       </tags>
   </entry>
   <entry>
@@ -6821,8 +6829,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>buu</tag>
+        <tag>misc</tag>
       </tags>
   </entry>
 </search>

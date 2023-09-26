@@ -4297,21 +4297,8 @@
   <entry>
     <title>ctf平台搭建和出题指南</title>
     <url>/%E7%AB%9E%E8%B5%9B/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97.html</url>
-    <content><![CDATA[<h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台配置：</p>
-<blockquote>
-<p>CPU 2核 - 内存 4GB - 系统盘 60GB - 带宽 6Mbps</p>
-</blockquote>
-<blockquote>
-<p>Linux VM-12-3-centos 4.18.0-348.7.1.el8_5.x86_64 #1 SMP Wed Dec 22 13:25:12 UTC 2021 x86_64 x86_64 x86_64 GNU&#x2F;Linux</p>
-</blockquote>
-<blockquote>
-<p>Docker version 20.10.14, build a224086</p>
-</blockquote>
-<blockquote>
-<p>docker-compose version 1.29.2, build 5becea4c</p>
-</blockquote>
-<p>框架选用了最经典的<a href="https://github.com/CTFd/CTFd">ctfd</a><br>动态靶机选用了赵总的<a href="https://github.com/glzjin/CTFd-Whale">whale</a></p>
-<p>但是中间因为版本，依赖的等等问题，经常会报错，所以可以使用如下两种方法，简单又便捷</p>
+    <content><![CDATA[<h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台选择的是目前使用最广泛的<a href="https://github.com/CTFd/CTFd">CTFd</a>，二开也很方便，相关插件也很多</p>
+<p>以下两种安装方法都使用了<code>glzjin</code>的<a href="https://github.com/glzjin/CTFd-Whale">CTFd-Whale</a>插件，以支持动态靶机</p>
 <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用帆哥的<a href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）<br><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></p>
 <p>注意点：中间需要手动输入三个值<br>分别是<br><code>Http Domain Suffix</code> ：<code>域名/ip</code><br><code>External Http Port</code> : <code>靶机http映射端口</code> (这里不能写80，因为80给了nginx，当然也可以自己改下脚本，不使用nginx代理)<br><code>Direct Minimum/Maximum Port</code> : <code>靶机端口开放范围</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-1.png"></p>
@@ -4327,141 +4314,49 @@
 <p>启动（在CTFd目录下运行）<br><code>docker-compose up -d</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-2.png"></p>
 <p>访问<a href="http://xx.xx.xx.xx:9124/">http://xx.xx.xx.xx:9124</a> (默认是9124，想要80可以修改docker-compose.yml)</p>
-<h3 id="平台配置"><a href="#平台配置" class="headerlink" title="平台配置"></a>平台配置</h3><p>右上角的插件中进入 Whale 设置，其中，左侧 Docker&#x2F;Limits&#x2F;Challenges 菜单栏根据需求自行更改， Frp 菜单栏中的内容需要更改一下几个选项</p>
+<p><strong>平台配置</strong><br>右上角的插件中进入 Whale 设置，其中，左侧 Docker&#x2F;Limits&#x2F;Challenges 菜单栏根据需求自行更改， Frp 菜单栏中的内容需要更改一下几个选项</p>
 <p><code>Http Domain Suffix</code>	node.lewiserii.top 这里填写使用http方式访问靶机的泛解析域名<br><code>Http Port</code>	8080 这里填写frps中的vhost_http_port，该端口为http方式靶机访问的端口<br><code>Direct IP Address</code>	xxx.xxx.xxx.xxx 这里填写服务器ip，用于显示Direct方式访问的题目的IP<br><code>Direct Minimum Port</code>	9000 这里填写用于动态靶机Direct方式的开始端口<br><code>Direct Maximum Port</code>	9200 这里填写结束端口</p>
 <p>优点：非常稳定，基本都能一次成功</p>
-<h1 id="pwn题部署"><a href="#pwn题部署" class="headerlink" title="pwn题部署"></a>pwn题部署</h1><p>先展示一下目录结构<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-pwn-1.png"></p>
-<p>首先先出题，出完后的<code>pwn2.c</code>文件编译成<code>pwn2</code>，并和<code>flag</code>文件放入<code>bin</code>下<br>注意<code>flag</code>文件中的flag格式要与ctfd中配置的格式一致</p>
-<p>然后编辑<code>Dockerfile</code>文件，用来构建镜像</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> ubuntu:<span class="hljs-number">16.04</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> sed -i <span class="hljs-string">&quot;s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.tuna.tsinghua.edu.cn/g&quot;</span> /etc/apt/sources.list &amp;&amp; \</span><br><span class="language-bash">    apt-get update &amp;&amp; apt-get -y dist-upgrade &amp;&amp; \</span><br><span class="language-bash">    apt-get install -y lib32z1 xinetd</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> useradd -m ctf</span><br><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /home/ctf</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">cp</span> -R /lib* /home/ctf &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">cp</span> -R /usr/lib* /home/ctf</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">mkdir</span> /home/ctf/dev &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">mknod</span> /home/ctf/dev/null c 1 3 &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">mknod</span> /home/ctf/dev/zero c 1 5 &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">mknod</span> /home/ctf/dev/random c 1 8 &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">mknod</span> /home/ctf/dev/urandom c 1 9 &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">chmod</span> 666 /home/ctf/dev/*</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">mkdir</span> /home/ctf/bin &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">cp</span> /bin/sh /home/ctf/bin &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">cp</span> /bin/ls /home/ctf/bin &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">cp</span> /bin/cat /home/ctf/bin</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./ctf.xinetd /etc/xinetd.d/ctf</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./start.sh /start.sh</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Blocked by ctf_xinetd&quot;</span> &gt; /etc/banner_fail</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./bin/ /home/ctf/</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chown</span> -R root:ctf /home/ctf &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">chmod</span> -R 750 /home/ctf &amp;&amp; \</span><br><span class="language-bash">    <span class="hljs-built_in">chmod</span> 740 /home/ctf/flag</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">9999</span><br></code></pre></td></tr></table></figure>
-
-<p>再编辑<code>start.sh</code>文件用于启动环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br><span class="hljs-comment"># Add your startup script</span><br><br><span class="hljs-comment"># whale                       #这里的配置是与whale插件相配合做动态flag</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$FLAG</span> &gt; /home/ctf/flag<br><span class="hljs-built_in">chown</span> root:ctf /home/ctf/flag<br><span class="hljs-built_in">chmod</span> 640 /home/ctf/flag<br><span class="hljs-built_in">export</span> FLAG=not_flag<br>FLAG=not_flag<br><br><span class="hljs-comment"># DO NOT DELETE               #启动xinetd服务并使容器不退出</span><br>/etc/init.d/xinetd start;<br><span class="hljs-built_in">sleep</span> infinity;<br></code></pre></td></tr></table></figure>
-
-<p>既然启动了xinetd服务，那么肯定要有配置文件<br>编辑<code>ctf.xinetd</code>，这个文件是有固定格式的，可以参考下面的</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">service ctf<br>&#123;<br>    disable = no<br>    socket_type = stream<br>    protocol    = tcp<br>    wait        = no<br>    user        = root<br>    type        = UNLISTED<br>    port        = 9999                #使用的端口<br>    bind        = 0.0.0.0<br>    server      = /usr/sbin/chroot<br>    # replace helloworld to your program<br>    server_args = --userspec=1000:1000 /home/ctf ./pwn2   #pwn2改成你的文件名<br>    banner_fail = /etc/banner_fail<br>    # safety options<br>    per_source  = 10 # the maximum instances of this service per source IP address<br>    rlimit_cpu  = 20 # the maximum number of CPU seconds that the service may use<br>    #rlimit_as  = 1024M # the Address Space resource limit for the service<br>    #access_times = 2:00-9:00 12:00-24:00<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-<p>当<code>ctf.xinetd</code>,<code>Dockerfile</code>,<code>start.sh</code>三个文件和题目<code>pwn2</code>都配置完后就可以开始构建和运行了</p>
-<p>构建（在配置文件所在的目录）<br><code>docker build -t vecctf_pwn2 .</code>    # vecctf_pwn2是构建完的镜像的名字</p>
-<p>运行<br>运行前可以使用<code>docker images</code>命令查看是否生成了镜像<br><code>docker run -itd -p 9999:9999 vecctf_pwn2 /start.sh</code>  # 注意端口和镜像要对应</p>
-<p>现在使用exp试试能不能打通（对应上面目录结构里的pwn2.py）</p>
-<p>能打通就说明镜像构建成功了</p>
-<p>然后在平台部署</p>
-<p>如果平台和镜像不在同一台主机上可以先push在pull下来</p>
-<p><code>Challenge Types</code>选择<code>dynamic_docker</code></p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Name</td>
-<td>挑战名称</td>
-</tr>
-<tr>
-<td>Category</td>
-<td>挑战类别</td>
-</tr>
-<tr>
-<td>Message</td>
-<td>简要介绍挑战</td>
-</tr>
-<tr>
-<td>Docker Image</td>
-<td>部署的docker镜像名称</td>
-</tr>
-<tr>
-<td>Frp Redirect Type</td>
-<td>http是映射域名，direct是映射ip</td>
-</tr>
-<tr>
-<td>Frp Redirect Port</td>
-<td>重定向端口</td>
-</tr>
-<tr>
-<td>Docker Container Memory Limit</td>
-<td>容器内存</td>
-</tr>
-<tr>
-<td>Docker Container CPU Limit</td>
-<td>容器cpu</td>
-</tr>
-<tr>
-<td>Initial Value</td>
-<td>初始分数</td>
-</tr>
-<tr>
-<td>Decay Limit</td>
-<td>挑战达到其最小值之前的解决数量</td>
-</tr>
-<tr>
-<td>Minimum Value</td>
-<td>最低分数</td>
-</tr>
-<tr>
-<td>Score Type</td>
-<td>静态分数&amp;动态分数</td>
-</tr>
-</tbody></table>
-<p>提交后的flag选项不用填，state选择显示，上传pwn题附件</p>
-<p>一切就绪后可以试着开几次靶机，看看flag和端口是不是动态的</p>
-<h1 id="web题部署"><a href="#web题部署" class="headerlink" title="web题部署"></a>web题部署</h1><p>web中不同语言的靶机部署又有细微的差别，主要是语言环境的配置，比如java环境，go环境，又或者框架，中间件的部署</p>
-<h2 id="php靶机"><a href="#php靶机" class="headerlink" title="php靶机"></a>php靶机</h2><p>应该是最灵活的靶机了，网上有大量的基础镜像，lamp，lnmp，各种版本都有</p>
-<p>本文以我们校赛的一道反序列化题目为参考</p>
-<p>Dockerfile文件</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.0</span>-apache<br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> 000-default.conf /etc/apache2/sites-enabled/000-default.conf</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> php.ini /usr/local/etc/php/php.ini</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> flag /flag</span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> index.php /var/www/html/index.php</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
-
-<p>其中<code>000-default.conf</code>和<code>php.ini</code>作为配置文件可以根据需求来确定是否更改</p>
-<p>start.sh文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br><br>echo $FLAG &gt; /flag                           //ctfd动态flag<br>chown www-data:www-data /flag               //权限分配<br>chmod 640 /flag                             //权限分配<br>export FLAG=not_flag                        //防止非预期<br>FLAG=not_flag                               //防止非预期<br><br><br>rm /var/log/apache2/access.log             //防止非预期<br>rm /var/log/apache2/error.log              //防止非预期<br><br>service apache2 start                       //启动apache<br><br>tail -f /dev/null                           //保证容器不退出<br></code></pre></td></tr></table></figure>
-
-<p><code>docker build -t name .</code>构建后直接就能<code>run</code>了，非常方便</p>
-<h2 id="java靶机"><a href="#java靶机" class="headerlink" title="java靶机"></a>java靶机</h2><p>文章中演示的例子比较简单，是2021东华杯的Ezgadget，可以用<code>java -jar</code>直接启动，所以只需要一个java环境即可，还有复杂一点的，比如通过tomcat运行或者spring，shiro这些中间件</p>
-<p>目录结构<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-java-1.png"></p>
-<p>test.jar是题目</p>
-<p>Dockerfile文件内容</p>
-<figure class="highlight docker"><table><tr><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> majiajue/jdk1.<span class="hljs-number">8</span>                      //用别人做好的基础镜像<br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> www/test.jar /var/www/html/</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> flag /flag</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">8888</span>                           //test.jar中定义的端口或者自己开个tomcat<br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> sh -c <span class="hljs-string">&quot;chown -R www-data:www-data /var/www/html&quot;</span></span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> sh -c <span class="hljs-string">&quot;chmod 777 -R /var/www/html/&quot;</span></span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh</span><br><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
-
-<p>flag文件内容</p>
-<figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">flagflag                     //任意，到时候导入平台后会替换<br></code></pre></td></tr></table></figure>
-
-<p>start.sh文件内容</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh"><span class="hljs-meta">#! /bin/sh</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$FLAG</span> &gt; /flag<br><span class="hljs-built_in">chown</span> www-data:www-data /flag<br><span class="hljs-built_in">chmod</span> 640 /flag<br><span class="hljs-built_in">export</span> FLAG=not_flag<br>FLAG=not_flag<br><br>java -jar /var/www/html/test.jar                //运行jar<br></code></pre></td></tr></table></figure>
-
-<p>执行构建命令<code>docker build -t lewiserii/java-web .</code></p>
-<p>平台上题：<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-java-2.png"></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-java-3.png"></p>
-<p>题目和flag测试正常<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-java-4.png"></p>
-<h2 id="go靶机"><a href="#go靶机" class="headerlink" title="go靶机"></a>go靶机</h2><blockquote>
-<p>从简单的开发与学习过程中可以感觉到golang的确非常安全，很多问题由于作为强类型的静态语言，从编译过程就能防止不安全的操作。因此大部分漏洞产生还是归结于依赖库（通常已经发展为CVE或者issue）以及开发者自身的操作漏洞。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="golang的一些安全问题
-">[1]</span></a></sup></p>
+<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a href="https://github.com/lewiserii/CTFd_Template">https://github.com/lewiserii/CTFd_Template</a></p>
+<p>包含pwn系列的ubuntu16，ubuntu18，ubuntu20，ubuntu22<br>web系列的php，java，python，go，mysql<br>misc，reverse系列的部分动态</p>
+<p>因为不会crypto，就没写交互的crypto</p>
+<h2 id="pwn题部署"><a href="#pwn题部署" class="headerlink" title="pwn题部署"></a>pwn题部署</h2><p>假设现在出了一道pwn题，名字是baby_stack</p>
+<p>首先根据题目选择需要的Ubuntu版本，这里以Ubuntu16为例，下载<code>pwn_ubuntu16</code>这个模板</p>
+<p>把出好的二进制文件放到bin目录下，替换<code>test</code><br>然后找到<code>ctf.xinetd</code>文件中的<code>server_args</code>值，修改<code>test</code>为附件名</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-1.png"></p>
+<p><strong>第二步</strong>，构建镜像<br>在<code>Dockerfile</code>所在的目录运行<code>docker build -t &lt;镜像名&gt; .</code><br>运行后可以用<code>docker images</code>查看下是否成功生成了镜像</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-2.png"></p>
+<p><strong>第三步</strong>，本地测试或CTFd部署</p>
+<blockquote>
+<p>本地测试这步可选，没有信心一次成功的话可以先在本地测试下</p>
 </blockquote>
-<p>go靶机平时基本见不到，比赛中也非常少见，最近正好在学golang，就试着做一下靶机</p>
-<p>在dockerhub上搜了一下，似乎没有合适的基础镜像，刚开始尝试用golang和ubuntu来做基础镜像，但是最后都太大了，一个G起步，不得已用alpine做了一个出来<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-go-1.png"></p>
-<p>go的题目和java一样分两种情况，一种是编译好的二进制文件，这种搭建就比较方便了，可以采用多阶段构建来缩小容量，具体可以参考雪殇师傅的文章<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="如何优雅的写Dockerfile
-">[2]</span></a></sup>,另一种就比较麻烦了，需要用<code>go run</code>来运行的题目，比如羊城杯的<code>Checkin_Go</code></p>
-<p>这里构建就不演示了，与php靶机搭建差不多，主要就是<code>go mod download &amp;&amp; go mod verify</code>和<code>go run .</code></p>
-<p>还有一点要注意，平台上题的时候需要调整<code>Docker Container Memory Limit</code>，不然会报<code>go build github.com/ugorji/go/codec: /usr/local/go/pkg/tool/linux_amd64/compile: signal: killed</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-go-2.png"></p>
-<h2 id="python靶机"><a href="#python靶机" class="headerlink" title="python靶机"></a>python靶机</h2><p>推荐使用<code>python:3.6</code></p>
-<p>在Dockerfile中安装自己需要的包即可</p>
-<p>例如</p>
-<p><code>RUN python3 -m pip install flask -i https://pypi.douban.com/simple/</code></p>
-<h2 id="带数据库的靶机"><a href="#带数据库的靶机" class="headerlink" title="带数据库的靶机"></a>带数据库的靶机</h2><p>像一般的sql注入类和网站类题目是需要用数据库存储数据的，所以需要基础镜像中包含一个数据库</p>
-<p>推荐镜像1：<code>andreisamuilik/php5.5.9-apache2.4-mysql5.5</code><br>推荐镜像2：<code>lewiserii/php7-apache2-mariadb5</code></p>
-<p>部署时在sh文件中导入你需要的数据即可：<code>mysql -uroot -proot &lt; /tmp/db.sql</code></p>
-<p>例子</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DATABASE nbctf;<br>use nbctf;<br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS<span class="hljs-operator">=</span><span class="hljs-number">0</span>;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Table structure for users</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `users`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `users` (<br>  `id` <span class="hljs-type">int</span>(<span class="hljs-number">255</span>) unsigned <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,<br>  `username` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `password` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`id`)<br>) ENGINE<span class="hljs-operator">=</span>InnoDB AUTO_INCREMENT<span class="hljs-operator">=</span><span class="hljs-number">2</span> <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Records of users</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `users` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;admin&#x27;</span>, <span class="hljs-string">&#x27;xxxxxxx&#x27;</span>);<br><br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Table structure for flag</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `flag`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `flag` (<br>  `id` <span class="hljs-type">int</span>(<span class="hljs-number">255</span>) unsigned <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,<br>  `flag` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`id`)<br>) ENGINE<span class="hljs-operator">=</span>InnoDB AUTO_INCREMENT<span class="hljs-operator">=</span><span class="hljs-number">2</span> <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Records of flag</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `flag` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;nbctf&#123;xxxx&#125;&#x27;</span>);<br><br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- user for ctf</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;ctf&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;xxxxxx&#x27;</span>;<br><span class="hljs-keyword">grant</span> <span class="hljs-keyword">all</span> privileges <span class="hljs-keyword">on</span> `nbctf`.<span class="hljs-operator">*</span> <span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;ctf&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> identified <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;xxxxxx&#x27;</span>;<br>FLUSH PRIVILEGES;<br></code></pre></td></tr></table></figure>
+<p>运行<code>docker run -itd -p &lt;对外暴露端口&gt;:9999 &lt;镜像名&gt; /start.sh</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-3.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-4.png"></p>
+<p>nc连接后能返回程序的功能就ok了(别忘记删除容器)<br>接着在CTFd上部署，注意type选择direct，image与port对应即可</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-5.png"></p>
+<h2 id="misc题部署"><a href="#misc题部署" class="headerlink" title="misc题部署"></a>misc题部署</h2><blockquote>
+<p>通常有两种方式，一种是利用python启动一个web服务，另一种是利用nginx或httpd</p>
+</blockquote>
+<blockquote>
+<p>个人认为动态misc的核心思路就是把出题过程转换为一个脚本，然后读取平台传递的flag后生成附件，利用web服务下载。所以部分工具题和复杂一点的题目是没有办法出动态的</p>
+</blockquote>
+<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9-httpd</code>为例</p>
+<p><strong>第一步</strong>，先将出题思路写进一个脚本中，命名为<code>challenges.py</code>，所需的模块放到<code>requirements.txt</code>中</p>
+<p>这个脚本有几点需要注意：<br>1：需要从<code>/flag</code>读取flag值<br>2：出题后生成的附件需要套一层压缩包以便访问自动下载，zip需要命名为<code>attachment.zip</code><br>3：尽量在脚本结束时删除无用的文件</p>
+<p>以下是一个简单的例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> pyminizip<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image,ImageDraw,ImageOps<br><br><br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;/flag&#x27;</span>)<br>flag=f.read()<br><br>a=Image.new(<span class="hljs-string">&quot;1&quot;</span>,(<span class="hljs-number">300</span>,<span class="hljs-number">20</span>))<br>w,h=a.size<br>d=ImageDraw.Draw(a)<br>d.text((<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),flag,fill=<span class="hljs-number">255</span>)<br>a = ImageOps.invert(a)<br>a.save(<span class="hljs-string">&#x27;1.png&#x27;</span>)<br><br><br>password = <span class="hljs-string">&#x27;&#x27;</span>.join(random.choices(<span class="hljs-string">&#x27;0123456789&#x27;</span>, k=<span class="hljs-number">8</span>))<br>pyminizip.compress(<span class="hljs-string">&quot;1.png&quot;</span>, <span class="hljs-literal">None</span>, <span class="hljs-string">&quot;attachment.zip&quot;</span>, password, <span class="hljs-number">5</span>)<br>os.remove(<span class="hljs-string">&quot;1.png&quot;</span>)<br></code></pre></td></tr></table></figure>
 
-<p>动态flag导入：<code>mysql -uroot -proot -e &quot;update 库名.表名 set 字段名=&#39;$FLAG&#39;;&quot;</code></p>
-<p>最后在题目代码中连接数据库</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>要灵活使用dockerfile，不同题目根据<strong>需求</strong>做不同策略</p>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://bycsec.top/2021/02/07/golang%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/">golang的一些安全问题</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="http://www.snowywar.top/?p=3238">如何优雅的写Dockerfile</a>
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+
+<p><strong>第二步</strong>，将代码放进<code>files</code>目录，然后生成镜像</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-6.png"></p>
+<p><strong>第三步</strong>，在CTFd上部署，然后验证</p>
+<p>部署时端口选择80</p>
+<p>开启靶机后访问，如果没出问题的话应该只会弹出一个保存文件的窗口，且能成功下载</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-7.png"></p>
+<p>下载到本地后就可以正常解题</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>一定要灵活使用dockerfile，不同题目根据<strong>需求</strong>做不同策略</p>
+]]></content>
       <categories>
         <category>ctfd</category>
       </categories>
@@ -4470,7 +4365,6 @@
         <tag>出题</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
-        <tag>whale</tag>
       </tags>
   </entry>
   <entry>
@@ -5195,8 +5089,8 @@
       </categories>
       <tags>
         <tag>绕过</tag>
-        <tag>web</tag>
         <tag>极客2021</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -5218,8 +5112,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>区块链</tag>
         <tag>solidity</tag>
+        <tag>区块链</tag>
       </tags>
   </entry>
   <entry>

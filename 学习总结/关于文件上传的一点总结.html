@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj18.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/sum_up.png">
 <meta property="article:published_time" content="2021-07-01T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-03T10:16:30.784Z">
+<meta property="article:modified_time" content="2023-10-14T11:19:04.334Z">
 <meta property="article:author" content="lewiserii">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件上传">
@@ -270,7 +270,7 @@
         
         
         
-          121 分钟
+          123 分钟
         
       </span>
     
@@ -397,6 +397,13 @@
 
 <p>使用方法<code>run=O:8:&quot;HandShip&quot;:2:&#123;s:4:&quot;name&quot;;s:6:&quot;system&quot;;s:4:&quot;male&quot;;s:9:&quot;cat /home&quot;;&#125;;&amp;code=panda</code></p>
 <h1 id="apache解析漏洞"><a href="#apache解析漏洞" class="headerlink" title="apache解析漏洞"></a>apache解析漏洞</h1><p>非常简单的一个漏洞<br>Apache默认一个文件可以有多个以点.分割的后缀，当右边的后缀无法识别，则继续向左识别<br>上传<code>shell.php.asd</code><br>asd这个后缀无法解析，服务器就会认为后缀是.php，从而绕过</p>
+<p>该漏洞与Apache 、 php版本误关，属于用户配置不当造成的解析漏洞</p>
+<p>配置如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php">&lt;FilesMatch <span class="hljs-string">&quot;.+\.ph(ar|p|tml)&quot;</span>&gt;<br>    SetHandler application/x-httpd-php<br>&lt;/FilesMatch&gt;<br></code></pre></td></tr></table></figure>
+
+<p>不在mime.types当中的都不认识</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">Windows：/apche/conf/mine.types<br>Ubuntu：/etc/mime.types<br></code></pre></td></tr></table></figure>
+
 <h1 id="iis-asp目录解析漏洞"><a href="#iis-asp目录解析漏洞" class="headerlink" title="iis asp目录解析漏洞"></a>iis asp目录解析漏洞</h1><p>该解析漏洞形成原因是以*.asp命名的文件夹里面的文件都会被当作asp文件解析！</p>
 <h1 id="iis-分号漏洞"><a href="#iis-分号漏洞" class="headerlink" title="iis 分号漏洞"></a>iis 分号漏洞</h1><p>*.asp;.jpg 像这种畸形文件名在“；”后面的直接被忽略，也就是说当成 *.asp文件执行。</p>
 <h1 id="nginx错误配置漏洞"><a href="#nginx错误配置漏洞" class="headerlink" title="nginx错误配置漏洞"></a>nginx错误配置漏洞</h1><p><em>该漏洞与Nginx、php版本无关，属于用户配置不当造成的解析漏洞</em></p>

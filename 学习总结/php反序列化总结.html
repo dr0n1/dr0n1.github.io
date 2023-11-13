@@ -26,6 +26,9 @@
 <meta property="og:description" content="常见的魔术方法1234567891011__construct()： 在创建对象时候初始化对象，一般用于对变量赋初值。__destruct()： 和构造函数相反，当对象所在函数调用完毕后执行。__call()： 当调用对象中不存在的方法会自动调用该方法。__get()： 获取对象不存在的属性时执行此函数。__set()： 设置对象不存在的属性时执行此函数。__toString()： 当对象被当做一">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-4.jpg">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-11.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-12.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-13.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-1.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-2.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-3.png">
@@ -37,11 +40,11 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-9.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-10.png">
 <meta property="article:published_time" content="2023-02-10T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-12T12:25:35.385Z">
+<meta property="article:modified_time" content="2023-11-13T12:00:02.935Z">
 <meta property="article:author" content="lewiserii">
-<meta property="article:tag" content="总结">
 <meta property="article:tag" content="反序列化">
 <meta property="article:tag" content="php">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-4.jpg">
   
@@ -251,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          22k 字
+          25k 字
         
       </span>
     
@@ -262,7 +265,7 @@
         
         
         
-          223 分钟
+          251 分钟
         
       </span>
     
@@ -466,7 +469,58 @@
 
 
 
-<h1 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h1><h1 id="session反序列化"><a href="#session反序列化" class="headerlink" title="session反序列化"></a>session反序列化</h1><p>什么是session这里就不描述了，网上有很多文章可以参考</p>
+<h1 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h1><blockquote>
+<p>众所周知，在利用反序列化漏洞的时候，一般是将序列化后的字符串传入<code>unserialize()</code>来利用。但是通过<code>phar</code>可以不依赖<code>unserialize()</code>直接进行反序列化操作</p>
+</blockquote>
+<p>Phar是PHP的压缩文档，是PHP中类似于JAR的一种打包文件。它可以把多个文件存放至同一个文件中，无需解压，PHP就可以进行访问并执行内部语句。在PHP 5.3或更高版本中默认开启</p>
+<p>phar结构由4部分组成</p>
+<p><strong>一：stub</strong></p>
+<p>stub的基本结构：<code>xxx&lt;?php xxx;__HALT_COMPILER();?&gt;</code>，前面内容不限，但必须以<code>__HALT_COMPILER();?&gt;</code>来结尾，否则phar扩展将无法识别这个文件为phar文件。类似于Phar的文件头</p>
+<p><strong>二：manifest</strong></p>
+<p>phar文件本质上是一种压缩文件，其中每个被压缩文件的权限、属性等信息都放在这部分。这部分还会以序列化的形式存储用户自定义的meta-data，这里就是漏洞利用的关键点</p>
+<p><strong>三：contents</strong></p>
+<p>被压缩文件的内容</p>
+<p><strong>四：signature</strong></p>
+<p>签名，放在文件末尾</p>
+<p>签证尾部的01代表md5加密，02代表sha1加密，04代表sha256加密，08代表sha512加密</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-11.png"></p>
+<p>一个最基本的例子</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br><br><span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&quot;test.phar&quot;</span>);   <span class="hljs-comment">//后缀名必须为phar</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">startBuffering</span>();  <span class="hljs-comment">//开始缓冲Phar写操作</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setStub</span>(<span class="hljs-string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>);   <span class="hljs-comment">//设置stub</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setMetadata</span>(<span class="hljs-variable">$a</span>);  <span class="hljs-comment">//将自定义的meta-data存入manifest</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">addFromString</span>(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;test&quot;</span>); <span class="hljs-comment">//添加要压缩的文件</span><br><span class="hljs-comment">//签名自动计算</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">stopBuffering</span>(); <span class="hljs-comment">//停止缓冲对 Phar 归档的写入请求，并将更改保存到磁盘</span><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-12.png"></p>
+<p>php一大部分的文件系统函数在通过phar:&#x2F;&#x2F;伪协议解析phar文件时，都会将meta-data进行反序列化<br>受影响的函数如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs php">fileatime<br>filectime<br>file_exists<br>file_get_contents<br>file_put_contents<br>file<br>filegroup<br>fopen<br>fileinode<br>filemtime<br>fileowner<br>fileperms<br>is_dir<br>is_executable<br>is_file<br>is_link<br>is_readable<br>is_writable<br>is_writeable<br>parse_ini_file<br>copy<br>unlink<br>stat<br>readfile<br></code></pre></td></tr></table></figure>
+
+<p>当我们修改文件的内容时，签名就会变得无效，这个时候需要重新计算签名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> hashlib <span class="hljs-keyword">import</span> sha1<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.phar&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>    f = file.read()<br>s = f[:-<span class="hljs-number">28</span>] <span class="hljs-comment"># 获取要签名的数据</span><br>h = f[-<span class="hljs-number">8</span>:] <span class="hljs-comment"># 获取签名类型和GBMB标识</span><br>newf = s + sha1(s).digest() + h <span class="hljs-comment"># 数据 + 签名 + (类型 + GBMB)</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;newtest.phar&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>    file.write(newf) <span class="hljs-comment"># 写入新文件</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="phar绕过上传限制"><a href="#phar绕过上传限制" class="headerlink" title="phar绕过上传限制"></a>phar绕过上传限制</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Test</span>();<br><br><span class="hljs-variable">$phar</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phar</span>(<span class="hljs-string">&quot;test.phar&quot;</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">startBuffering</span>();<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setStub</span>(<span class="hljs-string">&quot;GIF89a&quot;</span>.<span class="hljs-string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="hljs-comment">//添加任意的文件头</span><br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">setMetadata</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">addFromString</span>(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;test&quot;</span>);<br><span class="hljs-variable">$phar</span>-&gt;<span class="hljs-title function_ invoke__">stopBuffering</span>();<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-13.png"></p>
+<h2 id="绕过头部phar-x2F-x2F"><a href="#绕过头部phar-x2F-x2F" class="headerlink" title="绕过头部phar:&#x2F;&#x2F;"></a>绕过头部phar:&#x2F;&#x2F;</h2><p>如果题目限制了<code>phar://</code>不能出现在头几个字符，可以用<code>Bzip/Gzip</code>协议绕过</p>
+<p>例如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/^php|^file|^phar|^dict|^zip/i&quot;</span>,<span class="hljs-variable">$filename</span>)&#123;<br>    <span class="hljs-keyword">die</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php">php:<span class="hljs-comment">//filter/read=convert.base64-encode/resource=phar://test.phar</span><br><span class="hljs-comment">//即使用filter伪协议来进行绕过</span><br><br>compress.bzip2:<span class="hljs-comment">//phar:///test.phar/test.txt</span><br><span class="hljs-comment">//使用bzip2协议来进行绕过</span><br><br>compress.zlib:<span class="hljs-comment">//phar:///home/sx/test.phar/test.txt</span><br><span class="hljs-comment">//使用zlib协议进行绕过</span><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="绕过-HALT-COMPILER检测"><a href="#绕过-HALT-COMPILER检测" class="headerlink" title="绕过__HALT_COMPILER检测"></a>绕过__HALT_COMPILER检测</h2><p>在前面介绍stub时提到过，PHP通过<code>__HALT_COMPILER</code>来识别Phar文件，那么为了防止Phar反序列化的出现，可能就会对这个进行过滤</p>
+<p>例如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/HALT_COMPILER/i&quot;</span>,<span class="hljs-variable">$Phar</span>)&#123;<br>    <span class="hljs-keyword">die</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>绕过方法一：</strong></p>
+<p>将Phar文件的内容写到压缩包注释中，压缩为zip文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$zip</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipArchive</span>();<br><span class="hljs-variable">$res</span> = <span class="hljs-variable">$zip</span>-&gt;<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;phar.zip&#x27;</span>,<span class="hljs-title class_">ZipArchive</span>::<span class="hljs-variable constant_">CREATE</span>);<br><span class="hljs-variable">$zip</span>-&gt;<span class="hljs-title function_ invoke__">addFromString</span>(<span class="hljs-string">&#x27;flag.txt&#x27;</span>, <span class="hljs-string">&#x27;flag is here&#x27;</span>);<br><span class="hljs-variable">$zip</span>-&gt;<span class="hljs-title function_ invoke__">setArchiveComment</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$zip</span>-&gt;<span class="hljs-title function_ invoke__">close</span>();<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>绕过方法二：</strong></p>
+<p>将生成的Phar文件进行gzip压缩，压缩后同样也可以进行反序列化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gzip test.phar<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="session反序列化"><a href="#session反序列化" class="headerlink" title="session反序列化"></a>session反序列化</h1><p>什么是session这里就不描述了，网上有很多文章可以参考</p>
 <p>先了解下<code>PHP session</code>不同引擎的存储机制</p>
 <p><code>PHP session</code>的存储机制是由<code>session.serialize_handler</code>来定义引擎的，默认是以文件的方式存储，且存储的文件是由<code>sess_sessionid</code>来决定文件名的</p>
 <p>session.serialize_handler定义的引擎共有三种：</p>
@@ -603,11 +657,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-      
         <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">#反序列化</a>
       
         <a href="/tags/php/">#php</a>
+      
+        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
       
     </div>
   

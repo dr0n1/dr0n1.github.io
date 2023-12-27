@@ -21,8 +21,8 @@
     <meta name="description" content="常见的魔术方法1234567891011__construct()： 在创建对象时候初始化对象，一般用于对变量赋初值。__destruct()： 和构造函数相反，当对象所在函数调用完毕后执行。__call()： 当调用对象中不存在的方法会自动调用该方法。__get()： 获取对象不存在的属性时执行此函数。__set()： 设置对象不存在的属性时执行此函数。__toString()： 当对象被当做一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php反序列化总结">
-<meta property="og:url" content="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%80%BB%E7%BB%93.html">
-<meta property="og:site_name" content="网络安全知识分享">
+<meta property="og:url" content="https://www.dr0n.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%80%BB%E7%BB%93.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="常见的魔术方法1234567891011__construct()： 在创建对象时候初始化对象，一般用于对变量赋初值。__destruct()： 和构造函数相反，当对象所在函数调用完毕后执行。__call()： 当调用对象中不存在的方法会自动调用该方法。__get()： 获取对象不存在的属性时执行此函数。__set()： 设置对象不存在的属性时执行此函数。__toString()： 当对象被当做一">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-4.jpg">
@@ -44,15 +44,15 @@
 <meta property="article:published_time" content="2023-02-10T04:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-14T13:09:56.451Z">
 <meta property="article:author" content="dr0n">
+<meta property="article:tag" content="总结">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="反序列化">
-<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/unserialize/unserialize-4.jpg">
   
   
   
-  <title>php反序列化总结 - 网络安全知识分享</title>
+  <title>php反序列化总结 - Dr0n&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -90,7 +90,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.lewiserii.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.lewiserii.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -101,7 +101,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="网络安全知识分享" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -115,7 +115,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>网络安全知识分享</strong>
+      <strong>Dr0n&#39;s blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -578,7 +578,7 @@
 <p>总结：由于1.php是使用php_serialize引擎处理，因此只会把’|’当做一个正常的字符。然后访问2.php，由于用的是php引擎，因此遇到’|’时会将之看做键名与值的分割符，从而造成了歧义，导致其在解析session文件时直接对’|’后的值进行反序列化处理。</p>
 </blockquote>
 <h2 id="SESSION变量不可控"><a href="#SESSION变量不可控" class="headerlink" title="$_SESSION变量不可控"></a>$_SESSION变量不可控</h2><p>当<code>$_SESSION</code>不能直接控制时，可以借助<code>PHP_SESSION_UPLOAD_PROGRESS</code>来完成反序列化</p>
-<p>关于<code>PHP_SESSION_UPLOAD_PROGRESS</code>的介绍可以参考我的另一篇文章<a href="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%80%BB%E7%BB%93.html#session-upload-progress%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB">session.upload_progress文件包含</a></p>
+<p>关于<code>PHP_SESSION_UPLOAD_PROGRESS</code>的介绍可以参考我的另一篇文章<a target="_blank" rel="noopener" href="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%80%BB%E7%BB%93.html#session-upload-progress%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB">session.upload_progress文件包含</a></p>
 <p>这里用ctfshow的一道新春题的前半部分作例子</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">include</span>(<span class="hljs-string">&quot;class.php&quot;</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&quot;session.serialize_handler&quot;</span>, <span class="hljs-string">&quot;php&quot;</span>);<br><span class="hljs-title function_ invoke__">session_start</span>();<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;phpinfo&#x27;</span>]))<br>&#123;<br>    <span class="hljs-title function_ invoke__">phpinfo</span>();<br>&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;source&#x27;</span>]))<br>&#123;<br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-string">&quot;class.php&quot;</span>);<br>&#125;<br><br><span class="hljs-variable">$happy</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Happy</span>();<br><span class="hljs-variable">$happy</span>();<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -675,11 +675,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+      
         <a href="/tags/php/">#php</a>
       
         <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">#反序列化</a>
-      
-        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
       
     </div>
   
@@ -692,7 +692,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>php反序列化总结</div>
-      <div>https://www.lewiserii.top/学习总结/php反序列化总结.html</div>
+      <div>https://www.dr0n.top/学习总结/php反序列化总结.html</div>
     </div>
     <div class="license-meta">
       
@@ -776,7 +776,7 @@
       Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
       Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.lewiserii.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
           {
             el: '#waline',
             path: window.location.pathname

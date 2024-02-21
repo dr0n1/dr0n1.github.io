@@ -400,8 +400,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>反序列化</tag>
         <tag>总结</tag>
+        <tag>反序列化</tag>
         <tag>python</tag>
       </tags>
   </entry>
@@ -506,6 +506,8 @@
 <p>支持拖放文件</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-17.png"></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-18.png"></p>
+<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>V1.0：初始版本<br>V1.1：多种扫描方式，代码逻辑优化<br>V1.2：添加随机不死马功能，修复诺干bug<br>V2.1：70%代码重构，速度较上一代提升11倍。添加ssh和设置模块</p>
+<p>可能将要做的：<br>1：希望加入pwn的批量攻击（貌似没多少比赛中有）<br>2：希望不止php的不死马（虽然大部分比赛php够用了）</p>
 ]]></content>
       <categories>
         <category>awd</category>
@@ -856,8 +858,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>awdp</tag>
         <tag>羊城杯</tag>
+        <tag>awdp</tag>
       </tags>
   </entry>
   <entry>
@@ -2576,9 +2578,9 @@
         <category>总结</category>
       </categories>
       <tags>
+        <tag>总结</tag>
         <tag>反序列化</tag>
         <tag>php</tag>
-        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -3166,8 +3168,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>wp</tag>
+        <tag>awd</tag>
         <tag>台州</tag>
       </tags>
   </entry>
@@ -3485,8 +3487,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -5475,8 +5477,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -5640,8 +5642,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -5664,8 +5666,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -5811,8 +5813,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>击剑杯</tag>
         <tag>ctfshow</tag>
+        <tag>击剑杯</tag>
       </tags>
   </entry>
   <entry>
@@ -6009,8 +6011,8 @@
       </categories>
       <tags>
         <tag>绕过</tag>
-        <tag>极客2021</tag>
         <tag>web</tag>
+        <tag>极客2021</tag>
       </tags>
   </entry>
   <entry>
@@ -6187,9 +6189,9 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>awd</tag>
         <tag>平台</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -6564,8 +6566,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -6848,8 +6850,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -6930,8 +6932,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -7026,8 +7028,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -7331,8 +7333,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -7382,8 +7384,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>

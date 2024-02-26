@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rce/dnslog.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rce/http.png">
 <meta property="article:published_time" content="2023-01-10T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-15T05:17:36.769Z">
+<meta property="article:modified_time" content="2024-02-26T12:46:51.536Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="rce">
@@ -331,7 +331,7 @@
 <p>与上题类似</p>
 <h3 id="其他方式跳出控制范围"><a href="#其他方式跳出控制范围" class="headerlink" title="其他方式跳出控制范围"></a>其他方式跳出控制范围</h3><p><code>cd /%0apwd</code> 相当于依次执行命令<code>cd /</code>和<code>pwd</code></p>
 <h3 id="整体可控"><a href="#整体可控" class="headerlink" title="整体可控"></a>整体可控</h3><h4 id="黑名单过滤"><a href="#黑名单过滤" class="headerlink" title="黑名单过滤"></a>黑名单过滤</h4><p>比赛中较为常见的一种类型，将关键词替换成空或其他字符<br>如果只替换成空可以利用双写绕过，如果是替换成字符那么可以用base64编码绕过或者拼接变量</p>
-<p>常见的读取文件的命令：<code>cat</code>,<code>tac</code>,<code>od</code>,<code>nl</code>,<code>less</code>,<code>more</code>,<code>sed p</code>,<code>head</code>,<code>tail</code>,<code>sort</code>,<code>uniq</code>,<code>file -f</code><br>常见的列目录的命令：<code>ls</code>,<code>du</code><br>常用的还有通配符<code>*</code>和<code>?</code></p>
+<p>常见的读取文件的命令：<code>cat</code>,<code>tac</code>,<code>od</code>,<code>nl</code>,<code>less</code>,<code>more</code>,<code>sed p</code>,<code>head</code>,<code>tail</code>,<code>sort</code>,<code>uniq</code>,<code>file -f</code>,<code>date -f</code><br>常见的列目录的命令：<code>ls</code>,<code>du</code><br>常用的还有通配符<code>*</code>和<code>?</code></p>
 <p>黑名单还可以采用一些不影响执行的特定符号隔开检测的关键字</p>
 <p>比如<br><code>cat /flag</code>–&gt;<code>ca&#39;&#39;t /flag</code>–&gt;<code>ca&quot;&quot;t /flag</code>–&gt;<code>ca\t /flag</code>–&gt;<code>ca$1t /flag</code>–&gt;<code>ca$IFS$1t /flag</code></p>
 <h4 id="符号过滤"><a href="#符号过滤" class="headerlink" title="符号过滤"></a>符号过滤</h4><p>符号过滤也非常常见</p>

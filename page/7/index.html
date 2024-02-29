@@ -236,6 +236,71 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/buuctf/%E3%80%90buuctf%E3%80%91%E5%8A%A0%E5%9B%BA%E9%A2%98-Ezsql.html" target="_self">
+          【buuctf】加固题-Ezsql
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/buuctf/%E3%80%90buuctf%E3%80%91%E5%8A%A0%E5%9B%BA%E9%A2%98-Ezsql.html" target="_self">
+        <div>
+          第一次做到这种类型的题目，挺有意思的 连接首先ssh连上靶机 代码审计进入网站根目录&#x2F;var&#x2F;www&#x2F;html 查看dbConnect.php发现只是连接数据库的 再看index.php看到核心代码没有任何过滤 方法1addslashes函数addslashes($string)：用反斜线引用字符串中的特殊字符’ “ \ 防护将username和password处理一下 方法2黑名单替换设置一个黑
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-26 09:00" pubdate>
+              2021-10-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/buuctf/">#buuctf</a>
+            
+              <a href="/tags/sql/">#sql</a>
+            
+              <a href="/tags/fix/">#fix</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/php/Yii2%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%20POP%E9%93%BE%E5%88%86%E6%9E%90.html" target="_self">
           Yii2反序列化RCE POP链分析
         </a>
@@ -283,13 +348,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/CVE/">#CVE</a>
+            
               <a href="/tags/Yii/">#Yii</a>
             
               <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">#反序列化</a>
-            
-              <a href="/tags/%E6%A1%86%E6%9E%B6/">#框架</a>
-            
-              <a href="/tags/CVE-2020-15148/">#CVE-2020-15148</a>
             
           </div>
         
@@ -350,70 +413,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/php%E7%89%B9%E6%80%A7/">#php特性</a>
+              <a href="/tags/php/">#php</a>
             
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/wp/PHP%E6%97%A0%E5%8F%82%E6%95%B0RCE.html" target="_self">
-          PHP无参数RCE
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/wp/PHP%E6%97%A0%E5%8F%82%E6%95%B0RCE.html" target="_self">
-        <div>
-          代码如下： 1234567891011&lt;?phpif(&amp;#x27;;&amp;#x27; &#x3D;&#x3D;&#x3D; preg_replace(&amp;#x27;&#x2F;[^\W]+\((?R)?\)&#x2F;&amp;#x27;, &amp;#x27;&amp;#x27;, $_GET[&amp;#x27;code&amp;#x27;])) &amp;#123;    if(!preg_match(&amp;#x27;&#x2F;session|end|next|header|dir&#x2F;i&amp;#x27;,
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-10 09:00" pubdate>
-              2021-10-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/rce/">#rce</a>
-            
-              <a href="/tags/%E6%97%A0%E5%8F%82%E6%95%B0/">#无参数</a>
+              <a href="/tags/sha1/">#sha1</a>
             
           </div>
         
@@ -474,9 +476,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
+            
               <a href="/tags/mysql/">#mysql</a>
             
-              <a href="/tags/%E6%8A%A5%E9%94%99/">#报错</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
             
           </div>
         
@@ -536,6 +540,8 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
             
               <a href="/tags/mysql/">#mysql</a>
             
@@ -600,6 +606,8 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
+            
               <a href="/tags/mysql/">#mysql</a>
             
               <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
@@ -663,9 +671,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/ctfshow/">#ctfshow</a>
-            
               <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/ctfshow/">#ctfshow</a>
             
               <a href="/tags/web%E5%85%A5%E9%97%A8/">#web入门</a>
             
@@ -727,6 +735,8 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
             
               <a href="/tags/mysql/">#mysql</a>
             
@@ -791,6 +801,8 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
+            
               <a href="/tags/mysql/">#mysql</a>
             
               <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
@@ -853,6 +865,8 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
             
               <a href="/tags/mysql/">#mysql</a>
             

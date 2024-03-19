@@ -41,10 +41,17 @@
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-14.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-15.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-16.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-19.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-20.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-21.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-22.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-23.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-24.png">
+<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-25.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-17.png">
 <meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-18.png">
 <meta property="article:published_time" content="2023-12-07T06:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-10T14:18:24.979Z">
+<meta property="article:modified_time" content="2024-03-19T13:26:03.785Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="awd">
 <meta property="article:tag" content="自动化">
@@ -257,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3.2k 字
         
       </span>
     
@@ -268,7 +275,7 @@
         
         
         
-          32 分钟
+          33 分钟
         
       </span>
     
@@ -407,16 +414,31 @@
 <p>使用场景：ssh弱口令</p>
 </blockquote>
 <p>比如裁判下发的ssh地址为<code>x.x.x.x:2222 密码：ctf@awd</code>，就可以知道所有队伍都是这个密码。而且有些比赛不设置防御时间，一开始就能连到其他队伍的ssh（这里就不得不提到某年的宁波市awd）</p>
-<h4 id="ssh扫描"><a href="#ssh扫描" class="headerlink" title="ssh扫描"></a>ssh扫描</h4><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-15.png"></p>
+<h3 id="ssh扫描"><a href="#ssh扫描" class="headerlink" title="ssh扫描"></a>ssh扫描</h3><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-15.png"></p>
 <p>扫描结果会保存在<code>ssh.txt</code></p>
 <h3 id="ssh密码更改"><a href="#ssh密码更改" class="headerlink" title="ssh密码更改"></a>ssh密码更改</h3><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-16.png"></p>
+<h2 id="多人"><a href="#多人" class="headerlink" title="多人"></a>多人</h2><blockquote>
+<p>使用场景：离线环境下 局域网中队友的信息传递</p>
+</blockquote>
+<p>其中一人先当客户端(需要先在设置中设置好参数)</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-19.png"></p>
+<p>然后点击启动服务</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-20.png"></p>
+<p>其余队友当客户端(同样要先在设置中设置好参数)</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-21.png"></p>
+<p>点击连接服务即可</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-22.png"></p>
+<p>多人交互效果：</p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-23.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-24.png"></p>
+<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rahrah-25.png"></p>
 <h2 id="工具-amp-设置"><a href="#工具-amp-设置" class="headerlink" title="工具&amp;设置"></a>工具&amp;设置</h2><blockquote>
 <p>使用场景：base64，url的编码与解码，行去重与清屏</p>
 </blockquote>
 <p>支持拖放文件</p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-17.png"></p>
 <p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/rah/rah-18.png"></p>
-<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>V1.0：初始版本<br>V1.1：多种扫描方式，代码逻辑优化<br>V1.2：添加随机不死马功能，修复诺干bug<br>V2.1：70%代码重构，速度较上一代提升11倍。添加ssh和设置模块<br>V2.1.1：优化不死马的判断逻辑</p>
+<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>V1.0：初始版本<br>V1.1：多种扫描方式，代码逻辑优化<br>V1.2：添加随机不死马功能，修复诺干bug<br>V2.1：70%代码重构，速度较上一代提升11倍。添加ssh和设置模块<br>V2.1.1：优化不死马的判断逻辑<br>V2.2.0：加入多人交互功能</p>
 <p>可能将要做的：<br>1：希望加入pwn的批量攻击（貌似没多少比赛中有）<br>2：希望不止php的不死马（虽然大部分比赛php够用了）</p>
 
               

@@ -18,38 +18,24 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ctf平台搭建平台选择的是目前使用最广泛的CTFd，二开也很方便，相关插件也很多 以下两种安装方法都使用了glzjin的CTFd-Whale插件，以支持动态靶机 方法1使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;maste">
+    <meta name="description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&amp;#x27;aaa&amp;#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf平台搭建与出题指南">
-<meta property="og:url" content="https://www.dr0n.top/posts/5ae46a89/index.html">
+<meta property="og:title" content="php_trick">
+<meta property="og:url" content="https://www.dr0n.top/posts/1ac6587f/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="ctf平台搭建平台选择的是目前使用最广泛的CTFd，二开也很方便，相关插件也很多 以下两种安装方法都使用了glzjin的CTFd-Whale插件，以支持动态靶机 方法1使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;maste">
+<meta property="og:description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&amp;#x27;aaa&amp;#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-5.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-8.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-9.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-6.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-7.png">
-<meta property="article:published_time" content="2022-05-05T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-01T16:10:50.354Z">
+<meta property="article:published_time" content="2022-08-09T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-11T08:20:50.958Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="misc">
-<meta property="article:tag" content="docker">
-<meta property="article:tag" content="ctfd">
-<meta property="article:tag" content="pwn">
-<meta property="article:tag" content="web">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="trick">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-1.png">
   
   
   
-  <title>ctf平台搭建与出题指南 - Dr0n&#39;s blog</title>
+  <title>php_trick - Dr0n&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ctf平台搭建与出题指南"></span>
+            <span id="subtitle" data-typed-text="php_trick"></span>
           
         </div>
 
@@ -241,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-05 12:00" pubdate>
-          2022年5月5日 中午
+        <time datetime="2022-08-09 12:00" pubdate>
+          2022年8月9日 中午
         </time>
       </span>
     
@@ -253,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          149 字
         
       </span>
     
@@ -264,7 +250,7 @@
         
         
         
-          41 分钟
+          2 分钟
         
       </span>
     
@@ -310,92 +296,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ctf平台搭建与出题指南</h1>
+            <h1 style="display: none">php_trick</h1>
             
             <div class="markdown-body">
               
-              <h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台选择的是目前使用最广泛的<a target="_blank" rel="noopener" href="https://github.com/CTFd/CTFd">CTFd</a>，二开也很方便，相关插件也很多</p>
-<p>以下两种安装方法都使用了<code>glzjin</code>的<a target="_blank" rel="noopener" href="https://github.com/glzjin/CTFd-Whale">CTFd-Whale</a>插件，以支持动态靶机</p>
-<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用帆哥的<a target="_blank" rel="noopener" href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）<br><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></p>
-<p>注意点：中间需要手动输入三个值<br>分别是<br><code>Http Domain Suffix</code> ：<code>域名/ip</code><br><code>External Http Port</code> : <code>靶机http映射端口</code> (这里不能写80，因为80给了nginx，当然也可以自己改下脚本，不使用nginx代理)<br><code>Direct Minimum/Maximum Port</code> : <code>靶机端口开放范围</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-1.png"></p>
-<blockquote>
-<p>注：用这个脚本的时候最好挂代理，不然可能跑一天。如果脚本成功运行完毕，那么平台上就无需再次配置，很方便</p>
-</blockquote>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>使用鲸喵师傅打包好的ctfd和whale插件<br>先准备好<code>docker</code>环境和<code>docker-compose</code></p>
-<p>创建swarm集群<br><code>docker swarm init</code></p>
-<p>加入集群<br><code>docker node update --label-add=&#39;name=linux-1&#39; $(docker node ls -q)</code></p>
-<p>拉取镜像<br><code>git clone https://github.com/VaalaCat/CTFd.git --depth=1</code><br><code>git clone https://github.com/VaalaCat/ctfd-whale.git</code></p>
-<p>修改token<br>两个文件的token值修改成一样的，如果用到了域名记得修改<code>subdomain_host</code><br><code>vim CTFd/conf/frp/frps.ini</code><br><code>vim CTFd/conf/frp/frpc.ini</code></p>
-<p>安装插件（在CTFd目录下运行）<br><code>git submodule update --init</code></p>
-<p>启动（在CTFd目录下运行）<br><code>docker-compose up -d</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctf%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%92%8C%E5%87%BA%E9%A2%98%E6%8C%87%E5%8D%97-ctfd-2.png"></p>
-<p>访问<a target="_blank" rel="noopener" href="http://xx.xx.xx.xx:9124/">http://xx.xx.xx.xx:9124</a> (默认是9124，想要80可以修改docker-compose.yml)</p>
-<p><strong>平台配置</strong><br>右上角的插件中进入 Whale 设置，其中，左侧 Docker&#x2F;Limits&#x2F;Challenges 菜单栏根据需求自行更改， Frp 菜单栏中的内容需要更改一下几个选项</p>
-<p><code>Http Domain Suffix</code>	node.lewiserii.top 这里填写使用http方式访问靶机的泛解析域名<br><code>Http Port</code>	8080 这里填写frps中的vhost_http_port，该端口为http方式靶机访问的端口<br><code>Direct IP Address</code>	xxx.xxx.xxx.xxx 这里填写服务器ip，用于显示Direct方式访问的题目的IP<br><code>Direct Minimum Port</code>	9000 这里填写用于动态靶机Direct方式的开始端口<br><code>Direct Maximum Port</code>	9200 这里填写结束端口</p>
-<p>优点：非常稳定，基本都能一次成功</p>
-<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a target="_blank" rel="noopener" href="https://github.com/dr0n1/CTFd_Docker_Template">https://github.com/dr0n1/CTFd_Docker_Template</a></p>
-<p>包含pwn系列的ubuntu16，ubuntu18，ubuntu20，ubuntu22<br>web系列的php，java，python，go，mysql<br>misc，reverse系列的部分动态</p>
-<p>因为不会crypto，就没写交互的crypto</p>
-<h2 id="pwn题部署"><a href="#pwn题部署" class="headerlink" title="pwn题部署"></a>pwn题部署</h2><blockquote>
-<p>包含<code>ubuntu16</code>，<code>ubuntu18</code>，<code>ubuntu20</code>，<code>ubuntu22</code>四个基础镜像模板</p>
-</blockquote>
-<p>假设现在出了一道pwn题，名字是baby_stack</p>
-<p>首先根据题目选择需要的Ubuntu版本，这里以Ubuntu16为例，下载<code>pwn_ubuntu16</code>这个模板</p>
-<p>把出好的二进制文件放到bin目录下，替换<code>test</code><br>然后找到<code>ctf.xinetd</code>文件中的<code>server_args</code>值，修改<code>test</code>为附件名</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-1.png"></p>
-<p><strong>第二步</strong>，构建镜像<br>在<code>Dockerfile</code>所在的目录运行<code>docker build -t &lt;镜像名&gt; .</code><br>运行后可以用<code>docker images</code>查看下是否成功生成了镜像</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-2.png"></p>
-<p><strong>第三步</strong>，本地测试或CTFd部署</p>
-<blockquote>
-<p>本地测试这步可选，没有信心一次成功的话可以先在本地测试下</p>
-</blockquote>
-<p>运行<code>docker run -itd -p &lt;对外暴露端口&gt;:9999 &lt;镜像名&gt; /start.sh</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-3.png"></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-4.png"></p>
-<p>nc连接后能返回程序的功能就ok了(别忘记删除容器)<br>接着在CTFd上部署，注意type选择direct，image与port对应即可</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-5.png"></p>
-<h2 id="web题部署"><a href="#web题部署" class="headerlink" title="web题部署"></a>web题部署</h2><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/lewiserii/CTFd_Template">CTFd_Template</a>展示了<code>web_apache-mysql-php5.4</code>  <code>web_apache-mysql-php7.4</code>  <code>web_apache-php5.3</code>  <code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
-</blockquote>
-<p>1：将题目放入<code>src</code>目录下<br>2：根据题目选择flag位置，然后修改<code>start.sh</code><br>3：docker build</p>
-<p>在sql环境中注意替换flag位置即可（要一一对应）</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-8.png"></p>
-<p>如果需要使用php扩展，则修改或增加Dockerfile文件中的docker-php-ext-install命令如下即可，例如安装gettext扩展(web_apache-php7.3)</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;Lewiserii &lt;admin@lewiserii.top&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html \</span><br><span class="language-bash">	&amp;&amp; docker-php-ext-install gettext</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+              <p>记录php下的小技巧和特性</p>
+<h1 id="命令执行中断报错"><a href="#命令执行中断报错" class="headerlink" title="命令执行中断报错"></a>命令执行中断报错</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">eval</span>(<span class="hljs-variable">$cmd</span>.<span class="hljs-string">&#x27;aaa&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
-
-<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><p>1：src中存放题目代码，注意命名app.py。如果使用了除flask外的第三方库，请在requirements.txt中标明<br>2：默认启动时不启用debug模式，如需要启用debug模式请修改start.sh</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-9.png"></p>
-<h2 id="misc题部署"><a href="#misc题部署" class="headerlink" title="misc题部署"></a>misc题部署</h2><blockquote>
-<p>包含<code>python2.7-alpine</code>，<code>python3.8-alpine</code>，<code>python3.9-httpd</code>三个镜像模板。利用<code>http.server</code>，<code>SimpleHTTPServer</code>和<code>httpd</code>启动一个web服务用来下载附件</p>
-</blockquote>
-<blockquote>
-<p>个人认为动态misc的核心思路就是把出题过程转换为一个脚本，然后读取平台传递的flag后生成附件，利用web服务下载。所以部分工具题和复杂一点的题目是没有办法出动态的</p>
-</blockquote>
-<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9-httpd</code>为例</p>
-<p><strong>第一步</strong>，先将出题思路写进一个脚本中，命名为<code>challenges.py</code>，所需的模块放到<code>requirements.txt</code>中</p>
-<p>这个脚本有几点需要注意：<br>1：需要从<code>/flag</code>读取flag值<br>2：出题后生成的附件需要套一层压缩包以便访问自动下载，zip需要命名为<code>attachment.zip</code><br>3：尽量在脚本结束时删除无用的文件</p>
-<p>以下是一个简单的例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> pyminizip<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image,ImageDraw,ImageOps<br><br><br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;/flag&#x27;</span>)<br>flag=f.read()<br><br>a=Image.new(<span class="hljs-string">&quot;1&quot;</span>,(<span class="hljs-number">300</span>,<span class="hljs-number">20</span>))<br>w,h=a.size<br>d=ImageDraw.Draw(a)<br>d.text((<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),flag,fill=<span class="hljs-number">255</span>)<br>a = ImageOps.invert(a)<br>a.save(<span class="hljs-string">&#x27;1.png&#x27;</span>)<br><br><br>password = <span class="hljs-string">&#x27;&#x27;</span>.join(random.choices(<span class="hljs-string">&#x27;0123456789&#x27;</span>, k=<span class="hljs-number">8</span>))<br>pyminizip.compress(<span class="hljs-string">&quot;1.png&quot;</span>, <span class="hljs-literal">None</span>, <span class="hljs-string">&quot;attachment.zip&quot;</span>, password, <span class="hljs-number">5</span>)<br>os.remove(<span class="hljs-string">&quot;1.png&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-
-<p><strong>第二步</strong>，将代码放进<code>files</code>目录，然后生成镜像</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-6.png"></p>
-<p><strong>第三步</strong>，在CTFd上部署，然后验证</p>
-<p>部署时端口选择80</p>
-<p>开启靶机后访问，如果没出问题的话应该只会弹出一个保存文件的窗口，且能成功下载</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/ctfd-template-7.png"></p>
-<p>下载到本地后就可以正常解题</p>
-<h1 id="docker-in-qemu-in-docker"><a href="#docker-in-qemu-in-docker" class="headerlink" title="docker in qemu in docker"></a>docker in qemu in docker</h1><p>常见于docker逃逸题目的部署<br>docker（deploy）-&gt; qemu（flag）-&gt; docker（attack）</p>
-<p>如果用了kvm则要注意kvm的映射</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs docker">docker build -t docker-escaper .<br>docker <span class="hljs-keyword">run</span><span class="language-bash"> -itd -p 5555:5555 --device /dev/kvm  -v /dev/kvm:/dev/kvm  docker-escaper</span><br></code></pre></td></tr></table></figure>
-
-<p>没有kvm的解决方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查cpu是否支持</span><br>apt install cpu-check<br>kvm-ok<br><br><span class="hljs-comment"># 如果支持则可以继续</span><br>apt install qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager libguestfs-tools<br>sudo systemctl <span class="hljs-built_in">enable</span> --now libvirtd<br>sudo systemctl <span class="hljs-built_in">enable</span> --now virtlogd<br><span class="hljs-built_in">echo</span> 1 | sudo <span class="hljs-built_in">tee</span> /sys/module/kvm/parameters/ignore_msrs<br>sudo modprobe kvm<br></code></pre></td></tr></table></figure>
-
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>一定要灵活使用dockerfile，不同题目根据<strong>需求</strong>做不同策略</p>
+<p>可以利用<code>__halt_compiler();</code>中断编译器的执行，不让eval报错</p>
+<p><code>$cmd=&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;;</code></p>
 
               
             </div>
@@ -413,7 +322,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  <a href="/categories/php/" class="category-chain-item">php</a>
   
   
 
@@ -428,15 +337,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/misc/">#misc</a>
+        <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
       
-        <a href="/tags/docker/">#docker</a>
+        <a href="/tags/php/">#php</a>
       
-        <a href="/tags/ctfd/">#ctfd</a>
-      
-        <a href="/tags/pwn/">#pwn</a>
-      
-        <a href="/tags/web/">#web</a>
+        <a href="/tags/trick/">#trick</a>
       
     </div>
   
@@ -448,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ctf平台搭建与出题指南</div>
-      <div>https://www.dr0n.top/posts/5ae46a89/</div>
+      <div>php_trick</div>
+      <div>https://www.dr0n.top/posts/1ac6587f/</div>
     </div>
     <div class="license-meta">
       
@@ -461,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年5月5日</div>
+          <div>2022年8月9日</div>
         </div>
       
       
@@ -503,9 +408,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e6acd4f1/" title="第二届vecctf-wp">
+                      <a href="/posts/af57a160/" title="【ctfshow】web入门-税务比武">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">第二届vecctf-wp</span>
+                        <span class="hidden-mobile">【ctfshow】web入门-税务比武</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -513,8 +418,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/e2c67dcf/" title="HSC1th 2022-wp">
-                        <span class="hidden-mobile">HSC1th 2022-wp</span>
+                      <a href="/posts/3ba7d05a/" title="奇安信CTF基础培训题目wp">
+                        <span class="hidden-mobile">奇安信CTF基础培训题目wp</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

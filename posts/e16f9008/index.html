@@ -25,22 +25,22 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="索引 索引是一种特殊的数据库结构，由数据表中的一列或多列组合而成，可以用来快速查询数据表中有某一特定值的记录。   使用索引可以很大程度上提高数据库的查询速度，还有效的提高了数据库系统的性能。  创建索引方法一：create index &lt;索引名&gt; on &lt;表名&gt; (&lt;列名&gt; [&lt;长度&gt;] [ ASC | DESC]) 1: 在一个已有的表上创建索引">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-5.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-6.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-7.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-8.png">
 <meta property="article:published_time" content="2021-10-05T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.956Z">
+<meta property="article:modified_time" content="2024-03-21T06:59:41.884Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="基础">
 <meta property="article:tag" content="mysql">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-1.png">
   
   
   
@@ -317,20 +317,20 @@
 </blockquote>
 <h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><p>方法一：<br><code>create index &lt;索引名&gt; on &lt;表名&gt; (&lt;列名&gt; [&lt;长度&gt;] [ ASC | DESC])</code></p>
 <p>1: 在一个已有的表上创建索引，但是这个语句不能创建主键<br>2: 一个表可以创建多个索引，但每个索引在该表中的名称是唯一的<br>3: 列名和长度是可选项<br>4: asc指定索引按照升序来排列，desc指定索引按照降序来排列，默认为ASC</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-1.png"></p>
+<p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-1.png"></p>
 <p>方法二：<br>创建表的时候同时创建索引</p>
 <p>方法三：<br><code>alter table &lt;name&gt; add [UNIQUE | FULLTEXT] [INDEX] 索引名(列名)</code></p>
 <p>与<code>create index</code>语句差不多<br><code>unique|fulltext</code>为可选参数，分别表示唯一索引、全文索引</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-2.png"></p>
+<p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-2.png"></p>
 <h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><p>方法一：<br><code>drop index &lt;索引名&gt; on &lt;表名&gt;</code></p>
 <p>方法二：<br><code>alter table &lt;表名&gt; drop index &lt;索引名&gt;</code></p>
 <h2 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h2><p><code>show index from &lt;表名&gt; [ from &lt;数据库名&gt;]</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-3.png"></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-4.png"></p>
-<h1 id="常用运算符"><a href="#常用运算符" class="headerlink" title="常用运算符"></a>常用运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-5.png"></p>
-<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-6.png"></p>
-<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-7.png"></p>
-<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/mysql-5-8.png"></p>
+<p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-3.png"></p>
+<p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-4.png"></p>
+<h1 id="常用运算符"><a href="#常用运算符" class="headerlink" title="常用运算符"></a>常用运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-5.png"></p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-6.png"></p>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-7.png"></p>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p><img src="/../../img/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql5-8.png"></p>
 
               
             </div>

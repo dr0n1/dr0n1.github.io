@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/ssrf-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/ssrf-3.png">
 <meta property="article:published_time" content="2023-02-05T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T08:07:11.091Z">
+<meta property="article:modified_time" content="2024-03-21T10:37:40.106Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="ssrf">
@@ -311,14 +311,14 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$url</span>=<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;url&#x27;</span>];<br><span class="hljs-variable">$ch</span>=<span class="hljs-title function_ invoke__">curl_init</span>(<span class="hljs-variable">$url</span>);  <span class="hljs-comment">//创造一个curl资源</span><br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_HEADER, <span class="hljs-number">0</span>); <span class="hljs-comment">//设置url和相应的选项</span><br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="hljs-number">1</span>);<br><span class="hljs-variable">$result</span>=<span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>); <span class="hljs-comment">// 抓取url并将其传递给浏览器</span><br><span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>); <span class="hljs-comment">//关闭curl资源</span><br><span class="hljs-keyword">echo</span> (<span class="hljs-variable">$result</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h1 id="常用协议"><a href="#常用协议" class="headerlink" title="常用协议"></a>常用协议</h1><h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>http协议用于访问内网资源&#x2F;扫描内网存活主机</p>
-<p><img src="/../../img/summary/ssrf-1.png"></p>
+<p><img src="/img/summary/ssrf-1.png"></p>
 <h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><p>可以通过dict协议根据响应时间和内容去扫描内网开放端口以及端口上运行的服务信息</p>
 <p>example:<br><code>dict://127.0.0.1:6379 //探测redis是否存活</code></p>
 <h2 id="file"><a href="#file" class="headerlink" title="file"></a>file</h2><p>file协议主要用于访问本地计算机的文件，在有回显的情况下，可以用于读取文件进行查看</p>
-<p><img src="/../../img/summary/ssrf-2.png"></p>
+<p><img src="/img/summary/ssrf-2.png"></p>
 <h2 id="gopher"><a href="#gopher" class="headerlink" title="gopher"></a>gopher</h2><p>格式：<code>gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;_&lt;TCP数据流&gt;</code></p>
 <p>如果发起<code>post</code>请求，回车换行需要使用<code>%0d%0a</code>，如果多个参数，参数之间的<code>&amp;</code>也需要进行<code>URL</code>编码</p>
-<p><img src="/../../img/summary/ssrf-3.png"></p>
+<p><img src="/img/summary/ssrf-3.png"></p>
 <p>通过脚本转换</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.parse<br>payload =\<br><span class="hljs-string">&quot;&quot;&quot;POST /test.php HTTP/1.1</span><br><span class="hljs-string">Host: 127.0.0.1</span><br><span class="hljs-string">Content-Type: application/x-www-form-urlencoded</span><br><span class="hljs-string">Content-Length: 36</span><br><span class="hljs-string"></span><br><span class="hljs-string">test=1</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br><span class="hljs-comment">#注意后面一定要有回车，回车结尾表示http请求结束</span><br>tmp = urllib.parse.quote(payload)<br>new = tmp.replace(<span class="hljs-string">&#x27;%0A&#x27;</span>,<span class="hljs-string">&#x27;%0D%0A&#x27;</span>)<br>result = <span class="hljs-string">&#x27;gopher://127.0.0.1:80/&#x27;</span>+<span class="hljs-string">&#x27;_&#x27;</span>+new<br>result = urllib.parse.quote(result)<br><span class="hljs-built_in">print</span>(result)       <span class="hljs-comment"># 这里因为是GET请求所以要进行两次url编码</span><br></code></pre></td></tr></table></figure>
 

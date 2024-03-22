@@ -25,22 +25,22 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&amp;#x27;envs&amp;#x27;] as $key &#x3D;&gt; $val) &amp;#123;    putenv(&quot;&amp;#123;$key&amp;#125;&#x3D;&amp;#123;$val&amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-5.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-5.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-6.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-5.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-8.png">
 <meta property="article:published_time" content="2022-08-25T07:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-09T10:49:43.354Z">
+<meta property="article:modified_time" content="2024-03-21T12:02:17.468Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="bash">
 <meta property="article:tag" content="注入">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/linux/linux-sh-1.png">
   
   
   
@@ -331,17 +331,17 @@
 <p>结论：所以在dash中需要传入<code>-i</code>参数才能执行<code>read_profile(shinit)</code>，解析<code>ENV</code>变量。但在php的<code>system</code>函数中不能使用</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ENV=<span class="hljs-string">&#x27;$(id 1&gt;&amp;2)&#x27;</span> dash -i -c <span class="hljs-string">&#x27;echo hello&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-1.png"></p>
+<p><img src="/img/linux/linux-sh-1.png"></p>
 <h2 id="PS1、PS4"><a href="#PS1、PS4" class="headerlink" title="PS1、PS4"></a>PS1、PS4</h2><p>PS1、PS2、PS4这三个环境变量也会被expandstr函数解析</p>
 <p>但是PS1有限制，需要进入交互式shell中才能执行</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-2.png"></p>
+<p><img src="/img/linux/linux-sh-2.png"></p>
 <p>PS4则只能解析变量，无法执行命令</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-3.png"></p>
+<p><img src="/img/linux/linux-sh-3.png"></p>
 <h1 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h1><p><a target="_blank" rel="noopener" href="https://git.savannah.gnu.org/cgit/bash.git/">bash源码</a></p>
 <h2 id="BASH-ENV"><a href="#BASH-ENV" class="headerlink" title="BASH_ENV"></a>BASH_ENV</h2><p>在bash中有个和ENV类似的变量：BASH_ENV</p>
 <p>直接那上面的payload改：<code>BASH_ENV=&#39;$(id 1&gt;&amp;2)&#39; bash -c &#39;echo hello&#39;</code></p>
 <p>可以发现不需要-i也能执行了</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-4.png"></p>
+<p><img src="/img/linux/linux-sh-4.png"></p>
 <p>分析这段代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"> <span class="hljs-comment">/* A non-interactive shell not named `sh&#x27; and not in posix mode reads and</span><br><span class="hljs-comment">    executes commands from $BASH_ENV.  If `su&#x27; starts a shell with `-c cmd&#x27;</span><br><span class="hljs-comment">    and `-su&#x27; as the name of the shell, we want to read the startup files.</span><br><span class="hljs-comment">    No other non-interactive shells read any startup files. */</span><br> <span class="hljs-keyword">if</span> (interactive_shell == <span class="hljs-number">0</span> &amp;&amp; !(su_shell &amp;&amp; login_shell))<br>   &#123;<br>     <span class="hljs-keyword">if</span> (posixly_correct == <span class="hljs-number">0</span> &amp;&amp; act_like_sh == <span class="hljs-number">0</span> &amp;&amp; privileged_mode == <span class="hljs-number">0</span> &amp;&amp;<br>    sourced_env++ == <span class="hljs-number">0</span>)<br>execute_env_file (get_string_value (<span class="hljs-string">&quot;BASH_ENV&quot;</span>));<br>     <span class="hljs-keyword">return</span>;<br>   &#125;<br></code></pre></td></tr></table></figure>
 
@@ -358,7 +358,7 @@
 <p>PS1用法一样。在bash中还有一个变量<code>PROMPT_COMMAND</code>，设置了这个环境变量后，进入交互式模式前，会执行这个变量里包含的命令</p>
 <p><code>PROMPT_COMMAND=&#39;id&#39; bash</code></p>
 <h2 id="BASH-FUNC-xxx"><a href="#BASH-FUNC-xxx" class="headerlink" title="BASH_FUNC_xxx%%"></a>BASH_FUNC_xxx%%</h2><p>variables.c的initialize_shell_variables函数用于将环境变量注册成SHELL的变量</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-5.jpg"></p>
+<p><img src="/img/linux/linux-sh-5.jpg"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASHFUNC_PREFIX		<span class="hljs-string">&quot;BASH_FUNC_&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASHFUNC_PREFLEN	10	<span class="hljs-comment">/* == strlen(BASHFUNC_PREFIX */</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASHFUNC_SUFFIX		<span class="hljs-string">&quot;%%&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> BASHFUNC_SUFFLEN	2	<span class="hljs-comment">/* == strlen(BASHFUNC_SUFFIX) */</span></span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">privmode == <span class="hljs-number">0</span>，即不能传入-p参数<br>read_but_dont_execute == <span class="hljs-number">0</span>，即不能传入-n参数<br>STREQN (BASHFUNC_PREFIX, name, BASHFUNC_PREFLEN)，环境变量名前<span class="hljs-number">10</span>个字符等于BASH_FUNC_<br>STREQ (BASHFUNC_SUFFIX, name + char_index - BASHFUNC_SUFFLEN)，环境变量名后两个字符等于%%<br>STREQN (<span class="hljs-string">&quot;() &#123;&quot;</span>, <span class="hljs-built_in">string</span>, <span class="hljs-number">4</span>)，环境变量的值前<span class="hljs-number">4</span>个字符等于() &#123;<br></code></pre></td></tr></table></figure>
@@ -367,15 +367,15 @@
 <p>例如<code>env $&#39;BASH_FUNC_myfunc%%=() &#123; id; &#125;&#39; bash -c &#39;myfunc&#39;</code></p>
 <p>再将变量名改成system中执行的函数名，就能实现覆盖</p>
 <p><code>env $&#39;BASH_FUNC_echo%%=() &#123; id; &#125;&#39; bash -c &#39;echo hello&#39;</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-5.png"></p>
+<p><img src="/img/linux/linux-sh-6.png"></p>
 <hr>
 <p>但是设置<code>BASH_FUNC_myfunc%%</code>的方法并不完美，因为<code>BASH_FUNC_</code>是在Bash 4.4下引入的，centos 7的bash版本默认为Bash 4.2</p>
 <p><a target="_blank" rel="noopener" href="https://bugzilla-attachments.redhat.com/attachment.cgi?id=941826">Bash 4.2的补丁</a></p>
 <p>可以看到在4.2下的BASHFUNC_SUFFIX是<code>()</code>，而不是<code>%%</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-6.png"></p>
+<p><img src="/img/linux/linux-sh-7.png"></p>
 <p>更改payload：<code>env $&#39;BASH_FUNC_echo()=() &#123; id; &#125;&#39; bash -c &quot;echo hello&quot;</code></p>
 <p>解决了文章开头提出的问题</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/linux-bash-7.png"></p>
+<p><img src="/img/linux/linux-sh-8.png"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
 <thead>
 <tr>

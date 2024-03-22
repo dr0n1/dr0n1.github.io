@@ -25,18 +25,18 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="题目小 T 听说 GraphQL 是一种特别的 API 设计模式，也是 RESTful API 的有力竞争者，所以他写了个小网站来实验这项技术。你能通过这个全新的接口，获取到没有公开出来的管理员的邮箱地址吗？ 资料谷歌找到的一篇文章查所有可用的字段 解题先guest&#x2F;guest登陆然后在&#x2F;graphql接口中查到需要的email字段 最后查询 &amp;#123;&quot;query&amp;quot">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021hackergame-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021hackergame-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021hackergame-3.png">
 <meta property="article:published_time" content="2021-10-30T09:10:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.928Z">
+<meta property="article:modified_time" content="2024-03-22T07:35:21.918Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="2021">
 <meta property="article:tag" content="GraphQL">
 <meta property="article:tag" content="hackergame">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/wp/2021/2021hackergame-1.png">
   
   
   
@@ -306,9 +306,9 @@
             <div class="markdown-body">
               
               <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>小 T 听说 GraphQL 是一种特别的 API 设计模式，也是 RESTful API 的有力竞争者，所以他写了个小网站来实验这项技术。<br>你能通过这个全新的接口，获取到没有公开出来的管理员的邮箱地址吗？</p>
-<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>谷歌找到的一篇<a target="_blank" rel="noopener" href="https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/">文章</a><br>查所有可用的字段<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-1.png"></p>
-<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><p>先guest&#x2F;guest登陆<br>然后在<code>/graphql</code>接口中查到需要的email字段<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-2.png"></p>
-<p>最后查询 <code>&#123;&quot;query&quot;:&quot;&#123; user(id:1) &#123; privateEmail &#125;&#125;&quot;&#125;</code> 即可得到 flag。<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/GraphQL-3.png"></p>
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>谷歌找到的一篇<a target="_blank" rel="noopener" href="https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/">文章</a><br>查所有可用的字段<br><img src="/img/wp/2021/2021hackergame-1.png"></p>
+<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><p>先guest&#x2F;guest登陆<br>然后在<code>/graphql</code>接口中查到需要的email字段<br><img src="/img/wp/2021/2021hackergame-2.png"></p>
+<p>最后查询 <code>&#123;&quot;query&quot;:&quot;&#123; user(id:1) &#123; privateEmail &#125;&#125;&quot;&#125;</code> 即可得到 flag。<br><img src="/img/wp/2021/2021hackergame-3.png"></p>
 
               
             </div>

@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/quzheng-7.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/quzheng-8.png">
 <meta property="article:published_time" content="2022-07-04T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T07:44:25.363Z">
+<meta property="article:modified_time" content="2024-03-21T10:37:05.485Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="misc">
@@ -335,7 +335,7 @@
 <p>打包，将<code>module.dwarf</code>和<code>system.map</code>打包成<code>centos7.zip</code>，移动到分析机的<code>volatility/volatility/plugins/overlays/linux</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">zip centos7.zip /boot/System.map* module.dwarf<br></code></pre></td></tr></table></figure>
 
-<p><img src="/../../img/summary/misc/quzheng-1.png"></p>
+<p><img src="/img/summary/misc/quzheng-1.png"></p>
 <p>ubuntu制作profile：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt-get install -y dwarfdump build-essential<br>apt-get install -y linux-kernel-headers kernel-package<br>apt -y upgrade &amp;&amp; reboot //解决kernel-devel版本与系统版本不一致的问题<br><br><span class="hljs-built_in">cd</span> volatility/tools/linux<br>make -C /lib/modules/$(<span class="hljs-built_in">uname</span> -r)/build CONFIG_DEBUG_INFO=y M=<span class="hljs-variable">$PWD</span> modules<br>dwarfdump -di ./module.o &gt; module.dwarf<br>zip ubuntu_5.15.0-69.zip module.dwarf /boot/System.map-$(<span class="hljs-built_in">uname</span> -r)<br></code></pre></td></tr></table></figure>
 
@@ -371,26 +371,26 @@
 <p>更新软件包<br><code>apt-get update</code></p>
 <p>安装kernel debug symbols<br><code>apt-get install linux-image-$(uname -r)-dbgsym</code></p>
 <p>包含调试信息的文件称为<code>vmlinuxXXXdebug</code>，其中<code>XXX</code>是内核版本。该文件存储在<code>/usr/lib/debug/boot</code>下</p>
-<p><img src="/../../img/summary/misc/quzheng-2.png"></p>
+<p><img src="/img/summary/misc/quzheng-2.png"></p>
 <p><strong>方法二：手动下载安装（不推荐）</strong></p>
 <p>在<code>http://ddebs.ubuntu.com/pool/main/l/linux/</code>找到合适的版本后下载到本地</p>
 <p><code>dpkg -i</code>安装，安装完成同样在<code>/usr/lib/debug/boot</code>目录下</p>
 <p>例如：</p>
 <p><code>dpkg -i linux-image-unsigned-5.15.0-60-generic-dbgsym_5.15.0-60.66_amd64.ddeb</code></p>
-<p><img src="/../../img/summary/misc/quzheng-3.jpg"></p>
+<p><img src="/img/summary/misc/quzheng-3.jpg"></p>
 <p><strong>以上两种方法都是基于ubuntu，而在centos中安装的方法如下：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum install -y yum-utils<br>debuginfo-install kernel<br></code></pre></td></tr></table></figure>
 
-<p>查找vmlinux文件<br><img src="/../../img/summary/misc/quzheng-4.png"></p>
+<p>查找vmlinux文件<br><img src="/img/summary/misc/quzheng-4.png"></p>
 <h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./dwarf2json linux --elf /usr/lib/debug/boot/vmlinux-5.15.0-60-generic &gt; Ubuntu2004.json<br></code></pre></td></tr></table></figure>
 
 <p>这里要注意内存尽量大于8G，不然会报<code>已杀死</code>的错误</p>
-<p><img src="/../../img/summary/misc/quzheng-5.png"></p>
+<p><img src="/img/summary/misc/quzheng-5.png"></p>
 <p>移动<code>json</code>文件到分析机的<code>volatility3/volatility3/framework/symbols/linux/</code></p>
 <p><code>python3 vol.py -vvvv isfinfo</code></p>
-<p><img src="/../../img/summary/misc/quzheng-6.png"></p>
+<p><img src="/img/summary/misc/quzheng-6.png"></p>
 <h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><p>同样注意内存不要太小</p>
-<p><img src="/../../img/summary/misc/quzheng-7.png"></p>
+<p><img src="/img/summary/misc/quzheng-7.png"></p>
 <h2 id="取证大师"><a href="#取证大师" class="headerlink" title="取证大师"></a>取证大师</h2><p>在美亚柏科微信公众号申请，会给一个压缩包</p>
 <p>解压密码：<code>my#pico4008886688</code>或者<code>pico@4008886688</code></p>
 <h1 id="内存提取"><a href="#内存提取" class="headerlink" title="内存提取"></a>内存提取</h1><blockquote>
@@ -415,7 +415,7 @@
 <p>使用<code>rpm -qa kernel-devel </code>查看安装的版本：<code>kernel-devel-3.10.0-1160.88.1.el7.x86_64</code></p>
 <p>解决方法：<code>yum upgrade</code></p>
 <p>重新编译会生成一个名字和内核版本相同的<code>.ko</code>文件</p>
-<p><img src="/../../img/summary/misc/quzheng-8.png"></p>
+<p><img src="/img/summary/misc/quzheng-8.png"></p>
 <p>使用<code>lime</code>工具导出内存文件</p>
 <p><code>insmod ./lime-3.10.0-1160.88.1.el7.x86_64.ko &quot;path=/root/centos.line format=lime&quot;</code></p>
 <p>参考文章：<br><a target="_blank" rel="noopener" href="https://r0fus0d.blog.ffffffff0x.com/post/memory-forensics/">内存取证(总结篇)</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11800">最近遇到的Linux内核内存取证小分析</a></p>

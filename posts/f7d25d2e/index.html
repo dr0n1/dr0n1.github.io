@@ -25,25 +25,25 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="环境要求如果是团队内部局域网比赛一个虚拟机就够用了，甚至靶机都可以部署在同一台上，文中虚拟机为centos7平台本身可以不需要docker，但靶机大部分需要docker环境，文中docker版本为20.10.9还需要有一个数据库来存数据，这里用到是mysql 安装mysql安装mysqlyum -y install mariadb-server mariadb设置mysql开机自启动和启动mysq">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-2.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-3.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-4.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-5.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-6.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-7.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-8.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-9.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-10.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-11.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-12.jpg">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-2.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-3.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-4.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-5.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-6.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-7.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-8.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-9.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-10.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-11.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-12.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/awd/Cardinal-13.png">
 <meta property="article:published_time" content="2021-10-26T07:30:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.906Z">
+<meta property="article:modified_time" content="2024-03-21T10:38:50.662Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="awd">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-2.jpg">
+<meta name="twitter:image" content="https://www.dr0n.top/img/awd/Cardinal-2.jpg">
   
   
   
@@ -314,21 +314,21 @@
               
               <h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><p>如果是团队内部局域网比赛一个虚拟机就够用了，甚至靶机都可以部署在同一台上，文中虚拟机为centos7<br>平台本身可以不需要docker，但靶机大部分需要docker环境，文中docker版本为20.10.9<br>还需要有一个数据库来存数据，这里用到是mysql</p>
 <h1 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h1><p>安装mysql<br><code>yum -y install mariadb-server mariadb</code><br>设置mysql开机自启动和启动mysql<br><code>systemctl start mariadb &amp;&amp; systemctl enable mariadb</code><br>设置mysql root用户密码<br><code>mysqladmin -u root password 123456</code><br>进入数据库<br><code>mysql -u root -p123456</code><br>创建数据库，注意编码<br><code>create database `cardinal` default character set utf8mb4 collate utf8mb4_unicode_ci;</code></p>
-<h1 id="安装Cardinal"><a href="#安装Cardinal" class="headerlink" title="安装Cardinal"></a>安装Cardinal</h1><p>首先<a target="_blank" rel="noopener" href="https://github.com/vidar-team/Cardinal/releases">下载</a>对应的安装包<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-2.jpg"></p>
-<p>解压<br><code>tar -zxvf Cardinal_v0.7.3_linux_amd64.tar.gz</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-3.jpg"></p>
+<h1 id="安装Cardinal"><a href="#安装Cardinal" class="headerlink" title="安装Cardinal"></a>安装Cardinal</h1><p>首先<a target="_blank" rel="noopener" href="https://github.com/vidar-team/Cardinal/releases">下载</a>对应的安装包<br><img src="/img/awd/Cardinal-2.jpg"></p>
+<p>解压<br><code>tar -zxvf Cardinal_v0.7.3_linux_amd64.tar.gz</code><br><img src="/img/awd/Cardinal-3.jpg"></p>
 <p>运行<br><code>./Cardinal</code><br>如果没有权限需要添加执行权限<code>chmod +x ./Cardinal</code></p>
-<h1 id="Cardinal配置"><a href="#Cardinal配置" class="headerlink" title="Cardinal配置"></a>Cardinal配置</h1><p>根据提示来即可<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-4.jpg"></p>
+<h1 id="Cardinal配置"><a href="#Cardinal配置" class="headerlink" title="Cardinal配置"></a>Cardinal配置</h1><p>根据提示来即可<br><img src="/img/awd/Cardinal-4.jpg"></p>
 <p>管理地址<br><code>http://ip:port/manager/</code></p>
 <h1 id="靶机配置"><a href="#靶机配置" class="headerlink" title="靶机配置"></a>靶机配置</h1><p>找个docker-awd靶机<br>这里以<code>glzjin/20190511_awd_docker_b4</code>为例子</p>
-<p>下载靶机<br><code>docker pull glzjin/20190511_awd_docker_b4</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-5.jpg"></p>
-<p>以三个队伍（lewiserii,rot,whatisup）为例<br>创建三个靶机<br>分别开放80和22端口<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-6.jpg"></p>
-<h1 id="比赛前题目配置"><a href="#比赛前题目配置" class="headerlink" title="比赛前题目配置"></a>比赛前题目配置</h1><p>先添加三个队伍<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-7.jpg"></p>
-<p>创建题目<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-8.jpg"></p>
-<p>添加靶机，注意ssh是root，因为没权限会写不进flag<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-9.jpg"></p>
-<p>生成flag<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-10.jpg"></p>
-<p>更改靶机root密码<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-11.jpg"></p>
-<p>写入flag和验证靶机<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-12.jpg"></p>
-<h1 id="开始比赛"><a href="#开始比赛" class="headerlink" title="开始比赛"></a>开始比赛</h1><p>选手用事先定义的账号密码登录<code>http://ip:port</code>即可<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/Cardinal-13.png"></p>
+<p>下载靶机<br><code>docker pull glzjin/20190511_awd_docker_b4</code><br><img src="/img/awd/Cardinal-5.jpg"></p>
+<p>以三个队伍（lewiserii,rot,whatisup）为例<br>创建三个靶机<br>分别开放80和22端口<br><img src="/img/awd/Cardinal-6.jpg"></p>
+<h1 id="比赛前题目配置"><a href="#比赛前题目配置" class="headerlink" title="比赛前题目配置"></a>比赛前题目配置</h1><p>先添加三个队伍<br><img src="/img/awd/Cardinal-7.jpg"></p>
+<p>创建题目<br><img src="/img/awd/Cardinal-8.jpg"></p>
+<p>添加靶机，注意ssh是root，因为没权限会写不进flag<br><img src="/img/awd/Cardinal-9.jpg"></p>
+<p>生成flag<br><img src="/img/awd/Cardinal-10.jpg"></p>
+<p>更改靶机root密码<br><img src="/img/awd/Cardinal-11.jpg"></p>
+<p>写入flag和验证靶机<br><img src="/img/awd/Cardinal-12.jpg"></p>
+<h1 id="开始比赛"><a href="#开始比赛" class="headerlink" title="开始比赛"></a>开始比赛</h1><p>选手用事先定义的账号密码登录<code>http://ip:port</code>即可<br><img src="/img/awd/Cardinal-13.png"></p>
 
               
             </div>

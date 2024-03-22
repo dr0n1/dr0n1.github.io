@@ -25,18 +25,18 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="签到 flag{buu_ctf}  金三胖gif文件，使用stegsolve逐帧查看，分别在第21，51，79帧出现了三段flag，拼接起来  flag{he11ohongke}  二维码解压得到一张二维码，解码得到secret is here十六进制形式下观察发现50 4b 03 04，即压缩包的头 可以将后缀直接改为zip解压，这样可以不用先分离文件打开后发现需要密码，而压缩包中的文件名为4n">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-5.png">
 <meta property="article:published_time" content="2021-06-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.904Z">
+<meta property="article:modified_time" content="2024-03-21T10:39:07.431Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="misc">
 <meta property="article:tag" content="buuctf">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/buuctf/buu-misc-page1-1.png">
   
   
   
@@ -312,7 +312,7 @@
 <blockquote>
 <p>flag{he11ohongke}</p>
 </blockquote>
-<h1 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h1><p>解压得到一张二维码，解码得到<code>secret is here</code><br>十六进制形式下观察发现<code>50 4b 03 04</code>，即压缩包的头<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-1.png"></p>
+<h1 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h1><p>解压得到一张二维码，解码得到<code>secret is here</code><br>十六进制形式下观察发现<code>50 4b 03 04</code>，即压缩包的头<br><img src="/img/buuctf/buu-misc-page1-1.png"></p>
 <p>可以将后缀直接改为zip解压，这样可以不用先分离文件<br>打开后发现需要密码，而压缩包中的文件名为<code>4number.txt</code>，这样就很明显了，是4位数字爆破</p>
 <p>使用<code>archpr</code>爆破得到密码<code>7639</code></p>
 <blockquote>
@@ -327,7 +327,7 @@
 <p>flag{dca57f966e4e4e31fd5b15417da63269}</p>
 </blockquote>
 <h1 id="大白"><a href="#大白" class="headerlink" title="大白"></a>大白</h1><p>图片放入<code>010 editor</code>会报<code>IHDR块CRC</code>错误，大概率是高宽被修改了</p>
-<p>修改成较大的值<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-2.png"></p>
+<p>修改成较大的值<br><img src="/img/buuctf/buu-misc-page1-2.png"></p>
 <blockquote>
 <p>flag{He1l0_d4_ba1}</p>
 </blockquote>
@@ -344,12 +344,12 @@
 <p>flag{870c5a72806115cb5439345d8b014396}</p>
 </blockquote>
 <h1 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h1><p>流量分析题<br>根据提示找到管理员的密码</p>
-<p>使用<code>wireshark</code>打开，因为是登陆网站的一段流量包，所以在过滤器中搜索http，然后找到登录的<code>user.php</code>，找到密码<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-3.png"></p>
+<p>使用<code>wireshark</code>打开，因为是登陆网站的一段流量包，所以在过滤器中搜索http，然后找到登录的<code>user.php</code>，找到密码<br><img src="/img/buuctf/buu-misc-page1-3.png"></p>
 <blockquote>
 <p>flag{ffb7567a1d4f4abdffdb54e022f8facd}</p>
 </blockquote>
 <h1 id="LSB"><a href="#LSB" class="headerlink" title="LSB"></a>LSB</h1><p>题目名为<code>LSB</code>，应为LSB隐写</p>
-<p>用<code>stegsolve</code>打开，在<code>red，Green，Blue</code>的<code>0</code>通道中发发现一张png的数据<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-4.png"></p>
+<p>用<code>stegsolve</code>打开，在<code>red，Green，Blue</code>的<code>0</code>通道中发发现一张png的数据<br><img src="/img/buuctf/buu-misc-page1-4.png"></p>
 <p>导出后是一张二维码，扫码得到flag</p>
 <blockquote>
 <p>flag{1sb_i4_s0_Ea4y}</p>
@@ -358,7 +358,7 @@
 <blockquote>
 <p>flag{1773c5da790bd3caff38e3decd180eb7}</p>
 </blockquote>
-<h1 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h1><p>如题，修改压缩文件区的加密标志位，改为<code>00</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/buu-misc-page1-5.png"></p>
+<h1 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h1><p>如题，修改压缩文件区的加密标志位，改为<code>00</code><br><img src="/img/buuctf/buu-misc-page1-5.png"></p>
 <blockquote>
 <p>flag{Adm1N-B2G-kU-SZIP}</p>
 </blockquote>

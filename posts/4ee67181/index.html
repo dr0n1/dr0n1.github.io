@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-15.png">
 <meta property="article:published_time" content="2022-01-14T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T06:31:00.203Z">
+<meta property="article:modified_time" content="2024-03-21T10:34:26.167Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="CVE">
 <meta property="article:tag" content="内网渗透">
@@ -316,24 +316,24 @@
               
               <h1 id="使用到的工具"><a href="#使用到的工具" class="headerlink" title="使用到的工具"></a>使用到的工具</h1><p>kali<br>burp<br>firefox<br>reGeorg<br>proxychains<br>nmap<br>冰蝎<br>蚁剑</p>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>根据描述得知有两层，因为是demo题目，所以给出了漏洞，降低了难度，实际上的题目漏洞点是不知道的，需要自己发掘</p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-1.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-1.png"></p>
 <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h2><p>apache解析漏洞<br>上传<code>1.php.jpg</code>即可<code>getshell</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-2.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-2.png"></p>
 <p>有了第一台主机的shell后首先要做的就是信息收集了</p>
-<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>首先看ip，网段等信息<br>。。。<br>上来啥命令用不了<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-3.png"></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>首先看ip，网段等信息<br>。。。<br>上来啥命令用不了<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-3.png"></p>
 <p>遇到这种情况可以分两种方案继续操作，一是提权，二是上传二进制包编译软件<br>可能是我太菜了，提权失败，所以考虑第二种方法<br>在<a target="_blank" rel="noopener" href="https://nmap.org/download.html">官网</a>下载nmap包，上传并编译</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">bzip2 -<span class="hljs-keyword">cd</span> <span class="hljs-keyword">nmap</span>-<span class="hljs-number">7.92</span>.tar.bz2 | tar xvf -<br><span class="hljs-keyword">cd</span> <span class="hljs-keyword">nmap</span>-<span class="hljs-number">7.92</span><br>./configure<br><span class="hljs-keyword">make</span><br><span class="hljs-keyword">make</span> install<br></code></pre></td></tr></table></figure>
 
 <h3 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h3><blockquote>
 <p>这里要注意一下，用蚁剑编译nmap会失败，因为蚁剑的shell是把命令一个个连接起来在传过去，所以经常出问题，这里改用冰蝎</p>
 </blockquote>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-4.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-4.png"></p>
 <h3 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h3><p>编译完后使用nmap扫描<br>先看自己<br><code>./nmap --iflist</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-5.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-5.png"></p>
 <p>扫ip<br><code>./nmap -sn --min-rate=2000 -n -T5 100.64.0,134-135.0/24</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-6.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-6.png"></p>
 <p>扫端口<br><code>./nmap -n -T5 100.64.0,134-135.0/24 --open</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-7.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-7.png"></p>
 <p>最后总结一下</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">eth0 <span class="hljs-number">100</span>.<span class="hljs-number">64</span>.<span class="hljs-number">0</span>.<span class="hljs-number">4</span>/<span class="hljs-number">24</span><br>eth1 <span class="hljs-number">100</span>.<span class="hljs-number">64</span>.<span class="hljs-number">135</span>.<span class="hljs-number">2</span>/<span class="hljs-number">24</span><br>eth2 <span class="hljs-number">100</span>.<span class="hljs-number">64</span>.<span class="hljs-number">134</span>.<span class="hljs-number">3</span>/<span class="hljs-number">24</span><br><br><br><span class="hljs-number">100.64.0.2</span>               <span class="hljs-number">8000</span>，<span class="hljs-number">9000</span><br><span class="hljs-number">100.64.0.3</span>               <span class="hljs-number">7000</span>，<span class="hljs-number">8000</span><br><span class="hljs-number">100.64.0.4</span>               //自己，<span class="hljs-number">80</span><br><span class="hljs-number">100.64.0.5</span>               <span class="hljs-number">3000</span><br><span class="hljs-number">100.64.134.2</span>             无<br><span class="hljs-number">100.64.134.3</span>             //自己，<span class="hljs-number">80</span><br><span class="hljs-number">100.64.135.2</span>             //自己，<span class="hljs-number">80</span><br><span class="hljs-number">100.64.135.3</span>             <span class="hljs-number">3000</span><br></code></pre></td></tr></table></figure>
 
@@ -346,17 +346,17 @@
 <p>这里要注意不能用普通的reGeorg，不知道是不是因为php版本（php8）的原因，显示的状态是连接成功，但是一访问就time out。解决方案是使用<a target="_blank" rel="noopener" href="https://github.com/L-codes/Neo-reGeorg">Neo-reGeorg</a></p>
 </blockquote>
 <h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h3><p>生成webshell,<code>-k</code>是指定密码<br><code>python3 neoreg.py generate -k lewiserii</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-8.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-8.png"></p>
 <p>将生成的<code>./neoreg_servers/tunnel.php</code>传到靶机上</p>
 <p>使用本地7777端口建立socks连接：<br><code>python3 neoreg.py -k lewiserii -p 7777 -u https://815-a1734091-ce39-4ea5-98a6-f88746398def.do-not-trust.hacking.run/uploadfiles/tunnel.php</code></p>
-<p><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-10.png"></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-10.png"></p>
 <p>编辑<code>proxychains</code>配置文件<code>/etc/proxychains4.conf</code><br>最后一行添加<code>socks5  127.0.0.1 7777</code>，7777为你自己的端口，需要与reGeorg中设置的端口相同</p>
 <p>所有工具使用命令前加<code>proxychains</code>就可以使流量走代理</p>
-<p>启动火狐<br><code>proxychains4 firefox</code><br>逐个访问刚才扫出来的ip<br>成功访问内网主机！<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-11.png"></p>
-<h3 id="配置burp代理"><a href="#配置burp代理" class="headerlink" title="配置burp代理"></a>配置burp代理</h3><p>添加一个socks代理，端口与reGeorg监听的端口一致<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-12.png"></p>
-<p>设置火狐的代理与burp抓包的代理一致<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-13.png"></p>
-<p>成功抓包<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-14.png"></p>
-<h2 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h2><p>POC直接打就行了<br><img src="/../../img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-15.png"></p>
+<p>启动火狐<br><code>proxychains4 firefox</code><br>逐个访问刚才扫出来的ip<br>成功访问内网主机！<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-11.png"></p>
+<h3 id="配置burp代理"><a href="#配置burp代理" class="headerlink" title="配置burp代理"></a>配置burp代理</h3><p>添加一个socks代理，端口与reGeorg监听的端口一致<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-12.png"></p>
+<p>设置火狐的代理与burp抓包的代理一致<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-13.png"></p>
+<p>成功抓包<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-14.png"></p>
+<h2 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h2><p>POC直接打就行了<br><img src="/img/%E5%86%85%E7%BD%91/pwnthebox-%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-15.png"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>小菜鸡的初次内网之旅到这就结束了，个人感觉内网难的就是信息收集和层层代理，当你掌握的信息越多就越好操作</p>
 
               

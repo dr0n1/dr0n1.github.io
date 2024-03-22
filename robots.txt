@@ -3,11 +3,13 @@ Allow: /
 Allow: /archives/
 Allow: /categories/
 Allow: /about/
-Allow: /team/
+Allow: /tags/
+Allow: /links/
 
 Disallow: /js/
 Disallow: /css/
 Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /lib/
-Sitemap: https://www.lewiserii.top/sitemap.xml
+Disallow: /img/
+Sitemap: https://www.dr0n.top/sitemap.xml

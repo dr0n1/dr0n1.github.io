@@ -19,8 +19,8 @@
         <category>php</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>php</tag>
+        <tag>总结</tag>
         <tag>disable_fuctions</tag>
         <tag>LD_PRELOAD</tag>
         <tag>bypass</tag>
@@ -1004,8 +1004,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2023</tag>
-        <tag>羊城杯</tag>
         <tag>awdp</tag>
+        <tag>羊城杯</tag>
       </tags>
   </entry>
   <entry>
@@ -2194,7 +2194,7 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#51;&#48;&#x37;&#55;&#x34;&#x33;&#x37;&#x34;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;">&#x31;&#x39;&#51;&#48;&#x37;&#55;&#x34;&#x33;&#x37;&#x34;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#57;&#x33;&#x30;&#x37;&#55;&#x34;&#51;&#55;&#x34;&#64;&#113;&#x71;&#46;&#99;&#111;&#109;">&#49;&#57;&#x33;&#x30;&#x37;&#55;&#x34;&#51;&#55;&#x34;&#64;&#113;&#x71;&#46;&#99;&#111;&#109;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
@@ -2738,9 +2738,9 @@
         <category>总结</category>
       </categories>
       <tags>
+        <tag>php</tag>
         <tag>总结</tag>
         <tag>反序列化</tag>
-        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -3191,8 +3191,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>HECTF</tag>
         <tag>2022</tag>
+        <tag>HECTF</tag>
       </tags>
   </entry>
   <entry>
@@ -3330,8 +3330,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>wp</tag>
+        <tag>awd</tag>
         <tag>台州</tag>
         <tag>2022</tag>
       </tags>
@@ -3803,8 +3803,8 @@
         <category>php</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>php</tag>
+        <tag>总结</tag>
         <tag>trick</tag>
       </tags>
   </entry>
@@ -4413,7 +4413,7 @@
 <p>PGPTool: <a href="https://pgptool.github.io/">https://pgptool.github.io/</a></p>
 <p>例如[BSidesSF2019]bWF0cnlvc2hrYQ&#x3D;&#x3D;</p>
 <p><code>Key ring-&gt;Import PGP Key-&gt;导入xxx.key-&gt;然后输入密码</code></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/pgp.jpg"></p>
+<p><img src="/img/summary/misc/pgp.jpg"></p>
 <h2 id="0x09-otp"><a href="#0x09-otp" class="headerlink" title="0x09 otp"></a>0x09 otp</h2><p>有点偏向密码学，<a href="https://en.wikipedia.org/wiki/One-time_password">wiki</a></p>
 <p>一次性密码（One Time Password，简称 OTP），又称 “一次性口令”，是指只能使用一次的密码。</p>
 <p>OTP 的密钥是以 base32 的方式存储的</p>
@@ -4422,7 +4422,7 @@
 
 <h2 id="0x10-数控打印"><a href="#0x10-数控打印" class="headerlink" title="0x10 数控打印"></a>0x10 数控打印</h2><p>遇到<code>*.gcode</code>文件或者<code>3D打印gcode的命令</code>可以放到下面这两个网站解析</p>
 <p><a href="https://ncviewer.com/">ncviewer</a><br><a href="https://gcode.ws/">gCodeViewer</a></p>
-<p><img src="https://lewiserii.oss-cn-hangzhou.aliyuncs.com/misc/shukong.jpg"></p>
+<p><img src="/img/summary/misc/shukong.jpg"></p>
 <h2 id="0x11-Dicom图像"><a href="#0x11-Dicom图像" class="headerlink" title="0x11 Dicom图像"></a>0x11 Dicom图像</h2><p>x光图像</p>
 <p>后缀为<code>.dcm</code>的文件可以使用<code>MicroDicom</code>打开</p>
 ]]></content>
@@ -5608,8 +5608,8 @@
         <category>项目</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>docker</tag>
+        <tag>misc</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
         <tag>web</tag>
@@ -5858,8 +5858,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>台州</tag>
         <tag>2021</tag>
+        <tag>台州</tag>
       </tags>
   </entry>
   <entry>
@@ -5949,8 +5949,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2021</tag>
         <tag>nuaa</tag>
+        <tag>2021</tag>
       </tags>
   </entry>
   <entry>
@@ -6344,8 +6344,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2021</tag>
-        <tag>极客挑战</tag>
         <tag>disable_function</tag>
+        <tag>极客挑战</tag>
       </tags>
   </entry>
   <entry>
@@ -6524,8 +6524,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>docker</tag>
+        <tag>awd</tag>
       </tags>
   </entry>
   <entry>
@@ -6570,9 +6570,9 @@
         <category>php</category>
       </categories>
       <tags>
+        <tag>CVE</tag>
         <tag>Yii</tag>
         <tag>反序列化</tag>
-        <tag>CVE</tag>
       </tags>
   </entry>
   <entry>

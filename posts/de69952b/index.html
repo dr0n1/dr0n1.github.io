@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/rce-19.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/rce-20.png">
 <meta property="article:published_time" content="2023-01-10T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-02T14:57:46.564Z">
+<meta property="article:modified_time" content="2024-04-27T12:00:52.133Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="rce">
@@ -255,7 +255,7 @@
         
         
         
-          97 分钟
+          98 分钟
         
       </span>
     
@@ -358,7 +358,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span>(<span class="hljs-string">&#x27;;&#x27;</span> === <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-string">&#x27;/[^\W]+\((?R)?\)/&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">end</span>() — 将内部指针指向数组中的最后一个元素，并输出。<br><span class="hljs-title function_ invoke__">next</span>() — 将内部指针指向数组中的下一个元素，并输出。<br><span class="hljs-title function_ invoke__">prev</span>() — 将内部指针指向数组中的上一个元素，并输出。<br><span class="hljs-title function_ invoke__">reset</span>() — 将内部指针指向数组中的第一个元素，并输出。<br><span class="hljs-title function_ invoke__">each</span>() — 返回当前元素的键名和键值，并将内部指针向前移动。<br><span class="hljs-title function_ invoke__">current</span>() — 返回数组中的当前值<br><span class="hljs-title function_ invoke__">array_reverse</span>() — 返回单元顺序相反的数组<br><span class="hljs-title function_ invoke__">getcwd</span>() — 取得当前工作目录<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">end</span>() — 将内部指针指向数组中的最后一个元素，并输出<br><span class="hljs-title function_ invoke__">next</span>() — 将内部指针指向数组中的下一个元素，并输出<br><span class="hljs-title function_ invoke__">prev</span>() — 将内部指针指向数组中的上一个元素，并输出<br><span class="hljs-title function_ invoke__">reset</span>() — 将内部指针指向数组中的第一个元素，并输出<br><span class="hljs-title function_ invoke__">each</span>() — 返回当前元素的键名和键值，并将内部指针向前移动<br><span class="hljs-title function_ invoke__">current</span>() — 返回数组中的当前值<br><span class="hljs-title function_ invoke__">array_reverse</span>() — 返回单元顺序相反的数组<br><span class="hljs-title function_ invoke__">getcwd</span>() — 取得当前工作目录<br><span class="hljs-title function_ invoke__">array_rand</span>() — 返回一个包含随机键名的数组<br><span class="hljs-title function_ invoke__">hex2bin</span>() — 把十六进制值转换为 ASCII 字符<br></code></pre></td></tr></table></figure>
 
 <h2 id="getallheaders"><a href="#getallheaders" class="headerlink" title="getallheaders()"></a>getallheaders()</h2><p>获取全部HTTP请求头信息</p>
 <p>可以通过var_dump(getallheaders());来输出请求头信息，然后通过next，end等来控制字符串位置</p>

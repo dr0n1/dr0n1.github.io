@@ -18,15 +18,13 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ctf平台搭建平台选择的是目前使用最广泛的CTFd，二开也很方便，相关插件也很多 以下两种安装方法都使用了glzjin的CTFd-Whale插件，以支持动态靶机 方法1使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;maste">
+    <meta name="description" content="ctf平台搭建目前最常见的平台是CTFd和GZCTF CTFd使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;master&#x2F;install.sh)  2024.5.13帆哥github被封了，重构&#x2F;优化了一下自动部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctf平台搭建与出题指南">
 <meta property="og:url" content="https://www.dr0n.top/posts/5ae46a89/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="ctf平台搭建平台选择的是目前使用最广泛的CTFd，二开也很方便，相关插件也很多 以下两种安装方法都使用了glzjin的CTFd-Whale插件，以支持动态靶机 方法1使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;maste">
+<meta property="og:description" content="ctf平台搭建目前最常见的平台是CTFd和GZCTF CTFd使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;pwnthebox&#x2F;ctfd-auto-deploy&#x2F;master&#x2F;install.sh)  2024.5.13帆哥github被封了，重构&#x2F;优化了一下自动部署">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-1.png">
-<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-3.png">
@@ -37,7 +35,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-6.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-7.png">
 <meta property="article:published_time" content="2022-05-05T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T10:36:36.343Z">
+<meta property="article:modified_time" content="2024-05-13T10:58:31.144Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="misc">
@@ -45,7 +43,7 @@
 <meta property="article:tag" content="pwn">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-1.png">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/ctfd-template-1.png">
   
   
   
@@ -265,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          5.8k 字
         
       </span>
     
@@ -276,7 +274,7 @@
         
         
         
-          41 分钟
+          58 分钟
         
       </span>
     
@@ -326,31 +324,27 @@
             
             <div class="markdown-body">
               
-              <h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>平台选择的是目前使用最广泛的<a target="_blank" rel="noopener" href="https://github.com/CTFd/CTFd">CTFd</a>，二开也很方便，相关插件也很多</p>
-<p>以下两种安装方法都使用了<code>glzjin</code>的<a target="_blank" rel="noopener" href="https://github.com/glzjin/CTFd-Whale">CTFd-Whale</a>插件，以支持动态靶机</p>
-<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用帆哥的<a target="_blank" rel="noopener" href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）<br><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></p>
-<p>注意点：中间需要手动输入三个值<br>分别是<br><code>Http Domain Suffix</code> ：<code>域名/ip</code><br><code>External Http Port</code> : <code>靶机http映射端口</code> (这里不能写80，因为80给了nginx，当然也可以自己改下脚本，不使用nginx代理)<br><code>Direct Minimum/Maximum Port</code> : <code>靶机端口开放范围</code></p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-1.png"></p>
-<blockquote>
-<p>注：用这个脚本的时候最好挂代理，不然可能跑一天。如果脚本成功运行完毕，那么平台上就无需再次配置，很方便</p>
+              <h1 id="ctf平台搭建"><a href="#ctf平台搭建" class="headerlink" title="ctf平台搭建"></a>ctf平台搭建</h1><p>目前最常见的平台是CTFd和GZCTF</p>
+<h2 id="CTFd"><a href="#CTFd" class="headerlink" title="CTFd"></a>CTFd</h2><p><del>使用帆哥的<a target="_blank" rel="noopener" href="https://github.com/pwnthebox/ctfd-auto-deploy">一键部署脚本</a>（centos7和ubuntu20上测试成功）</del><br><del><code>sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)</code></del></p>
+<hr>
+<p>2024.5.13<br>帆哥github被封了，重构&#x2F;优化了一下自动部署脚本</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dr0n1/CTFd_auto_deploy">https://github.com/dr0n1/CTFd_auto_deploy</a></p>
+<h2 id="GZCTF"><a href="#GZCTF" class="headerlink" title="GZCTF"></a>GZCTF</h2><blockquote>
+<p>适合办比赛（样式也好看），不适合自用和训练</p>
 </blockquote>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>使用鲸喵师傅打包好的ctfd和whale插件<br>先准备好<code>docker</code>环境和<code>docker-compose</code></p>
-<p>创建swarm集群<br><code>docker swarm init</code></p>
-<p>加入集群<br><code>docker node update --label-add=&#39;name=linux-1&#39; $(docker node ls -q)</code></p>
-<p>拉取镜像<br><code>git clone https://github.com/VaalaCat/CTFd.git --depth=1</code><br><code>git clone https://github.com/VaalaCat/ctfd-whale.git</code></p>
-<p>修改token<br>两个文件的token值修改成一样的，如果用到了域名记得修改<code>subdomain_host</code><br><code>vim CTFd/conf/frp/frps.ini</code><br><code>vim CTFd/conf/frp/frpc.ini</code></p>
-<p>安装插件（在CTFd目录下运行）<br><code>git submodule update --init</code></p>
-<p>启动（在CTFd目录下运行）<br><code>docker-compose up -d</code></p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-2.png"></p>
-<p>访问<a target="_blank" rel="noopener" href="http://xx.xx.xx.xx:9124/">http://xx.xx.xx.xx:9124</a> (默认是9124，想要80可以修改docker-compose.yml)</p>
-<p><strong>平台配置</strong><br>右上角的插件中进入 Whale 设置，其中，左侧 Docker&#x2F;Limits&#x2F;Challenges 菜单栏根据需求自行更改， Frp 菜单栏中的内容需要更改一下几个选项</p>
-<p><code>Http Domain Suffix</code>	node.lewiserii.top 这里填写使用http方式访问靶机的泛解析域名<br><code>Http Port</code>	8080 这里填写frps中的vhost_http_port，该端口为http方式靶机访问的端口<br><code>Direct IP Address</code>	xxx.xxx.xxx.xxx 这里填写服务器ip，用于显示Direct方式访问的题目的IP<br><code>Direct Minimum Port</code>	9000 这里填写用于动态靶机Direct方式的开始端口<br><code>Direct Maximum Port</code>	9200 这里填写结束端口</p>
-<p>优点：非常稳定，基本都能一次成功</p>
-<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a target="_blank" rel="noopener" href="https://github.com/dr0n1/CTFd_Docker_Template">https://github.com/dr0n1/CTFd_Docker_Template</a></p>
+<p>新建两个文件 appsettings.json 和 docker-compose.yml</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;AllowedHosts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ConnectionStrings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Database&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Host=db:5432;Database=gzctf;Username=postgres;Password=&lt;String1&gt;&quot;</span><br>      <span class="hljs-comment">//&lt;String1&gt;换成数据库密码，随机密码且长度足够</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Logging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;LogLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;Default&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Information&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Microsoft&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Warning&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Microsoft.Hosting.Lifetime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Information&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">//邮箱配置</span><br>  <span class="hljs-attr">&quot;EmailConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;SendMailAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Admin@xxx.com&quot;</span><span class="hljs-punctuation">,</span>		<span class="hljs-comment">// 填入邮箱</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ctf_noreply&quot;</span><span class="hljs-punctuation">,</span>				    <span class="hljs-comment">// 发件人名称</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;******&quot;</span><span class="hljs-punctuation">,</span>                 <span class="hljs-comment">// 邮箱密码，部分服务商需要填入授权码</span><br>    <span class="hljs-attr">&quot;Smtp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;Host&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;smtp.163.com&quot;</span><span class="hljs-punctuation">,</span>				  <span class="hljs-comment">// 此处为163邮箱服务器，具体自定</span><br>      <span class="hljs-attr">&quot;Port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">465</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;XorKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;String2&gt;&quot;</span><span class="hljs-punctuation">,</span>					    <span class="hljs-comment">// 自定XorKey</span><br>  <span class="hljs-attr">&quot;ContainerProvider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Docker&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;PublicEntry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xx.xx.xx.xx&quot;</span><span class="hljs-punctuation">,</span>			<span class="hljs-comment">// 域名或IP配置，用于容器生成,域名不带http/https</span><br>    <span class="hljs-attr">&quot;DockerConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;SwarmMode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;Uri&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>								        <span class="hljs-comment">// 本地配置Docker因此此处置空</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RequestLogging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;DisableRateLimit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;RegistryConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;UserName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ServerAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">//谷歌验证码配置</span><br>  <span class="hljs-attr">&quot;GoogleRecaptcha&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;VerifyAPIAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://www.recaptcha.net/recaptcha/api/siteverify&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Sitekey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;Secretkey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;RecaptchaThreshold&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.5&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;3.0&#x27;</span><br><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">gzctf:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">gztime/gzctf:latest</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;GZCTF_ADMIN_PASSWORD=&lt;String3&gt;&quot;</span> <span class="hljs-comment"># &lt;String3&gt;换成管理员账户密码，账号为Admin</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;80:8080&quot;</span> <span class="hljs-comment"># 对外端口号，前为外部端口。</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/files:/app/uploads&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./appsettings.json:/app/appsettings.json:ro&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./logs:/app/log&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/keys:/root/.aspnet/DataProtection-Keys&quot;</span><br>      <span class="hljs-comment"># - &quot;./k8sconfig.yaml:/app/k8sconfig.yaml:ro&quot;</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;/var/run/docker.sock:/var/run/docker.sock&quot;</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">db</span><br><br>  <span class="hljs-attr">db:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">postgres:alpine</span><br>    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;POSTGRES_PASSWORD=&lt;String1&gt;&quot;</span> <span class="hljs-comment"># 数据库密码，务必要和appsettings.json中的配置一致</span><br>    <span class="hljs-attr">networks:</span><br>      <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;./data/db:/var/lib/postgresql/data&quot;</span><br><br><span class="hljs-attr">networks:</span><br>  <span class="hljs-attr">default:</span><br>    <span class="hljs-attr">driver:</span> <span class="hljs-string">bridge</span><br>    <span class="hljs-attr">ipam:</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">subnet:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.12</span><span class="hljs-number">.0</span><span class="hljs-string">/24</span><br></code></pre></td></tr></table></figure>
+
+
+<p>修改完配置文件后运行<code>docker-compose up -d</code>命令即可</p>
+<p>注意密码的设置一定要符合复杂性要求，否则会报错</p>
+<h1 id="动态flag题目部署"><a href="#动态flag题目部署" class="headerlink" title="动态flag题目部署"></a>动态flag题目部署</h1><p>模板项目地址：<a target="_blank" rel="noopener" href="https://github.com/dr0n1/CTF_Docker_Template">https://github.com/dr0n1/CTF_Docker_Template</a></p>
 <p>包含pwn系列的ubuntu16，ubuntu18，ubuntu20，ubuntu22<br>web系列的php，java，python，go，mysql<br>misc，reverse系列的部分动态</p>
 <p>因为不会crypto，就没写交互的crypto</p>
 <h2 id="pwn题部署"><a href="#pwn题部署" class="headerlink" title="pwn题部署"></a>pwn题部署</h2><blockquote>
-<p>包含<code>ubuntu16</code>，<code>ubuntu18</code>，<code>ubuntu20</code>，<code>ubuntu22</code>四个基础镜像模板</p>
+<p>包含了<code>ubuntu16</code>，<code>ubuntu18</code>，<code>ubuntu20</code>，<code>ubuntu22</code>四个基础模板</p>
 </blockquote>
 <p>假设现在出了一道pwn题，名字是baby_stack</p>
 <p>首先根据题目选择需要的Ubuntu版本，这里以Ubuntu16为例，下载<code>pwn_ubuntu16</code>这个模板</p>
@@ -368,24 +362,27 @@
 <p>nc连接后能返回程序的功能就ok了(别忘记删除容器)<br>接着在CTFd上部署，注意type选择direct，image与port对应即可</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-5.png"></p>
 <h2 id="web题部署"><a href="#web题部署" class="headerlink" title="web题部署"></a>web题部署</h2><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/lewiserii/CTFd_Template">CTFd_Template</a>展示了<code>web_apache-mysql-php5.4</code>  <code>web_apache-mysql-php7.4</code>  <code>web_apache-php5.3</code>  <code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
+<p>包含了<code>web_apache-mysql-php5.4</code>，<code>web_apache-mysql-php7.4</code>，<code>web_apache-php5.3</code>，<code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
 </blockquote>
 <p>1：将题目放入<code>src</code>目录下<br>2：根据题目选择flag位置，然后修改<code>start.sh</code><br>3：docker build</p>
 <p>在sql环境中注意替换flag位置即可（要一一对应）</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-8.png"></p>
 <p>如果需要使用php扩展，则修改或增加Dockerfile文件中的docker-php-ext-install命令如下即可，例如安装gettext扩展(web_apache-php7.3)</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;Lewiserii &lt;admin@lewiserii.top&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html \</span><br><span class="language-bash">	&amp;&amp; docker-php-ext-install gettext</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;dr0n1 &lt;dr0n6666x@gmail.com&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> a2enmod rewrite \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">cp</span> /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
 
 
-<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><p>1：src中存放题目代码，注意命名app.py。如果使用了除flask外的第三方库，请在requirements.txt中标明<br>2：默认启动时不启用debug模式，如需要启用debug模式请修改start.sh</p>
+<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><blockquote>
+<p>包含了<code>web_flask-python2.7</code>，<code>web_flask-python3.10</code> 两个python模板</p>
+</blockquote>
+<p>1：src中存放题目代码，注意命名app.py。如果使用了除flask外的第三方库，请在requirements.txt中标明<br>2：默认启动时不启用debug模式，如需要启用debug模式请修改start.sh</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-9.png"></p>
 <h2 id="misc题部署"><a href="#misc题部署" class="headerlink" title="misc题部署"></a>misc题部署</h2><blockquote>
-<p>包含<code>python2.7-alpine</code>，<code>python3.8-alpine</code>，<code>python3.9-httpd</code>三个镜像模板。利用<code>http.server</code>，<code>SimpleHTTPServer</code>和<code>httpd</code>启动一个web服务用来下载附件</p>
+<p>包含了<code>misc_python2.7</code>，<code>misc_python3.9</code>两个镜像模板。利用<code>http.server</code>，<code>SimpleHTTPServer</code>和<code>httpd</code>启动一个web服务用来下载附件</p>
 </blockquote>
 <blockquote>
 <p>个人认为动态misc的核心思路就是把出题过程转换为一个脚本，然后读取平台传递的flag后生成附件，利用web服务下载。所以部分工具题和复杂一点的题目是没有办法出动态的</p>
 </blockquote>
-<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9-httpd</code>为例</p>
+<p>还是先根据需求选择不同的环境，这里以<code>misc_python3.9</code>为例</p>
 <p><strong>第一步</strong>，先将出题思路写进一个脚本中，命名为<code>challenges.py</code>，所需的模块放到<code>requirements.txt</code>中</p>
 <p>这个脚本有几点需要注意：<br>1：需要从<code>/flag</code>读取flag值<br>2：出题后生成的附件需要套一层压缩包以便访问自动下载，zip需要命名为<code>attachment.zip</code><br>3：尽量在脚本结束时删除无用的文件</p>
 <p>以下是一个简单的例子</p>

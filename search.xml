@@ -193,13 +193,14 @@
 <p><strong>修复</strong></p>
 <p>直接删掉这段代码</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>1：web靶机从第二轮开始基本所有队伍都上了通防，基本全靠pwn拿分了（偶尔会有几个web重置可以拿分）<br>2：网络环境很差，有的靶机访问特别慢<br>3：大概第四第五轮开始ssh中断，一直到结束前四十分钟才恢复<br>4：没与工作人员说明的情况下靶机被重置多次（好像很多队伍都被重置了。但是重置后ssh密码也被更改了，赛后才知道是123456）<br>5：大量靶机没有flag（可能有队伍提权了，不过猜测大概率是因为ssh连不上导致写不进flag）<br>6：flag提交的api接口有问题（例子：交了10个flag，全部显示flag错误，但是会加分）</p>
+<p><img src="/img/awd/2024nb-11.png" alt="哈哈哈哈"></p>
 ]]></content>
       <categories>
         <category>wp</category>
       </categories>
       <tags>
-        <tag>宁波</tag>
         <tag>awd</tag>
+        <tag>宁波</tag>
       </tags>
   </entry>
   <entry>
@@ -2044,8 +2045,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>ciscn</tag>
         <tag>2023</tag>
+        <tag>ciscn</tag>
       </tags>
   </entry>
   <entry>
@@ -2740,15 +2741,15 @@
 <p><img src="https://github.com/dr0n1/auto_deploy/blob/main/auto_deploy.gif?raw=true"></p>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><p>V1.0: 第一代脚本<br>V1.1: 增加 python 安装模块<br>V1.2: 优化安装逻辑等<br>V1.3：移除 python，新增 golang 和 java<br>V2.1：增加 CTF-Misc 部分工具的安装<br>V2.2：优化可重复运行脚本逻辑<br>V2.3：优化部分 python 模块安装逻辑<br>V2.4：增加部分misc工具，格式化代码<br>V3.1：移除了centos的工具支持，增加golang多版本支持等</p>
 <h1 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h1><p>1：计划增加 web 系列工具</p>
-<p>有疑问或者有更好的建议请联系<a href="mailto:&#49;&#x39;&#51;&#x30;&#x37;&#x37;&#x34;&#x33;&#55;&#52;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#49;&#x39;&#51;&#x30;&#x37;&#x37;&#x34;&#x33;&#55;&#52;&#64;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>有疑问或者有更好的建议请联系<a href="mailto:&#x31;&#57;&#x33;&#x30;&#55;&#x37;&#x34;&#51;&#55;&#x34;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#57;&#x33;&#x30;&#55;&#x37;&#x34;&#51;&#55;&#x34;&#64;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a></p>
 ]]></content>
       <categories>
         <category>项目</category>
       </categories>
       <tags>
         <tag>misc</tag>
-        <tag>脚本</tag>
         <tag>自动化</tag>
+        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>
@@ -3885,8 +3886,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>强国杯</tag>
         <tag>2022</tag>
+        <tag>强国杯</tag>
       </tags>
   </entry>
   <entry>
@@ -4712,8 +4713,8 @@
       </categories>
       <tags>
         <tag>wp</tag>
-        <tag>强国杯</tag>
         <tag>2022</tag>
+        <tag>强国杯</tag>
       </tags>
   </entry>
   <entry>
@@ -4833,8 +4834,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>内存取证</tag>
         <tag>流量分析</tag>
       </tags>
@@ -5052,8 +5053,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写术</tag>
       </tags>
   </entry>
@@ -5635,8 +5636,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>隐写</tag>
         <tag>压缩文件</tag>
       </tags>
@@ -5834,8 +5835,8 @@
         <category>总结</category>
       </categories>
       <tags>
-        <tag>总结</tag>
         <tag>misc</tag>
+        <tag>总结</tag>
         <tag>编码</tag>
         <tag>密码</tag>
       </tags>
@@ -6350,8 +6351,8 @@
         <category>项目</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>misc</tag>
+        <tag>docker</tag>
         <tag>ctfd</tag>
         <tag>pwn</tag>
         <tag>web</tag>

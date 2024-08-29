@@ -44,6 +44,13 @@
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-miaoro-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-miaoro-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-miaoro-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-Check-in-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-Check-in-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-Check-in-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-1z_misc-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-1z_misc-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-1z_misc-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-1z_misc-4.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-pic-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-docCrack-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-Lyrics-For-You-1.png">
@@ -51,7 +58,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-tomtom2-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-ycb-c-tomtom2-3.png">
 <meta property="article:published_time" content="2024-08-28T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-28T06:44:17.472Z">
+<meta property="article:modified_time" content="2024-08-29T14:43:13.477Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="羊城杯">
@@ -320,7 +327,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          5.2k 字
         
       </span>
     
@@ -331,7 +338,7 @@
         
         
         
-          46 分钟
+          52 分钟
         
       </span>
     
@@ -448,6 +455,41 @@
 <p><img src="/img/wp/2024/2024-ycb-c-miaoro-2.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/img/wp/2024/2024-ycb-c-miaoro-3.png" srcset="/img/loading.gif" lazyload></p>
 <p>网上找一个字母表对应后得到<code>EBOFDELQDIAA&#125;</code></p>
+<h2 id="Check-in"><a href="#Check-in" class="headerlink" title="Check in"></a>Check in</h2><p>附件压缩包中的注释base58解码得到<code>Welcome2GZ</code></p>
+<p>根据提示用wbs43open解txt隐写</p>
+<p><img src="/img/wp/2024/2024-ycb-c-Check-in-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>解出得到一个log文件，是TLS的密钥log，导入到wireshark中</p>
+<p><img src="/img/wp/2024/2024-ycb-c-Check-in-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>将附件txt内容转成pcapng后打开后发现上传了一个flag.gif</p>
+<p><img src="/img/wp/2024/2024-ycb-c-Check-in-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>使用identify分析，发现gif每帧的间隔时间在3和23转换</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">identify -format &quot;%T, &quot; 1.gif<br>3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 23, 23, 23, 23, 3, 3, 23, 23, 3, 3, 3, 3, 3, 23, 23, 23, 3, 23, 23, 23, 3, 23, 3, 3, 23, 23, 23, 3, 3, 23, 3, 23, 23, 23, 23, 23, 3, 3, 23, 23, 3, 3, 3, 23, 3, 23, 3, 23, 3, 23, 3, 3<br></code></pre></td></tr></table></figure>
+
+<p>将23转成1，3转成0后转字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">a = [<span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">23</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>]<br><br>a = [<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> x == <span class="hljs-number">23</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> a]<br><br>binary_string = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">str</span>, a))<br><br>chars = [<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">int</span>(binary_string[i:i+<span class="hljs-number">8</span>], <span class="hljs-number">2</span>)) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(binary_string), <span class="hljs-number">8</span>)]<br>result = <span class="hljs-string">&#x27;&#x27;</span>.join(chars)<br><span class="hljs-built_in">print</span>(result)<br><br><span class="hljs-comment"># U_0wN_1T</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="1z-misc"><a href="#1z-misc" class="headerlink" title="1z_misc"></a>1z_misc</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">天地玄黄，宇宙洪荒；日月盈昃，辰宿列张；万物芸芸，息息相关；是以十二岁而行二十八宿，其间奥妙，待探寻，显真章。<br>若女可为11，可为1124......觜可为91，亦可为725......如此往复，周而复始。<br>祈解其秘：[43,101,55,16,16,1017,28,812,824,43,55,226,101,55,55,415,1017,1027,28,28,617,824,28,812,1027,16,101,16,55,1027,1017,28,16]<br></code></pre></td></tr></table></figure>
+
+<p>结合例子和hint的图片可以得知</p>
+<p>将数字拆成两部分</p>
+<p>第一部分从子开始数，比如1就是子，4就是卯，10就是酉。。。。<br>第二部分的数字表述对应星宿的位置（格子中从右往左逆时针数），比如子的1就是女，卯的3就是心</p>
+<p><img src="/img/wp/2024/2024-ycb-c-1z_misc-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>将题目给的数组转成对应的文字</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">心,胃,心,奎,奎,心,奎,心,胃,心,心,心,胃,心,心,胃,心,奎,奎,奎,奎,胃,奎,心,奎,奎,胃,奎,心,奎,心,奎,奎<br></code></pre></td></tr></table></figure>
+
+<p>只有三种文字，将心替换成<code>.</code> 胃替换成<code>/</code> 奎替换成<code>-</code></p>
+<p>解摩斯得到密码<code>E@SI1Y!</code></p>
+<p><img src="/img/wp/2024/2024-ycb-c-1z_misc-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>解压后看flag文件尾，符合lyra文件特征，同时hint.jpg中的天琴座也表明是lyra</p>
+<p><code>bazel-bin/lyra/cli_example/decoder_main --encoded_path=flag.lyra --output_dir=./ --bitrate=3200</code></p>
+<p>得到一段wav</p>
+<p><img src="/img/wp/2024/2024-ycb-c-1z_misc-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>在线<a target="_blank" rel="noopener" href="https://www.luyinzhushou.com/voice2text/">语音转文本</a>（语速有点快，可以au降速后去识别）后，得到一段社会主义编码，解码得到flag</p>
+<p><img src="/img/wp/2024/2024-ycb-c-1z_misc-4.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="pic"><a href="#pic" class="headerlink" title="pic"></a>pic</h2><p>爆破五位十六进制得到rc4密钥</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-keyword">from</span> mcrypt <span class="hljs-keyword">import</span> *<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">rc4</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">toBytes</span>(<span class="hljs-params">self,data</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(data)==<span class="hljs-built_in">str</span>:<br>            <span class="hljs-keyword">return</span> data.encode()<br>        <span class="hljs-keyword">elif</span> <span class="hljs-built_in">type</span>(data)==<span class="hljs-built_in">bytes</span>:<br>            <span class="hljs-keyword">return</span> data<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&quot;data Type Error&quot;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">GetKey</span>(<span class="hljs-params">self,data</span>):<br>        k=[]<br>        k1=[]<br>        data_l=<span class="hljs-built_in">len</span>(data)<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>            k.append(i)<br>            a=<span class="hljs-string">&quot;adsf&quot;</span><br><br>            k1.append(data[i%data_l])<br>        n=<span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">256</span>):<br>            n=(k1[i]+n+k[i])&amp;<span class="hljs-number">0xff</span><br>            n1=k[i]<br>            k[i]=k[n]<br>            k[n]=n1<br>        <span class="hljs-keyword">return</span> k<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">Cipher</span>(<span class="hljs-params">self,data</span>):<br>        data=self.toBytes(data)<br>        enc=[]<br>        k=self.Key.copy()<br>        n=<span class="hljs-number">0</span><br>        n1=<span class="hljs-number">0</span><br>        tmp=<span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(data)):<br>            n=(n+<span class="hljs-number">1</span>)&amp;<span class="hljs-number">0xff</span><br>            n1=(n1+k[n])&amp;<span class="hljs-number">0xff</span><br>            tmp=k[n]<br>            k[n]=k[n1]<br>            k[n1]=tmp<br>            enc.append(data[i]^<span class="hljs-number">0x11</span>^k[(k[n]+k[n1])%<span class="hljs-number">256</span>])<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">bytes</span>(enc)<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,key</span>):<br>        key=self.toBytes(key)<br>        self.Key=self.GetKey(key)<br>        self.__Key=key<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">SetKey</span>(<span class="hljs-params">self,key</span>):<br>        key=self.toBytes(key)<br>        self.Key=self.GetKey(key)<br>        self.__Key=key<br><br>base_=<span class="hljs-string">b&quot;0123456789abcdef&quot;</span><br>data=[<span class="hljs-number">0x85</span>,<span class="hljs-number">0x43</span>,<span class="hljs-number">0x72</span>,<span class="hljs-number">0x78</span>,<span class="hljs-number">0x26</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> Gendic(base_,<span class="hljs-number">5</span>,<span class="hljs-literal">True</span>):<br>    e=[i[<span class="hljs-number">1</span>]^j <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> data]<br>    <span class="hljs-comment"># print(i)</span><br>    <span class="hljs-comment"># print(e)</span><br>    r=rc4(<span class="hljs-built_in">bytes</span>(i))<br>    d=r.Cipher(<span class="hljs-built_in">bytes</span>(e))<br>    <span class="hljs-keyword">if</span> d==<span class="hljs-string">b&#x27;\x89\x50\x4e\x47\x0d&#x27;</span>:<br>        <span class="hljs-built_in">print</span>(i)<br>        <span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
 
@@ -582,7 +624,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月28日</div>
+          <div>2024年8月29日</div>
         </div>
       
       

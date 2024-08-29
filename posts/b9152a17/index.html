@@ -36,6 +36,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/DeepSound.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/dtmf.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/openpuff.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/misc/lyra.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/word-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/word-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/odttf.png">
@@ -45,7 +46,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/pgp.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/shukong.jpg">
 <meta property="article:published_time" content="2022-07-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-22T08:47:18.686Z">
+<meta property="article:modified_time" content="2024-08-29T10:40:13.275Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="misc">
@@ -325,7 +326,7 @@
         
         
         
-          47 分钟
+          48 分钟
         
       </span>
     
@@ -470,6 +471,13 @@
 <p>例如祥云杯的<code>shuffle_code</code></p>
 <p>3：奇奇怪怪的变种二维码</p>
 <p>推荐<code>cortexScan</code>和中国编码识别</p>
+<h2 id="0x14-GIF"><a href="#0x14-GIF" class="headerlink" title="0x14 GIF"></a>0x14 GIF</h2><p>1：可能在某一帧上有字符</p>
+<p>2：帧间隔的秒数</p>
+<p>可以用identify分析，如果是两种数字重复可以当二进制转字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 显示序号</span><br>identify -format <span class="hljs-string">&quot;%s %T \n&quot;</span> 1.gif<br><br><span class="hljs-comment"># 不显示序号</span><br>identify -format <span class="hljs-string">&quot;%T\n&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="音频隐写"><a href="#音频隐写" class="headerlink" title="音频隐写"></a>音频隐写</h1><h2 id="0x01-MP3stego-需要passwd"><a href="#0x01-MP3stego-需要passwd" class="headerlink" title="0x01 MP3stego(需要passwd)"></a>0x01 MP3stego(需要passwd)</h2><p>针对<code>.mp3</code>文件隐写</p>
 <p><code>.\Decode.exe -X -P [password] [stego_mp3]</code></p>
 <p>会在当前目录下生成一个txt文件</p>
@@ -509,13 +517,15 @@
 <h2 id="0x08-openpuff-需要passwd"><a href="#0x08-openpuff-需要passwd" class="headerlink" title="0x08 openpuff(需要passwd)"></a>0x08 openpuff(需要passwd)</h2><p>windows软件</p>
 <p>需要三个8位密码解密</p>
 <p><img src="/img/summary/misc/openpuff.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="0x08-lyra"><a href="#0x08-lyra" class="headerlink" title="0x08 lyra"></a>0x08 lyra</h2><p>lyra文件特征</p>
+<p><img src="/img/summary/misc/lyra.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="文档隐写"><a href="#文档隐写" class="headerlink" title="文档隐写"></a>文档隐写</h1><h2 id="0x01-VBA宏密码破解"><a href="#0x01-VBA宏密码破解" class="headerlink" title="0x01 VBA宏密码破解"></a>0x01 VBA宏密码破解</h2><p>将<code>CMG=</code>替换为<code>CMG.</code>，<code>DPB=</code>替换为<code>DPB.</code> ，<code>GC=</code>替换为<code>GC.</code></p>
 <p><code>alt+F11</code>打开vba编辑器</p>
 <h2 id="0x02-字体隐藏"><a href="#0x02-字体隐藏" class="headerlink" title="0x02 字体隐藏"></a>0x02 字体隐藏</h2><p>在字体的效果中勾选隐藏选项即可隐藏字符(或者采用了白色字体)</p>
 <p><img src="/img/summary/misc/word-1.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="0x03-图片隐藏"><a href="#0x03-图片隐藏" class="headerlink" title="0x03 图片隐藏"></a>0x03 图片隐藏</h2><p>把后缀改为<code>zip</code>解压，在<code>media</code>目录下可以看到文档的所有图片(不排除故意放在其他目录中)</p>
 <h2 id="0x04-pdf文件"><a href="#0x04-pdf文件" class="headerlink" title="0x04 pdf文件"></a>0x04 pdf文件</h2><p>使用福昕编辑器等即可编辑，或者先转换成<code>docx</code></p>
-<h2 id="0x05-wbstego4"><a href="#0x05-wbstego4" class="headerlink" title="0x05 wbstego4"></a>0x05 wbstego4</h2><p>适用于pdf隐写</p>
+<h2 id="0x05-wbstego4"><a href="#0x05-wbstego4" class="headerlink" title="0x05 wbstego4"></a>0x05 wbstego4</h2><p>适用于pdf和txt隐写</p>
 <h2 id="0x06-密码爆破"><a href="#0x06-密码爆破" class="headerlink" title="0x06 密码爆破"></a>0x06 密码爆破</h2><p>可以用<code>passware kit</code>等工具爆破</p>
 <p><img src="/img/summary/misc/word-2.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="0x07-odttf转ttf"><a href="#0x07-odttf转ttf" class="headerlink" title="0x07 odttf转ttf"></a>0x07 odttf转ttf</h2><p>当复制文档中的内容至notepad后与原内容不一样，多半是修改了字体</p>
@@ -649,7 +659,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年3月22日</div>
+          <div>2024年8月29日</div>
         </div>
       
       

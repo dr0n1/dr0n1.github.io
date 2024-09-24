@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/disable_functions-1.png">
 <meta property="article:published_time" content="2024-07-17T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-22T18:26:22.788Z">
+<meta property="article:modified_time" content="2024-09-24T09:25:40.009Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="php">
@@ -314,7 +314,7 @@
         
         
         
-          128 分钟
+          127 分钟
         
       </span>
     
@@ -611,15 +611,19 @@
 <p>其中的shellcode为</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-meta">&gt;&gt;&gt; </span>context.arch = <span class="hljs-string">&quot;amd64&quot;</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>shellcode=<span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string"><span class="hljs-meta">... </span>mov rdi,0xffffffff</span><br><span class="hljs-string"><span class="hljs-meta">... </span>mov rax,0xffffffff</span><br><span class="hljs-string"><span class="hljs-meta">... </span>push rax</span><br><span class="hljs-string"><span class="hljs-meta">... </span>ret</span><br><span class="hljs-string"><span class="hljs-meta">... </span>&#x27;&#x27;&#x27;</span><br>&gt;&gt;&gt;<br><span class="hljs-meta">&gt;&gt;&gt; </span>asm(shellcode)<br><span class="hljs-string">b&#x27;H\xbf\xff\xff\xff\xff\x00\x00\x00\x00H\xb8\xff\xff\xff\xff\x00\x00\x00\x00P\xc3&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<p>将地址替换一下即可</p>
+
+
 <p><strong>利用条件</strong></p>
 <ul>
 <li>&#x2F;proc&#x2F;self&#x2F;mem 可读写</li>
 <li>Linux 内核版本 &gt;&#x3D; 2.98</li>
 <li>PHP-CGI 或 PHP-FPM 启动</li>
 </ul>
-<p>PHP主进程是root的，但是子进程是www-data的，&#x2F;proc&#x2F;self&#x2F;mem属于www-data且权限是600，但&#x2F;proc&#x2F;self目录是root的，并且www-data无权限，所以正常情况下不能写入。<br>但是对于Nginx+php，且为低版本的php-fpm（PHP&lt;5.6），&#x2F;proc&#x2F;self&#x2F;属于www-data，可以通过写入GOT表的RCE</p>
-<p>注：apache+php 由于 apache调用setuid设置www权限工作进程，&#x2F;proc&#x2F;self&#x2F;目录属于root用户，导致没有权限读写。<br>nginx+php，对于低版本的php -fpm www权限工作进程， &#x2F;proc&#x2F;self&#x2F;目录属于www用户可以读写。经不完全测试，php&lt;5.6 版本是可以使用GOT表劫持。</p>
+<p>apache+php 由于 apache 调用 setuid 设置 www-data 权限工作进程，&#x2F;proc&#x2F;self&#x2F;mem 属于 www-data 且权限是600，&#x2F;proc&#x2F;self&#x2F; 目录属于root用户，导致没有权限读写</p>
+<p>但是对于 Nginx+php ，且为低版本的 php-fpm（PHP&lt;5.6），&#x2F;proc&#x2F;self&#x2F;属于 www-data ，可以通过写入GOT表来实现RCE</p>
+<blockquote>
+<p>注：我在实际利用中并没有成功</p>
+</blockquote>
 <h1 id="利用UAF-Bypass"><a href="#利用UAF-Bypass" class="headerlink" title="利用UAF Bypass"></a>利用UAF Bypass</h1><p>各种利用二进制漏洞去攻击的手法<br>原理就不细说了，也不太懂pwn，放链接了</p>
 <h2 id="php7-GC-UAF（PHP-7-0-7-3）"><a href="#php7-GC-UAF（PHP-7-0-7-3）" class="headerlink" title="php7_GC_UAF（PHP 7.0-7.3）"></a>php7_GC_UAF（PHP 7.0-7.3）</h2><p><strong>利用条件</strong></p>
 <ul>
@@ -814,7 +818,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月23日</div>
+          <div>2024年9月24日</div>
         </div>
       
       

@@ -23,12 +23,12 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文章演示版本：V2.2.2最新版本：V3.0.0最后更新日期：2024&#x2F;06&#x2F;02 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*(用*占位)即可在程序当前运行目录下生成一个ip.txt">
+    <meta name="description" content="文章演示版本：V3.0.1最新版本：V3.0.1最后更新日期：2024&#x2F;10&#x2F;01 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*(用*占位)即可在程序当前运行目录下生成一个ip.txt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="awd工具开发&amp;使用说明">
 <meta property="og:url" content="https://www.dr0n.top/posts/48fe3a65/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="文章演示版本：V2.2.2最新版本：V3.0.0最后更新日期：2024&#x2F;06&#x2F;02 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*(用*占位)即可在程序当前运行目录下生成一个ip.txt">
+<meta property="og:description" content="文章演示版本：V3.0.1最新版本：V3.0.1最后更新日期：2024&#x2F;10&#x2F;01 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*(用*占位)即可在程序当前运行目录下生成一个ip.txt">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-2.png">
@@ -46,16 +46,18 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-15.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-16.png">
-<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-19.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-18.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-20.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-21.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-22.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-23.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-24.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-25.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-26.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-17.png">
-<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-18.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-19.png">
 <meta property="article:published_time" content="2023-12-07T06:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-24T07:34:31.148Z">
+<meta property="article:modified_time" content="2024-10-01T18:04:06.400Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="awd">
 <meta property="article:tag" content="自动化">
@@ -323,7 +325,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.7k 字
         
       </span>
     
@@ -334,7 +336,7 @@
         
         
         
-          15 分钟
+          18 分钟
         
       </span>
     
@@ -385,7 +387,7 @@
             
               <div class="markdown-body">
                 
-                <p>文章演示版本：V2.2.2<br>最新版本：V3.0.0<br>最后更新日期：2024&#x2F;06&#x2F;02</p>
+                <p>文章演示版本：V3.0.1<br>最新版本：V3.0.1<br>最后更新日期：2024&#x2F;10&#x2F;01</p>
 <h2 id="目标生成"><a href="#目标生成" class="headerlink" title="目标生成"></a>目标生成</h2><blockquote>
 <p>使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描</p>
 </blockquote>
@@ -427,7 +429,7 @@
 <p>使用场景：发现题目的默认后门或者rce点后写入不死马</p>
 </blockquote>
 <h3 id="默认马"><a href="#默认马" class="headerlink" title="默认马"></a>默认马</h3><p><strong>在可以rce的参数后加<code>*</code>，多个参数用&amp;连接</strong></p>
-<p>可写路径：一般默认为空，当某些靶机的web根目录<strong>不可写</strong>时需要手动指定，例如指定写入到<code>/var/www/html/xxx/</code>（使用绝对路径）</p>
+<p>可写路径：一般默认为空，当某些靶机的web根目录<strong>不可写</strong>时需要手动指定，例如指定写入到<code>/var/www/html/xxx/</code>（使用绝对路径）<br>代码执行：根据shell中的代码(例如eval或者system)来使用不同的payload<br>TP框架：适用于tp等框架的非常规web路径(&#x2F;public)</p>
 <p>Get传参后门：</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-6.png" srcset="/img/loading.gif" lazyload></p>
 <p>Post传参后门：</p>
@@ -482,7 +484,7 @@
 <p>使用场景：离线环境下 局域网中队友的信息传递</p>
 </blockquote>
 <p>其中一人先当客户端(需要先在设置中设置好参数)</p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-19.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-18.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后点击启动服务</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-20.png" srcset="/img/loading.gif" lazyload></p>
 <p>其余队友当客户端(同样要先在设置中设置好参数)</p>
@@ -495,15 +497,28 @@
 <p>使用场景：批量发送一些请求，例如批量上传文件</p>
 </blockquote>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-24.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><blockquote>
+<p>使用场景：解放双手，自动运行</p>
+</blockquote>
+<p>在写入不死马，执行命令，提交flag三处可以选择定时执行任务，最短1分钟执行一次</p>
+<p>使用方法与正常操作一样，填完参数后点击定时按钮并选择时间即可</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-25.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果想取消可以关闭程序或者在全局设置中点击 <strong>管理定时任务</strong> 按钮</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-26.png" srcset="/img/loading.gif" lazyload></p>
+<p>运行结果会保存在<code>log/task_log.txt</code></p>
+<blockquote>
+<p>注意：此功能应谨慎使用，防止发送网络流量过大！！！注意观察 shell.txt 和 task_log.txt 的内容</p>
+</blockquote>
 <h2 id="工具-amp-设置"><a href="#工具-amp-设置" class="headerlink" title="工具&amp;设置"></a>工具&amp;设置</h2><blockquote>
 <p>使用场景：base64，url的编码与解码，行去重与清屏</p>
 </blockquote>
 <p>支持拖放文件</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-17.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-18.png" srcset="/img/loading.gif" lazyload></p>
+<p>全局设置中可以切换线程数量和超时时间，并且可以选择是否记录错误日志</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-19.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>V1.0.0：初始版本<br>V1.1.0：多种扫描方式，代码逻辑优化<br>V1.2.0：添加随机不死马功能，修复诺干bug</p>
 <p>V2.1.0：70%代码重构，速度较上一代提升11倍。添加ssh和设置模块<br>V2.1.1：优化不死马的判断逻辑<br>V2.2.0：加入多人交互功能<br>V2.2.1：修复诺干bug<br>V2.2.2：更新ui，加入自定义请求包功能<br>V2.2.3：增加全局超时设置，区分代码执行与命令执行，适应tp框架路径</p>
-<p>V3.0.0：增加一机一码，增加错误日志，优化写入不死马&#x2F;执行命令逻辑</p>
+<p>V3.0.0：增加一机一码，增加错误日志，优化写入不死马&#x2F;执行命令逻辑<br>V3.0.1：部分代码结构优化，增加定时任务功能</p>
 <p>可能将要做的：<br>1：加入pwn的批量攻击<br>2：不止php（加入java）</p>
 
                 
@@ -571,7 +586,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月24日</div>
+          <div>2024年10月2日</div>
         </div>
       
       

@@ -46,10 +46,10 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/pgp.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/shukong.jpg">
 <meta property="article:published_time" content="2022-07-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-02T12:46:16.828Z">
+<meta property="article:modified_time" content="2024-11-03T09:56:40.955Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="misc">
 <meta property="article:tag" content="总结">
+<meta property="article:tag" content="misc">
 <meta property="article:tag" content="隐写术">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/misc/F5.png">
@@ -315,7 +315,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          4.9k 字
         
       </span>
     
@@ -447,6 +447,13 @@
 <p><code>input_file</code>：可以一张一张指定，也能使用正则匹配(<code>*.png</code>)<br><code>-geometry +0+0</code>：使图片之间没有间隙<br><code>-tile 8X6</code>：以8行6列排列<br><code>output_file</code>：输出文件</p>
 <p><code>gaps</code>用来还原<code>montage</code>命令创建的乱序图像</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">gaps --image=out.jpg --generations=50 --population=120 --size=50<br><br>--image            指向拼图的路径<br>--size            拼图块的像素尺寸（如果不能明确提供--size的参数，拼图块尺寸将自适应调整）<br>--generations    遗传算法的代的数量<br>--population    个体数量<br>--verbose        每一代训练结束后展示最佳结果<br>--save            将拼图还原为图像<br></code></pre></td></tr></table></figure>
+
+<div class="note note-[class] [no-icon] [style]">
+            <p>最近gaps更新了<br>命令变成了<br>gaps run 目标图片 生成图片 参数</p><p>例如：gaps run 1.png  2.png –generations&#x3D;60 –population&#x3D;100</p>
+          </div>
+
+
+
 
 <p><code>montage+gaps</code>适用于大小相同，数量小的拼图。复杂的需要注意图片名或其他地方是否有顺序提示，还可以注意图片中的冗余位是否可能包含坐标数据</p>
 <h2 id="0x11-pngcheck"><a href="#0x11-pngcheck" class="headerlink" title="0x11 pngcheck"></a>0x11 pngcheck</h2><p>windows工具，用来检查IDAT块</p>
@@ -634,9 +641,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/misc/" class="print-no-link">#misc</a>
-      
         <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
+      
+        <a href="/tags/misc/" class="print-no-link">#misc</a>
       
         <a href="/tags/%E9%9A%90%E5%86%99%E6%9C%AF/" class="print-no-link">#隐写术</a>
       
@@ -669,7 +676,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月2日</div>
+          <div>2024年11月3日</div>
         </div>
       
       

@@ -23,12 +23,12 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="总榜Rank1 webwucanrce123456789101112131415161718&lt;?phpecho &quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;;$filename &#x3D; __FILE__;highlight_file($filename);if(isset($_GET[&amp;#x27;code&amp;#x27;]))&amp;#123;    if (!">
+    <meta name="description" content="总榜Rank1，在毕业前拿到榜一也是圆满了 :) webwucanrce123456789101112131415161718&lt;?phpecho &quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;;$filename &#x3D; __FILE__;highlight_file($filename);if(isset($_GET[&amp;#x27;code&amp;#x27;]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第七届浙江省大学生网络与信息安全竞赛决赛-WP">
 <meta property="og:url" content="https://www.dr0n.top/posts/f2e1654d/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="总榜Rank1 webwucanrce123456789101112131415161718&lt;?phpecho &quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;;$filename &#x3D; __FILE__;highlight_file($filename);if(isset($_GET[&amp;#x27;code&amp;#x27;]))&amp;#123;    if (!">
+<meta property="og:description" content="总榜Rank1，在毕业前拿到榜一也是圆满了 :) webwucanrce123456789101112131415161718&lt;?phpecho &quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;;$filename &#x3D; __FILE__;highlight_file($filename);if(isset($_GET[&amp;#x27;code&amp;#x27;]">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-zjss-js-unserialize-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-zjss-js-unserialize-2.png">
@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-zjss-js-OH-7.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2024/2024-zjss-js-%E7%BD%91%E5%AE%89%E7%9F%A5%E8%AF%86%E5%A4%A7%E6%8C%91%E6%88%98-FINAL-1.png">
 <meta property="article:published_time" content="2024-11-09T06:30:00.000Z">
-<meta property="article:modified_time" content="2024-11-10T08:44:28.946Z">
+<meta property="article:modified_time" content="2024-11-10T08:56:08.570Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="2024">
@@ -381,7 +381,7 @@
             
               <div class="markdown-body">
                 
-                <p>总榜Rank1</p>
+                <p>总榜Rank1，在毕业前拿到榜一也是圆满了 :)</p>
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="wucanrce"><a href="#wucanrce" class="headerlink" title="wucanrce"></a>wucanrce</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;</span>;<br><span class="hljs-variable">$filename</span> = <span class="hljs-keyword">__FILE__</span>;<br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-variable">$filename</span>);<br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]))&#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/session_id\(|readfile\(/i&#x27;</span>, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]))<br><br>     &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-string">&#x27;;&#x27;</span> === <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-string">&#x27;/[a-z,_]+\((?R)?\)/&#x27;</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>])) &#123;<br>                @<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;code&#x27;</span>]);<br>            &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;不让用session欧，readfile也不行&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>无参rce</p>

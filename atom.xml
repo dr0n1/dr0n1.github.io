@@ -181,9 +181,9 @@
     
     <category term="提权" scheme="https://www.dr0n.top/tags/%E6%8F%90%E6%9D%83/"/>
     
-    <category term="windows" scheme="https://www.dr0n.top/tags/windows/"/>
-    
     <category term="内网" scheme="https://www.dr0n.top/tags/%E5%86%85%E7%BD%91/"/>
+    
+    <category term="windows" scheme="https://www.dr0n.top/tags/windows/"/>
     
   </entry>
   
@@ -325,9 +325,9 @@
     
     <category term="bypass" scheme="https://www.dr0n.top/tags/bypass/"/>
     
-    <category term="pwn" scheme="https://www.dr0n.top/tags/pwn/"/>
-    
     <category term="disable_fuctions" scheme="https://www.dr0n.top/tags/disable-fuctions/"/>
+    
+    <category term="pwn" scheme="https://www.dr0n.top/tags/pwn/"/>
     
   </entry>
   

@@ -23,18 +23,19 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文章演示版本：V3.1.2最新版本：V4.0.0最后更新日期：2025&#x2F;06&#x2F;05 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*又或者是10.10.*.1(用*占位)即可在程序当前运行目">
+    <meta name="description" content="文章演示版本：V4.0.0最新版本：V4.0.0最后更新日期：2025&#x2F;07&#x2F;01 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现生成文件：ip.txt   输入192.168.10.*又或者是10.10.*.1(用*占位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="awd工具开发&amp;使用说明">
 <meta property="og:url" content="https://www.dr0n.top/posts/48fe3a65/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="文章演示版本：V3.1.2最新版本：V4.0.0最后更新日期：2025&#x2F;06&#x2F;05 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现   输入192.168.10.*又或者是10.10.*.1(用*占位)即可在程序当前运行目">
+<meta property="og:description" content="文章演示版本：V4.0.0最新版本：V4.0.0最后更新日期：2025&#x2F;07&#x2F;01 目标生成 使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描  ip段生成 使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现生成文件：ip.txt   输入192.168.10.*又或者是10.10.*.1(用*占位">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-3.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-4.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-34.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-6.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-7.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-27.png">
@@ -63,7 +64,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-19.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E9%A1%B9%E7%9B%AE/rah-28.png">
 <meta property="article:published_time" content="2023-12-07T06:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-05T10:11:33.199Z">
+<meta property="article:modified_time" content="2025-07-02T15:47:34.800Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="awd">
 <meta property="article:tag" content="自动化">
@@ -331,7 +332,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.8k 字
         
       </span>
     
@@ -342,7 +343,7 @@
         
         
         
-          26 分钟
+          29 分钟
         
       </span>
     
@@ -393,60 +394,76 @@
             
               <div class="markdown-body">
                 
-                <p>文章演示版本：V3.1.2<br>最新版本：V4.0.0<br>最后更新日期：2025&#x2F;06&#x2F;05</p>
+                <p>文章演示版本：V4.0.0<br>最新版本：V4.0.0<br>最后更新日期：2025&#x2F;07&#x2F;01</p>
 <h2 id="目标生成"><a href="#目标生成" class="headerlink" title="目标生成"></a>目标生成</h2><blockquote>
 <p>使用场景：在目标扫描前如果没有下发靶机地址列表，则需要自己生成一份去扫描</p>
 </blockquote>
 <h3 id="ip段生成"><a href="#ip段生成" class="headerlink" title="ip段生成"></a>ip段生成</h3><blockquote>
-<p>使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现</p>
+<p>使用场景：裁判给了一个C段（192.168.10.0），所有队伍的靶机都在这个C段中，具体ip需要自己发现<br>生成文件：ip.txt</p>
 </blockquote>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-1.png" srcset="/img/loading.gif" lazyload></p>
-<p>输入<code>192.168.10.*</code>又或者是<code>10.10.*.1</code>(用*占位)即可在程序当前运行目录下生成一个<code>ip.txt</code></p>
+<p>输入<code>192.168.10.*</code>又或者是<code>10.10.*.1</code>(用*占位)即可在程序当前运行目录下<strong>覆盖</strong>生成一个<code>ip.txt</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs text">192.168.10.1:8080<br>192.168.10.2:8080<br>192.168.10.3:8080<br>192.168.10.4:8080<br>192.168.10.5:8080<br>...<br>...<br>192.168.10.251:8080<br>192.168.10.252:8080<br>192.168.10.253:8080<br>192.168.10.254:8080<br>192.168.10.255:8080<br></code></pre></td></tr></table></figure>
 
 <h3 id="单ip多端口生成"><a href="#单ip多端口生成" class="headerlink" title="单ip多端口生成"></a>单ip多端口生成</h3><blockquote>
-<p>使用场景：某些小型比赛或训练赛，为了节约资源将所有靶机映射在同一台服务器的不同端口上</p>
+<p>使用场景：某些小型比赛或训练赛，为了节约资源将所有靶机映射在同一台服务器的不同端口上<br>生成文件：ip.txt</p>
 </blockquote>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-2.png" srcset="/img/loading.gif" lazyload></p>
-<p>同样的会在程序运行目录下生成<code>ip.txt</code></p>
+<p>同样的会在程序运行目录下<strong>覆盖</strong>生成<code>ip.txt</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">192.168.100.103:10000<br>192.168.100.103:10001<br>192.168.100.103:10002<br>192.168.100.103:10003<br>...<br>...<br>192.168.100.103:10297<br>192.168.100.103:10298<br>192.168.100.103:10299<br>192.168.100.103:10300<br><br></code></pre></td></tr></table></figure>
 
 
 <h3 id="bugku专用"><a href="#bugku专用" class="headerlink" title="bugku专用"></a>bugku专用</h3><blockquote>
-<p>使用场景：针对线上的域名生成 例如 192-168-1-X.pvp3553.bugku.cn</p>
+<p>使用场景：针对线上的域名生成 例如 192-168-1-X.pvp3553.bugku.cn<br>生成文件：ip.txt</p>
 </blockquote>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-3.png" srcset="/img/loading.gif" lazyload></p>
 <p>按以下规则输入即可,<code>&#123;&#125;</code>中表示生成的范围，以<code>-</code>分割</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">192-168-1-&#123;1-255&#125;.pvp3553.bugku.cn<br>192-168-&#123;1-2&#125;-&#123;1-255&#125;.pvp3553.bugku.cn<br></code></pre></td></tr></table></figure>
 
-<p>在当前目录下生成<code>ip.txt</code></p>
+<p>在当前目录下<strong>覆盖</strong>生成<code>ip.txt</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">192-168-1-1.pvp3553.bugku.cn<br>192-168-1-2.pvp3553.bugku.cn<br>192-168-1-3.pvp3553.bugku.cn<br>192-168-1-4.pvp3553.bugku.cn<br>...<br>...<br>192-168-1-252.pvp3553.bugku.cn<br>192-168-1-253.pvp3553.bugku.cn<br>192-168-1-254.pvp3553.bugku.cn<br>192-168-1-255.pvp3553.bugku.cn<br></code></pre></td></tr></table></figure>
 
 
 <h2 id="目标扫描"><a href="#目标扫描" class="headerlink" title="目标扫描"></a>目标扫描</h2><blockquote>
-<p>使用场景：自己生成靶机地址或通过平台下载后，进行特征扫描来识别题目</p>
+<p>使用场景：自己生成靶机地址或通过平台下载后，进行特征扫描来识别题目<br>生成文件：&lt;自命名&gt;.txt</p>
 </blockquote>
 <h3 id="web靶机扫描"><a href="#web靶机扫描" class="headerlink" title="web靶机扫描"></a>web靶机扫描</h3><p>先打开自己的web靶机，输入网页上可以看到的特征即可</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-4.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="pwn靶机扫描"><a href="#pwn靶机扫描" class="headerlink" title="pwn靶机扫描"></a>pwn靶机扫描</h3><p>pwn靶机也是同理，先连上自己的看看会输出什么就填什么</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-5.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="写入不死马"><a href="#写入不死马" class="headerlink" title="写入不死马"></a>写入不死马</h2><blockquote>
-<p>使用场景：发现题目的默认后门或者rce点后写入不死马</p>
+<p>使用场景：发现题目的默认后门或者rce点后写入不死马<br>生成文件：shell.txt  random.txt</p>
 </blockquote>
 <p><strong>在可以rce的参数后加<code>*</code>，多个参数用&amp;连接</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>@<span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;admin_ccmd&#x27;</span>]);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如上，则在post中填入<code>admin_ccmd=*</code></p>
+<hr>
 <p><strong>代码执行</strong>：根据shell中的代码(例如eval或者system)来使用不同的payload<br><strong>非常规路径</strong>：对于<code>网站目录不是常规的/var/www/html</code>的情况下或者<code>网站根目录没有写权限时</code>使用，左框填绝对路径(需要可写)，右框填在网页中的体现。</p>
 <p>例如现在有一个网站结构如下</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">/wwwroot/<br>├── index.php<br>├── upload<br>├── xx<br>└── xxx<br></code></pre></td></tr></table></figure>
 
 <p>并且根目录不可写</p>
 <p>那么就左框需要填写<code>/wwwroot/upload</code>  右框需要填写<code>/upload/</code></p>
+<hr>
+<p>设置中还可以调整使用的shell</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">shell1:一般复杂度。会在写入的所有子目录下繁殖生成不死马<br><br>shell2:比较复杂。会循环感染所有php后缀的文件(写入一句话，密码和参数与不死马是一样的)，同时对不死马传入`_`可以返回所有感染的文件<br><br>shell3:最简单的不死马。没有额外功能<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-34.png" srcset="/img/loading.gif" lazyload alt="shell2"></p>
+<hr>
+<p>设置-&gt;管理禁用函数</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">可以对disable_functions进行配置，使用不同的payload写马<br><br>可以手动输入或者输入一个phpinfo网址(用命令执行的不行)<br></code></pre></td></tr></table></figure>
+
+<p>设置-&gt;查看可用函数</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">可以查看当前可用的函数<br></code></pre></td></tr></table></figure>
+
+
 <h3 id="默认马"><a href="#默认马" class="headerlink" title="默认马"></a>默认马</h3><p>通过Get传参的默认后门写入不死马：</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-6.png" srcset="/img/loading.gif" lazyload></p>
-<p>通过Post传参的默认后门写入不死马：</p>
+<p>通过Post传参的默认后门写入不死马(根目录不可写)：</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-7.png" srcset="/img/loading.gif" lazyload></p>
 <p>通过Header传参的默认后门写入不死马：</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-27.png" srcset="/img/loading.gif" lazyload></p>
-<p>同时会在当前目录下生成一个<code>shell.txt</code>来保存记录</p>
+<p>同时会在当前目录下追加生成一个<code>shell.txt</code>来保存记录</p>
 <h3 id="自定义不死马"><a href="#自定义不死马" class="headerlink" title="自定义不死马"></a>自定义不死马</h3><blockquote>
 <p>使用场景：想写入自己自定义的不死马</p>
 </blockquote>
@@ -464,14 +481,15 @@
 </blockquote>
 <p>勾选后写入的shell的文件名，密码，连接参数随机产生</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-9.png" srcset="/img/loading.gif" lazyload></p>
-<p>会在当前目录下生成<code>random.txt</code>来保存shell记录</p>
+<p>会在当前目录下追加生成<code>random.txt</code>来保存shell记录</p>
 <h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h2><blockquote>
 <p>使用场景：通过不死马或者其他漏洞点进行命令执行</p>
 </blockquote>
 <h3 id="一般shell执行命令"><a href="#一般shell执行命令" class="headerlink" title="一般shell执行命令"></a>一般shell执行命令</h3><p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-10.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="通过随机马执行命令"><a href="#通过随机马执行命令" class="headerlink" title="通过随机马执行命令"></a>通过随机马执行命令</h3><p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-11.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="通过随机马执行命令"><a href="#通过随机马执行命令" class="headerlink" title="通过随机马执行命令"></a>通过随机马执行命令</h3><p>命令也会受到设置中disable_function的影响</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-11.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="获取flag"><a href="#获取flag" class="headerlink" title="获取flag"></a>获取flag</h3><blockquote>
-<p>使用场景：批量获取窗口中的flag（通用。如果在其他页面也获取到了flag也可以使用此功能）</p>
+<p>使用场景：批量获取窗口中的flag（通用。如果在其他页面也获取到了flag也可以使用此功能）<br>生成文件：flag.txt</p>
 </blockquote>
 <p>需要先通过执行<code>cat /flag</code>或<code>curl</code>获取到flag</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-12.png" srcset="/img/loading.gif" lazyload></p>
@@ -481,12 +499,12 @@
 <p>使用场景：批量获取到flag后自动访问提交接口进行提交flag</p>
 </blockquote>
 <p><strong>flag用*占位。多个参数用&amp;分割。注意在设置页中设置线程数或者选择延时（选择延时后线程失效），太大容易丢包</strong></p>
-<p>Get方式：<code>http://192.168.100.103:4444/api/flag?token=xxxx&amp;flag=xxxx</code></p>
+<p>Get方式：<code>http://192.168.100.50:4444/api/flag?token=xxxx&amp;flag=xxxx</code></p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>Post方式：</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-14.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><blockquote>
-<p>使用场景：ssh弱口令</p>
+<p>使用场景：ssh弱口令<br>生成文件：ssh.txt new_ssh.txt</p>
 </blockquote>
 <p>比如裁判下发的ssh地址为<code>x.x.x.x:2222 密码：ctf@awd</code>，就可以知道所有队伍都是这个密码。而且有些比赛不设置防御时间，一开始就能连到其他队伍的ssh（这里就不得不提到某年的宁波市awd）</p>
 <h3 id="ssh扫描"><a href="#ssh扫描" class="headerlink" title="ssh扫描"></a>ssh扫描</h3><p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-15.png" srcset="/img/loading.gif" lazyload></p>
@@ -512,11 +530,12 @@
 <h2 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h2><blockquote>
 <p>使用场景：1：批量发送一些请求，例如批量上传文件。2：提交flag。3：执行简单的pwn攻击</p>
 </blockquote>
-<h3 id="执行自定义请求"><a href="#执行自定义请求" class="headerlink" title="执行自定义请求"></a>执行自定义请求</h3><p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-24.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="执行自定义请求"><a href="#执行自定义请求" class="headerlink" title="执行自定义请求"></a>执行自定义请求</h3><p>比如发现一个文件上传，然后进行批量上传</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-24.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="提交flag-1"><a href="#提交flag-1" class="headerlink" title="提交flag"></a>提交flag</h3><blockquote>
-<p>如果觉得提交flag的参数过于多，又或者根本没有api接口的奇安信平台。就可以抓包后在这提交</p>
+<p>如果觉得提交flag的参数过于多，又或者根本没有api接口的奇安信平台。就可以抓包后在这提交。提交时自动延时1秒</p>
 </blockquote>
-<p>将flag的位置替换成<code>&#123;&#123;&#123;flag&#125;&#125;&#125;</code>即可，程序会自动读取软件运行目录下的flag.txt进行替换</p>
+<p>将flag的位置替换成<code>&#123;&#123;&#123;flag&#125;&#125;&#125;</code>即可，程序会自动读取软件运行目录下的<strong>flag.txt</strong>进行替换</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">GET</span> /api/flag?flag=&#123;&#123;&#123;flag&#125;&#125;&#125; HTTP/<span class="hljs-number">1</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">Host</span>: <span class="hljs-number">192.168.100.50:4444</span><br><span class="hljs-attribute">Cache</span>-Control: max-age=<span class="hljs-number">0</span><br><span class="hljs-attribute">Upgrade</span>-Insecure-Requests: <span class="hljs-number">1</span><br><span class="hljs-attribute">User</span>-Agent: Mozilla/<span class="hljs-number">5</span>.<span class="hljs-number">0</span> (Windows NT <span class="hljs-number">10</span>.<span class="hljs-number">0</span>; Win64; x64) AppleWebKit/<span class="hljs-number">537</span>.<span class="hljs-number">36</span> (KHTML, like Gecko) Chrome/<span class="hljs-number">131.0.0.0</span> Safari/<span class="hljs-number">537</span>.<span class="hljs-number">36</span><br><span class="hljs-attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span>,image/avif,image/webp,image/apng,*/*;q=<span class="hljs-number">0</span>.<span class="hljs-number">8</span>,application/signed-exchange;v=b3;q=<span class="hljs-number">0</span>.<span class="hljs-number">7</span><br><span class="hljs-attribute">Accept</span>-Encoding: gzip, deflate, br<br><span class="hljs-attribute">Accept</span>-Language: zh-CN,zh;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span>,en;q=<span class="hljs-number">0</span>.<span class="hljs-number">8</span><br><span class="hljs-attribute">Cookie</span>: PHPSESSID=<span class="hljs-number">8</span>me6lcna20rpmb9dfb3e6qvha3<br><span class="hljs-attribute">Connection</span>: keep-alive<br><br><br></code></pre></td></tr></table></figure>
 
 
@@ -525,24 +544,24 @@
 <p>可以执行简单的脚本（没有经过实战测试，所以可能有些bug）</p>
 </blockquote>
 <p>例子如下，需要注意的是要选择 安装过脚本中导入的库的 python路径</p>
-<p>如果没有自动识别到，也可以手动更改路径</p>
+<p><del>如果没有自动识别到，也可以手动更改路径</del></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>p=remote(<span class="hljs-string">&#x27;192.168.100.50&#x27;</span>,<span class="hljs-number">10101</span>,timeout=<span class="hljs-number">1</span>)<br><br>context.os=<span class="hljs-string">&#x27;linux&#x27;</span><br>max_=<span class="hljs-number">100</span><br>min_=<span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>	num=(max_+min_)//<span class="hljs-number">2</span><br>	p.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt;&quot;</span>,<span class="hljs-built_in">str</span>(num).encode())<br>	<span class="hljs-keyword">try</span>:<br>		d=p.readline(timeout=<span class="hljs-number">1</span>)<br>	<span class="hljs-keyword">except</span>:<br>		<span class="hljs-keyword">break</span><br>	<span class="hljs-keyword">if</span> <span class="hljs-string">b&#x27;Small&#x27;</span> <span class="hljs-keyword">in</span> d:<br>		<span class="hljs-keyword">if</span> (min_==max_-<span class="hljs-number">1</span>):<br>			p.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt;&quot;</span>,<span class="hljs-built_in">str</span>(max_).encode())<br>			<span class="hljs-keyword">break</span><br><br>		min_=num<br><br>	<span class="hljs-keyword">elif</span> <span class="hljs-string">b&#x27;Big&#x27;</span> <span class="hljs-keyword">in</span> d:<br>		<span class="hljs-keyword">if</span> (min_==max_-<span class="hljs-number">1</span>):<br>			p.sendlineafter(<span class="hljs-string">b&quot;&gt;&gt;&quot;</span>,<span class="hljs-built_in">str</span>(min_).encode())<br>			<span class="hljs-keyword">break</span><br>		max_=num<br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-keyword">break</span><br>	<span class="hljs-built_in">print</span>(max_,min_,d)<br>context.log_level=<span class="hljs-string">&#x27;debug&#x27;</span><br>p.sendline(<span class="hljs-string">b&#x27;cat /flag&#x27;</span>)<br>p.readuntil(<span class="hljs-string">b&#x27;flag&#123;&#x27;</span>)<br><br><br></code></pre></td></tr></table></figure>
 
 
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-30.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后可以使用执行命令页面的获取flag来提取flag（这个功能是通用的，只要有flag出现在屏幕内）</p>
 <h2 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h2><blockquote>
-<p>使用场景：解放双手，自动运行</p>
+<p>使用场景：解放双手，自动运行<br>生成文件：log&#x2F;task_log.txt</p>
 </blockquote>
 <p>在写入不死马，执行命令，提交flag三处可以选择定时执行任务，最短1分钟执行一次</p>
 <p>使用方法与正常操作一样，填完参数后点击定时按钮并选择时间即可</p>
-<p><strong>需要注意的是，目前实现的方式是定时点击按钮，所以填入的内容不要在运行期间更改，否则会执行失败</strong></p>
+<p><strong>需要注意的是，目前实现的方式是定时点击按钮，所以填入的内容不要在运行期间更改，否则可能会执行失败</strong></p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-25.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果想取消可以关闭程序或者在全局设置中点击 <strong>管理定时任务</strong> 按钮</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-26.png" srcset="/img/loading.gif" lazyload></p>
 <p>运行结果会保存在<code>log/task_log.txt</code></p>
 <blockquote>
-<p>注意：此功能应谨慎使用，防止发送网络流量过大！！！注意观察 shell.txt 和 task_log.txt 的内容</p>
+<p>注意：此功能应谨慎使用，防止发送网络流量过大！注意观察 task_log.txt 的内容</p>
 </blockquote>
 <h2 id="工具-amp-设置"><a href="#工具-amp-设置" class="headerlink" title="工具&amp;设置"></a>工具&amp;设置</h2><blockquote>
 <p>使用场景：base64，url的编码与解码，行去重与清屏</p>
@@ -552,9 +571,10 @@
 <p>全局设置中可以切换线程数量和超时时间，并且可以选择是否记录错误日志</p>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-19.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><blockquote>
-<p>使用场景：在离线环境下提供一些命令，仅供参考！！</p>
+<p>使用场景：在离线环境下提供一些命令，仅供参考！！<br>生成文件：note.txt</p>
 </blockquote>
 <p><img src="/img/%E9%A1%B9%E7%9B%AE/rah-28.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中自定义按钮可以自己记录一些临时的路径，密码之类的信息，会<strong>实时</strong>保存在当前目录下的note.txt</p>
 <h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>V1.0.0：初始版本<br>V1.1.0：添加多种扫描方式，优化代码逻辑<br>V1.2.0：添加随机不死马功能，修复诺干bug</p>
 <p>V2.1.0：整体70%代码重构(扫描速度较上一代提升11倍)。新增ssh模块和设置模块<br>V2.1.1：优化不死马的判断逻辑<br>V2.2.0：新增局域网多人聊天模块<br>V2.2.1：修复了若干BUG<br>V2.2.2：更新ui，新增自定义请求包模块<br>V2.2.3：添加全局超时时间设置，优化写入不死马模块(区分代码执行和命令执行，适应tp框架路径)</p>
 <p>V3.0.0：新增一机一码，添加记录错误日志功能，优化写入不死马&#x2F;执行命令的逻辑<br>V3.0.1：部分代码结构优化，添加定时任务功能<br>V3.1.0：优化ip生成功能，添加head执行命令功能，优化复杂路径的适配，优化冗余代码<br>V3.1.1：优化自定义模块(集成简单的pwn批量脚本执行&#x2F;自识别flag)，新增笔记模块，优化总体使用体验<br>V3.1.2：添加进度提示，增加新logo<br>V3.1.3：修复一个严重BUG</p>
@@ -629,7 +649,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年6月5日</div>
+          <div>2025年7月2日</div>
         </div>
       
       

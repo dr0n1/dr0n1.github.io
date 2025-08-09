@@ -46,8 +46,12 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/daili-11.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/daili-12.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/daili-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/daili-17.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/daili-18.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/daili-19.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/daili-20.png">
 <meta property="article:published_time" content="2024-10-10T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-08-09T12:11:36.968Z">
+<meta property="article:modified_time" content="2025-08-09T13:25:47.015Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="内网渗透">
@@ -315,7 +319,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.9k 字
         
       </span>
     
@@ -326,7 +330,7 @@
         
         
         
-          29 分钟
+          30 分钟
         
       </span>
     
@@ -635,6 +639,17 @@
 <p><img src="/img/summary/daili-12.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后新增socks代理即可</p>
 <p><img src="/img/summary/daili-13.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="linux下全局代理"><a href="#linux下全局代理" class="headerlink" title="linux下全局代理"></a>linux下全局代理</h1><p>在windows下可以用proxifier轻松实现进程级的全局代理</p>
+<p>但是在linux下会有很多命令或者软件的流量不走proxychains的情况出现</p>
+<p>这里可以用clash解决</p>
+<p>首先在service mode点击安装，旁边的地球变绿就ok了</p>
+<p><img src="/img/summary/daili-17.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后在profiles的地方编辑配置文件</p>
+<p><img src="/img/summary/daili-18.png" srcset="/img/loading.gif" lazyload></p>
+<p>选中自己配置的选项后就能实现全局代理了，注意用tun mode</p>
+<p><img src="/img/summary/daili-19.png" srcset="/img/loading.gif" lazyload></p>
+<p>包括ping命令等都可以走代理了</p>
+<p><img src="/img/summary/daili-20.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <p>参考文章：</p>
 <p><a target="_blank" rel="noopener" href="http://myblog.ac.cn/archives/2023-01-01-15-38-00">Frp内网多层隧道搭建</a><br><a target="_blank" rel="noopener" href="https://www.geekby.site/2020/08/%E5%86%85%E7%BD%91%E9%9A%A7%E9%81%93%E7%A9%BF%E9%80%8F/#1-%E5%9C%BA%E6%99%AF%E4%BB%8B%E7%BB%8D">内网隧道穿透</a><br><a target="_blank" rel="noopener" href="https://fushuling.com/index.php/2023/09/21/%e5%86%85%e7%bd%91%e4%bb%a3%e7%90%86%e6%90%ad%e5%bb%ba/">内网代理搭建</a><br><a target="_blank" rel="noopener" href="https://3nd.xyz/post/2020-05-25-AD-Pentest-Hidden-Tunnel/#%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF">内网渗透测试 &lt;3&gt; 隧道技术</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/yUs0Tc3VDCoskc0dSJY1GQ">【Tips+1】IOX 多层网络正向穿透</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/9mcF_Snk-loPO-ApI5ECag">【Tips+1】IOX 反向穿透四层网段</a></p>

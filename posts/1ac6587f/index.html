@@ -23,12 +23,12 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&amp;#x27;aaa&amp;#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、&#x2F;g 表示">
+    <meta name="description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&#x27;aaa&#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、&#x2F;g 表示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php_trick">
 <meta property="og:url" content="https://www.dr0n.top/posts/1ac6587f/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&amp;#x27;aaa&amp;#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、&#x2F;g 表示">
+<meta property="og:description" content="记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&#x27;aaa&#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd&#x3D;&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、&#x2F;g 表示">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-09T04:00:00.000Z">
 <meta property="article:modified_time" content="2025-07-27T09:50:42.955Z">
@@ -131,7 +131,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -398,7 +398,7 @@
 
 <p>可以利用<code>__halt_compiler();</code>中断编译器的执行，不让eval报错</p>
 <p><code>$cmd=&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;;</code></p>
-<h1 id="preg-replace-x2F-e-模式"><a href="#preg-replace-x2F-e-模式" class="headerlink" title="preg_replace &#x2F;e 模式"></a>preg_replace &#x2F;e 模式</h1><p>一部分修正符的含义</p>
+<h1 id="preg-replace-e-模式"><a href="#preg-replace-e-模式" class="headerlink" title="preg_replace &#x2F;e 模式"></a>preg_replace &#x2F;e 模式</h1><p>一部分修正符的含义</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">1、/g 表示该表达式将用来在输入字符串中查找所有可能的匹配，返回的结果可以是多个。如果不加/g最多只会匹配一个<br>2、/i 表示匹配的时候不区分大小写，这个跟其它语言的正则用法相同<br>3、/m 表示多行匹配。什么是多行匹配呢？就是匹配换行符两端的潜在匹配。影响正则中的^$符号<br>4、/s 与/m相对，单行模式匹配。<br>5、/e 可执行模式，此为PHP专有参数，例如preg_replace函数。<br>6、/x 忽略空白模式。<br></code></pre></td></tr></table></figure>
 
 

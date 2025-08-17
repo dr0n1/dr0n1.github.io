@@ -23,19 +23,25 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="记录在比赛和靶场中遇到的提权方法 推荐本地部署一个GTFOBins用来查询 suid 提权 SUID是一种特殊权限，可以让调用者在执行过程中暂时获得该文件拥有者的权限。如果可以找到并运行root用户所拥有的SUID的文件，那么就可以在运行该文件的时候获得root用户权限  查找当前系统上文件属主为 root 并且拥有 SUID 权限的可执行文件 1234find &#x2F; -user root -per">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux提权笔记">
 <meta property="og:url" content="https://www.dr0n.top/posts/fcb3a8d7/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="记录在比赛和靶场中遇到的提权方法 推荐本地部署一个GTFOBins用来查询 suid 提权 SUID是一种特殊权限，可以让调用者在执行过程中暂时获得该文件拥有者的权限。如果可以找到并运行root用户所拥有的SUID的文件，那么就可以在运行该文件的时候获得root用户权限  查找当前系统上文件属主为 root 并且拥有 SUID 权限的可执行文件 1234find &#x2F; -user root -per">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-09T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-07-27T09:33:08.679Z">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/sudo-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/sudo-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/CVE-2019-14287-1.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/CVE-2019-14287-2.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/linux/CVE-2019-14287-3.jpg">
+<meta property="article:published_time" content="2025-05-09T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-17T05:40:48.227Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/linux/sudo-1.png">
   
   
   
@@ -130,7 +136,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -318,8 +324,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-09 12:00" pubdate>
-          2024年10月9日 中午
+        <time datetime="2025-05-09 12:00" pubdate>
+          2025年5月9日 中午
         </time>
       </span>
     
@@ -330,7 +336,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          111 字
+          320 字
         
       </span>
     
@@ -341,7 +347,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -390,22 +396,37 @@
             <h1 id="seo-header">linux提权笔记</h1>
             
             
-              
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="2261915eb2e47a30e7f7a5a816767e36e089f98bc002d4e8e99900c5bd893504">d53f41d2c7ee3b58c8999934d306edce26818fb1c2ebd9b89b87e60924dfef36552e0686e1961860047cf68e119d4096ebc8437b58eb4b4ffe813801a8ca5ec2484e6ea75a806c52c7da3dbcd5a439744503342761877e1795baa96a0639f0ad96a978328f98407e5b697c8f8fd7bea75632a63ca00b90b3f42d69e622eb7d6a1da71defabee1979e5a7431cafcfd6af0e2a8da8d5da15db62501e68cbd225066c5f037e89b4afd2200686770e2b13964e87757d68096cb6f0c5debbf1428fd32fe2c24732b5fc5021c4f7b13a907f57036673b0744132ba1f6dfc7ade6da017a69596720079b7fc2d9d41306f931783b83d95ecc55c65d73080c7e401db47feef11e5257e309373f116dea6906e2f00d1d5bc5723c8f23513b83f5c4eb4bbdcbbb24be1172bdc64c8564948734bdedd92c586402473539e4ef194de3d56a3cf6ab6cc9f0d9dd73c38fba568e665e5268d9d1707d222377fadb888842f439ed65d7316ce639c5d166f3a88f66f2b18060a4f3da0164afbc96092d998c1b3a2c2200d4f388885abed927593109b444fb05f0e38863167d954ecd82c62cab9e68ba73325c130ce11fc41c9d0b6f7df0fd833e01f332e20d15be2956ff9051b68c82d0531fe3faefc8f53b53ce2c7291654034ae80774b8a187e50c67515bd974aec9a152b38fa603aa1ca62b5ac9b52f08edf1bcce5aead12e63c4c0f22ec4298ab467531e0b5296a7e29262050de1703892a1ab2575b69c3273bcd7277535c21c2d31550e520b51f58be7424004e43ba19c7bdf2ce07b90855b66772788d5ec4da388063a319a25b5d1cf8435ea072bc78e2997ccae4b04f29425e092b78111c567c25e2e2709bcedcb6fae312cb7f2e5b027f22231f7d06aded1f3dfcf58369da9320e700e6e03b47f3741c0547471a7fc904852e660022e8556bca813e781ab628383e41a8a33e2cf4f0e6d90bb1a79a4cb58795b7946257ab7031c7321038082acf96b7c5e20815f1df1fa5d459432ff4a2bd90c6f60e8e9647c10c13497f7b0d4ef8ddb77ae14578baf8d17986ac09de0f4f079f521c5da738f50d55219d24ca7cc138a11ab44262ee7d421af265aa5d91ffe27740f933bddd9c2bba02539</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-              
+              <div class="markdown-body">
+                
+                <p>记录在比赛和靶场中遇到的提权方法</p>
+<p>推荐本地部署一个<a target="_blank" rel="noopener" href="https://github.com/GTFOBins/GTFOBins.github.io">GTFOBins</a>用来查询</p>
+<h1 id="suid-提权"><a href="#suid-提权" class="headerlink" title="suid 提权"></a>suid 提权</h1><blockquote>
+<p>SUID是一种特殊权限，可以让调用者在执行过程中暂时获得该文件拥有者的权限。如果可以找到并运行root用户所拥有的SUID的文件，那么就可以在运行该文件的时候获得root用户权限</p>
+</blockquote>
+<p>查找当前系统上文件属主为 root 并且拥有 SUID 权限的可执行文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -user root -perm -4000 -<span class="hljs-built_in">print</span> 2&gt; result.txt<br>find / -user root -perm -4000 -<span class="hljs-built_in">print</span> 2&gt;/dev/null<br>find / -perm -u=s -<span class="hljs-built_in">type</span> f 2&gt;/dev/null<br>find / -user root -perm -4000 -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">ls</span> &#123;&#125; \; 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
 
-              
+<p>找到命令后可以在GTFOBins查找用法</p>
+<h1 id="sudo-提权"><a href="#sudo-提权" class="headerlink" title="sudo 提权"></a>sudo 提权</h1><h2 id="权限分配不当"><a href="#权限分配不当" class="headerlink" title="权限分配不当"></a>权限分配不当</h2><blockquote>
+<p>sudo（super user do）是linux系统中用于管理用户权限的工具，允许普通用户在无需切换到超级用户的情况下以root身份执行命令，通常，在使用sudo命令时，用户需要输入自己的密码验证自己是否有权限使用</p>
+</blockquote>
+<p>查看可利用的sudo权限工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -l<br></code></pre></td></tr></table></figure>
+
+<p>然后在gtfobins查询利用方法</p>
+<p>例子：</p>
+<p><img src="/img/linux/sudo-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/linux/sudo-2.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="CVE-2019-14287"><a href="#CVE-2019-14287" class="headerlink" title="CVE-2019-14287"></a>CVE-2019-14287</h2><p>1.8.28之前的sudo版本均会受到影响</p>
+<p>现在的用户alice没权限看flag文件</p>
+<p><img src="/img/linux/CVE-2019-14287-1.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>查看sudo版本</p>
+<p><img src="/img/linux/CVE-2019-14287-2.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>符合利用条件，payload：<code>sudo -u#-1 /bin/bash</code></p>
+<p><img src="/img/linux/CVE-2019-14287-3.jpg" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
             
             <hr/>
             <div>
@@ -463,13 +484,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月9日</div>
+          <div>2025年5月9日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年7月27日</div>
+          <div>2025年8月17日</div>
         </div>
       
       
@@ -512,9 +533,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/52375b43/" title="内网渗透学习(代理篇)">
+                      <a href="/posts/5a3650d1/" title="春秋云境 Initial">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内网渗透学习(代理篇)</span>
+                        <span class="hidden-mobile">春秋云境 Initial</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -522,8 +543,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/da856207/" title="2024年“羊城杯”粤港澳大湾区网络安全大赛 wp">
-                        <span class="hidden-mobile">2024年“羊城杯”粤港澳大湾区网络安全大赛 wp</span>
+                      <a href="/posts/74a23a1b/" title="第八届西湖论剑中国杭州网络安全安全技能大赛初赛 部分wp">
+                        <span class="hidden-mobile">第八届西湖论剑中国杭州网络安全安全技能大赛初赛 部分wp</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -757,23 +778,6 @@
   
 
 
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
 
 
   

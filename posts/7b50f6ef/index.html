@@ -23,12 +23,12 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&amp;#x27;envs&amp;#x27;] as $key &#x3D;&gt; $val) &amp;#123;    putenv(&quot;&amp;#123;$key&amp;#125;&#x3D;&amp;#123;$val&amp;#">
+    <meta name="description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&#x27;envs&#x27;] as $key &#x3D;&gt; $val) &#123;    putenv(&quot;&#123;$key&#125;&#x3D;&#123;$val&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="环境变量注入">
 <meta property="og:url" content="https://www.dr0n.top/posts/7b50f6ef/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&amp;#x27;envs&amp;#x27;] as $key &#x3D;&gt; $val) &amp;#123;    putenv(&quot;&amp;#123;$key&amp;#125;&#x3D;&amp;#123;$val&amp;#">
+<meta property="og:description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&#x27;envs&#x27;] as $key &#x3D;&gt; $val) &#123;    putenv(&quot;&#123;$key&#125;&#x3D;&#123;$val&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/linux/linux-sh-2.png">
@@ -139,7 +139,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 

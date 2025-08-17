@@ -133,7 +133,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -404,7 +404,7 @@
 <p>经过<code>Base64Url</code>编码后构成了<code>JWT</code>的第一部分</p>
 <h2 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h2><p><code>payload</code>就是存放有效信息的地方</p>
 <p>示例</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;sub&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234567890&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;admin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;sub&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234567890&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;admin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>它的声明有三类：已注册声明（Registered claims），公共声明（public claims）， 私人声明（private claims）</p>
 <p>其中已注册声明有7个默认字段，都由官方所定义(<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc7519#section-4.1">参考rfc7519</a>)，但并不都是必需的</p>
@@ -429,7 +429,7 @@
 <h2 id="签名密钥爆破"><a href="#签名密钥爆破" class="headerlink" title="签名密钥爆破"></a>签名密钥爆破</h2><p>JWT使用算法对<code>header</code>和<code>payload</code>进行加密，如果我们可以爆破出加密密钥，那么也就可以随意修改<code>token</code>了</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Ch1ngg/JWTPyCrack">Github-jwt爆破脚本</a></p>
 <p><img src="/img/summary/jwt-1.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="非对称密码算法-x3D-gt-对称密码算法-CVE-2016-10555"><a href="#非对称密码算法-x3D-gt-对称密码算法-CVE-2016-10555" class="headerlink" title="非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)"></a>非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)</h2><p>JWT的签名加密算法有两种，对称加密算法和非对称加密算法</p>
+<h2 id="非对称密码算法-对称密码算法-CVE-2016-10555"><a href="#非对称密码算法-对称密码算法-CVE-2016-10555" class="headerlink" title="非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)"></a>非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)</h2><p>JWT的签名加密算法有两种，对称加密算法和非对称加密算法</p>
 <p>对称加密算法比如HS256使用密钥为所有消息进行签名和验证<br>非对称加密算法比如RS256使用私钥对消息进行签名并使用公钥进行身份验证</p>
 <p>如果我们获取到了公钥，可以将头部中的算法修改从<code>RS256</code>更改为<code>HS256</code>，这样后端代码就会使用<code>RSA</code>公钥+<code>HS256</code>算法进行签名验证</p>
 <p>js代码实现例子</p>

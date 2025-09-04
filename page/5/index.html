@@ -328,6 +328,132 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/posts/729e10b0/" target="_self">
+          RCE总结-命令执行
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/729e10b0/" target="_self">
+        <div>
+          部分题目环境&amp;脚本&amp;姿势来自https://ctf.show/ 命令执行函数主要有6种函数可以执行系统命令，分别是system,passthru,exec,shell_exec,popen,pcntl_exec 参数值可控12$a=$_POST[&#x27;a&#x27;];system(&quot;ls &quot;.$a);  直接用;将命令分割成两部分执行 或者用&amp;&
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-10 11:00" pubdate>
+              2023-01-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/rce/">#rce</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/40e1eb99/" target="_self">
+          JWT常见安全问题学习总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/40e1eb99/" target="_self">
+        <div>
+          Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader用来声明token的类型和签名用的算法
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-05 10:00" pubdate>
+              2023-01-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/JWT/">#JWT</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/posts/7f0345c3/" target="_self">
           2022HECTF-WP
         </a>
@@ -377,9 +503,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/HECTF/">#HECTF</a>
-            
               <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
+            
+              <a href="/tags/HECTF/">#HECTF</a>
             
           </div>
         
@@ -442,9 +568,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
-            
               <a href="/tags/%E5%BC%BA%E5%9B%BD%E6%9D%AF/">#强国杯</a>
+            
+              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
             
           </div>
         
@@ -838,141 +964,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/1ac6587f/" target="_self">
-          php_trick
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/1ac6587f/" target="_self">
-        <div>
-          记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&#x27;aaa&#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd=&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、/g 表示
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-09 12:00" pubdate>
-              2022-08-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/php/" class="category-chain-item">php</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-            
-              <a href="/tags/php/">#php</a>
-            
-              <a href="/tags/trick/">#trick</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/3ba7d05a/" target="_self">
-          奇安信CTF基础培训题目wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/3ba7d05a/" target="_self">
-        <div>
-          第一次当ctf讲师^_^ 7.12-7.19 week17.19-7.26 week27.26-8.02 week3 webWeb-2-hack使用dirsearch扫描后台，发现存在shell.php  使用burp等工具抓包爆破密码，得到密码hack  web-3-web821234567891011121314151617181920&lt;?phphighlight_file(__FILE
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-19 20:00" pubdate>
-              2022-07-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
-            
-              <a href="/tags/%E5%A5%87%E5%AE%89%E4%BF%A1/">#奇安信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

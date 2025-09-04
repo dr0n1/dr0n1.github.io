@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-3.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-14.png">
 <meta property="article:published_time" content="2024-10-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-04T16:25:05.544Z">
+<meta property="article:modified_time" content="2025-09-04T16:43:25.523Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="提权">
@@ -646,12 +646,11 @@
 <h2 id="SweetPotato"><a href="#SweetPotato" class="headerlink" title="SweetPotato"></a>SweetPotato</h2><p><a target="_blank" rel="noopener" href="https://github.com/CCob/SweetPotato">https://github.com/CCob/SweetPotato</a><br><a target="_blank" rel="noopener" href="https://github.com/uknowsec/SweetPotato">https://github.com/uknowsec/SweetPotato</a></p>
 <p>SweetPotato 集成了多种触发 NTLM 认证的方式（COM、WinRM、Spoolsv），相当于 JuicyPotato &#x2F; PrintSpoofer 的集合版，可用于 Windows 7 至 Windows 10 &#x2F; Windows Server 2019 的提权</p>
 <h3 id="原理-4"><a href="#原理-4" class="headerlink" title="原理"></a>原理</h3><p>在 Windows 10 1909 测试中，发现 BITS 服务启动时会尝试向本地 WinRM（5985 端口）发起 NTLM 认证，即使系统默认禁用了 WinRM<br>监听本机 5985 端口可捕获到 NTLM Negotiate 消息，表明 BITS 以 <strong>SYSTEM 身份</strong>发起认证。</p>
-<p>利用思路：通过实现一个伪造的 WinRM 服务端完成 NTLM 的三个Type认证流程</p>
-<p>完成后即可通过 AcceptSecurityContext() 与 QuerySecurityContextToken() 获取 SYSTEM Token，并利用 CreateProcessWithTokenW() 或 CreateProcessAsUser() 提升权限</p>
+<p>利用思路：通过实现一个伪造的 WinRM 服务端完成 NTLM 的三个Type认证流程，完成后即可通过 AcceptSecurityContext() 与 QuerySecurityContextToken() 获取 SYSTEM Token，并利用 CreateProcessWithTokenW() 或 CreateProcessAsUser() 提升权限</p>
 <h3 id="BITS-触发方式"><a href="#BITS-触发方式" class="headerlink" title="BITS 触发方式"></a>BITS 触发方式</h3><p>无需复杂的 IStorageInterface 伪造，仅需调用 COM 接口触发 BITS：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">triggerBits</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>&#123;<br>    <span class="hljs-type">bool</span> status = <span class="hljs-literal">false</span>;<br>    HRESULT result = <span class="hljs-number">-1</span>;<br>    CLSID clsid;<br>    IUnknown* unknown1 = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-built_in">CoInitialize</span>(<span class="hljs-literal">nullptr</span>);<br>    <span class="hljs-built_in">CLSIDFromString</span>(<span class="hljs-built_in">OLESTR</span>(<span class="hljs-string">&quot;&#123;4991d34b-80a1-4291-83b6-3328366b9097&#125;&quot;</span>), &amp;clsid);<br>    result = <span class="hljs-built_in">CoCreateInstance</span>(clsid, <span class="hljs-literal">NULL</span>, CLSCTX_LOCAL_SERVER, IID_IUnknown, (<span class="hljs-type">void</span>**)&amp;unknown1);<br>    <span class="hljs-keyword">if</span> (result == S_OK) &#123;<br>        status = <span class="hljs-literal">true</span>;<br>        unknown1-&gt;<span class="hljs-built_in">Release</span>();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;CoCreateInstance failed with error 0x%x\n&quot;</span>, result);<br>        status = <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-built_in">CoUninitialize</span>();<br>    <span class="hljs-keyword">return</span> status;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>注意：调用 Release() 至关重要，否则对象引用计数不减少，BITS 服务无法在超时后退出。</p>
+<p>注意：调用 Release() 至关重要，否则对象引用计数不减少，BITS 服务无法在超时后退出</p>
 <h3 id="限制条件"><a href="#限制条件" class="headerlink" title="限制条件"></a>限制条件</h3><ul>
 <li>WinRM 必须 <strong>禁用</strong>（Windows 10 默认禁用，但 Windows Server 默认启用）</li>
 <li>需要 Impersonation Privilege（常见于服务账户）</li>

@@ -23,16 +23,16 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="凭证Credentials 转储dumping DCSyncCracking暴力破解Bruteforcing 密码喷洒 （Password Spraying） 在常规的爆破中，我们都是先用很多密码去碰撞一个账号，这样很容易导致账号被锁定。而密码喷洒就是先用一个密码去碰撞很多账号，此方法能有效的避免账号被锁定的问题  DomainPasswordSpray 是用 PowerShell 编写的工具，用">
+    <meta name="description" content="密码喷洒 （Password Spraying） 在常规的爆破中，我们都是先用很多密码去碰撞一个账号，这样很容易导致账号被锁定。而密码喷洒就是先用一个密码去碰撞很多账号，此方法能有效的避免账号被锁定的问题  DomainPasswordSpray 是用 PowerShell 编写的工具，用于对域用户执行密码喷洒攻击。默认情况下，它将利用 LDAP 从域中导出用户列表，然后扣掉被锁定的用户，再用固定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="域渗透学习(Credentials篇)">
 <meta property="og:url" content="https://www.dr0n.top/posts/e0ff8995/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="凭证Credentials 转储dumping DCSyncCracking暴力破解Bruteforcing 密码喷洒 （Password Spraying） 在常规的爆破中，我们都是先用很多密码去碰撞一个账号，这样很容易导致账号被锁定。而密码喷洒就是先用一个密码去碰撞很多账号，此方法能有效的避免账号被锁定的问题  DomainPasswordSpray 是用 PowerShell 编写的工具，用">
+<meta property="og:description" content="密码喷洒 （Password Spraying） 在常规的爆破中，我们都是先用很多密码去碰撞一个账号，这样很容易导致账号被锁定。而密码喷洒就是先用一个密码去碰撞很多账号，此方法能有效的避免账号被锁定的问题  DomainPasswordSpray 是用 PowerShell 编写的工具，用于对域用户执行密码喷洒攻击。默认情况下，它将利用 LDAP 从域中导出用户列表，然后扣掉被锁定的用户，再用固定">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-12.png">
 <meta property="article:published_time" content="2025-04-28T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-04T16:44:24.558Z">
+<meta property="article:modified_time" content="2025-09-06T12:03:42.820Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="内网渗透">
@@ -334,7 +334,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          304 字
+          293 字
         
       </span>
     
@@ -345,7 +345,7 @@
         
         
         
-          3 分钟
+          2 分钟
         
       </span>
     
@@ -396,10 +396,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="凭证"><a href="#凭证" class="headerlink" title="凭证"></a>凭证</h1><p>Credentials</p>
-<h2 id="转储"><a href="#转储" class="headerlink" title="转储"></a>转储</h2><p>dumping</p>
-<h3 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h3><h2 id="Cracking"><a href="#Cracking" class="headerlink" title="Cracking"></a>Cracking</h2><h2 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h2><p>Bruteforcing</p>
-<h3 id="密码喷洒-（Password-Spraying）"><a href="#密码喷洒-（Password-Spraying）" class="headerlink" title="密码喷洒 （Password Spraying）"></a>密码喷洒 （Password Spraying）</h3><blockquote>
+                <h3 id="密码喷洒-（Password-Spraying）"><a href="#密码喷洒-（Password-Spraying）" class="headerlink" title="密码喷洒 （Password Spraying）"></a>密码喷洒 （Password Spraying）</h3><blockquote>
 <p>在常规的爆破中，我们都是先用很多密码去碰撞一个账号，这样很容易导致账号被锁定。而密码喷洒就是先用一个密码去碰撞很多账号，此方法能有效的避免账号被锁定的问题</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://github.com/dafthack/DomainPasswordSpray">DomainPasswordSpray</a> 是用 PowerShell 编写的工具，用于对域用户执行密码喷洒攻击。默认情况下，它将利用 LDAP 从域中导出用户列表，然后扣掉被锁定的用户，再用固定密码进行密码喷洒</p>
@@ -412,7 +409,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 crackmapexec smb 172.22.8.0/24 -u <span class="hljs-string">&#x27;Aldrich&#x27;</span> -p <span class="hljs-string">&#x27;Ald@rLMWuy7Z!#&#x27;</span> -d xiaorang.lab 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-12.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="冒充"><a href="#冒充" class="headerlink" title="冒充"></a>冒充</h2><p>Impersonation</p>
 
                 
               </div>
@@ -483,7 +479,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月5日</div>
+          <div>2025年9月6日</div>
         </div>
       
       

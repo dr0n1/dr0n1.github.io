@@ -37,11 +37,11 @@
     <category term="wp" scheme="https://www.dr0n.top/categories/wp/"/>
     
     
+    <category term="awdp" scheme="https://www.dr0n.top/tags/awdp/"/>
+    
     <category term="wp" scheme="https://www.dr0n.top/tags/wp/"/>
     
     <category term="宁波" scheme="https://www.dr0n.top/tags/%E5%AE%81%E6%B3%A2/"/>
-    
-    <category term="awdp" scheme="https://www.dr0n.top/tags/awdp/"/>
     
     <category term="2025竞赛" scheme="https://www.dr0n.top/tags/2025%E7%AB%9E%E8%B5%9B/"/>
     
@@ -421,11 +421,11 @@
     
     <category term="总结" scheme="https://www.dr0n.top/tags/%E6%80%BB%E7%BB%93/"/>
     
-    <category term="disable_functions" scheme="https://www.dr0n.top/tags/disable-functions/"/>
-    
     <category term="php" scheme="https://www.dr0n.top/tags/php/"/>
     
     <category term="bypass" scheme="https://www.dr0n.top/tags/bypass/"/>
+    
+    <category term="disable_functions" scheme="https://www.dr0n.top/tags/disable-functions/"/>
     
     <category term="pwn" scheme="https://www.dr0n.top/tags/pwn/"/>
     
@@ -452,9 +452,9 @@
     <category term="wp" scheme="https://www.dr0n.top/categories/wp/"/>
     
     
-    <category term="wp" scheme="https://www.dr0n.top/tags/wp/"/>
-    
     <category term="awdp" scheme="https://www.dr0n.top/tags/awdp/"/>
+    
+    <category term="wp" scheme="https://www.dr0n.top/tags/wp/"/>
     
     <category term="ciscn" scheme="https://www.dr0n.top/tags/ciscn/"/>
     

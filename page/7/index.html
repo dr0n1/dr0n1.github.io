@@ -65,7 +65,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-BLJ2TG3Q9T"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -95,13 +95,13 @@
     <!-- Google tag (gtag.js) -->
     <script async>
       if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-BLJ2TG3Q9T", function() {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-456TDFZC89", function() {
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
           }
           gtag('js', new Date());
-          gtag('config', 'G-BLJ2TG3Q9T');
+          gtag('config', 'G-456TDFZC89');
         });
       }
     </script>
@@ -328,15 +328,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/e6acd4f1/" target="_self">
-          第二届vecctf-wp
+        <a href="/posts/7b50f6ef/" target="_self">
+          环境变量注入
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/e6acd4f1/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/7b50f6ef/" target="_self">
         <div>
-          misczip-guessing打开压缩包发现提示password=.......py 进行6位密码爆破，得到密码3a1b6c 解压得到flag  flag{fa8d910600a5467d9d2f433f2bba4c80}  Spiderman修改高度，发现字符串README：HAHAyoufoundIT binwalk分离出一个带密码的压缩包 压缩包中含有一个名为README.txt的文件将H
+          这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&#x27;envs&#x27;] as $key =&gt; $val) &#123;    putenv(&quot;&#123;$key&#125;=&#123;$val&#
         </div>
       </a>
 
@@ -344,8 +344,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-21 15:00" pubdate>
-              2022-05-21
+            <time datetime="2022-08-25 15:00" pubdate>
+              2022-08-25
             </time>
           </div>
         
@@ -360,7 +360,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  <a href="/categories/linux/" class="category-chain-item">linux</a>
   
   
 
@@ -375,11 +375,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/wp/">#wp</a>
+              <a href="/tags/php/">#php</a>
             
-              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
-            
-              <a href="/tags/vec/">#vec</a>
+              <a href="/tags/bash/">#bash</a>
             
           </div>
         
@@ -393,15 +391,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/5ae46a89/" target="_self">
-          ctf平台搭建与出题指南
+        <a href="/posts/1ac6587f/" target="_self">
+          php_trick
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/5ae46a89/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/1ac6587f/" target="_self">
         <div>
-          ctf平台搭建目前最常见的平台是CTFd和GZCTF CTFd使用帆哥的一键部署脚本（centos7和ubuntu20上测试成功）sh &lt;(curl -s https://raw.githubusercontent.com/pwnthebox/ctfd-auto-deploy/master/install.sh)  2024.5.13帆哥github被封了，重构&#x2F;优化了一下自动部署
+          记录php下的小技巧和特性 命令执行中断报错1eval($cmd.&#x27;aaa&#x27;);  可以利用__halt_compiler();中断编译器的执行，不让eval报错 $cmd=&#39;system(&quot;whoami&quot;);__halt_compiler();&#39;; preg_replace &#x2F;e 模式一部分修正符的含义 1234561、/g 表示
         </div>
       </a>
 
@@ -409,138 +407,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-05 12:00" pubdate>
-              2022-05-05
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/docker/">#docker</a>
-            
-              <a href="/tags/%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/">#平台搭建部署</a>
-            
-              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">#自动化</a>
-            
-              <a href="/tags/%E8%87%AA%E7%A0%94%E5%B7%A5%E5%85%B7/">#自研工具</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/564e35d3/" target="_self">
-          flask算pin
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/564e35d3/" target="_self">
-        <div>
-          flask在开启debug模式后会启动调试模式，一般为/console，需要正确的PIN码才能进入 python3.8和python3.6生成PIN的算法不同 算法代码在site-packages/werkzeug/debug/__init__.py 需要的信息    代码中 文件中    username getpass.getuser() &#x2F;etc&#x2F;passwd   mod
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-25 20:44" pubdate>
-              2022-03-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/python/" class="category-chain-item">python</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/flask/">#flask</a>
-            
-              <a href="/tags/python/">#python</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/3e5549a6/" target="_self">
-          php绕过open_basedir
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/3e5549a6/" target="_self">
-        <div>
-          open_basedir一般用来限制跨目录读写文件 php绕过open_basedir是一个古老的漏洞，在2009年左右就被提出来了 glob:&#x2F;&#x2F;opendir()函数为打开目录句柄，readdir()函数为从目录句柄中读取条目。 这里结合两个函数来列举根目录中的文件： 1234567$a=&quot;glob:///*&quot;;if ( $b = opendir($a)
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-25 15:00" pubdate>
-              2022-03-25
+            <time datetime="2022-08-09 12:00" pubdate>
+              2022-08-09
             </time>
           </div>
         
@@ -570,13 +438,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/php/">#php</a>
-            
               <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
             
-              <a href="/tags/open-basedir/">#open_basedir</a>
+              <a href="/tags/php/">#php</a>
             
-              <a href="/tags/bypass/">#bypass</a>
+              <a href="/tags/trick/">#trick</a>
             
           </div>
         
@@ -590,15 +456,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/e2c67dcf/" target="_self">
-          HSC1th 2022-wp
+        <a href="/posts/3ba7d05a/" target="_self">
+          奇安信CTF基础培训题目wp
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/e2c67dcf/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/3ba7d05a/" target="_self">
         <div>
-          miscSign-inflag&#123;HSC_W3LC0M3&#125; DORAEMON 哆啦A梦把泡好的QR放进口袋后，用六位数字把自己放好了。你能找到它吗？  压缩包先暴力破解出密码为376852 得到一张图片，发现高度不对劲，增加一点高度，看到破损的二维码把定位符补上，扫码得到flag  汝闻,人言否看到压缩包的50 4B 01 02，但是没找到头，搜了一下发现头被改成了4B 50结尾
+          第一次当ctf讲师^_^ 7.12-7.19 week17.19-7.26 week27.26-8.02 week3 webWeb-2-hack使用dirsearch扫描后台，发现存在shell.php  使用burp等工具抓包爆破密码，得到密码hack  web-3-web821234567891011121314151617181920&lt;?phphighlight_file(__FILE
         </div>
       </a>
 
@@ -606,8 +472,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-20 08:30" pubdate>
-              2022-02-20
+            <time datetime="2022-07-19 20:00" pubdate>
+              2022-07-19
             </time>
           </div>
         
@@ -641,7 +507,7 @@
             
               <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
             
-              <a href="/tags/HSC/">#HSC</a>
+              <a href="/tags/%E5%A5%87%E5%AE%89%E4%BF%A1/">#奇安信</a>
             
           </div>
         
@@ -655,15 +521,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/4ee67181/" target="_self">
-          pwnthebox-内网渗透(入门)
+        <a href="/posts/fc877f48/" target="_self">
+          2022强国杯技术技能大赛初赛wp
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/4ee67181/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/fc877f48/" target="_self">
         <div>
-          使用到的工具kaliburpfirefoxreGeorgproxychainsnmap冰蝎蚁剑 题目描述根据描述得知有两层，因为是demo题目，所以给出了漏洞，降低了难度，实际上的题目漏洞点是不知道的，需要自己发掘  解题第一层apache解析漏洞上传1.php.jpg即可getshell  有了第一台主机的shell后首先要做的就是信息收集了 信息收集首先看ip，网段等信息。。。上来啥命令用不了
+          Rank: 10，（东部赛区太卷了吧）  webupload_lol先传.htaccess，再传图片马，getshell  有个内容检测，php版本为5，用script标签绕过即可  ezpop_new源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344&lt;?phpfunction
         </div>
       </a>
 
@@ -671,8 +537,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-14 20:00" pubdate>
-              2022-01-14
+            <time datetime="2022-07-17 17:00" pubdate>
+              2022-07-17
             </time>
           </div>
         
@@ -687,7 +553,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
   
   
 
@@ -702,9 +568,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">#基础知识</a>
+              <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
+            
+              <a href="/tags/%E5%BC%BA%E5%9B%BD%E6%9D%AF/">#强国杯</a>
             
           </div>
         
@@ -718,15 +586,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/46ef80a/" target="_self">
-          AWD不死马与克制方法
+        <a href="/posts/92f52d5d/" target="_self">
+          misc总结(取证篇)
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/46ef80a/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/92f52d5d/" target="_self">
         <div>
-          不死马一个典型的不死马： 12345678910111213&lt;?php    ignore_user_abort(true);    set_time_limit(0);    unlink(__FILE__);    $file = &#x27;.l.php&#x27;;    $code = &#x27;&lt;?php if(md5($_GET[&quot;pass&quot;])==
+          Volatility2Volatility2是一款开源的，基于Python开发的内存取证工具集，可以分析内存中的各种数据。Volatility支持对32位或64位Windows、Linux、Mac、Android操作系统的RAM数据进行提取与分析。 常用命令12345678910111213141516171819202122232425262728293031323334353637383940
         </div>
       </a>
 
@@ -734,8 +602,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-03 09:00" pubdate>
-              2022-01-03
+            <time datetime="2022-07-04 12:00" pubdate>
+              2022-07-04
             </time>
           </div>
         
@@ -750,7 +618,269 @@
     
       <span class="category-chain">
         
-  <a href="/categories/awd/" class="category-chain-item">awd</a>
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/misc/">#misc</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81/">#内存取证</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/b9152a17/" target="_self">
+          misc总结(隐写篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/b9152a17/" target="_self">
+        <div>
+          文中使用的linux工具大部分都可以在CTF_misc_auto_deploy中一键下载到本地 图片类0x01 Exif信息隐藏可交换图像文件格式简称exif，可以记录图片的属性信息和拍摄数据。Exif信息是可以被任意编辑的 12345678910111213141516171819202122232425root@lewiserii-pc:~/桌面# exiftool 1.pngExifTool
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-03 12:00" pubdate>
+              2022-07-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/misc/">#misc</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E9%9A%90%E5%86%99/">#隐写</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/ff5ac082/" target="_self">
+          misc总结(压缩文件篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/ff5ac082/" target="_self">
+        <div>
+          ZIP文件ZIP通常使用后缀名.zip，它的MIME格式为application/zip 文件结构分析引用官方文档中对于一个标准zip文件组成部分的描述： 123456789101112131415[local file header 1][file data 1][data descriptor 1]...[local file header n][file data n][data descr
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-02 12:00" pubdate>
+              2022-07-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/misc/">#misc</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E9%9A%90%E5%86%99/">#隐写</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/86a2c34b/" target="_self">
+          misc总结(编码密码篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/86a2c34b/" target="_self">
+        <div>
+          推荐使用https://www.dcode.fr/和CyberChef  常见编码&#x2F;加密1.1. ASCII编码ASCII码大致可以分作三部分组成。 第一部分是：ASCII非打印控制字符。ASCII表上的数字0–31分配给了控制字符，用于控制像打印机等一些外围设备。 第二部分是：ASCII打印字符。数字 32–126 分配给了能在键盘上找到的字符，数字127代表 DELETE 命令。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-01 12:00" pubdate>
+              2022-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/misc/">#misc</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E7%BC%96%E7%A0%81/">#编码</a>
+            
+              <a href="/tags/%E5%AF%86%E7%A0%81/">#密码</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/a3faee7a/" target="_self">
+          任意文件包含/读取总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/a3faee7a/" target="_self">
+        <div>
+          常见利用函数1234567include： 找不到被包含的文件时只会产生警告，脚本将继续执行。include_once： 和include()语句类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含。require： 找不到被包含的文件时会产生致命错误，并停止脚本。require_once： 和require()语句类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含。readfi
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-23 09:00" pubdate>
+              2022-06-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
   
   
 
@@ -767,9 +897,7 @@
             
               <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
             
-              <a href="/tags/awd/">#awd</a>
-            
-              <a href="/tags/%E4%B8%8D%E6%AD%BB%E9%A9%AC/">#不死马</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">#文件包含</a>
             
           </div>
         
@@ -783,15 +911,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/posts/8752bc8/" target="_self">
-          【ctfshow】摆烂杯-wp
+        <a href="/posts/281f37d9/" target="_self">
+          2021金砖企业信息系统安全决赛
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/8752bc8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/281f37d9/" target="_self">
         <div>
-          摆烂了，没有wp
+          2021年就比完了初赛，但是因为疫情没能办成决赛，今年6月重启了比赛 CryptoCrypto-1base64-&gt;base32-&gt;base64–&gt;base64 Crypto-2变种凯撒 上图引用的caesar是自定义的模块 1234567891011121314151617181920212223242526272829303132333435363738394041424344
         </div>
       </a>
 
@@ -799,8 +927,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-26 18:00" pubdate>
-              2021-12-26
+            <time datetime="2022-06-09 14:00" pubdate>
+              2022-06-09
             </time>
           </div>
         
@@ -832,137 +960,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/ctfshow/">#ctfshow</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/11635d50/" target="_self">
-          2021台州市首届网络安全大赛
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/11635d50/" target="_self">
-        <div>
-          喜提榜一  Webweb1flag在请求头中 web2扫描目录得到后台路径/admin 用admin，admin888弱口令进入后台 在网站安全一栏中使用检测木马功能，发现后门 使用文件管理功能查看木马文件，发现被混淆了 1234567891011&lt;?php$mt  = &quot;mFsKCleRfU&quot;;$ojj = &quot;IEBleldle&quot;;$hsa = &q
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-17 09:00" pubdate>
-              2021-12-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/%E5%8F%B0%E5%B7%9E/">#台州</a>
+              <a href="/tags/%E9%87%91%E7%A0%96/">#金砖</a>
             
               <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/3470e8c1/" target="_self">
-          2021NUAA-wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/3470e8c1/" target="_self">
-        <div>
-          时间有点紧，有几题差一点 签到腾讯会议flag{we1c0m_t0_asur!ctf} miscbaby_mix伪加密，09改成00图片上边左边看到白条，应该是lsbstegsolve查看得到二维码扫码得到 14a5a4a584732544748424658515654514f4634575135435447564a4749564a5347463455595754564f464c444f57525
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-11 18:00" pubdate>
-              2021-12-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2021%E7%AB%9E%E8%B5%9B/">#2021竞赛</a>
-            
-              <a href="/tags/nuaa/">#nuaa</a>
             
           </div>
         
@@ -974,7 +974,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

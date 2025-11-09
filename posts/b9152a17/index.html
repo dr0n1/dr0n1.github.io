@@ -46,10 +46,10 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/pgp.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/shukong.jpg">
 <meta property="article:published_time" content="2022-07-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-22T08:44:11.379Z">
+<meta property="article:modified_time" content="2025-11-09T18:03:00.049Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="总结">
 <meta property="article:tag" content="misc">
+<meta property="article:tag" content="总结">
 <meta property="article:tag" content="隐写">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/misc/F5.png">
@@ -347,7 +347,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.6k 字
+          6.7k 字
         
       </span>
     
@@ -456,28 +456,33 @@
 <h2 id="0x07-zsteg"><a href="#0x07-zsteg" class="headerlink" title="0x07 zsteg"></a>0x07 zsteg</h2><p>lsb隐写，与steghide类似，可以检测PNG和BMP中的隐藏数据隐藏数据，可以快速提取隐藏信息</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">zsteg -a &lt;文件名&gt;<br>zsteg -e b8,a,lsb,xy 文件.png -&gt; out.png<br></code></pre></td></tr></table></figure>
 
-<h2 id="0x07-outguess-可需要passwd"><a href="#0x07-outguess-可需要passwd" class="headerlink" title="0x07 outguess(可需要passwd)"></a>0x07 outguess(可需要passwd)</h2><p>加密</p>
+<h2 id="0x08-outguess-可需要passwd"><a href="#0x08-outguess-可需要passwd" class="headerlink" title="0x08 outguess(可需要passwd)"></a>0x08 outguess(可需要passwd)</h2><p>加密</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">outguess -k <span class="hljs-string">&#x27;密码&#x27;</span> -d &lt;需要隐藏的内容&gt; 1.jpg 2.jpg<br><span class="hljs-comment"># 1.jpg会覆盖2.jpg</span><br></code></pre></td></tr></table></figure>
 
 <p>解密</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">outguess -k <span class="hljs-string">&#x27;密码&#x27;</span> -r &lt;加密的图片&gt;  -t &lt;输出保存的文件&gt;<br></code></pre></td></tr></table></figure>
 
-<h2 id="0x08-盲水印"><a href="#0x08-盲水印" class="headerlink" title="0x08 盲水印"></a>0x08 盲水印</h2><p>水印又分为单图水印和双图水印</p>
+<h2 id="0x09-盲水印-可需要密码"><a href="#0x09-盲水印-可需要密码" class="headerlink" title="0x09 盲水印(可需要密码)"></a>0x09 盲水印(可需要密码)</h2><p>水印又分为单图水印和双图水印</p>
 <p>单图水印是指只需要一张图片就能提取出隐藏的信息，双图需要两张图片（一般是原图和加密后的图片，通常两张图片看上去是一样的）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># blindwatermark双图盲水印</span><br>python2 bwm.py encode 原图.png 水印图.png 有盲水印的图.png<br>python2 bwm.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png<br>python3 bwmforpy3.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png<br>python3 bwmforpy3.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png --oldseed<br></code></pre></td></tr></table></figure>
+<hr>
+<p>blindwatermark双图盲水印</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">python2 bwm.py encode 原图.png 水印图.png 有盲水印的图.png<br>python2 bwm.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png<br>python3 bwmforpy3.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png<br>python3 bwmforpy3.py decode 原图.png 有盲水印的图.png 反解出来的水印图.png --oldseed<br></code></pre></td></tr></table></figure>
 
-
-<p>还有一种特殊的盲水印：<code>频域盲水印</code></p>
+<hr>
+<p>单图盲水印<a target="_blank" rel="noopener" href="https://github.com/guofei9987/blind_watermark">https://github.com/guofei9987/blind_watermark</a></p>
+<p>如果有类似<code>wm_shape</code>和<code>pwd</code>的信息时可以考虑使用</p>
+<hr>
+<p>特殊的盲水印：频域盲水印</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> argparse <span class="hljs-keyword">import</span> ArgumentParser<br><br>ALPHA = <span class="hljs-number">5</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_parser</span>():<br>    parser = ArgumentParser()<br>    parser.add_argument(<span class="hljs-string">&#x27;--original&#x27;</span>, dest=<span class="hljs-string">&#x27;ori&#x27;</span>, required=<span class="hljs-literal">True</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;--image&#x27;</span>, dest=<span class="hljs-string">&#x27;img&#x27;</span>, required=<span class="hljs-literal">True</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;--result&#x27;</span>, dest=<span class="hljs-string">&#x27;res&#x27;</span>, required=<span class="hljs-literal">True</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;--alpha&#x27;</span>, dest=<span class="hljs-string">&#x27;alpha&#x27;</span>, default=ALPHA)<br>    <span class="hljs-keyword">return</span> parser<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    parser = build_parser()<br>    options = parser.parse_args()<br>    ori = options.ori<br>    img = options.img<br>    res = options.res<br>    alpha = options.alpha<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isfile(ori):<br>        parser.error(<span class="hljs-string">&quot;original image %s does not exist.&quot;</span> % ori)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isfile(img):<br>        parser.error(<span class="hljs-string">&quot;image %s does not exist.&quot;</span> % img)<br>    decode(ori, img, res, alpha)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">ori_path, img_path, res_path, alpha</span>):<br>    ori = cv2.imread(ori_path)<br>    img = cv2.imread(img_path)<br>    ori_f = np.fft.fft2(ori)<br>    img_f = np.fft.fft2(img)<br>    height, width = ori.shape[<span class="hljs-number">0</span>], ori.shape[<span class="hljs-number">1</span>]<br>    watermark = (ori_f - img_f) / alpha<br>    watermark = np.real(watermark)<br>    res = np.zeros(watermark.shape)<br>    random.seed(height + width)<br>    x = <span class="hljs-built_in">range</span>(height / <span class="hljs-number">2</span>)<br>    y = <span class="hljs-built_in">range</span>(width)<br>    random.shuffle(x)<br>    random.shuffle(y)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(height / <span class="hljs-number">2</span>):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(width):<br>            res[x[i]][y[j]] = watermark[i][j]<br>    cv2.imwrite(res_path, res, [<span class="hljs-built_in">int</span>(cv2.IMWRITE_JPEG_QUALITY), <span class="hljs-number">100</span>])<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
 
 <p>使用</p>
 <p><code>python pinyubwm.py --original 1.png --image 2.png --result out.png</code></p>
-<h2 id="0x09-gnuplot"><a href="#0x09-gnuplot" class="headerlink" title="0x09 gnuplot"></a>0x09 gnuplot</h2><p><code>gnuplot</code>可以把坐标画出来</p>
+<h2 id="0x10-gnuplot"><a href="#0x10-gnuplot" class="headerlink" title="0x10 gnuplot"></a>0x10 gnuplot</h2><p><code>gnuplot</code>可以把坐标画出来</p>
 <p>坐标格式：<code>number number</code></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">plot &quot;1.txt&quot;<br></code></pre></td></tr></table></figure>
 
 
-<h2 id="0x10-拼图"><a href="#0x10-拼图" class="headerlink" title="0x10 拼图"></a>0x10 拼图</h2><p><code>montage+gaps</code>可以将小图片还原成大图片</p>
+<h2 id="0x11-拼图"><a href="#0x11-拼图" class="headerlink" title="0x11 拼图"></a>0x11 拼图</h2><p><code>montage+gaps</code>可以将小图片还原成大图片</p>
 <p>先用<code>montage</code>组合图片</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">montage input_file -tile 8X6 -geometry +0+0 output_file<br></code></pre></td></tr></table></figure>
 
@@ -493,20 +498,20 @@
 
 
 <p><code>montage+gaps</code>适用于大小相同，数量小的拼图。复杂的需要注意图片名或其他地方是否有顺序提示，还可以注意图片中的冗余位是否可能包含坐标数据</p>
-<h2 id="0x11-pngcheck"><a href="#0x11-pngcheck" class="headerlink" title="0x11 pngcheck"></a>0x11 pngcheck</h2><p>windows工具，用来检查IDAT块</p>
-<h2 id="0x12-webp"><a href="#0x12-webp" class="headerlink" title="0x12 webp"></a>0x12 webp</h2><blockquote>
+<h2 id="0x12-pngcheck"><a href="#0x12-pngcheck" class="headerlink" title="0x12 pngcheck"></a>0x12 pngcheck</h2><p>windows工具，用来检查IDAT块</p>
+<h2 id="0x13-webp"><a href="#0x13-webp" class="headerlink" title="0x13 webp"></a>0x13 webp</h2><blockquote>
 <p>webp图片是一种同时提供了有损压缩与无损压缩（可逆压缩）的图片文件格式。webp最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片在网络上的发送时间。</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://developers.google.com/speed/webp/docs/using?hl=zh-cn">webp工具官方文档</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">cwebp - 将图片文件压缩为 WebP 文件<br>cwebp 1.png -o 2.webp<br><br>dwebp - 将 WebP 文件解压缩到图片文件<br>dwebp 1.webp -o 2.png<br><br>gif2webp - 将 GIF 图片转换为 WebP 格式<br>gif2webp 1.gif -o 2.webp<br><br>vwebp - 解压缩 WebP 文件，然后在窗口中显示该文件<br>vwebp 1.webp<br><br>webpinfo - 输出 WebP 文件的区块级结构以及基本完整性检查<br>webpinfo 1.webp<br></code></pre></td></tr></table></figure>
 
-<h2 id="0x13-stegpy-可需要passwd"><a href="#0x13-stegpy-可需要passwd" class="headerlink" title="0x13 stegpy(可需要passwd)"></a>0x13 stegpy(可需要passwd)</h2><p>加密</p>
+<h2 id="0x14-stegpy-可需要passwd"><a href="#0x14-stegpy-可需要passwd" class="headerlink" title="0x14 stegpy(可需要passwd)"></a>0x14 stegpy(可需要passwd)</h2><p>加密</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">stegpy <span class="hljs-string">&#x27;hello_world&#x27;</span> image.png<br>stegpy <span class="hljs-string">&quot;hello_world&quot;</span> image.png -p   //需要密码<br></code></pre></td></tr></table></figure>
 
 <p>解密</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">stegpy _image.png<br>stegpy _image.png -p  //需要密码<br></code></pre></td></tr></table></figure>
 
-<h2 id="0x14-二维码"><a href="#0x14-二维码" class="headerlink" title="0x14 二维码"></a>0x14 二维码</h2><p>二维码类的题目需要对二维码的生成原理有深入了解</p>
+<h2 id="0x15-二维码"><a href="#0x15-二维码" class="headerlink" title="0x15 二维码"></a>0x15 二维码</h2><p>二维码类的题目需要对二维码的生成原理有深入了解</p>
 <p><a target="_blank" rel="noopener" href="https://li-yang.cn/?p=627">CTF中二维码题目及答题技巧总结（一）</a></p>
 <p>可能有以下考点</p>
 <p>1：修复二维码</p>
@@ -515,7 +520,7 @@
 <p>例如祥云杯的<code>shuffle_code</code></p>
 <p>3：奇奇怪怪的变种二维码</p>
 <p>推荐<code>cortexScan</code>和中国编码识别</p>
-<h2 id="0x14-GIF"><a href="#0x14-GIF" class="headerlink" title="0x14 GIF"></a>0x14 GIF</h2><p>linux下分帧</p>
+<h2 id="0x16-GIF"><a href="#0x16-GIF" class="headerlink" title="0x16 GIF"></a>0x16 GIF</h2><p>linux下分帧</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">convert flag.gif flag.png<br></code></pre></td></tr></table></figure>
 
 
@@ -524,7 +529,7 @@
 <p>可以用identify分析，如果是两种数字重复可以当二进制转字符串</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 显示序号</span><br>identify -format <span class="hljs-string">&quot;%s %T \n&quot;</span> 1.gif<br><br><span class="hljs-comment"># 不显示序号</span><br>identify -format <span class="hljs-string">&quot;%T\n&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="0x15-等距提取像素"><a href="#0x15-等距提取像素" class="headerlink" title="0x15 等距提取像素"></a>0x15 等距提取像素</h2><p>例如2024浙江省赛决赛-天命人</p>
+<h2 id="0x17-等距提取像素"><a href="#0x17-等距提取像素" class="headerlink" title="0x17 等距提取像素"></a>0x17 等距提取像素</h2><p>例如2024浙江省赛决赛-天命人</p>
 <p>以 (5,5) 为起点，每隔 10 像素取一个像素点，生成一个宽高约为原图 1&#x2F;10 的”抽样缩小图”</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>a = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;金箍棒.png&quot;</span>)<br>x, y = <span class="hljs-number">5</span>, <span class="hljs-number">5</span><br>x_, y_ = <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>w, h = a.size<br>b = Image.new(a.mode, (w // <span class="hljs-number">10</span>, h // <span class="hljs-number">10</span>))<br><br><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>, w, <span class="hljs-number">10</span>):<br>    <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>, h, <span class="hljs-number">10</span>):<br>        <span class="hljs-built_in">print</span>(x, y, x_, y_)<br>        b.putpixel((x_, y_), a.getpixel((x, y)))<br>        y_ += <span class="hljs-number">1</span><br>    x_ += <span class="hljs-number">1</span><br>    y_ = <span class="hljs-number">0</span><br>b.save(<span class="hljs-string">&#x27;1.png&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
@@ -534,10 +539,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 Get_Pixels.py -f 1.png -p 5x5+1915x1075 -n 10x10<br><br><span class="hljs-comment"># python3 main.py -f 要解密的图片 -p 第一个像素点的XY坐标+最后一个像素点的XY坐标 -n 两个等距像素点的XY距离的差值</span><br></code></pre></td></tr></table></figure>
 
 
-<h2 id="0x16-PixelJihad"><a href="#0x16-PixelJihad" class="headerlink" title="0x16 PixelJihad"></a>0x16 PixelJihad</h2><p><a target="_blank" rel="noopener" href="https://github.com/oakes/PixelJihad">github项目地址</a></p>
+<h2 id="0x18-PixelJihad"><a href="#0x18-PixelJihad" class="headerlink" title="0x18 PixelJihad"></a>0x18 PixelJihad</h2><p><a target="_blank" rel="noopener" href="https://github.com/oakes/PixelJihad">github项目地址</a></p>
 <p><a target="_blank" rel="noopener" href="https://sekao.net/pixeljihad/">在线解密</a></p>
 <p>例如 第三届”红明谷”杯网络安全大赛-阿尼亚</p>
-<h2 id="0x16-Arnold猫脸变换"><a href="#0x16-Arnold猫脸变换" class="headerlink" title="0x16 Arnold猫脸变换"></a>0x16 Arnold猫脸变换</h2><p>利用Arnold变换（又称猫脸变换）可以对图像进行置乱，使得原本有意义的图像变成一张无意义的图像。该变换可以在其它图像处理前对图像做预处理，例如在数字盲水印嵌入前对水印进行置乱。也可以用于普通的图像加密。 通常一次Arnold变换达不到理想效果，需要对图像进行连续多次的变换。Arnold变换具有周期性，即对图像连续进行Arnold变换，最终又能得到原图像。变换的周期和图像的尺寸有关。 当图像是一张<strong>正方形</strong>的图像时，Arnold变换存在逆变换。经过N次Arnold变换后的数据可以通过N次逆变换恢复数据。 Arnold变换不仅可以用于图像置乱，也可以用于其它数据的置乱和加密。</p>
+<h2 id="0x19-Arnold猫脸变换"><a href="#0x19-Arnold猫脸变换" class="headerlink" title="0x19 Arnold猫脸变换"></a>0x19 Arnold猫脸变换</h2><p>利用Arnold变换（又称猫脸变换）可以对图像进行置乱，使得原本有意义的图像变成一张无意义的图像。该变换可以在其它图像处理前对图像做预处理，例如在数字盲水印嵌入前对水印进行置乱。也可以用于普通的图像加密。 通常一次Arnold变换达不到理想效果，需要对图像进行连续多次的变换。Arnold变换具有周期性，即对图像连续进行Arnold变换，最终又能得到原图像。变换的周期和图像的尺寸有关。 当图像是一张<strong>正方形</strong>的图像时，Arnold变换存在逆变换。经过N次Arnold变换后的数据可以通过N次逆变换恢复数据。 Arnold变换不仅可以用于图像置乱，也可以用于其它数据的置乱和加密。</p>
 <p>已知shuffle_times，a和b参数的恢复脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># @Author  : 1cePeak</span><br><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>img = cv2.imread(<span class="hljs-string">&#x27;flag.png&#x27;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">arnold_encode</span>(<span class="hljs-params">image, shuffle_times, a, b</span>):<br>    <span class="hljs-string">&quot;&quot;&quot; Arnold shuffle for rgb image</span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        image: input original rgb image</span><br><span class="hljs-string">        shuffle_times: how many times to shuffle</span><br><span class="hljs-string">    Returns:</span><br><span class="hljs-string">        Arnold encode image</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 1:创建新图像</span><br>    arnold_image = np.zeros(shape=image.shape)<br><br>    <span class="hljs-comment"># 2：计算N</span><br>    h, w = image.shape[<span class="hljs-number">0</span>], image.shape[<span class="hljs-number">1</span>]<br>    N = h   <span class="hljs-comment"># 或N=w</span><br><br>    <span class="hljs-comment"># 3：遍历像素坐标变换</span><br>    <span class="hljs-keyword">for</span> time <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(shuffle_times):<br>        <span class="hljs-keyword">for</span> ori_x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>            <span class="hljs-keyword">for</span> ori_y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>                <span class="hljs-comment"># 按照公式坐标变换</span><br>                new_x = (<span class="hljs-number">1</span>*ori_x + b*ori_y)% N<br>                new_y = (a*ori_x + (a*b+<span class="hljs-number">1</span>)*ori_y) % N<br><br>                <span class="hljs-comment"># 像素赋值</span><br>                <span class="hljs-comment"># print(image[ori_x, ori_y, :])</span><br>                <span class="hljs-comment"># print(arnold_image[new_x, new_y, :])</span><br>                arnold_image[new_x, new_y, :] = image[ori_x, ori_y, :]<br><br>        <span class="hljs-comment"># 更新坐标</span><br>        image = np.copy(arnold_image)<br><br>    cv2.imwrite(<span class="hljs-string">&#x27;flag_arnold_encode.png&#x27;</span>, arnold_image, [<span class="hljs-built_in">int</span>(cv2.IMWRITE_PNG_COMPRESSION), <span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">return</span> arnold_image<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">arnold_decode</span>(<span class="hljs-params">image, shuffle_times, a, b</span>):<br>    <span class="hljs-string">&quot;&quot;&quot; decode for rgb image that encoded by Arnold</span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        image: rgb image encoded by Arnold</span><br><span class="hljs-string">        shuffle_times: how many times to shuffle</span><br><span class="hljs-string">    Returns:</span><br><span class="hljs-string">        decode image</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 1:创建新图像</span><br>    decode_image = np.zeros(shape=image.shape)<br>    <span class="hljs-comment"># 2：计算N</span><br>    h, w = image.shape[<span class="hljs-number">0</span>], image.shape[<span class="hljs-number">1</span>]<br>    N = h  <span class="hljs-comment"># 或N=w</span><br><br>    <span class="hljs-comment"># 3：遍历像素坐标变换</span><br>    <span class="hljs-keyword">for</span> time <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(shuffle_times):<br>        <span class="hljs-keyword">for</span> ori_x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>            <span class="hljs-keyword">for</span> ori_y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>                <span class="hljs-comment"># 按照公式坐标变换</span><br>                new_x = ((a * b + <span class="hljs-number">1</span>) * ori_x + (-b) * ori_y) % N<br>                new_y = ((-a) * ori_x + ori_y) % N<br>                decode_image[new_x, new_y, :] = image[ori_x, ori_y, :]<br><br>    cv2.imwrite(<span class="hljs-string">&#x27;flag.png&#x27;</span>, decode_image, [<span class="hljs-built_in">int</span>(cv2.IMWRITE_PNG_COMPRESSION), <span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">return</span> decode_image<br><br><span class="hljs-comment"># arnold_encode(img, 1, 2, 3)</span><br>arnold_decode(img, <span class="hljs-number">1</span>, <span class="hljs-number">29294</span>, <span class="hljs-number">7302244</span>)<br></code></pre></td></tr></table></figure>
 
@@ -589,7 +594,7 @@
 <h2 id="0x08-openpuff-需要passwd"><a href="#0x08-openpuff-需要passwd" class="headerlink" title="0x08 openpuff(需要passwd)"></a>0x08 openpuff(需要passwd)</h2><p>windows软件</p>
 <p>需要三个8位密码解密</p>
 <p><img src="/img/summary/misc/openpuff.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="0x08-lyra"><a href="#0x08-lyra" class="headerlink" title="0x08 lyra"></a>0x08 lyra</h2><p>lyra文件特征</p>
+<h2 id="0x09-lyra"><a href="#0x09-lyra" class="headerlink" title="0x09 lyra"></a>0x09 lyra</h2><p>lyra文件特征</p>
 <p><img src="/img/summary/misc/lyra.png" srcset="/img/loading.gif" lazyload></p>
 <p>安装步骤：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装 Bazel 5.3.2</span><br><br>apt-get install pkg-config zip g++ zlib1g-dev unzip<br>wget https://github.com/bazelbuild/bazel/releases/download/5.3.2/bazel-5.3.2-installer-linux-x86_64.sh<br><span class="hljs-built_in">chmod</span> 777 bazel-5.3.2-installer-linux-x86_64.sh<br>./bazel-5.3.2-installer-linux-x86_64.sh<br></code></pre></td></tr></table></figure>
@@ -601,8 +606,14 @@
 
 <p>用法</p>
 <p><code>bazel-bin/lyra/cli_example/decoder_main --encoded_path=flag.lyra --output_dir=./ --bitrate=3200</code></p>
-<h2 id="0x09-Silenteye-需要password"><a href="#0x09-Silenteye-需要password" class="headerlink" title="0x09 Silenteye(需要password)"></a>0x09 Silenteye(需要password)</h2><p>wav音频文件可能是silenteye隐写，可以拿silenteye用默认密码解密试试</p>
+<h2 id="0x10-Silenteye-需要password"><a href="#0x10-Silenteye-需要password" class="headerlink" title="0x10 Silenteye(需要password)"></a>0x10 Silenteye(需要password)</h2><p>wav音频文件可能是silenteye隐写，可以拿silenteye用默认密码解密试试</p>
 <p>当然如果已知密钥的话就用密钥去解密</p>
+<h2 id="0x11-velato"><a href="#0x11-velato" class="headerlink" title="0x11 velato"></a>0x11 velato</h2><p>mid格式的文件可以考虑使用<a target="_blank" rel="noopener" href="https://velato.net/">velato</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">Vlt.exe velato.mid<br><br><br><span class="hljs-comment"># 会生成一个同名exe</span><br>velato.exe<br></code></pre></td></tr></table></figure>
+
+
+
+
 <h1 id="文档类"><a href="#文档类" class="headerlink" title="文档类"></a>文档类</h1><h2 id="0x01-VBA宏密码破解"><a href="#0x01-VBA宏密码破解" class="headerlink" title="0x01 VBA宏密码破解"></a>0x01 VBA宏密码破解</h2><p>将<code>CMG=</code>替换为<code>CMG.</code>，<code>DPB=</code>替换为<code>DPB.</code> ，<code>GC=</code>替换为<code>GC.</code></p>
 <p><code>alt+F11</code>打开vba编辑器</p>
 <h2 id="0x02-字体隐藏"><a href="#0x02-字体隐藏" class="headerlink" title="0x02 字体隐藏"></a>0x02 字体隐藏</h2><p>在字体的效果中勾选隐藏选项即可隐藏字符(或者采用了白色字体)</p>
@@ -725,9 +736,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
-      
         <a href="/tags/misc/" class="print-no-link">#misc</a>
+      
+        <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
       
         <a href="/tags/%E9%9A%90%E5%86%99/" class="print-no-link">#隐写</a>
       
@@ -760,7 +771,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年10月22日</div>
+          <div>2025年11月10日</div>
         </div>
       
       

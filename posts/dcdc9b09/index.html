@@ -23,20 +23,22 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="kerberos协议简介Kerberos 是一种由MIT提出的一种网络身份验证协议。它旨在通过使用密钥加密技术为客户端&#x2F;服务器应用程序提供强身份验证 Kerberos 认证用于域环境中，它是一种基于票据(Ticket)的认证方式。在Kerberos协议中主要是有三个角色的存在：访问服务的Client，提供服务的Server，密钥分发中心KDC(Key Distribution Cente">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内网渗透学习(Kerberos篇)">
 <meta property="og:url" content="https://www.dr0n.top/posts/dcdc9b09/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="kerberos协议简介Kerberos 是一种由MIT提出的一种网络身份验证协议。它旨在通过使用密钥加密技术为客户端&#x2F;服务器应用程序提供强身份验证 Kerberos 认证用于域环境中，它是一种基于票据(Ticket)的认证方式。在Kerberos协议中主要是有三个角色的存在：访问服务的Client，提供服务的Server，密钥分发中心KDC(Key Distribution Cente">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-1.png">
 <meta property="article:published_time" content="2025-09-13T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-04T15:50:37.014Z">
+<meta property="article:modified_time" content="2025-11-10T13:16:16.416Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="域">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-1.png">
   
   
   
@@ -331,7 +333,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1 字
+          191 字
         
       </span>
     
@@ -342,7 +344,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -391,22 +393,14 @@
             <h1 id="seo-header">内网渗透学习(Kerberos篇)</h1>
             
             
-              
-              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="f06eec343ce2930e02517c8047c0c8074b42fa06317217beec5474ee152f614d">d53f41d2c7ee3b58c8999934d306edce507e4527c37372e004fd0176b5b5aae1b1933e733822d0f14ec44b7f66a4ca49</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
-              
-
-              
+              <div class="markdown-body">
+                
+                <h1 id="kerberos协议简介"><a href="#kerberos协议简介" class="headerlink" title="kerberos协议简介"></a>kerberos协议简介</h1><p>Kerberos 是一种由MIT提出的一种网络身份验证协议。它旨在通过使用密钥加密技术为客户端&#x2F;服务器应用程序提供强身份验证</p>
+<p>Kerberos 认证用于<strong>域</strong>环境中，它是一种基于票据(Ticket)的认证方式。在Kerberos协议中主要是有三个角色的存在：访问服务的Client，提供服务的Server，密钥分发中心KDC(Key Distribution Center)。其中KDC服务默认会安装在一个域的域控中，而Client和Server为域内的用户或者是服务，如HTTP服务，SQL服务。在Kerberos中Client是否有权限访问Server端的服务由KDC发放的票据来决定</p>
+<h2 id="认证过程"><a href="#认证过程" class="headerlink" title="认证过程"></a>认证过程</h2><p><img src="/img/%E5%86%85%E7%BD%91/kerberos-1.png" srcset="/img/loading.gif" lazyload alt="kerberos认证过程"></p>
+<h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><h2 id="非约束性委派"><a href="#非约束性委派" class="headerlink" title="非约束性委派"></a>非约束性委派</h2><h2 id="约束委派"><a href="#约束委派" class="headerlink" title="约束委派"></a>约束委派</h2><h1 id="ASREProast"><a href="#ASREProast" class="headerlink" title="ASREProast"></a>ASREProast</h1>
+                
+              </div>
             
             <hr/>
             <div>
@@ -472,7 +466,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月4日</div>
+          <div>2025年11月10日</div>
         </div>
       
       
@@ -760,23 +754,6 @@
   
 
 
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
 
 
   

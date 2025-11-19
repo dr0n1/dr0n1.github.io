@@ -41,15 +41,16 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/word-2.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/odttf.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/ntfs.jpg">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/misc/ntfs-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/Tupper.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/snow.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/pgp.jpg">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/misc/shukong.jpg">
 <meta property="article:published_time" content="2022-07-03T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-09T18:03:00.049Z">
+<meta property="article:modified_time" content="2025-11-19T10:04:54.032Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="misc">
 <meta property="article:tag" content="总结">
+<meta property="article:tag" content="misc">
 <meta property="article:tag" content="隐写">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/misc/F5.png">
@@ -347,7 +348,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.7k 字
+          7k 字
         
       </span>
     
@@ -358,7 +359,7 @@
         
         
         
-          45 分钟
+          47 分钟
         
       </span>
     
@@ -612,6 +613,18 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">Vlt.exe velato.mid<br><br><br><span class="hljs-comment"># 会生成一个同名exe</span><br>velato.exe<br></code></pre></td></tr></table></figure>
 
 
+<h2 id="0x12-wav转图片"><a href="#0x12-wav转图片" class="headerlink" title="0x12 wav转图片"></a>0x12 wav转图片</h2><p>比如一个 16‑bit、双声道的 wav</p>
+<p>Left 16 位 + Right 16 位 &#x3D; 32 bit &#x3D; 4 个字节，对应RGBA图片的像素</p>
+<p>在 RIFF&#x2F;WAVE 标准这 4 个字节的顺序是：<code>L_lo, L_hi, R_lo, R_hi</code>（小端序：低字节在前）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> wave, numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-keyword">with</span> wave.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;flag.wav&quot;</span>,<span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> w:<br>    n = w.getnframes()<br>    frames = w.readframes(n)<br><br>arr = np.frombuffer(frames, dtype=<span class="hljs-string">&quot;&lt;u2&quot;</span>).reshape(n, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 每个元素 2 个字节 → 16 bit</span><br>L = arr[:,<span class="hljs-number">0</span>]; R = arr[:,<span class="hljs-number">1</span>]<br><br>Rch = (L &amp; <span class="hljs-number">0xFF</span>).astype(np.uint8)         <span class="hljs-comment"># L 的低字节 → R</span><br>Gch = ((L &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span>).astype(np.uint8)  <span class="hljs-comment"># L 的高字节 → G</span><br>Bch = (R &amp; <span class="hljs-number">0xFF</span>).astype(np.uint8)         <span class="hljs-comment"># R 的低字节 → B</span><br>Ach = ((R &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span>).astype(np.uint8)  <span class="hljs-comment"># R 的高字节 → A</span><br><br>rgba = np.stack([Rch, Gch, Bch, Ach], axis=<span class="hljs-number">1</span>)<br>img  = Image.fromarray(rgba.reshape(<span class="hljs-number">3805</span>, <span class="hljs-number">1021</span>, <span class="hljs-number">4</span>), <span class="hljs-string">&quot;RGBA&quot;</span>)<br>img.save(<span class="hljs-string">&quot;decoded_1021x3805.png&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>左右声道对调</strong></p>
+<p>直接把每帧 4 字节从 (L_lo, L_hi, R_lo, R_hi) 换成 (R_lo, R_hi, L_lo, L_hi) 再生成</p>
+<p><strong>单通道灰度</strong></p>
+<p>有时把 R 或 B 单独拿出来做一张灰度图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">arr = np.frombuffer(raw, dtype=np.uint8).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">4</span>)  <span class="hljs-comment"># RGBA 流</span><br>width = <span class="hljs-number">1021</span>; height = arr.shape[<span class="hljs-number">0</span>] // width<br>Image.fromarray(arr[:,<span class="hljs-number">0</span>].reshape(height,width), <span class="hljs-string">&#x27;L&#x27;</span>).save(<span class="hljs-string">&#x27;R_gray.png&#x27;</span>)  <span class="hljs-comment"># 0,1,2,3分别是R,G,B,A</span><br></code></pre></td></tr></table></figure>
+
+
 
 
 <h1 id="文档类"><a href="#文档类" class="headerlink" title="文档类"></a>文档类</h1><h2 id="0x01-VBA宏密码破解"><a href="#0x01-VBA宏密码破解" class="headerlink" title="0x01 VBA宏密码破解"></a>0x01 VBA宏密码破解</h2><p>将<code>CMG=</code>替换为<code>CMG.</code>，<code>DPB=</code>替换为<code>DPB.</code> ，<code>GC=</code>替换为<code>GC.</code></p>
@@ -654,6 +667,8 @@
 <p><code>echo &quot;test&quot; &gt; 1.txt:2.txt</code></p>
 <p>查看数据流<br>使用<code>NtfsStreamsEditor</code>(windows)工具或者<code>notepad</code>命令</p>
 <p><img src="/img/summary/misc/ntfs.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>相比WinRAR，7-Zip可以直接识别到数据</p>
+<p><img src="/img/summary/misc/ntfs-1.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="0x03-pyc文件反编译"><a href="#0x03-pyc文件反编译" class="headerlink" title="0x03 pyc文件反编译"></a>0x03 pyc文件反编译</h2><p>一般使用<code>uncompyle6</code></p>
 <p><code>uncompyle6 test.pyc &gt; test.py</code></p>
 <h2 id="0x04-pyc隐写"><a href="#0x04-pyc隐写" class="headerlink" title="0x04 pyc隐写"></a>0x04 pyc隐写</h2><p>Stegosaurus 是一款隐写工具，它允许我们在 Python 字节码文件( pyc 或 pyo )中嵌入任意 Payload</p>
@@ -736,9 +751,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/misc/" class="print-no-link">#misc</a>
-      
         <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
+      
+        <a href="/tags/misc/" class="print-no-link">#misc</a>
       
         <a href="/tags/%E9%9A%90%E5%86%99/" class="print-no-link">#隐写</a>
       
@@ -771,7 +786,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月10日</div>
+          <div>2025年11月19日</div>
         </div>
       
       

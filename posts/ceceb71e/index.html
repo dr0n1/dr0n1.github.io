@@ -39,11 +39,13 @@
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-3.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-8.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-9.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/2025zjss-js-10.png">
 <meta property="article:published_time" content="2025-11-16T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-19T12:28:43.603Z">
+<meta property="article:modified_time" content="2025-11-20T16:27:54.460Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="2025竞赛">
@@ -344,7 +346,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.9k 字
         
       </span>
     
@@ -355,7 +357,7 @@
         
         
         
-          44 分钟
+          47 分钟
         
       </span>
     
@@ -468,13 +470,27 @@
 <h2 id="Really-Good-Binaural-Audio"><a href="#Really-Good-Binaural-Audio" class="headerlink" title="Really Good Binaural Audio"></a>Really Good Binaural Audio</h2><p>提取wav的基本信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> wave<br><br>wav_path = <span class="hljs-string">&quot;flag.wav&quot;</span><br><br><br><span class="hljs-keyword">with</span> wave.<span class="hljs-built_in">open</span>(wav_path, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> wf:<br>    n_channels = wf.getnchannels()<br>    sampwidth_bytes = wf.getsampwidth()<br>    bits_per_sample = sampwidth_bytes * <span class="hljs-number">8</span><br>    framerate = wf.getframerate()<br>    n_frames = wf.getnframes()<br>    duration = n_frames / framerate <span class="hljs-keyword">if</span> framerate <span class="hljs-keyword">else</span> <span class="hljs-number">0</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;通道数:&quot;</span>, n_channels)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;每个采样的字节数:&quot;</span>, sampwidth_bytes)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;每个采样的位数:&quot;</span>, bits_per_sample)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;采样率:&quot;</span>, framerate)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;总帧数:&quot;</span>, n_frames)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;时长（秒）:&quot;</span>, duration)<br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">通道数: 2</span><br><span class="hljs-string">每个采样的字节数: 2</span><br><span class="hljs-string">每个采样的位数: 16</span><br><span class="hljs-string">采样率: 22050</span><br><span class="hljs-string">总帧数: 3884905</span><br><span class="hljs-string">时长（秒）: 176.18616780045352</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<p>根据题目名字首字母拼接猜测是提取字节转RGBA图片</p>
-<p>这个wav有两个通道+16-bit，而 Left 16 位 + Right 16 位 &#x3D; 32 bit &#x3D; 4 个字节，刚好映射到RGBA(也就是一个帧对应一个像素)</p>
+<p>根据题目名字首字母拼接猜测是提取采样点数据转RGBA模式的图片</p>
+<p>这个wav有两个通道，并且是16-bit，而 Left 16 位 + Right 16 位 &#x3D; 32 bit &#x3D; 4 个字节，表示每个采样点有4个字节的数据，刚好映射到RGBA</p>
+<p><strong>方法一：</strong></p>
+<p>暴力解法，直接假设每个采样点对应一个像素的RGBA</p>
 <p>一共3884905帧，对3884905进行因式分解，得到<code>5*761*1021</code>，猜测宽高为 3805x1021 或者 761*5105</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> wave, numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-keyword">with</span> wave.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;flag.wav&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> w:<br>    frames = w.readframes(w.getnframes())<br>    n = w.getnframes()<br><br><span class="hljs-built_in">print</span>(n)<br><br>img = Image.frombytes(<span class="hljs-string">&quot;RGBA&quot;</span>, (<span class="hljs-number">5105</span>, n//<span class="hljs-number">5105</span>), frames)<br>img.save(<span class="hljs-string">&quot;decoded.png&quot;</span>)<br></code></pre></td></tr></table></figure>
 
-<p><code>DASCTF&#123;A_1s_for_Audio_in_RGBA&#125;</code></p>
+<p>但是这种解法解出的图像可能会被拉伸变形且通道可能有问题(如果上面的假设错误)</p>
 <p><img src="/img/wp/2025/2025zjss-js-11.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法二：</strong></p>
+<p>观察详细的对应关系(频谱图中也可以看到左声道是RG，右声道是BA)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.io <span class="hljs-keyword">import</span> wavfile<br><br>sr, data = wavfile.read(<span class="hljs-string">&quot;flag.wav&quot;</span>)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">50</span>):<br>    left, right = data[i]<br>    L = <span class="hljs-built_in">int</span>(left)<br>    R = <span class="hljs-built_in">int</span>(right)<br><br>    r_ch = (L &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span>   <span class="hljs-comment"># 高8位-&gt;R</span><br>    g_ch = L &amp; <span class="hljs-number">0xFF</span>          <span class="hljs-comment"># 低8位-&gt;G</span><br>    b_ch = (R &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span>   <span class="hljs-comment"># 高8位-&gt;B</span><br>    a_ch = R &amp; <span class="hljs-number">0xFF</span>          <span class="hljs-comment"># 低8位-&gt;A</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;i:2d&#125;</span>: L=<span class="hljs-subst">&#123;L:6d&#125;</span>, R=<span class="hljs-subst">&#123;R:6d&#125;</span> -&gt; (R,G,B,A)=(<span class="hljs-subst">&#123;r_ch:3d&#125;</span>,<span class="hljs-subst">&#123;g_ch:3d&#125;</span>,<span class="hljs-subst">&#123;b_ch:3d&#125;</span>,<span class="hljs-subst">&#123;a_ch:3d&#125;</span>)&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>可以明显看到是五个一组，同一组里的 (R,G,B,A) 基本一样或者差很小，说明 5 个采样点对应同一个像素，所以<code>/5</code>后再因式分解得到<code>761*1021</code>就是正确的宽高</p>
+<p><img src="/img/wp/2025/2025zjss-js-13.png" srcset="/img/loading.gif" lazyload></p>
+<p>只用每组第一个组成图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy.io <span class="hljs-keyword">import</span> wavfile<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">solve</span>(<span class="hljs-params">path=<span class="hljs-string">&quot;flag.wav&quot;</span>, width=<span class="hljs-number">1021</span>, height=<span class="hljs-number">761</span></span>):<br>    sample_rate, data = wavfile.read(path)   <span class="hljs-comment"># data.shape = (3884905, 2)</span><br><br>    img = Image.new(<span class="hljs-string">&quot;RGBA&quot;</span>, (width, height))<br><br>    <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(height):<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(width):<br>            <span class="hljs-comment"># 每个像素占 5 个采样点，只取这一组的第一个</span><br>            idx = (y * width + x) * <span class="hljs-number">5</span><br>            left = <span class="hljs-built_in">int</span>(data[idx, <span class="hljs-number">0</span>])   <span class="hljs-comment"># 左声道</span><br>            right = <span class="hljs-built_in">int</span>(data[idx, <span class="hljs-number">1</span>])  <span class="hljs-comment"># 右声道</span><br><br>            R = (left &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span><br>            G = left &amp; <span class="hljs-number">0xFF</span><br>            B = (right &gt;&gt; <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xFF</span><br>            A = right &amp; <span class="hljs-number">0xFF</span><br><br>            img.putpixel((x, y), (R, G, B, A))<br><br>    img.save(<span class="hljs-string">&quot;flag.png&quot;</span>)<br>    img.show()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    solve()<br></code></pre></td></tr></table></figure>
+
+<p>看不清可以用stegsolve</p>
+<p><img src="/img/wp/2025/2025zjss-js-14.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>DASCTF&#123;A_1s_for_Audio_in_RGBA&#125;</code></p>
 <h1 id="AI安全"><a href="#AI安全" class="headerlink" title="AI安全"></a>AI安全</h1><h2 id="寻找可爱的小狗"><a href="#寻找可爱的小狗" class="headerlink" title="寻找可爱的小狗"></a>寻找可爱的小狗</h2><p>肉眼识别找到6只猫</p>
 <p><img src="/img/wp/2025/2025zjss-js-1.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据顺序排序后md5</p>
@@ -594,7 +610,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月19日</div>
+          <div>2025年11月21日</div>
         </div>
       
       

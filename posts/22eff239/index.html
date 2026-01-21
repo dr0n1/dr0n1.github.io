@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/ciscn-SnakeBackdoor-6.png">
 <meta property="og:image" content="https://www.dr0n.top/img/wp/2025/ciscn-SnakeBackdoor-7.png">
 <meta property="article:published_time" content="2025-12-28T13:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-29T11:43:20.697Z">
+<meta property="article:modified_time" content="2026-01-02T13:06:18.979Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="wp">
 <meta property="article:tag" content="长城杯">
@@ -137,11 +137,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -468,7 +464,7 @@
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">&#123;<span class="hljs-string">&quot;username&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;admin&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;password&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;L0In602=&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;signature&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;LxZiwA05Y9h7wX1CI0gUitOE2LBy9y8McoBqWgKIdDo=&quot;</span>&#125;<br>ccaf33e3512e31f36228f0b97ccbc8f1<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/wp/2025/ciscn-wasm-login.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="vvvmmm"><a href="#vvvmmm" class="headerlink" title="vvvmmm"></a>vvvmmm</h2><h2 id="Eternum"><a href="#Eternum" class="headerlink" title="Eternum"></a>Eternum</h2><h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h2><p>题目代码里直接得到私钥priv_int</p>
+<h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="ECDSA"><a href="#ECDSA" class="headerlink" title="ECDSA"></a>ECDSA</h2><p>题目代码里直接得到私钥priv_int</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> ecdsa <span class="hljs-keyword">import</span> NIST521p<br><span class="hljs-keyword">from</span> hashlib <span class="hljs-keyword">import</span> sha512, md5<br><br>digest_int = <span class="hljs-built_in">int</span>.from_bytes(sha512(<span class="hljs-string">b&quot;Welcome to this challenge!&quot;</span>).digest(), <span class="hljs-string">&quot;big&quot;</span>)<br>curve_order = NIST521p.order<br>priv_int = digest_int % curve_order<br><span class="hljs-built_in">print</span>(md5(<span class="hljs-built_in">str</span>(priv_int).encode()).hexdigest())<br><br><span class="hljs-comment"># flag&#123;581bdf717b780c3cd8282e5a4d50f3a0&#125;</span><br></code></pre></td></tr></table></figure>
 
 
@@ -650,7 +646,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年12月29日</div>
+          <div>2026年1月2日</div>
         </div>
       
       

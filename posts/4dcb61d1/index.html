@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="应急响应应急响应流程 事件判断：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DDos等等 临时处置：给出客户临时处置建议，断网隔离，保护现场环境 信息收集分析：收集客户信息和中毒主机信息，包括样本，日志分析、进程分析、启动项分析 清理处置：直接杀掉进程，删除文件，打补丁，抑或是修复文件 产出报告：整理并输出完整的安全事件报告 linux重要文件和目录   文件名 说明    &#x2F;e">
 <meta property="og:type" content="article">
@@ -103,7 +103,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -137,13 +137,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -322,20 +320,13 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -474,7 +465,7 @@
 <p><img src="/img/hw/yjxy-8.png" srcset="/img/loading.gif" lazyload></p>
 <p>排查启动项<br><code>cat /etc/rc.local</code><br><code>ls -alt /etc/profile.d/*.sh</code></p>
 <p><img src="/img/hw/yjxy-9.png" srcset="/img/loading.gif" lazyload></p>
-<p>查看所有用户的定时任务<br><code>cat /etc/passwd | cut -f 1 -d : | xargs -I &#123;&#125; crontab -l -u &#123;&#125;</code><br><code>ls -altr /var/spool/cron/*</code></p>
+<p>查看所有用户的定时任务<br><code>cat /etc/passwd | cut -f 1 -d : | xargs -I {} crontab -l -u {}</code><br><code>ls -altr /var/spool/cron/*</code></p>
 <p><img src="/img/hw/yjxy-10.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看历史命令<br><code>history</code><br><code>cat ~/.bash_history</code></p>
 <p><img src="/img/hw/yjxy-11.png" srcset="/img/loading.gif" lazyload></p>
@@ -530,20 +521,20 @@
 <p><img src="/img/hw/yjxy-14.png" srcset="/img/loading.gif" lazyload></p>
 <p>比较文件差异<br><code>diff -c</code></p>
 <p><img src="/img/hw/yjxy-15.png" srcset="/img/loading.gif" lazyload></p>
-<p>查找隐藏进程<br><code>ps -ef | awk &#39;&#123;print $2&#125;&#39; |sort -n |uniq &gt; ps.p</code><br><code>ls /proc |sort -n |uniq &gt; proc.p</code><br><code>diff ps.p proc.p</code></p>
+<p>查找隐藏进程<br><code>ps -ef | awk &#39;{print $2}&#39; |sort -n |uniq &gt; ps.p</code><br><code>ls /proc |sort -n |uniq &gt; proc.p</code><br><code>diff ps.p proc.p</code></p>
 <p><img src="/img/hw/yjxy-16.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看用户登录历史记录<br><code>last</code></p>
 <p>查看用户登录失败记录<br><code>lastb</code></p>
 <p>查看用户最近一次登录信息<br><code>lastlog</code></p>
 <p><img src="/img/hw/yjxy-17.png" srcset="/img/loading.gif" lazyload></p>
-<p>登录成功的IP<br><code>grep &quot;Accepted&quot; /var/log/secure | awk &#39;&#123;print $11&#125;&#39; |sort |uniq -c |sort -nr | more</code></p>
-<p>定位有爆破行为的IP<br><code>grep &quot;Failed&quot; /var/log/secure | awk &#39;&#123;print $11&#125;&#39; |sort |uniq -c |sort -nr | more</code></p>
+<p>登录成功的IP<br><code>grep &quot;Accepted&quot; /var/log/secure | awk &#39;{print $11}&#39; |sort |uniq -c |sort -nr | more</code></p>
+<p>定位有爆破行为的IP<br><code>grep &quot;Failed&quot; /var/log/secure | awk &#39;{print $11}&#39; |sort |uniq -c |sort -nr | more</code></p>
 <p><img src="/img/hw/yjxy-18.png" srcset="/img/loading.gif" lazyload></p>
-<p>查找每个IP地址的失败登录次数：<br><code>awk &#39;/sshd.*Failed/ &#123;print $(NF-3)&#125;&#39; /var/log/secure | sort | uniq -c |sort -nr</code></p>
+<p>查找每个IP地址的失败登录次数：<br><code>awk &#39;/sshd.*Failed/ {print $(NF-3)}&#39; /var/log/secure | sort | uniq -c |sort -nr</code></p>
 <p><img src="/img/hw/yjxy-19.png" srcset="/img/loading.gif" lazyload></p>
-<p>查找特定IP地址的失败登录：<br><code>grep &quot;sshd.*Failed.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;&#123;print $1,$2,$3,$9,$11&#125;&#39;</code></p>
+<p>查找特定IP地址的失败登录：<br><code>grep &quot;sshd.*Failed.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;{print $1,$2,$3,$9,$11}&#39;</code></p>
 <p><img src="/img/hw/yjxy-20.png" srcset="/img/loading.gif" lazyload></p>
-<p>查找特定IP地址的成功登录：<br><code>grep &quot;sshd.*Accepted.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;&#123;print $1,$2,$3,$9,$11&#125;&#39;</code></p>
+<p>查找特定IP地址的成功登录：<br><code>grep &quot;sshd.*Accepted.*from &lt;IP_ADDRESS&gt;&quot; /var/log/secure | awk &#39;{print $1,$2,$3,$9,$11}&#39;</code></p>
 <p><img src="/img/hw/yjxy-21.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">Linux日志类型大致可以分为三类，内核和系统日志，用户日志，应用日志<br><br>内核和系统日志：这种日志主要由syslog管理、根据其配置文件/etc/syslog.conf中的设置决定内核消息和各种系统程序信息记录到哪个位置<br>用户日志：用户日志主要记录系统用户登录或者退出的信息，包括用户名账号、登录时间、源IP等<br>应用日志：记录应用程序运行过程中的各种事件信息<br></code></pre></td></tr></table></figure>
 
@@ -876,23 +867,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1060,8 +1034,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

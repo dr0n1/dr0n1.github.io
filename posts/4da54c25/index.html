@@ -21,14 +21,14 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
-    <meta name="description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow&#123;Vladimir_Vladimirovich_Putin&#125; 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看">
+    <meta name="description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow{Vladimir_Vladimirovich_Putin} 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看图识妹直接贴大佬的脚">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【ctfshow】击剑杯-wp">
 <meta property="og:url" content="https://www.dr0n.top/posts/4da54c25/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow&#123;Vladimir_Vladimirovich_Putin&#125; 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看">
+<meta property="og:description" content="热身进群得码群里发送 击剑杯签到即可 听歌识曲赛后问了群友，可能真的是积累与特征吧大概有两种方法：1：听歌词百度2：直接知道什么歌答案是普京ctfshow{Vladimir_Vladimirovich_Putin} 看图识码网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码用二维码神器cortexscan逐一扫描，然后拼接在一起，就是flag啦 看图识妹直接贴大佬的脚">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/jjb-1.png">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/jjb-2.png">
@@ -59,8 +59,8 @@
 <meta property="article:published_time" content="2021-11-11T08:00:00.000Z">
 <meta property="article:modified_time" content="2024-03-21T11:24:59.929Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp">
 <meta property="article:tag" content="ctfshow">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/ctfshow/jjb-1.png">
   
@@ -104,7 +104,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -138,13 +138,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -323,20 +321,13 @@
         
         
         
-          11 分钟
+          12 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -375,7 +366,7 @@
               <div class="markdown-body">
                 
                 <h1 id="热身"><a href="#热身" class="headerlink" title="热身"></a>热身</h1><h2 id="进群得码"><a href="#进群得码" class="headerlink" title="进群得码"></a>进群得码</h2><p>群里发送 <code>击剑杯签到即可</code></p>
-<h2 id="听歌识曲"><a href="#听歌识曲" class="headerlink" title="听歌识曲"></a>听歌识曲</h2><p>赛后问了群友，可能真的是积累与特征吧<br>大概有两种方法：<br>1：听歌词百度<br>2：直接知道什么歌<br><img src="/img/ctfshow/jjb-1.png" srcset="/img/loading.gif" lazyload><br>答案是普京<code>ctfshow&#123;Vladimir_Vladimirovich_Putin&#125;</code></p>
+<h2 id="听歌识曲"><a href="#听歌识曲" class="headerlink" title="听歌识曲"></a>听歌识曲</h2><p>赛后问了群友，可能真的是积累与特征吧<br>大概有两种方法：<br>1：听歌词百度<br>2：直接知道什么歌<br><img src="/img/ctfshow/jjb-1.png" srcset="/img/loading.gif" lazyload><br>答案是普京<code>ctfshow{Vladimir_Vladimirovich_Putin}</code></p>
 <h2 id="看图识码"><a href="#看图识码" class="headerlink" title="看图识码"></a>看图识码</h2><p>网页是一张大的二维码，但是有四个定位符就很奇怪，根据hint，分离出四个小二维码<br>用二维码神器<code>cortexscan</code>逐一扫描，然后拼接在一起，就是flag啦<br><img src="/img/ctfshow/jjb-2.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="看图识妹"><a href="#看图识妹" class="headerlink" title="看图识妹"></a>看图识妹</h2><p>直接贴大佬的脚本了<br>注意要下个<code>chromedriver.exe</code><br><a target="_blank" rel="noopener" href="https://chromedriver.chromium.org/home">网址</a>,版本要与chrome一致</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> itertools<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">force_to_get_ans</span>(<span class="hljs-params">session, url</span>):<br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36&#x27;</span>,<br>        <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-string">f&#x27;session=<span class="hljs-subst">&#123;session&#125;</span>&#x27;</span>&#125;<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.product([<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;E&#x27;</span>, <span class="hljs-string">&#x27;F&#x27;</span>, <span class="hljs-string">&#x27;G&#x27;</span>, <span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;I&#x27;</span>, <span class="hljs-string">&#x27;J&#x27;</span>], [<span class="hljs-built_in">str</span>(n) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]):<br>        chk = requests.post(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/check&#x27;</span>, &#123;<span class="hljs-string">&#x27;meizi_id&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>.join(i)&#125;, headers=headers).text<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;回答错误，轮数重新开始计算&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> chk:<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(i)<br><br><br>driver = webdriver.Chrome(<span class="hljs-string">r&#x27;chromedriver.exe&#x27;</span>)<br>url = <span class="hljs-string">&#x27;http://002b1a4d-e639-4e31-b149-dd0fb39d779d.challenge.ctf.show/&#x27;</span><br><br>driver.get(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/start&#x27;</span>)<br>n = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> n &lt;= <span class="hljs-number">100</span>:<br>    cke = driver.get_cookie(<span class="hljs-string">&#x27;session&#x27;</span>)<br>    ans=force_to_get_ans(cke, url)<br>    driver.find_element_by_name(<span class="hljs-string">&#x27;meizi_id&#x27;</span>).send_keys(ans)<br>    driver.find_element_by_xpath(<span class="hljs-string">&#x27;/html/body/form/p[4]/button&#x27;</span>).click()<br>    sleep(<span class="hljs-number">3</span>)<br>    n+=1s<br></code></pre></td></tr></table></figure>
@@ -387,10 +378,10 @@
 <p>上传一个<code>.user.ini</code>文件用来远程包含<br><img src="/img/ctfshow/jjb-4.png" srcset="/img/loading.gif" lazyload></p>
 <p>因为加了头检测，所以需要在文件前加上<code>GIF89a</code><br>在这个环境中，点也被过滤了，所以需要将ip转为数字<br><a target="_blank" rel="noopener" href="http://www.jsons.cn/ipnum/">在线转换</a><br><img src="/img/ctfshow/jjb-5.png" srcset="/img/loading.gif" lazyload></p>
 <p>访问upload即可远程包含<br><img src="/img/ctfshow/jjb-6.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="OSINT"><a href="#OSINT" class="headerlink" title="OSINT"></a>OSINT</h1><h2 id="英语阅读"><a href="#英语阅读" class="headerlink" title="英语阅读"></a>英语阅读</h2><p>OSINT的全称是<code>Open source intelligence</code><br>根据这个进行关键词搜索<br>第一篇就是<br><img src="/img/ctfshow/jjb-7.png" srcset="/img/loading.gif" lazyload><br>开头就是人名<br><img src="/img/ctfshow/jjb-8.png" srcset="/img/loading.gif" lazyload><br>flag为<code>ctfshow&#123;Bill_Donovan&#125;</code></p>
-<h2 id="这是哪里"><a href="#这是哪里" class="headerlink" title="这是哪里"></a>这是哪里</h2><p>图片很大，将主要信息人物截图再百度搜图<br><img src="/img/ctfshow/jjb-9.png" srcset="/img/loading.gif" lazyload><br>在贴吧中得到信息<code>漳州市东山县黄道周公园</code><br>查询经纬度<br><img src="/img/ctfshow/jjb-10.png" srcset="/img/loading.gif" lazyload><br><code>ctfshow&#123;23.7353_117.5125&#125;</code></p>
+<h1 id="OSINT"><a href="#OSINT" class="headerlink" title="OSINT"></a>OSINT</h1><h2 id="英语阅读"><a href="#英语阅读" class="headerlink" title="英语阅读"></a>英语阅读</h2><p>OSINT的全称是<code>Open source intelligence</code><br>根据这个进行关键词搜索<br>第一篇就是<br><img src="/img/ctfshow/jjb-7.png" srcset="/img/loading.gif" lazyload><br>开头就是人名<br><img src="/img/ctfshow/jjb-8.png" srcset="/img/loading.gif" lazyload><br>flag为<code>ctfshow{Bill_Donovan}</code></p>
+<h2 id="这是哪里"><a href="#这是哪里" class="headerlink" title="这是哪里"></a>这是哪里</h2><p>图片很大，将主要信息人物截图再百度搜图<br><img src="/img/ctfshow/jjb-9.png" srcset="/img/loading.gif" lazyload><br>在贴吧中得到信息<code>漳州市东山县黄道周公园</code><br>查询经纬度<br><img src="/img/ctfshow/jjb-10.png" srcset="/img/loading.gif" lazyload><br><code>ctfshow{23.7353_117.5125}</code></p>
 <h2 id="卡鲁铁盒"><a href="#卡鲁铁盒" class="headerlink" title="卡鲁铁盒"></a>卡鲁铁盒</h2><p>谷歌搜图可以找到<a target="_blank" rel="noopener" href="https://geckosint.medium.com/10-beginner-osint-ctf-solutions-ae89e557a4b">原题</a></p>
-<p>根据题目给出的<a target="_blank" rel="noopener" href="https://www.track-trace.com/">网址</a>搜索编号，找到港口和csc编号<br><img src="/img/ctfshow/jjb-11.png" srcset="/img/loading.gif" lazyload><br>注意名称全大写<br>flag:<code>ctfshow&#123;FBV854404_ROTTERDAM&#125;</code></p>
+<p>根据题目给出的<a target="_blank" rel="noopener" href="https://www.track-trace.com/">网址</a>搜索编号，找到港口和csc编号<br><img src="/img/ctfshow/jjb-11.png" srcset="/img/loading.gif" lazyload><br>注意名称全大写<br>flag:<code>ctfshow{FBV854404_ROTTERDAM}</code></p>
 <h2 id="人家想玩嘛"><a href="#人家想玩嘛" class="headerlink" title="人家想玩嘛"></a>人家想玩嘛</h2><blockquote>
 <p>ctfshow{娱乐项目名称-当地该娱乐项目票价-订票增值税}</p>
 </blockquote>
@@ -398,11 +389,11 @@
 <p>通过谷歌地图可以得知附近的景点<code>lake fountain ride</code><br><img src="/img/ctfshow/jjb-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>谷歌搜索<code>lake fountain ride 买票</code>，找到一个可能是官网的地方，标着票价<code>65</code>每人<br><img src="/img/ctfshow/jjb-14.png" srcset="/img/loading.gif" lazyload></p>
 <p>点右边的在线购票<br>得到增值税为<code>5%</code><br><img src="/img/ctfshow/jjb-15.png" srcset="/img/loading.gif" lazyload></p>
-<p>最后的结果要将<code>fountain</code>去掉<br>flag为<code>ctfshow&#123;LAKE_RIDE-65-5%&#125;</code></p>
+<p>最后的结果要将<code>fountain</code>去掉<br>flag为<code>ctfshow{LAKE_RIDE-65-5%}</code></p>
 <h2 id="人有点多"><a href="#人有点多" class="headerlink" title="人有点多"></a>人有点多</h2><p>百度识图或者谷歌识图都可以得出地点<code>涩谷</code>，图中是涩谷的标志性街道<br>谷歌地图可以得到店铺名字<code>BIC_CAMERA</code>和电话号码后四位<code>1111</code><br>BIC_CAMERA有官网，找到线路图，可以得知最近的是<code>副都心线</code><br><img src="/img/ctfshow/jjb-16.png" srcset="/img/loading.gif" lazyload></p>
 <p>谷歌或者wiki里都可以得到<code>副都心线</code>的编号为<code>F16</code><br><img src="/img/ctfshow/jjb-17.png" srcset="/img/loading.gif" lazyload></p>
 <p>其实上面的线路图已经可以看出出口是<code>B2</code>了，但是这题坑就在这里，还需要在B2前加上个<code>10</code><br><img src="/img/ctfshow/jjb-18.png" srcset="/img/loading.gif" lazyload></p>
-<p>flag为<code>ctfshow&#123;BIC_CAMERA-1111-10B2-F16&#125;</code></p>
+<p>flag为<code>ctfshow{BIC_CAMERA-1111-10B2-F16}</code></p>
 <h2 id="小城美食"><a href="#小城美食" class="headerlink" title="小城美食"></a>小城美食</h2><blockquote>
 <p>flag格式：ctfshow{X省X市X区X村X号}</p>
 </blockquote>
@@ -694,23 +685,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -878,8 +852,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

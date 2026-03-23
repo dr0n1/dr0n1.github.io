@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-15.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/file_include-16.png">
 <meta property="article:published_time" content="2022-06-23T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-07T07:14:23.367Z">
+<meta property="article:modified_time" content="2026-03-23T14:34:29.180Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="总结">
 <meta property="article:tag" content="文件包含">
@@ -743,6 +743,8 @@
 
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$b</span>=<span class="hljs-string">&#x27;lajilajilajilajilaji%FF%FEc%003%00l%00z%00d%00G%00V%00t%00lajilajilajilajilaji&#x27;</span>;<br><span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">urldecode</span>(<span class="hljs-variable">$b</span>);<br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">iconv</span>(<span class="hljs-string">&#x27;utf-16&#x27;</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>, <span class="hljs-variable">$b</span>);<br><span class="hljs-variable">$payload</span> = <span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-variable">$payload</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$payload</span>;<br><br><span class="hljs-comment">// 1：拼接后的数据</span><br><span class="hljs-comment">// lajilajilajilajilaji%FF%FEc%003%00l%00z%00d%00G%00V%00t%00lajilajilajilajilaji</span><br><br><span class="hljs-comment">// 2：utf-16转换为utf-8</span><br><span class="hljs-comment">// 乱码c3lzdGVt乱码</span><br><br><span class="hljs-comment">// 3：base64_decode</span><br><span class="hljs-comment">// system</span><br></code></pre></td></tr></table></figure>
 
+
+
 <p>转成伪协议的写法</p>
 <p><code>php://filter/convert.iconv.utf-16.utf-8/convert.base64-decode/resource=</code></p>
 <p>不同编码<a target="_blank" rel="noopener" href="https://www.novel.tools/decode">在线转换网站</a></p>
@@ -820,7 +822,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月7日</div>
+          <div>2026年3月23日</div>
         </div>
       
       
@@ -902,8 +904,8 @@
           }
         )
         init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+        Fluid.utils.waitElementVisible('#waline .wl-content', () => {
+          var imgSelector = '#waline .wl-content img:not(.wl-emoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })

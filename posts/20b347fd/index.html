@@ -590,11 +590,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/awd/" class="print-no-link">#awd</a>
+      
         <a href="/tags/wp/" class="print-no-link">#wp</a>
       
         <a href="/tags/%E5%AE%81%E6%B3%A2/" class="print-no-link">#宁波</a>
-      
-        <a href="/tags/awd/" class="print-no-link">#awd</a>
       
     </div>
   
@@ -707,8 +707,8 @@
           }
         )
         init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+        Fluid.utils.waitElementVisible('#waline .wl-content', () => {
+          var imgSelector = '#waline .wl-content img:not(.wl-emoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })

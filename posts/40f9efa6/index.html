@@ -23,16 +23,16 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="ctf, writeups, web, misc">
   
-    <meta name="description" content="SID HistorySID（安全标识符）是分配给每个安全主体（例如用户、组、计算机）的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问 SID History 是用户或组对象的一个​​属性，允许对象在域合并或重组过程中从一个域迁移到另一个域时保留其 SID。当对象迁移到新域时，目标域会为其分配一个新的 SID。SID History 允许对象保留其原始 SID，从而不会丢失对源域中资源的">
+    <meta name="description" content="SID HistorySID(安全标识符) 是分配给每个安全主体(例如用户、组、计算机)的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问 SID History 是用户或组对象的一个​​属性，允许对象在域合并或重组过程中从一个域迁移到另一个域时保留其 SID。当对象迁移到新域时，目标域会为其分配一个新的 SID。SID History 允许对象保留其原始 SID，从而不会丢失对源域中资源">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内网渗透学习(域持久化篇)">
 <meta property="og:url" content="https://www.dr0n.top/posts/40f9efa6/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="SID HistorySID（安全标识符）是分配给每个安全主体（例如用户、组、计算机）的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问 SID History 是用户或组对象的一个​​属性，允许对象在域合并或重组过程中从一个域迁移到另一个域时保留其 SID。当对象迁移到新域时，目标域会为其分配一个新的 SID。SID History 允许对象保留其原始 SID，从而不会丢失对源域中资源的">
+<meta property="og:description" content="SID HistorySID(安全标识符) 是分配给每个安全主体(例如用户、组、计算机)的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问 SID History 是用户或组对象的一个​​属性，允许对象在域合并或重组过程中从一个域迁移到另一个域时保留其 SID。当对象迁移到新域时，目标域会为其分配一个新的 SID。SID History 允许对象保留其原始 SID，从而不会丢失对源域中资源">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Persistence-1.png">
 <meta property="article:published_time" content="2025-09-13T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-29T11:21:37.882Z">
+<meta property="article:modified_time" content="2026-04-26T07:47:40.405Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="域">
@@ -486,9 +486,9 @@
             
               <div class="markdown-body">
                 
-                <h1 id="SID-History"><a href="#SID-History" class="headerlink" title="SID History"></a>SID History</h1><p>SID（安全标识符）是分配给每个安全主体（例如用户、组、计算机）的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问</p>
+                <h1 id="SID-History"><a href="#SID-History" class="headerlink" title="SID History"></a>SID History</h1><p>SID(安全标识符) 是分配给每个安全主体(例如用户、组、计算机)的唯一标识符。它用于在域内标识主体，并用于控制对资源的访问</p>
 <p>SID History 是用户或组对象的一个​​属性，允许对象在域合并或重组过程中从一个域迁移到另一个域时保留其 SID。当对象迁移到新域时，目标域会为其分配一个新的 SID。SID History 允许对象保留其原始 SID，从而不会丢失对源域中资源的访问权限</p>
-<p>这种机制也可能被滥用为一种持久性手段：将特权帐户或组的 SID 添加到受控帐户的 SID-History 属性中，即可授予与添加该 SID 的帐户&#x2F;组相关的权限</p>
+<p>这种机制也可能被滥用为一种持久性手段：将特权帐户或组的 SID 添加到受控帐户的 SID History 属性中，即可授予与添加该 SID 的帐户&#x2F;组相关的权限</p>
 <h2 id="Windows-2016之前"><a href="#Windows-2016之前" class="headerlink" title="Windows 2016之前"></a>Windows 2016之前</h2><p>通过 powershell 命令查看 test 用户的 SID History 属性</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Import-Module</span> ActiveDirectory<br><span class="hljs-built_in">Get-ADUser</span> test <span class="hljs-literal">-Properties</span> sidhistory<br></code></pre></td></tr></table></figure>
 
@@ -565,7 +565,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年10月29日</div>
+          <div>2026年4月26日</div>
         </div>
       
       

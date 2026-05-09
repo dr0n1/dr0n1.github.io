@@ -656,9 +656,9 @@
       
         <a href="/tags/wp/" class="print-no-link">#wp</a>
       
-        <a href="/tags/%E7%BE%8A%E5%9F%8E%E6%9D%AF/" class="print-no-link">#羊城杯</a>
-      
         <a href="/tags/2023%E7%AB%9E%E8%B5%9B/" class="print-no-link">#2023竞赛</a>
+      
+        <a href="/tags/%E7%BE%8A%E5%9F%8E%E6%9D%AF/" class="print-no-link">#羊城杯</a>
       
     </div>
   
@@ -761,8 +761,8 @@
   <div id="waline"></div>
   <script type="module">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.15.8/waline.css')
-      import('https://lib.baomitu.com/waline/2.15.8/waline.js').then(({ init }) => {
+      Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css')
+      import('https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js').then(({ init }) => {
         var options = Object.assign(
           {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
           {
@@ -771,8 +771,8 @@
           }
         )
         init(options);
-        Fluid.utils.waitElementVisible('#waline .wl-content', () => {
-          var imgSelector = '#waline .wl-content img:not(.wl-emoji)';
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })

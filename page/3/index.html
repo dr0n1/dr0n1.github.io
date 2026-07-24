@@ -68,7 +68,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -79,6 +79,19 @@
   <script  src="/js/color-schema.js" ></script>
   
 
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
   
 
   
@@ -424,6 +437,138 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/posts/3f5b8fbe/" target="_self">
+          域渗透学习(NTLM篇)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/3f5b8fbe/" target="_self">
+        <div>
+          LM Hash 和 NTLM Hash 和 Net-NTLM hash在Windows系统中，身份验证通常使用 NTLM 协议，NTLM 协议不会直接传输明文密码，而是基于密码的哈希值进行质询-响应认证。这些哈希值由系统 API（如 LsaLogonUser）根据用户密码生成  Windows 中存在两种主要的本地存储哈希： LM Hash（LAN Manager Hash） NT Hash（也称
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-28 12:00" pubdate>
+              2025-06-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
+            
+              <a href="/tags/%E5%9F%9F/">#域</a>
+            
+              <a href="/tags/NTLM/">#NTLM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+ 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/fcb3a8d7/" target="_self">
+          linux提权笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/fcb3a8d7/" target="_self">
+        <div>
+          记录在比赛和靶场中遇到的提权方法 推荐本地部署一个GTFOBins用来查询 suid 提权 SUID是一种特殊权限，可以让调用者在执行过程中暂时获得该文件拥有者的权限。如果可以找到并运行root用户所拥有的SUID的文件，那么就可以在运行该文件的时候获得root用户权限  查找当前系统上文件属主为 root 并且拥有 SUID 权限的可执行文件 1234find / -user root -per
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-09 12:00" pubdate>
+              2025-05-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/%E6%8F%90%E6%9D%83/">#提权</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+ 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/posts/e0ff8995/" target="_self">
           域渗透学习(Credentials篇)
         </a>
@@ -605,9 +750,9 @@
             
               <a href="/tags/wp/">#wp</a>
             
-              <a href="/tags/%E4%B8%AD%E5%8D%8E%E6%AD%A6%E6%95%B0%E6%9D%AF/">#中华武数杯</a>
-            
               <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
+            
+              <a href="/tags/%E4%B8%AD%E5%8D%8E%E6%AD%A6%E6%95%B0%E6%9D%AF/">#中华武数杯</a>
             
               <a href="/tags/RHG/">#RHG</a>
             
@@ -764,7 +909,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/posts/a04618bd/" target="_self">
         <div>
-          土豆家族原理可以与域渗透学习(NTLM篇)的内容结合起来看 一般使用 Potato 提权需要下列两个特权中的一个  SeImpersonatePrivilege SeAssignPrimaryTokenPrivilege  以下用户拥有SeImpersonatePrivilege权限，而 SeAssignPrimaryTokenPrivilege 只有更高权限的账户比如SYSTEM才有 12345
+          注册表提权服务注册表权限配置错误如果低权限用户对某些系统服务的注册表项拥有写入权限，可以通过篡改服务的可执行文件路径来执行恶意代码 比如 12345678910Name              : gupdateImagePath         : &quot;C:\Program Files (x86)\Google\Update\GoogleUpdate.exe&quot; /svcUse
         </div>
       </a>
 
@@ -936,138 +1081,6 @@
               <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>
             
               <a href="/tags/%E5%9F%9F/">#域</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
- 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/da856207/" target="_self">
-          2024年“羊城杯”粤港澳大湾区网络安全大赛 wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/da856207/" target="_self">
-        <div>
-          [初赛] 数据安全data-analy1恢复被打乱的数据 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import csvimport reimport pandas as pddata = pd.read_csv(&quot;person_data.csv&quot;,
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-08-28 09:00" pubdate>
-              2024-08-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/%E7%BE%8A%E5%9F%8E%E6%9D%AF/">#羊城杯</a>
-            
-              <a href="/tags/2024%E7%AB%9E%E8%B5%9B/">#2024竞赛</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
- 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/21a69435/" target="_self">
-          php-fpm攻击总结
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/21a69435/" target="_self">
-        <div>
-          PHP-FPM 是 FastCGI 的一个具体实现（协议解析器） Nginx等服务器中间件将用户请求按照fastcgi的规则打包好通过TCP传给FPM，然后FPM按照fastcgi的协议将TCP流解析成真正的数据 举个例子，用户访问http://127.0.0.1/index.php?a=1&amp;b=2，如果web目录是&#x2F;var&#x2F;www&#x2F;html，那么Nginx会
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-22 12:00" pubdate>
-              2024-07-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
-            
-              <a href="/tags/php/">#php</a>
-            
-              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">#中间件</a>
             
           </div>
         

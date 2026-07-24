@@ -68,7 +68,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.dr0n.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":9},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"e509bf56906f797e00a96ebece6ea445","google":{"measurement_id":"G-456TDFZC89"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true},"openkounter":{"server_url":"https://v.dr0n.top","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -79,6 +79,19 @@
   <script  src="/js/color-schema.js" ></script>
   
 
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e509bf56906f797e00a96ebece6ea445";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
   
 
   
@@ -424,6 +437,136 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/posts/40e1eb99/" target="_self">
+          JWT常见安全问题学习总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/40e1eb99/" target="_self">
+        <div>
+          Json web token(JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。它定义了一种紧凑且自包含的方式，用于在各方之间安全地传输信息作为JSON对象，特别适用于分布式站点的单点登录(SSO)场景。 结构jwt由三部分组成：header、payload、signature，用点.分隔 headerheader 用来声明 token 的类型和签名用
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-05 10:00" pubdate>
+              2023-01-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">#总结</a>
+            
+              <a href="/tags/JWT/">#JWT</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+ 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/7f0345c3/" target="_self">
+          2022HECTF-WP
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/7f0345c3/" target="_self">
+        <div>
+          Rank: 13 misc咦~小鲨鱼来喽追踪tcp流，某个POST包中看到flag  舞者的秘密数字暴力破解，得到密码456123 给的后缀是png，看头实际上是gif stegsolve一帧一帧看得到flag 你把我flag藏哪去了?txt中存在0宽字符，得到flpfypbgfeapwpsnlwklawllgryafjslgnbwapdfpzbpauanalfopwfpiabloaallziff
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-07 09:30" pubdate>
+              2022-11-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/wp/" class="category-chain-item">wp</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
+            
+              <a href="/tags/HECTF/">#HECTF</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+ 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/posts/82e1297c/" target="_self">
           2022强国杯技术技能大赛东部晋级赛wp
         </a>
@@ -537,9 +680,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/awd/">#awd</a>
-            
               <a href="/tags/wp/">#wp</a>
+            
+              <a href="/tags/awd/">#awd</a>
             
               <a href="/tags/%E5%8F%B0%E5%B7%9E/">#台州</a>
             
@@ -934,138 +1077,6 @@
               <a href="/tags/php/">#php</a>
             
               <a href="/tags/trick/">#trick</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
- 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/3ba7d05a/" target="_self">
-          奇安信CTF基础培训题目wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/3ba7d05a/" target="_self">
-        <div>
-          第一次当ctf讲师^_^ 7.12-7.19 week17.19-7.26 week27.26-8.02 week3 webWeb-2-hack使用dirsearch扫描后台，发现存在shell.php  使用burp等工具抓包爆破密码，得到密码hack  web-3-web821234567891011121314151617181920&lt;?phphighlight_file(__FILE
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-19 20:00" pubdate>
-              2022-07-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
-            
-              <a href="/tags/%E5%A5%87%E5%AE%89%E4%BF%A1/">#奇安信</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
- 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/posts/fc877f48/" target="_self">
-          2022强国杯技术技能大赛初赛wp
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/fc877f48/" target="_self">
-        <div>
-          Rank: 10，（东部赛区太卷了吧）  webupload_lol先传.htaccess，再传图片马，getshell  有个内容检测，php版本为5，用script标签绕过即可  ezpop_new源码 1234567891011121314151617181920212223242526272829303132333435363738394041424344&lt;?phpfunction
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-17 17:00" pubdate>
-              2022-07-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/wp/" class="category-chain-item">wp</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/wp/">#wp</a>
-            
-              <a href="/tags/2022%E7%AB%9E%E8%B5%9B/">#2022竞赛</a>
-            
-              <a href="/tags/%E5%BC%BA%E5%9B%BD%E6%9D%AF/">#强国杯</a>
             
           </div>
         
